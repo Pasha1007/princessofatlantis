@@ -1,0 +1,20 @@
+{"frames": {
+
+"buyInfoBG":
+{
+	"frame": {"x":1,"y":1,"w":648,"h":567},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":648,"h":567},
+	"sourceSize": {"w":648,"h":567}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "buyPopupBackround.png",
+	"format": "RGBA8888",
+	"size": {"w":650,"h":569},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:524392f55d14493f11b3aebd5c31fc5e:6343e447a2dc601dfe664e41484d2588:cdbf1a0ffec1eb8f77833fa47e3ea5a9$"
+}
+}

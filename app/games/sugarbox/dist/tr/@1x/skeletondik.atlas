@@ -1,0 +1,174 @@
+
+skeletondik.png
+size: 1922, 1251
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+box
+  rotate: false
+  xy: 2, 744
+  size: 564, 505
+  orig: 564, 505
+  offset: 0, 0
+  index: -1
+box_acik1
+  rotate: true
+  xy: 2, 147
+  size: 595, 395
+  orig: 595, 395
+  offset: 0, 0
+  index: -1
+box_acik2
+  rotate: true
+  xy: 1157, 942
+  size: 307, 442
+  orig: 307, 442
+  offset: 0, 0
+  index: -1
+box_kapali1
+  rotate: false
+  xy: 568, 867
+  size: 587, 382
+  orig: 587, 382
+  offset: 0, 0
+  index: -1
+box_kapali3
+  rotate: false
+  xy: 617, 296
+  size: 392, 233
+  orig: 392, 237
+  offset: 0, 4
+  index: -1
+seker1
+  rotate: true
+  xy: 718, 5
+  size: 289, 304
+  orig: 289, 304
+  offset: 0, 0
+  index: -1
+seker10
+  rotate: false
+  xy: 963, 531
+  size: 294, 334
+  orig: 294, 334
+  offset: 0, 0
+  index: -1
+seker11
+  rotate: false
+  xy: 1562, 598
+  size: 318, 318
+  orig: 318, 318
+  offset: 0, 0
+  index: -1
+seker2
+  rotate: false
+  xy: 1259, 290
+  size: 335, 295
+  orig: 335, 295
+  offset: 0, 0
+  index: -1
+seker3
+  rotate: true
+  xy: 1596, 270
+  size: 326, 305
+  orig: 326, 305
+  offset: 0, 0
+  index: -1
+seker4
+  rotate: true
+  xy: 1024, 2
+  size: 266, 302
+  orig: 266, 302
+  offset: 0, 0
+  index: -1
+seker5
+  rotate: false
+  xy: 399, 315
+  size: 216, 427
+  orig: 216, 427
+  offset: 0, 0
+  index: -1
+seker6
+  rotate: false
+  xy: 399, 2
+  size: 317, 292
+  orig: 317, 292
+  offset: 0, 0
+  index: -1
+seker7
+  rotate: false
+  xy: 617, 531
+  size: 344, 334
+  orig: 344, 334
+  offset: 0, 0
+  index: -1
+seker8
+  rotate: false
+  xy: 1601, 918
+  size: 319, 331
+  orig: 319, 331
+  offset: 0, 0
+  index: -1
+seker9
+  rotate: true
+  xy: 1259, 587
+  size: 353, 301
+  orig: 353, 301
+  offset: 0, 0
+  index: -1
+shi1
+  rotate: false
+  xy: 1328, 148
+  size: 186, 140
+  orig: 200, 147
+  offset: 7, 0
+  index: -1
+shi2
+  rotate: false
+  xy: 1516, 129
+  size: 187, 139
+  orig: 200, 147
+  offset: 6, 0
+  index: -1
+shi3
+  rotate: false
+  xy: 1328, 6
+  size: 186, 140
+  orig: 200, 147
+  offset: 6, 0
+  index: -1
+shi4
+  rotate: false
+  xy: 1011, 389
+  size: 188, 140
+  orig: 200, 147
+  offset: 5, 0
+  index: -1
+shi5
+  rotate: false
+  xy: 1705, 129
+  size: 186, 139
+  orig: 200, 147
+  offset: 5, 0
+  index: -1
+shi6
+  rotate: false
+  xy: 2, 6
+  size: 191, 139
+  orig: 200, 147
+  offset: 4, 0
+  index: -1
+shi7
+  rotate: false
+  xy: 195, 6
+  size: 188, 139
+  orig: 200, 147
+  offset: 5, 0
+  index: -1
+trbg
+  rotate: false
+  xy: 1157, 890
+  size: 88, 50
+  orig: 88, 50
+  offset: 0, 0
+  index: -1

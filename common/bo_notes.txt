@@ -1,0 +1,26 @@
+EGR: values Not correct
+GGR: Row is missing
+NGR: Row value needs to deduct bonuses value
+Current Day: Having values 0 only
+Prev Day: 
+
+Date Range restriction: To be 30 days. It can be up to 2 months as well based on the load of the table.
+
+Game Level Data: Remove last table
+Country Level Data: Remove last table. stick to 30 days. Formulat need to be updated.
+Games:
+	Games... Enable / disable games... add game automatically to new operators.
+	Game Round ID: Need client team to work on game round
+	Game Coin Values: To be able to check/uncheck coin values
+					   GameName: Currency, just coin values with check box
+Player Level Data:
+	Player Level Data: Need to add rest of the columns. FullName, Gender, DOB, username
+					   Change 'Player Name' to 'User Name'
+					   Player Yield: Bet -  Win (dont deduct pjp wins)
+	Player Deails: On clicking uername, it should still high light "Player Details" Tab
+	List of Stuck Rounds: Need to provide a way to clear fs and bonus games
+			: Notes on player and KPI by date shoudl go to player details section
+	Player Details: Need to provide a search functionality need to accept player_id/username
+	Brands: It is not working for now. Yet to work on it.
+	List of Stuck Rounds: Need to have a mechanism where game server clears automatically
+

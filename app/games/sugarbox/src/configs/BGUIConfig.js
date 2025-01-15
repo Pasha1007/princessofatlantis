@@ -1,0 +1,57 @@
+var BGViewUiConfig = [
+  {
+    "image": "backgroundBG",
+    "id": "bgImg",
+    //button/image/text/container
+    // "type": "sprite",
+    "isSeparatePortraitImage": true,
+    "type": "Spine",
+    "potraitAnimation" : "main_port_idle",                                      //static image case not added.Update later
+    "defaultAnimation": "main_land_idle",
+    "isSizeDoubled": false,
+    "isAnchored": true,
+    //only for text
+    //"textStyle":"winAmountStyle",
+    //only for containerjs
+    //has chilren
+    //only for buttons
+    //default state  disable/enable
+    //only for text
+    //defautl text
+    //"alignment" to be used only for mobiles: 
+    //0: CENTER CENTER, 1: TOP LEFT 2: TOP CENTER, 3: TOP RIGHT 4: RIGHT CENTER
+    //5: BOTTOM RIGHT 6: BOTTOM CENTER 7: BOTTOM LEFT 8: LEFT CENTER
+    "props": {
+      "VD": {
+        "x": 637, "y": 358,
+        anchor: { x: 0.5, y: 0.5 },
+        scale: {x: 0.67, y: 0.67}
+      },
+      "VL": { alignment: 12, scale: { x: 0, y: 0 } },    //Adjust the x and y for VL and VP in GBGView.js 
+      "VP": { alignment: 12, scale: { x: 0, y: 0 } },   //Add Anchor property 0.5 in the case of sprite
+    }
+  },
+  {
+    "image": "backgroundFG",
+    "id": "fsImg",
+    // "type": "sprite",
+    "isSeparatePortraitImage": true,
+    "type": "Spine",
+    "potraitAnimation" : "freespin_port_idle",  //Portrait seperate sprite image case not added.
+    "defaultAnimation": "freespin_land_idle",
+    "isSizeDoubled": false,
+    "isAnchored": true,
+    //"alignment" to be used only for mobiles:
+    //0: CENTER CENTER, 1: TOP LEFT 2: TOP CENTER, 3: TOP RIGHT 4: RIGHT CENTER
+    //5: BOTTOM RIGHT 6: BOTTOM CENTER 7: BOTTOM LEFT 8: LEFT CENTER
+    "props": {
+      "VD": {
+        "x": 637, "y": 358,
+        anchor: { x: 0.5, y: 0.5 },
+        scale: {x: 0.67, y: 0.67}
+      },
+      "VL": { alignment: 12, scale: { x: 0, y: 0 } },    //Adjust the x and y for VL and VP in GBGView.js 
+      "VP": { alignment: 12, scale: { x: 0, y: 0 } },   //Add Anchor property 0.5 in the case of sprite
+    }
+  }
+];

@@ -1,0 +1,24 @@
+<font>
+	<info face="featureBitmapFont-export" size="80" />
+	<common lineHeight="80" scaleW="669" scaleH="729" pages="1" />
+	<pages>
+		<page id="0" file="featureBitmapFont-export.png" />
+	</pages>
+	<chars count="21">
+		<char id="48" x="0" y="234" width="172" height="223" xoffset="0" yoffset="-153" xadvance="173" page="0" chnl="0" letter="0"/><!-- 0 -->
+		<char id="49" x="511" y="0" width="147" height="225" xoffset="0" yoffset="-154" xadvance="148" page="0" chnl="0" letter="1"/><!-- 1 -->
+		<char id="50" x="173" y="478" width="168" height="223" xoffset="0" yoffset="-153" xadvance="169" page="0" chnl="0" letter="2"/><!-- 2 -->
+		<char id="51" x="510" y="241" width="158" height="243" xoffset="0" yoffset="-163" xadvance="159" page="0" chnl="0" letter="3"/><!-- 3 -->
+		<char id="52" x="0" y="458" width="172" height="237" xoffset="0" yoffset="-160" xadvance="173" page="0" chnl="0" letter="4"/><!-- 4 -->
+		<char id="53" x="510" y="485" width="153" height="243" xoffset="0" yoffset="-163" xadvance="154" page="0" chnl="0" letter="5"/><!-- 5 -->
+		<char id="54" x="342" y="0" width="168" height="240" xoffset="0" yoffset="-161" xadvance="169" page="0" chnl="0" letter="6"/><!-- 6 -->
+		<char id="55" x="342" y="469" width="167" height="242" xoffset="0" yoffset="-162" xadvance="168" page="0" chnl="0" letter="7"/><!-- 7 -->
+		<char id="56" x="342" y="241" width="167" height="227" xoffset="0" yoffset="-155" xadvance="168" page="0" chnl="0" letter="8"/><!-- 8 -->
+		<char id="57" x="173" y="234" width="168" height="243" xoffset="0" yoffset="-163" xadvance="169" page="0" chnl="0" letter="9"/><!-- 9 -->
+		<char id="88" x="0" y="0" width="203" height="233" xoffset="0" yoffset="-158" xadvance="204" page="0" chnl="0" letter="X"/><!-- X -->
+		<char id="32" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="20" page="0" chnl="0" letter=" "/><!--   -->
+		<char id="9" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="160" page="0" chnl="0" letter="	"/><!-- 	 -->
+	</chars>
+	<kernings count="0">
+	</kernings>
+</font>

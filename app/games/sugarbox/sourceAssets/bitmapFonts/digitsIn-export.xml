@@ -1,0 +1,28 @@
+<font>
+	<info face="digitsIn-export" size="80" />
+	<common lineHeight="80" scaleW="443" scaleH="447" pages="1" />
+	<pages>
+		<page id="0" file="digitsIn-export.png" />
+	</pages>
+	<chars count="17">
+		<char id="48" x="187" y="0" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="0"/><!-- 0 -->
+		<char id="49" x="93" y="149" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="1"/><!-- 1 -->
+		<char id="50" x="276" y="298" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="2"/><!-- 2 -->
+		<char id="51" x="185" y="149" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="3"/><!-- 3 -->
+		<char id="52" x="277" y="149" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="4"/><!-- 4 -->
+		<char id="53" x="0" y="149" width="92" height="148" xoffset="0" yoffset="-68" xadvance="93" page="0" chnl="0" letter="5"/><!-- 5 -->
+		<char id="54" x="0" y="0" width="94" height="148" xoffset="0" yoffset="-68" xadvance="95" page="0" chnl="0" letter="6"/><!-- 6 -->
+		<char id="55" x="92" y="298" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="7"/><!-- 7 -->
+		<char id="56" x="184" y="298" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="8"/><!-- 8 -->
+		<char id="57" x="95" y="0" width="91" height="148" xoffset="0" yoffset="-68" xadvance="92" page="0" chnl="0" letter="9"/><!-- 9 -->
+		<char id="44" x="368" y="298" width="49" height="65" xoffset="0" yoffset="-4" xadvance="50" page="0" chnl="0" letter=","/><!-- , -->
+		<char id="46" x="368" y="364" width="49" height="50" xoffset="0" yoffset="-1" xadvance="50" page="0" chnl="0" letter="."/><!-- . -->
+		<char id="8364" x="0" y="298" width="91" height="110" xoffset="0" yoffset="-49" xadvance="92" page="0" chnl="0" letter="€"/><!-- € -->
+		<char id="36" x="279" y="0" width="83" height="126" xoffset="0" yoffset="-57" xadvance="84" page="0" chnl="0" letter="$"/><!-- $ -->
+		<char id="163" x="363" y="0" width="79" height="110" xoffset="0" yoffset="-49" xadvance="80" page="0" chnl="0" letter="£"/><!-- £ -->
+		<char id="32" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="20" page="0" chnl="0" letter=" "/><!--   -->
+		<char id="9" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="160" page="0" chnl="0" letter="	"/><!-- 	 -->
+	</chars>
+	<kernings count="0">
+	</kernings>
+</font>

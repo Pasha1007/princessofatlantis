@@ -1,0 +1,28 @@
+{"frames": {
+
+"FrameFg":
+{
+	"frame": {"x":0,"y":0,"w":1104,"h":922},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1104,"h":922},
+	"sourceSize": {"w":1104,"h":922}
+},
+"Freespin background":
+{
+	"frame": {"x":0,"y":922,"w":1920,"h":1080},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1920,"h":1080},
+	"sourceSize": {"w":1920,"h":1080}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "FG_frame.png",
+	"format": "RGBA8888",
+	"size": {"w":1920,"h":2002},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:34de32173c92b3fbf0be3d2a2374cea3:0228b589ce9de0178a458b711db1cac3:cf51196572beaeb5dd3ea2d6d6f44f5d$"
+}
+}

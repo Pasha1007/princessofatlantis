@@ -1,0 +1,60 @@
+{"frames": {
+
+"10x":
+{
+	"frame": {"x":259,"y":3,"w":253,"h":255},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
+	"sourceSize": {"w":255,"h":263}
+},
+"m":
+{
+	"frame": {"x":259,"y":3,"w":253,"h":255},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
+	"sourceSize": {"w":255,"h":263}
+},
+"15x":
+{
+	"frame": {"x":515,"y":3,"w":253,"h":255},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
+	"sourceSize": {"w":255,"h":263}
+},
+"20x":
+{
+	"frame": {"x":771,"y":3,"w":253,"h":255},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
+	"sourceSize": {"w":255,"h":263}
+},
+"50x":
+{
+	"frame": {"x":1027,"y":3,"w":253,"h":255},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
+	"sourceSize": {"w":255,"h":263}
+},
+"100x":
+{
+	"frame": {"x":3,"y":3,"w":253,"h":255},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
+	"sourceSize": {"w":255,"h":263}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Candy_box.png",
+	"format": "RGBA8888",
+	"size": {"w":1283,"h":261},
+	"scale": "0.5",
+	"smartupdate": "$TexturePacker:SmartUpdate:3b3eb0c0fc0b157ca30e81db038614da:dd5ac97eff1a977b2f2c78c7b1e33206:9f977ba6912fb5b97aaf0961a11fa1f5$"
+}
+}

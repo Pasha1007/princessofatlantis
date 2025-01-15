@@ -1,0 +1,46 @@
+{
+  "urls": [
+    "PrimarySounds.ac3",
+    "PrimarySounds.mp3",
+    "PrimarySounds.m4a",
+    "PrimarySounds.ogg"
+  ],
+  "sprite": {
+    "background": [
+      0,
+      76800
+    ],
+    "btnClick": [
+      78000,
+      547
+    ],
+    "errorPopup": [
+      80000,
+      653
+    ],
+    "hidePopup": [
+      82000,
+      444
+    ],
+    "intro": [
+      84000,
+      2638
+    ],
+    "reelSpinning": [
+      88000,
+      3635
+    ],
+    "showPopup": [
+      93000,
+      993
+    ],
+    "spinStartBtn": [
+      95000,
+      306
+    ],
+    "spinStopBtn": [
+      97000,
+      470
+    ]
+  }
+}

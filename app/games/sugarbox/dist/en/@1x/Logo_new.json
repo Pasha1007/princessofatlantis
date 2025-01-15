@@ -1,0 +1,20 @@
+{"frames": {
+
+"Logo_static":
+{
+	"frame": {"x":0,"y":0,"w":431,"h":586},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":431,"h":586},
+	"sourceSize": {"w":431,"h":586}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "Logo_new.png",
+	"format": "RGBA8888",
+	"size": {"w":431,"h":586},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:49d633646ff2bca183f0bbebe851891d:b43a2335c8579dcbb4b8a2f69944f713:b32bb19b5d869a696b4f2003e1ccdaa2$"
+}
+}

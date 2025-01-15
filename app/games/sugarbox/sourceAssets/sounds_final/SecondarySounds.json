@@ -1,0 +1,118 @@
+{
+  "urls": [
+    "SecondarySounds.ac3",
+    "SecondarySounds.mp3",
+    "SecondarySounds.m4a",
+    "SecondarySounds.ogg"
+  ],
+  "sprite": {
+    "Multiplier": [
+      0,
+      2101
+    ],
+    "transition": [
+      4000,
+      2919
+    ],
+    "bigWin": [
+      8000,
+      2832
+    ],
+    "counterEnd": [
+      12000,
+      482
+    ],
+    "counterLoop": [
+      14000,
+      2664
+    ],
+    "megaWin": [
+      18000,
+      2772
+    ],
+    "superMegaWin": [
+      22000,
+      3000
+    ],
+    "superMegaWinDissapear": [
+      26000,
+      1280
+    ],
+    "totalWin": [
+      29000,
+      2841
+    ],
+    "winCounterLoop": [
+      33000,
+      2664
+    ],
+    "backgroundFS": [
+      37000,
+      67200
+    ],
+    "fsAwardPopup": [
+      106000,
+      1959
+    ],
+    "fsWinPopup": [
+      109000,
+      3030
+    ],
+    "anticipation": [
+      114000,
+      1728
+    ],
+    "reelLock": [
+      117000,
+      388
+    ],
+    "reelStop": [
+      119000,
+      963
+    ],
+    "spinStart": [
+      121000,
+      306
+    ],
+    "spinStop": [
+      123000,
+      470
+    ],
+    "aSym": [
+      125000,
+      1740
+    ],
+    "bSym": [
+      128000,
+      1556
+    ],
+    "bonusSym": [
+      131000,
+      2576
+    ],
+    "bonusSym_land": [
+      135000,
+      2380
+    ],
+    "cSym": [
+      139000,
+      2032
+    ],
+    "dSym": [
+      143000,
+      1840
+    ],
+    "eSym": [
+      146000,
+      1941
+    ],
+    "lowPaySym": [
+      149000,
+      1948
+    ],
+    "wildSym": [
+      152000,
+      1785
+    ]
+  }
+}

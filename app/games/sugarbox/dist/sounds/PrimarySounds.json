@@ -1,0 +1,78 @@
+{
+  "urls": [
+    "PrimarySounds.ac3",
+    "PrimarySounds.mp3",
+    "PrimarySounds.m4a",
+    "PrimarySounds.ogg"
+  ],
+  "sprite": {
+    "Bet Change": [
+      0,
+      183
+    ],
+    "Spin_Click": [
+      2000,
+      202
+    ],
+    "background": [
+      4000,
+      106130
+    ],
+    "background2": [
+      112000,
+      143640
+    ],
+    "background3": [
+      257000,
+      17470
+    ],
+    "button_click": [
+      276000,
+      247
+    ],
+    "errorPopup": [
+      278000,
+      914
+    ],
+    "errorPopup2": [
+      280000,
+      627
+    ],
+    "errorPopup3": [
+      282000,
+      731
+    ],
+    "falltest": [
+      284000,
+      180
+    ],
+    "hidePopup": [
+      286000,
+      2070
+    ],
+    "menuNavigation": [
+      290000,
+      5407
+    ],
+    "menuNavigation2": [
+      297000,
+      6818
+    ],
+    "reelhit": [
+      305000,
+      252
+    ],
+    "showPopup": [
+      307000,
+      1411
+    ],
+    "spinStartBtn": [
+      310000,
+      1970
+    ],
+    "spinStopBtn": [
+      313000,
+      340
+    ]
+  }
+}

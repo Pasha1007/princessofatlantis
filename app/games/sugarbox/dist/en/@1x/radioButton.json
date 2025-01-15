@@ -1,0 +1,28 @@
+{"frames": {
+
+"introRadioBtnOff":
+{
+	"frame": {"x":0,"y":0,"w":53,"h":53},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":53,"h":53},
+	"sourceSize": {"w":53,"h":53}
+},
+"introRadioBtnOn":
+{
+	"frame": {"x":53,"y":0,"w":53,"h":53},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":53,"h":53},
+	"sourceSize": {"w":53,"h":53}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "radioButton.png",
+	"format": "RGBA8888",
+	"size": {"w":106,"h":53},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f4b249f49a564af34a2d36d902e5bc22:21989a7570d443e7a85d5d3a98caa73f:15b080257e618662744835e9a8a729d1$"
+}
+}

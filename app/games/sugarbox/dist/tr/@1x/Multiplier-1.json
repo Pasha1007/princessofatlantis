@@ -1,0 +1,21 @@
+{"frames": {
+
+"flam_08":
+{
+	"frame": {"x":1,"y":1,"w":359,"h":159},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":60,"w":359,"h":159},
+	"sourceSize": {"w":932,"h":236}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "multiplier-1.png",
+	"format": "RGBA8888",
+	"size": {"w":361,"h":161},
+	"scale": "1",
+	"related_multi_packs": [ "Multiplier-0.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:9edb963ff9930be069169d364584a195:7430cab6fdfa9ceac827c4d7deeeefa2:12051a31ff65d03ef4456efad439393e$"
+}
+}

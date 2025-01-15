@@ -1,0 +1,244 @@
+
+number_100x.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+candy1
+  rotate: false
+  xy: 1924, 1552
+  size: 115, 112
+  orig: 115, 112
+  offset: 0, 0
+  index: -1
+candy3
+  rotate: false
+  xy: 1924, 1552
+  size: 115, 112
+  orig: 115, 112
+  offset: 0, 0
+  index: -1
+candy10
+  rotate: false
+  xy: 2, 2
+  size: 179, 114
+  orig: 179, 114
+  offset: 0, 0
+  index: -1
+candy11
+  rotate: false
+  xy: 1056, 420
+  size: 151, 160
+  orig: 151, 160
+  offset: 0, 0
+  index: -1
+candy12
+  rotate: false
+  xy: 1648, 646
+  size: 119, 113
+  orig: 119, 113
+  offset: 0, 0
+  index: -1
+candy13
+  rotate: false
+  xy: 183, 3
+  size: 119, 113
+  orig: 119, 113
+  offset: 0, 0
+  index: -1
+candy14
+  rotate: false
+  xy: 183, 3
+  size: 119, 113
+  orig: 119, 113
+  offset: 0, 0
+  index: -1
+candy2
+  rotate: true
+  xy: 1924, 1838
+  size: 188, 122
+  orig: 188, 122
+  offset: 0, 0
+  index: -1
+candy4
+  rotate: true
+  xy: 486, 267
+  size: 91, 83
+  orig: 91, 83
+  offset: 0, 0
+  index: -1
+candy5
+  rotate: true
+  xy: 1924, 1666
+  size: 170, 119
+  orig: 170, 119
+  offset: 0, 0
+  index: -1
+candy6
+  rotate: false
+  xy: 1499, 611
+  size: 147, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+candy7
+  rotate: false
+  xy: 304, 18
+  size: 105, 98
+  orig: 105, 98
+  offset: 0, 0
+  index: -1
+candy8
+  rotate: false
+  xy: 1056, 582
+  size: 218, 177
+  orig: 218, 177
+  offset: 0, 0
+  index: -1
+candy9
+  rotate: false
+  xy: 1276, 604
+  size: 221, 155
+  orig: 221, 155
+  offset: 0, 0
+  index: -1
+candy15
+  rotate: false
+  xy: 1276, 604
+  size: 221, 155
+  orig: 221, 155
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 2, 894
+  size: 1058, 1132
+  orig: 1058, 1132
+  offset: 0, 0
+  index: -1
+number_100x
+  rotate: false
+  xy: 1062, 1245
+  size: 606, 297
+  orig: 606, 297
+  offset: 0, 0
+  index: -1
+symbol_candy_box_colorful_box2
+  rotate: false
+  xy: 2, 360
+  size: 568, 532
+  orig: 568, 532
+  offset: 0, 0
+  index: -1
+symbol_candy_box_colorful_lid
+  rotate: false
+  xy: 1062, 1544
+  size: 618, 482
+  orig: 618, 482
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion0
+  rotate: false
+  xy: 2, 118
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion1
+  rotate: false
+  xy: 572, 652
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion10
+  rotate: false
+  xy: 814, 410
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion11
+  rotate: false
+  xy: 1546, 1003
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion12
+  rotate: false
+  xy: 1062, 761
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion13
+  rotate: false
+  xy: 1304, 761
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion14
+  rotate: false
+  xy: 1546, 761
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion2
+  rotate: false
+  xy: 1682, 1786
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion3
+  rotate: false
+  xy: 1062, 1003
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion4
+  rotate: false
+  xy: 244, 118
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion5
+  rotate: false
+  xy: 572, 410
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion6
+  rotate: false
+  xy: 814, 652
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion7
+  rotate: false
+  xy: 1682, 1544
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion8
+  rotate: false
+  xy: 1670, 1302
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
+vfx/Liquid 050 Explosion9
+  rotate: false
+  xy: 1304, 1003
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1

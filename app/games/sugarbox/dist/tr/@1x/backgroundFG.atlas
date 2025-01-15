@@ -1,0 +1,363 @@
+
+backgroundFG.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg_nite
+  rotate: false
+  xy: 2, 485
+  size: 960, 537
+  orig: 960, 537
+  offset: 0, 0
+  index: -1
+bg_road_day
+  rotate: false
+  xy: 2, 104
+  size: 432, 379
+  orig: 961, 537
+  offset: 276, 0
+  index: -1
+cloud_1_nite
+  rotate: true
+  xy: 1927, 600
+  size: 91, 73
+  orig: 93, 73
+  offset: 1, 0
+  index: -1
+cloud_2_nite
+  rotate: true
+  xy: 1927, 835
+  size: 187, 92
+  orig: 189, 92
+  offset: 1, 0
+  index: -1
+cloud_3_nite
+  rotate: true
+  xy: 1927, 693
+  size: 140, 79
+  orig: 140, 80
+  offset: 0, 1
+  index: -1
+ellips_2
+  rotate: false
+  xy: 1664, 104
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+ellips_3
+  rotate: false
+  xy: 1927, 522
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+light_3
+  rotate: true
+  xy: 2, 2
+  size: 100, 167
+  orig: 100, 167
+  offset: 0, 0
+  index: -1
+mist_1
+  rotate: false
+  xy: 964, 542
+  size: 961, 177
+  orig: 961, 177
+  offset: 0, 0
+  index: -1
+moon
+  rotate: false
+  xy: 1746, 129
+  size: 53, 57
+  orig: 53, 57
+  offset: 0, 0
+  index: -1
+part_l_1_1_nite
+  rotate: false
+  xy: 1318, 362
+  size: 345, 178
+  orig: 346, 179
+  offset: 0, 1
+  index: -1
+part_l_2_1_nite
+  rotate: false
+  xy: 534, 8
+  size: 43, 27
+  orig: 43, 27
+  offset: 0, 0
+  index: -1
+part_l_3_1_nite
+  rotate: false
+  xy: 1528, 63
+  size: 134, 121
+  orig: 135, 121
+  offset: 1, 0
+  index: -1
+part_l_4_1_nite
+  rotate: false
+  xy: 1665, 361
+  size: 257, 179
+  orig: 273, 184
+  offset: 16, 5
+  index: -1
+part_l_5_1_1
+  rotate: true
+  xy: 1664, 65
+  size: 37, 73
+  orig: 222, 484
+  offset: 28, 269
+  index: -1
+part_l_5_1_10
+  rotate: true
+  xy: 1046, 32
+  size: 40, 50
+  orig: 222, 484
+  offset: 92, 357
+  index: -1
+part_l_5_1_2
+  rotate: false
+  xy: 1924, 383
+  size: 41, 73
+  orig: 222, 484
+  offset: 0, 327
+  index: -1
+part_l_5_1_3
+  rotate: false
+  xy: 362, 57
+  size: 72, 45
+  orig: 222, 484
+  offset: 10, 423
+  index: -1
+part_l_5_1_4
+  rotate: true
+  xy: 1528, 200
+  size: 37, 39
+  orig: 222, 484
+  offset: 80, 445
+  index: -1
+part_l_5_1_5
+  rotate: true
+  xy: 1745, 188
+  size: 41, 78
+  orig: 222, 484
+  offset: 161, 391
+  index: -1
+part_l_5_1_6
+  rotate: true
+  xy: 362, 2
+  size: 53, 65
+  orig: 222, 484
+  offset: 169, 335
+  index: -1
+part_l_5_1_7
+  rotate: false
+  xy: 1569, 186
+  size: 174, 173
+  orig: 222, 484
+  offset: 34, 275
+  index: -1
+part_l_5_1_8
+  rotate: true
+  xy: 1825, 193
+  size: 36, 58
+  orig: 222, 484
+  offset: 74, 313
+  index: -1
+part_l_5_1_9
+  rotate: false
+  xy: 1924, 458
+  size: 61, 62
+  orig: 222, 484
+  offset: 82, 344
+  index: -1
+part_l_5_1_day
+  rotate: true
+  xy: 436, 261
+  size: 222, 480
+  orig: 222, 484
+  offset: 0, 4
+  index: -1
+part_l_5_1_glow
+  rotate: true
+  xy: 1046, 74
+  size: 141, 269
+  orig: 167, 298
+  offset: 13, 16
+  index: -1
+part_l_5_1_nite
+  rotate: true
+  xy: 436, 37
+  size: 222, 480
+  orig: 222, 484
+  offset: 0, 4
+  index: -1
+part_l_6_1_nite
+  rotate: false
+  xy: 1317, 81
+  size: 209, 156
+  orig: 209, 156
+  offset: 0, 0
+  index: -1
+part_l_7_1_nite
+  rotate: false
+  xy: 2005, 575
+  size: 41, 23
+  orig: 41, 23
+  offset: 0, 0
+  index: -1
+part_l_8_1_nite
+  rotate: true
+  xy: 2002, 600
+  size: 47, 28
+  orig: 47, 28
+  offset: 0, 0
+  index: -1
+part_r_1_1_nite
+  rotate: false
+  xy: 1046, 217
+  size: 231, 181
+  orig: 231, 181
+  offset: 0, 0
+  index: -1
+part_r_2_1_1
+  rotate: false
+  xy: 2008, 718
+  size: 36, 59
+  orig: 140, 352
+  offset: 80, 24
+  index: -1
+part_r_2_1_2
+  rotate: true
+  xy: 1098, 35
+  size: 37, 50
+  orig: 140, 352
+  offset: 81, 92
+  index: -1
+part_r_2_1_3
+  rotate: true
+  xy: 429, 2
+  size: 33, 51
+  orig: 140, 352
+  offset: 85, 139
+  index: -1
+part_r_2_1_4
+  rotate: false
+  xy: 2008, 779
+  size: 38, 54
+  orig: 140, 352
+  offset: 85, 184
+  index: -1
+part_r_2_1_5
+  rotate: false
+  xy: 1890, 245
+  size: 37, 53
+  orig: 140, 352
+  offset: 86, 235
+  index: -1
+part_r_2_1_6
+  rotate: false
+  xy: 2002, 649
+  size: 44, 42
+  orig: 140, 352
+  offset: 81, 277
+  index: -1
+part_r_2_1_7
+  rotate: true
+  xy: 1890, 300
+  size: 59, 29
+  orig: 140, 352
+  offset: 57, 319
+  index: -1
+part_r_2_1_8
+  rotate: false
+  xy: 2021, 969
+  size: 25, 53
+  orig: 140, 352
+  offset: 25, 294
+  index: -1
+part_r_2_1_9
+  rotate: true
+  xy: 1150, 36
+  size: 36, 49
+  orig: 140, 352
+  offset: 5, 268
+  index: -1
+part_r_2_1_day
+  rotate: true
+  xy: 964, 400
+  size: 140, 352
+  orig: 140, 352
+  offset: 0, 0
+  index: -1
+part_r_2_1_glow
+  rotate: true
+  xy: 171, 21
+  size: 81, 189
+  orig: 106, 211
+  offset: 10, 13
+  index: -1
+part_r_2_1_nite
+  rotate: false
+  xy: 918, 47
+  size: 126, 351
+  orig: 140, 352
+  offset: 0, 0
+  index: -1
+part_r_3_1_nite
+  rotate: false
+  xy: 1279, 239
+  size: 288, 121
+  orig: 288, 121
+  offset: 0, 0
+  index: -1
+part_r_4_1_nite
+  rotate: false
+  xy: 1745, 231
+  size: 143, 128
+  orig: 143, 128
+  offset: 0, 0
+  index: -1
+part_r_5_1_nite
+  rotate: false
+  xy: 2008, 693
+  size: 35, 23
+  orig: 35, 23
+  offset: 0, 0
+  index: -1
+part_r_6_1_nite
+  rotate: true
+  xy: 2021, 926
+  size: 41, 25
+  orig: 41, 25
+  offset: 0, 0
+  index: -1
+part_r_7_1_nite
+  rotate: false
+  xy: 482, 6
+  size: 50, 29
+  orig: 50, 29
+  offset: 0, 0
+  index: -1
+part_r_8_1_nite
+  rotate: false
+  xy: 918, 400
+  size: 41, 83
+  orig: 42, 84
+  offset: 1, 1
+  index: -1
+skay_nite
+  rotate: false
+  xy: 964, 721
+  size: 961, 301
+  orig: 961, 301
+  offset: 0, 0
+  index: -1
+star_1
+  rotate: false
+  xy: 1279, 382
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
