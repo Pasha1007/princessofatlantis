@@ -116,7 +116,7 @@ GBigview.onShowBigWin = function (){
 	this.coinShower = pixiLib.getElement("AnimatedSprite", { "prefix": "coinShower_", "startIndex": "1", "endIndex": "25", "digit": "dual", "loop": true, "animationSpeed": "0.3", "type": "spriteAnimation" })
 	this.coinShower.x += 53;
 	this.coinShower.y += 127;
-	this.coinShower.scale.set(1.2)
+	this.coinShower.scale.set(1)
 	this.coinShower.visible=false;
 	this.addChild(this.coinShower);
 

@@ -17,13 +17,13 @@ _ng.ReelViewUiConfig = {
         "defaultReels": ["dgfcha", "fecfda", "ecddcb","dgfcfb","dgfcgb"],
         "extraAddSymbols": ["z","b","c","d","e","f","g","h","i","s"],
         "symbolConfig": {"symbolWidth": 114, "symbolHeight": 106, "symbolXGap": 10, "symbolYGap": 11},
-        "eachReelPos": [60,175,290,405,521,638],
+        "eachReelPos": [62,202,342,482,622,762],
         "maskInfo": {
             "maskType": "1",
-            "maskPosition": {x: 55, y: 5, width: 855, height: 585}
+            "maskPosition": {x: 129, y: 13, width: 859, height: 600}
         },
        
-        "reelPositionsWRTGrid": {x: 145.5, y: -54},
+        "reelPositionsWRTGrid": {x: 145.5, y: -37},
         "reelSpinConfig":{
             "useBlur": true,
             "startJerk":false,
@@ -84,30 +84,36 @@ _ng.ReelViewUiConfig = {
         // "type": "Spine",
         // "defaultAnimation": "animation",
         "props": {
-            "VD": { x: 142.5, y: 0,  scale: 0.67},
+            "VD": { x: 131, y:13,  scale:0.72,},
             "VL": { x: 650, y: 308, scale: 0.5},
-            "VP": { x: 0,   y: 0,   scale: 0.5}
+            "VP": { x: 0,   y: 0,   scale: 0.5},
+
  
         }
     },
+    "fsReelGridBottom": {
+            "image": "reel_fg",
+            "id": "fsReelGridBottom",
+            "type": "sprite",
+            // "image": "reels",
+            // "type": "Spine",
+            // "defaultAnimation": "animation",
+            "props": {
+                "VD": { x: 131, y:13,  scale: 0.72},
+                "VL": { x: 650, y: 308, scale: 0.5},
+                "VP": { x: 0,   y: 0,   scale: 0.5}
+
+            }
+        },
     "reelGridTop": {
-        "image": "Frame_bg",
+        "image": "reel_frame",
         "id": "reelGridTop",
         "type": "sprite",        
         "props": {
-            "VD": {x: 125, y:  -15.5,  scale:{x:0.67,y:0.677}},
+            "VD": {x: 121, y:  -9,  scale:0.72},
             "VL": {x: 133, y:   0,  scale: 0.5},
             "VP": {x: 10,  y: -70,  scale: 0.5}
         }
     },
-"fsReelGridTop": {
-        "image": "FrameFg",
-        "id": "fsReelGridTop",
-        "type": "sprite",      
-        "props": {
-            "VD": {x: 125, y:  -15.5,  scale:{x:0.67,y:0.677}},
-            "VL": {x: 133, y:   0,  scale: 0.5},
-            "VP": {x: 10,  y: -70,  scale: 0.5}
-        }
-    }
+
 }

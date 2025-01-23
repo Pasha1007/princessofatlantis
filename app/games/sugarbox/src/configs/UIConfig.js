@@ -3,8 +3,8 @@ var _ng = _ng || {};
 
 _ng.UIConfig = {
     "gameTitle": {
-        // "type": "sprite",
-    	// "defaultAnimation": "Logo",
+          "type": "spine",
+          "defaultAnimation": "idle_blink",
         "Mobile": {
             additionIndex: 2,
             props: {
@@ -14,9 +14,9 @@ _ng.UIConfig = {
                 "portAnchorX": 0.5, "landAnchorX": 0.5,
             },
             // image: { "prefix": "logo_", "startIndex": "0", "endIndex": "23", "digit": "dual", "animationSpeed": ".7", "type": "spriteAnimation", "loop": false},
-            image:"Logo_static"
+            image:"Game logo"
         },
-        "Desktop": { additionIndex: 2, image: "Logo_static", props: { x:160, y: 87, scale:0.75,anchor:0.5  },delay : 2 }
+        "Desktop": { additionIndex: 2, image: "Game logo", props: { x:1173, y: 105, scale:0.4,anchor:0.5  },delay : 2 }
     },
     "bonusGames": {
         "100": { "symbol": "s" }
@@ -30,14 +30,14 @@ _ng.UIConfig = {
             "introImg1": {
                 "elementConstructor": "sprite",
                 "params": {
-                    "props": { "x": 955, "y": 121.5, anchor: 0.5, scale: { x: 1, y: 1 } },
-                    "backgroundImage": "Logo_static",
+                    "props": { "x": 960, "y": 275, anchor: 0.5, scale: { x: 0, y: 0 } },
+                    "backgroundImage": "static_logo",
                 }
             },
             "Transperent_Layer": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 1280, "y": 608, anchor: 1, scale: 0 },
+                   "props": { "x": 1280, "y": 660, anchor: 1, scale: 0 },
                     "backgroundImage": "Transperent_Layer",
                 }
             },
@@ -45,21 +45,21 @@ _ng.UIConfig = {
             "indicator1": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 282, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 282, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Fill_circle",
                 }
             },
             "Indicator_on1": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 282, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 282, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Fill_circle",
                 }
             },
             "Indicator_off1": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 282, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 282, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Base_circle",
                 }
             },
@@ -67,27 +67,27 @@ _ng.UIConfig = {
                 "elementConstructor": "GraphicsRect",
                 "params": {
                     w: 17, h: 15.5, color: 0xff0000,
-                    props: { x: 265, y: 545, scale: 2.05, visible: true }
+                    props: { x: 265, y: 645, scale: 2.05, visible: true }
                 }
             },
             "indicator2": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 332, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 362, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Fill_circle",
                 }
             },
             "Indicator_on2": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 332, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 362, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Fill_circle",
                 }
             },
             "Indicator_off2": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 332, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 362, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Base_circle",
                 }
             },
@@ -95,27 +95,27 @@ _ng.UIConfig = {
                 "elementConstructor": "GraphicsRect",
                 "params": {
                     w: 17, h: 15.5, color: 0xff2500,
-                    props: { x: 314, y: 545, scale: 2.05, visible: true }
+                    props: { x: 345, y: 645, scale: 2.05, visible: true }
                 }
             },
             "indicator3": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 382, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 442, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Fill_circle",
                 }
             },
             "Indicator_on3": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 382, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 442, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Fill_circle",
                 }
             },
             "Indicator_off3": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 382, "y": 560, anchor: 0.5, scale: 1 },
+                   "props": { "x": 442, "y": 660, anchor: 0.5, scale: 1 },
                     "backgroundImage": "Base_circle",
                 }
             },
@@ -123,14 +123,14 @@ _ng.UIConfig = {
                 "elementConstructor": "GraphicsRect",
                 "params": {
                     w: 17, h: 15.5, color: 0xff3500,
-                    props: { x: 364, y: 545, scale: 2.05, visible: true }
+                    props: { x: 425, y: 645, scale: 2.05, visible: true }
                 }
             },
             "introGameLogo": {
                 "elementConstructor": "sprite",
                 "params": {
-                   "props": { "x": 810.5, "y": 96, anchor:1, scale: 0 },
-                    "backgroundImage": "Intro_Logo",
+                   "props": { "x": 1220, "y": 360, anchor:1, scale: 1.1 },
+                    "backgroundImage": "static_logo",
                 }
             },
            
@@ -139,87 +139,101 @@ _ng.UIConfig = {
         "screen_3": {
             "elementConstructor": "sprite",
             "params": {
-               "props": { "x": 350, "y": 263.5, anchor: 0.5, scale: 0.5 },
+               "props": { "x": 415, "y": 290, anchor: 0.5, scale: 0.65 },
                 "backgroundImage": "Layer 8",
             }
         },
         "Text_screen_3": {
-            "elementConstructor": "text",
-            "params": {
-               "props": { "x": 350, "y": 495.5, anchor: 0.5, scale: 0.5 },
-               "text":["text_screen3"],
-               "textStyle": {	align: "center",
-                dropShadowAlpha: 0.1,
-                dropShadowAngle: 0,
-                dropShadowColor: "#8d8777",
-                fill: "#f2f2f2",
-                fontWeight: "900",
-                letterSpacing: 1,
-                lineJoin: "round",
-                miterLimit: 20,
-                stroke: "#533fee",
-                strokeThickness: 10,
-                trim: true,
-                fontSize: 40
-            }            
+//            "elementConstructor": "text",
+//            "params": {
+//               "props": { "x": 350, "y": 495.5, anchor: 0.5, scale: 0.5 },
+//               "text":["text_screen3"],
+//               "textStyle": {	align: "center",
+//                dropShadowAlpha: 0.1,
+//                dropShadowAngle: 0,
+//                dropShadowColor: "#8d8777",
+//                fill: "#f2f2f2",
+//                fontWeight: "900",
+//                letterSpacing: 1,
+//                lineJoin: "round",
+//                miterLimit: 20,
+//                stroke: "#533fee",
+//                strokeThickness: 10,
+//                trim: true,
+//                fontSize: 40
+//            }
+            "elementConstructor": "sprite",
+             "params": {
+             "props": { "x": 415, "y": 575, anchor: 0.5, scale: 0.8 },
+             "backgroundImage": "SYMBOLS PAY ANYWHERE ON THE SCREEN",
         },
         },
         "screen_2": {
             "elementConstructor": "sprite",
             "params": {
-               "props": { "x": 350, "y": 263.5, anchor: 0.5, scale: 0.5 },
+               "props": { "x": 415, "y": 290, anchor: 0.5, scale: 0.65 },
                 "backgroundImage": "Layer 6",
             }
         },
         "Text_screen_2": {
-            "elementConstructor": "text",
-            "params": {
-               "props": { "x": 350, "y": 495.5, anchor: 0.5, scale: 0.5 },
-                "text":["text_screen1"],
-                "textStyle": {	align: "center",
-                    dropShadowAlpha: 0.1,
-                    dropShadowAngle: 0,
-                    dropShadowColor: "#8d8777",
-                    fill: "#f2f2f2",
-                    fontWeight: "900",
-                    letterSpacing: 1,
-                    lineJoin: "round",
-                    miterLimit: 20,
-                    stroke: "#533fee",
-                    strokeThickness: 10,
-                    trim: true,
-                    fontSize: 40
-                }
-            }
+//            "elementConstructor": "text",
+//            "params": {
+//               "props": { "x": 350, "y": 495.5, anchor: 0.5, scale: 0.5 },
+//                "text":["text_screen1"],
+//                "textStyle": {	align: "center",
+//                    dropShadowAlpha: 0.1,
+//                    dropShadowAngle: 0,
+//                    dropShadowColor: "#8d8777",
+//                    fill: "#f2f2f2",
+//                    fontWeight: "900",
+//                    letterSpacing: 1,
+//                    lineJoin: "round",
+//                    miterLimit: 20,
+//                    stroke: "#533fee",
+//                    strokeThickness: 10,
+//                    trim: true,
+//                    fontSize: 40
+//                }
+//            }
+                "elementConstructor": "sprite",
+                 "params": {
+                               "props": { "x": 415, "y": 575, anchor: 0.5, scale: 0.8 },
+                              "backgroundImage": "WIN UP TO 5000 X BET",
+                            }
         },
 
         "screen_1": {
             "elementConstructor": "sprite",
             "params": {
-               "props": { "x": 350, "y": 263.5, anchor: 0.5, scale: 0.5 },
+               "props": { "x": 415, "y": 290, anchor: 0.5, scale: 0.65 },
                 "backgroundImage": "Layer 7",
             }
         },
         "Text_screen_1": {
-            "elementConstructor": "text",
-            "params": {
-               "props": { "x": 350, "y": 495.5, anchor: 0.5, scale: 0.5 },
-                "text": ["text_screen2"],
-                "textStyle": {	align: "center",
-                    dropShadowAlpha: 0.1,
-                    dropShadowAngle: 0,
-                    dropShadowColor: "#8d8777",
-                    fill: "#f2f2f2",
-                    fontWeight: "900",
-                    letterSpacing: 1,
-                    lineJoin: "round",
-                    miterLimit: 20,
-                    stroke: "#533fee",
-                    strokeThickness: 10,
-                    trim: true,
-                    fontSize: 40
-                }
-            }
+//            "elementConstructor": "text",
+//            "params": {
+//               "props": { "x": 350, "y": 495.5, anchor: 0.5, scale: 0.5 },
+//                "text": ["text_screen2"],
+//                "textStyle": {	align: "center",
+//                    dropShadowAlpha: 0.1,
+//                    dropShadowAngle: 0,
+//                    dropShadowColor: "#8d8777",
+//                    fill: "#f2f2f2",
+//                    fontWeight: "900",
+//                    letterSpacing: 1,
+//                    lineJoin: "round",
+//                    miterLimit: 20,
+//                    stroke: "#533fee",
+//                    strokeThickness: 10,
+//                    trim: true,
+//                    fontSize: 40
+//                }
+//            }
+                "elementConstructor": "sprite",
+                                       "params": {
+                                          "props": { "x": 415, "y": 575, anchor: 0.5, scale: 0.8 },
+                                           "backgroundImage": "RANDOM MULTIPLIERS UP TO 1000X",
+                                       }
         },
 
      
@@ -234,50 +248,55 @@ _ng.UIConfig = {
             "radioButtonOff": {
                 "elementConstructor": "sprite",
                 "params": {
-                    "props": { "x": 543, "y": 672, anchor: 0.5, scale: 0.7, visible: true },
-                    "backgroundImage": "introRadioBtnOff",
+                    "props": { "x": 800, "y": 662, anchor: 0.5, scale: 0.7, visible: true },
+                    "backgroundImage": "Tick_box_old",
                 }
             },
             "radioButtonOn": {
                 "elementConstructor": "sprite",
                 "params": {
-                    "props": { "x": 543, "y": 672, anchor: 0.5,scale: 0.7, visible: true },
-                    "backgroundImage": "introRadioBtnOn",
+                    "props": { "x": 800, "y": 658, anchor: 0.5,scale: 0.5, visible: true },
+                    "backgroundImage": "Tick",
                 }
             },
             "bottomText": {
-                "elementConstructor": "text",
-                "params": {
-                    "props": { "x": 735, "y": 672, anchor: 0.5, visible: true, scale: 0.6 },
-                    "text": ["dontshow"],
-                    "textStyle": {	align: "center",
-                        dropShadowAlpha: 0.1,
-                        dropShadowAngle: 0,
-                        dropShadowColor: "#8d8777",
-                        fill: "#f2f2f2",
-                        fontWeight: "900",
-                        letterSpacing: 1,
-                        lineJoin: "round",
-                        miterLimit: 20,
-                        stroke: "#533fee",
-                        strokeThickness: 10,
-                        trim: true,
-                        fontSize: 40
-                    }
-                }
+//                "elementConstructor": "text",
+//                "params": {
+//                    "props": { "x": 735, "y": 672, anchor: 0.5, visible: true, scale: 0.6 },
+//                    "text": ["dontshow"],
+//                    "textStyle": {	align: "center",
+//                        dropShadowAlpha: 0.1,
+//                        dropShadowAngle: 0,
+//                        dropShadowColor: "#8d8777",
+//                        fill: "#f2f2f2",
+//                        fontWeight: "900",
+//                        letterSpacing: 1,
+//                        lineJoin: "round",
+//                        miterLimit: 20,
+//                        stroke: "#533fee",
+//                        strokeThickness: 10,
+//                        trim: true,
+//                        fontSize: 40
+//                    }
+//                }
+                    "elementConstructor": "sprite",
+                                    "params": {
+                                        "props": { "x": 1030, "y": 658, anchor: 0.5, visible: true, scale: 1 },
+                                         "backgroundImage": "DON’T SHOW AGAIN",
+                                    }
             },
             "radioButtonHitArea": {
                 "elementConstructor": "GraphicsRect",
                 "params": {
                     w: 35, h: 27.5, color: 0xff0000,
-                    props: { x: 521, y: 653, scale: 1.3, visible: true }
+                    props: { x: 778, y: 640, scale: 1.2, visible: true }
                 }
             },
             "continueButton": {
                 "elementConstructor": "button",
                 "params": {
-                    "props": { "x": 962, "y": 518, anchor: 0.5, scale: 0.6 },
-                    "backgroundImage": "Play",
+                    "props": { "x": 1045, "y": 445, anchor: 0.5, scale: 1},
+                    "backgroundImage": "play",
                     // options: {
                     //     textField: {
                     //         // text: "CONTINUE",
@@ -328,7 +347,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                    "props": {
-                    "VL": { "x": 120, "y": 550, anchor: 0, scale: 1 },
+                    "VL": { "x": 190, "y": 550, anchor: 0, scale: 1 },
                     "VP": { "x": 255, "y": 792, anchor: 0, scale:1}
                 },
                     "backgroundImage": "Fill_circle",
@@ -354,7 +373,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
 
                    "props": {  
-                     "VL": { "x": 115, "y": 545, anchor: 0, scale: 1 },
+                     "VL": { "x": 185, "y": 545, anchor: 0, scale: 1 },
                    "VP": { "x": 250, "y": 787, anchor: 0, scale:1 } },
                     "backgroundImage": "Base_circle",
                 }
@@ -366,7 +385,7 @@ _ng.UIConfig = {
 
                     w: 17, h: 15.5, color: 0xff0000,
                     props: { 
-                        "VL": { "x":122, "y": 554, anchor: 0, scale: 2,visible:true },
+                        "VL": { "x":193, "y": 555, anchor: 0, scale: 2,visible:true },
                         "VP": { "x": 258, "y": 796, anchor: 0, scale:2,visible:true }
                      }
                 }
@@ -376,7 +395,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                    "props": {
-                    "VL": { "x": 200, "y": 545, anchor: 0, scale: 1 },
+                    "VL": { "x": 270, "y": 545, anchor: 0, scale: 1 },
                     "VP": { "x": 330, "y": 787, anchor: 0, scale:1 }
                 },
                     "backgroundImage": "Base_circle",
@@ -388,7 +407,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
 
                    "props": { 
-                    "VL": { "x": 206, "y": 550, anchor: 0, scale: 1 },
+                    "VL": { "x":276206, "y": 550, anchor: 0, scale: 1 },
                     "VP": { "x": 336, "y": 794, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Fill_circle",
@@ -400,7 +419,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
 
                    "props": { 
-                    "VL": { "x": 200, "y": 545, anchor: 0, scale: 1 },
+                    "VL": { "x": 270, "y": 545, anchor: 0, scale: 1 },
                     "VP": { "x": 330, "y": 787, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Base_circle",
@@ -413,7 +432,7 @@ _ng.UIConfig = {
 
                     w: 17, h: 15.5, color: 0xff2500,
                     props: { 
-                        "VL": { "x": 208, "y": 554, anchor: 0, scale: 2,visible:true },
+                        "VL": { "x": 279, "y": 554, anchor: 0, scale: 2,visible:true },
                         "VP": { "x": 338, "y": 796, anchor: 0, scale:2,visible:true }
                      }
                 }
@@ -423,7 +442,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                    "props": {
-                    "VL": { "x": 280, "y": 545, anchor: 0, scale: 1 },
+                    "VL": { "x": 350, "y": 545, anchor: 0, scale: 1 },
                     "VP": { "x": 410, "y": 787, anchor: 0, scale:1 }
                 },
                     "backgroundImage": "Base_circle",
@@ -435,7 +454,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
 
                    "props": {
-                    "VL": { "x": 286, "y": 550, anchor: 0, scale: 1 },
+                    "VL": { "x": 356, "y": 550, anchor: 0, scale: 1 },
                     "VP": { "x": 416, "y": 794, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Fill_circle",
@@ -447,7 +466,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
 
                    "props": { 
-                    "VL": { "x": 280, "y": 545, anchor: 0, scale: 1 },
+                    "VL": { "x": 350, "y": 545, anchor: 0, scale: 1 },
                     "VP": { "x": 410, "y": 787, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Base_circle",
@@ -460,7 +479,7 @@ _ng.UIConfig = {
 
                     w: 17, h: 15.5, color: 0xff3500,
                     props: {
-                        "VL": { "x": 288, "y": 554, anchor: 0, scale: 2,visible:true },
+                        "VL": { "x": 360, "y": 554, anchor: 0, scale: 2,visible:true },
                         "VP": { "x": 418, "y": 796, anchor: 0, scale:2,visible:true }
                      }
                 }
@@ -470,10 +489,10 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                    "props": {
-                    "VL": { "x": 803, "y": -151, anchor: 0, scale: 1 },
-                    "VP": { "x": 184, "y": -206, anchor: 0, scale:0.8 }
+                    "VL": { "x": 750, "y": 110, anchor: 0, scale: 1 },
+                    "VP": { "x": 184, "y": 15, anchor: 0, scale:0.8 }
                 },
-                    "backgroundImage": "Logo_static",
+                    "backgroundImage": "static_logo",
                 }
             },
             "screen_3": {
@@ -481,106 +500,67 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                    "props": { 
-                    "VL": { "x": 20, "y": 85, anchor: 0, scale: 0.5 ,visible:false},
-                    "VP": { "x": 128, "y":270, anchor: 0, scale:0.55,visible:false }
+                    "VL": { "x": 15, "y": 85, anchor: 0, scale: 0.55 ,visible:false},
+                    "VP": { "x": 65, "y":300, anchor: 0, scale:0.55,visible:false }
                     },
                     "backgroundImage": "Layer 8",
                 }
             },
             "Text_screen_3": {
-                "elementConstructor": "text",
+                "elementConstructor": "sprite",
                 "params": {
                     "subscribeToResize": true,
                    "props": { 
-                    "VL": { "x": 240, "y": 480, anchor: 0.5, scale: 0.5 },
-                    "VP": { "x": 360, "y": 711, anchor: 0.5, scale:0.55 }
+                    "VL": { "x": 300, "y": 500, anchor: 0.5, scale: 0.5 },
+                    "VP": { "x": 350, "y": 745, anchor: 0.5, scale:0.55 }
                     },
-                    "text":["text_screen3"],
-                    "textStyle": {	align: "center",
-                        dropShadowAlpha: 0.1,
-                        dropShadowAngle: 0,
-                        dropShadowColor: "#8d8777",
-                        fill: "#f2f2f2",
-                        fontWeight: "900",
-                        letterSpacing: 1,
-                        lineJoin: "round",
-                        miterLimit: 20,
-                        stroke: "#533fee",
-                        strokeThickness: 10,
-                        trim: true,
-                        fontSize: 40
-                    }                 },
+                    "backgroundImage": "SYMBOLS PAY ANYWHERE  ON THE SCREEN",
+                          },
                 },
             "screen_2": {
                 "elementConstructor": "sprite",
                 "params": {
                     "subscribeToResize": true,
                    "props": { 
-                    "VL": { "x": 20, "y": 85, anchor: 0, scale: 0.5,visible:false },
-                    "VP": { "x": 128, "y": 270, anchor: 0, scale:0.55,visible:false  }
+                    "VL": { "x": 15, "y": 85, anchor: 0, scale: 0.5,visible:false },
+                    "VP": { "x": 65, "y": 300, anchor: 0, scale:0.55,visible:false  }
                     },
                     "backgroundImage": "Layer 6",
                 }
             },
             "Text_screen_2": {
-                "elementConstructor": "text",
-                "params": {
-                    "subscribeToResize": true,
-                   "props": { 
-                    "VL": { "x": 240, "y": 480, anchor: 0.5, scale: 0.5},
-                    "VP": { "x": 360, "y": 711, anchor: 0.5, scale:0.55 }
-                    },
-                    "text":["text_screen1"],
-                    "textStyle": {	align: "center",
-                        dropShadowAlpha: 0.1,
-                        dropShadowAngle: 0,
-                        dropShadowColor: "#8d8777",
-                        fill: "#f2f2f2",
-                        fontWeight: "900",
-                        letterSpacing: 1,
-                        lineJoin: "round",
-                        miterLimit: 20,
-                        stroke: "#533fee",
-                        strokeThickness: 10,
-                        trim: true,
-                        fontSize: 40
-                    }                 },
+                "elementConstructor": "sprite",
+                                "params": {
+                                    "subscribeToResize": true,
+                                   "props": {
+                                    "VL": { "x": 300, "y": 500, anchor: 0.5, scale: 0.5},
+                                    "VP": { "x": 350, "y": 745, anchor: 0.5, scale:0.55 }
+                                    },
+                                     "backgroundImage": "WIN UP TO 5000 X BET",
+                                 },
                 },
             "screen_1": {
                "elementConstructor": "sprite",
                "params": {
                   "subscribeToResize": true,
                   "props": {
-                   "VL": { "x": 20, "y": 85, anchor: 0, scale: 0.5},
-                   "VP": { "x": 128, "y": 270, anchor: 0, scale:0.55 }
+                   "VL": { "x": 15, "y": 85, anchor: 0, scale: 0.55},
+                   "VP": { "x": 65, "y": 300, anchor: 0, scale:0.55 }
                },
                    "backgroundImage": "Layer 7",
                }
            },
            "Text_screen_1": {
-            "elementConstructor": "text",
-            "params": {
-               "subscribeToResize": true,
-               "props": {
-                "VL": { "x": 240, "y": 480, anchor: 0.5, scale: 0.5 },
-                "VP": { "x": 360, "y": 711, anchor: 0.5, scale:0.55 }
-            },
-                "text": ["text_screen2"],
-                "textStyle": {	align: "center",
-                    dropShadowAlpha: 0.1,
-                    dropShadowAngle: 0,
-                    dropShadowColor: "#8d8777",
-                    fill: "#f2f2f2",
-                    fontWeight: "900",
-                    letterSpacing: 1,
-                    lineJoin: "round",
-                    miterLimit: 20,
-                    stroke: "#533fee",
-                    strokeThickness: 10,
-                    trim: true,
-                    fontSize: 40
-                }        
-            },
+            "elementConstructor": "sprite",
+                        "params": {
+                           "subscribeToResize": true,
+                           "props": {
+                            "VL": { "x": 300, "y": 500, anchor: 0.5, scale: 0.5 },
+                            "VP": { "x": 350, "y": 745, anchor: 0.5, scale:0.55 }
+                        },
+
+                             "backgroundImage": "RANDOM MULTIPLIERS UP TO 1000X",
+                        },
         },
            "Transperent_Layer2": {
             "elementConstructor": "sprite",
@@ -616,28 +596,14 @@ _ng.UIConfig = {
                 }
             },
             "bottomText": {
-                "elementConstructor": "text",
-                "params": {                   
-                    "subscribeToResize": true,
-                    "props": {
-                        "VL": { x: 650, y: 668, anchor: 0.5,scale:0.6 },
-                        "VP": { x: 410, y: 1100, anchor: 0.5,scale:0.6 },
-                    },
-                    "text": ["dontshow"],
-                    "textStyle": {	align: "center",
-                        dropShadowAlpha: 0.1,
-                        dropShadowAngle: 0,
-                        dropShadowColor: "#8d8777",
-                        fill: "#f2f2f2",
-                        fontWeight: "900",
-                        letterSpacing: 1,
-                        lineJoin: "round",
-                        miterLimit: 20,
-                        stroke: "#533fee",
-                        strokeThickness: 10,
-                        trim: true,
-                        fontSize: 40
-                    }                }
+                 "elementConstructor": "sprite",
+                                "params": {
+                                    "subscribeToResize": true,
+                                    "props": {
+                                        "VL": { x: 650, y: 668, anchor: 0.5,scale:0.65 },
+                                        "VP": { x: 395, y: 1100, anchor: 0.5,scale:0.65 },
+                                    },
+                                    "backgroundImage": "DON’T SHOW AGAIN",             }
             },
             "radioButtonHitArea": {
                 "elementConstructor": "GraphicsRect",
@@ -659,7 +625,7 @@ _ng.UIConfig = {
                         "VL": { "x": 623.5, "y": 590, anchor: 0.5, scale: 0.6 },
                         "VP": { "x": 354, "y": 930, anchor: 0.5, scale: 0.6 }
                     },
-                    "backgroundImage": "Play",
+                    "backgroundImage": "play",
                     // options: {
                     //     textField: {
                     //         // text: "CONTINUE",
@@ -721,37 +687,37 @@ _ng.UIConfig = {
     //     },
         "reelSymbolConfig": {
             // "a":{symbol: {texture: "a"}, frontImage: {texture: "a"},  backImage: {texture: "a"}},
-            "a": { symbol: { texture: "a", scale:{x:0.45,y:0.45} } },
-            "b": { symbol: { texture: "b", scale:{x:0.45,y:0.45} } },
-            "c": { symbol: { texture: "c", scale:{x:0.45,y:0.45} } },
-            "d": { symbol: { texture: "d" , scale:{x:0.45,y:0.45}} },
-            "e": { symbol: { texture: "e", scale:{x:0.45,y:0.45} } },
-            "f": { symbol: { texture: "f", scale:{x:0.45,y:0.45} } },
-            "g": { symbol: { texture: "g", scale:{x:0.45,y:0.45} } },
-            "h": { symbol: { texture: "h", scale:{x:0.45,y:0.45} } },
-            "i": { symbol: { texture: "i", scale:{x:0.45,y:0.45} } },
+            "a": { symbol: { texture: "a", scale:{x:0.26,y:0.26} } },
+            "b": { symbol: { texture: "b", scale:{x:0.26,y:0.26} } },
+            "c": { symbol: { texture: "c", scale:{x:0.26,y:0.26} } },
+            "d": { symbol: { texture: "d" , scale:{x:0.26,y:0.26}} },
+            "e": { symbol: { texture: "e", scale:{x:0.26,y:0.26} } },
+            "f": { symbol: { texture: "f", scale:{x:0.26,y:0.26} } },
+            "g": { symbol: { texture: "g", scale:{x:0.26,y:0.26} } },
+            "h": { symbol: { texture: "h", scale:{x:0.26,y:0.26} } },
+            "i": { symbol: { texture: "i", scale:{x:0.26,y:0.26} } },
             // "l": { symbol: { texture: "l", scale:{x:0.6,y:0.6} } },
-            "m": { symbol: { texture: "m", scale:{x:0.45,y:0.45} } },
+            "m": { symbol: { texture: "m", scale:{x:0.26,y:0.26} } },
             // "w": { symbol: { texture: "w", scale:{x:0.6,y:0.6} } },
-            "s": { symbol: { texture: "s",scale:{x:0.45,y:0.45} } },
-            "z": { symbol: { texture: "z",scale:{x:0.45,y:0.45} } },
+            "s": { symbol: { texture: "s",scale:{x:0.26,y:0.26} } },
+            "z": { symbol: { texture: "z",scale:{x:0.26,y:0.26} } },
         },
-        "reelSymbolConfigHit": {
-            // "a":{symbol: {texture: "a"}, frontImage: {texture: "a"},  backImage: {texture: "a"}},
-            "a": { spineSymbol: "a" ,"props" :{x:0, y:-4,"scale":{x:0.22,y:0.22}} },
-            "b": { spineSymbol: "b" ,"props" :{x:0, y:2,"scale":{x:0.22,y:0.22}} },
-            "c": { spineSymbol: "c" ,"props" :{x:0, y:2,"scale":{x:0.22,y:0.22}} },
-            "d": { spineSymbol: "d" ,"props" :{x:0, y:1.5,"scale":{x:0.22,y:0.22}} },
-            "e": { spineSymbol: "e" ,"props" :{x:0, y:2,"scale":{x:0.22,y:0.22}} },
-            "f": { spineSymbol: "f" ,"props" :{x:2.75, y:2,"scale":{x:0.22,y:0.22}} },
-            "g": { spineSymbol: "g" ,"props" :{x:1, y:0.75,"scale":{x:0.22,y:0.22}} },
-            "h": { spineSymbol: "h" ,"props" :{x:0, y:4,"scale":{x:0.22,y:0.22}} },
-            "i": { spineSymbol: "i" ,"props" :{x:0.5, y:5.5,"scale":{x:0.22,y:0.22}} },
-            // "j": { spineSymbol: "b" ,"props" :{x:0, y:0,"scale":{x:0.22,y:0.22}} },
-            // "l": { spineSymbol: "bonus" ,"props" :{x:0, y:0,"scale":{x:0.22,y:0.22}} },
-            "m": { spineSymbol: "wild" ,"props" :{x:0.5, y:-1,"scale":{x:0.22,y:0.22}} },
-            "s": { spineSymbol: "Scatter" ,"props" :{x:0.5, y:-4,"scale":{x:0.22,y:0.22}} },
-        },
+//        "reelSymbolConfigHit": {
+//            // "a":{symbol: {texture: "a"}, frontImage: {texture: "a"},  backImage: {texture: "a"}},
+//            "a": { spineSymbol: "a" ,"props" :{x:0, y:-4,"scale":{x:0.22,y:0.22}} },
+//            "b": { spineSymbol: "b" ,"props" :{x:0, y:2,"scale":{x:0.22,y:0.22}} },
+//            "c": { spineSymbol: "c" ,"props" :{x:0, y:2,"scale":{x:0.22,y:0.22}} },
+//            "d": { spineSymbol: "d" ,"props" :{x:0, y:1.5,"scale":{x:0.22,y:0.22}} },
+//            "e": { spineSymbol: "e" ,"props" :{x:0, y:2,"scale":{x:0.22,y:0.22}} },
+//            "f": { spineSymbol: "f" ,"props" :{x:2.75, y:2,"scale":{x:0.22,y:0.22}} },
+//            "g": { spineSymbol: "g" ,"props" :{x:1, y:0.75,"scale":{x:0.22,y:0.22}} },
+//            "h": { spineSymbol: "h" ,"props" :{x:0, y:4,"scale":{x:0.22,y:0.22}} },
+//            "i": { spineSymbol: "i" ,"props" :{x:0.5, y:5.5,"scale":{x:0.22,y:0.22}} },
+//            // "j": { spineSymbol: "b" ,"props" :{x:0, y:0,"scale":{x:0.22,y:0.22}} },
+//            // "l": { spineSymbol: "bonus" ,"props" :{x:0, y:0,"scale":{x:0.22,y:0.22}} },
+//            "m": { spineSymbol: "wild" ,"props" :{x:0.5, y:-1,"scale":{x:0.22,y:0.22}} },
+//            "s": { spineSymbol: "Scatter" ,"props" :{x:0.5, y:-4,"scale":{x:0.22,y:0.22}} },
+//        },
     // "symbolAnimations": {
     //     "a": [{ animationDuration: 1440, winSound: { name: "aSym" } }, { "prefix": "a_", "startIndex": "1", "endIndex": "24", "digit": "dual", "animationSpeed": "0.3", "type": "spine", "winAnimation":"win"}],
     //     "b": [{ animationDuration: 1440, winSound: { name: "bSym" } }, { "prefix": "b_", "startIndex": "1", "endIndex": "24", "digit": "dual", "animationSpeed": "0.3", "type": "spine","winAnimation": "win"}],
@@ -788,9 +754,9 @@ _ng.UIConfig = {
     //      "s": [{ animationDuration: 3000, winSound: { name: "sSym" } }, { "prefix": "s_","tween": { "scale": { "x": 0.8, "y": 0.8 } },"tweenDuration":0.1, "startIndex": "0", "endIndex": "47", "digit": "dual", "animationSpeed": "0.3", "props": {x:0, y:10,  "scale": 0.7},"type": "spineAnimation" }],
          "m": [{ animationDuration: 3000, winSound: { name: "sSym" } }, { "prefix": "m_", "startIndex": "0", "endIndex": "47", "digit": "dual", "animationSpeed": "0.3", "props": {x:0, y:8.5,  "scale":  0},"type": "spriteAnimation" }],
     // "s_land": [{ animationDuration: 3000, winSound: { name: "sSymLand" } }, { "prefix": "s_", "startIndex": "0", "endIndex": "24", "digit": "dual", "animationSpeed": "0.2", "props": {x:0, y:10,  "scale":  0.7}, "type": "spriteAnimation" }],
-    "s": [{ animationDuration: 3000, winSound: { name: "sSym" } }, { "prefix": "scatterAnim_", "startIndex": "0", "endIndex": "39", "digit": "dual", "animationSpeed": "0.3","props": {x:7.5, y:-15,  "scale":  {x:0.45,y:0.45}}, "type": "spriteAnimation"}],  
+   "s": [{ animationDuration: 4000, winSound: { name: "aSym" } , offset: { y: 5, x: 0 }}, { "animationSpeed": "0.5", "type": "spine", "winAnimation" : "main", "spineName" : "mermaid","props": {x:0, y:0, "scale":{x:0.25,y:0.25}}}],
     // "s": [{ animationDuration: 2100, winSound: { name: "sSym" }},{  "animationSpeed": "0.2", "type": "spine", "winAnimation" : "animation", "spineName" : "Animation_scatter","props": {x:0, y:0,  "scale":{x:1,y:1}}}],        
-        "s_land": [{ animationDuration: 2100, winSound: { name: "sLand_3" }},{  "animationSpeed": "0.5", "type": "spine", "winAnimation" : "animation", "spineName" : "Land","props": {x:0, y:0,  "scale":{x:0.3,y:0.3}}}], 
+//        "s_land": [{ animationDuration: 2100, winSound: { name: "sLand_3" }},{  "animationSpeed": "0.5", "type": "spine", "winAnimation" : "main", "spineName" : "mermaid","props": {x:0, y:0,  "scale":{x:0.23,y:0.23}}}],
 },
     // "symbolAnimations": {        
     //     "a": [{ animationDuration: 2100, winSound: { name: "aSym" } }, {  "animationSpeed": "0.3", "type": "spine", "winAnimation" : "win", "spineName" : "a","props": {x:0, y:0,  "scale":{x:0.6,y:0.6}}}],        
@@ -2975,47 +2941,47 @@ _ng.UIConfig = {
     },
 
     "bigWinView": {
-        spineImage: "All_Win.json",
+        spineImage: "all win bg chopped final.json",
         setSize: true,
         params: {
-            desktopParams: { x: 650, y: 360, anchor: 0.5 },
+            desktopParams: { x: 650, y: 315, anchor: 0.5 ,scale:1.2},
             HX: 640, HY: 360,
             VX: 360, VY: 620,landScaleX: 1.2,landScaleY:1.2,
             portScaleX: 0.9, portScaleY: 0.9
         },
         nice: {
             // params: {anchor: {x: 0.5, y: 0.5}, x: 0, y: 0},
-            In: "nice_in",
+            In: "nice_intro",
             Loop: "nice_loop",
-            Out: "nice_out",
+            Out: "nice_outro",
         },
         omg: {
             // params: {anchor: {x: 0.5, y: 0.5}, x: 0, y: 0},
-            In: "omg_in",
+            In: "omg_intro",
             Loop: "omg_loop",
-            Out: "omg_out"
+            Out: "omg_outro"
         },
         super_win: {
             // params: {anchor: {x: 0.5, y: 0.5}, x: 0, y: 0},
-            In: "super_win_in",
-            Loop: "super_win_loop",
-            Out: "super_win_out"
+            In: "super_intro",
+            Loop: "super_loop",
+            Out: "super_outro"
         },
         fantastic_win: {
             // params: {anchor: {x: 0.5, y: 0.5}, x: 0, y: -20, scale: {x: 0.8, y: 0.8}},
-            In: "fantastic_win_in",
-            Loop: "fantastic_win_loop",
-            Out: "fantastic_win_out"
+            In: "fantastic_intro",
+            Loop: "fantastic_loop",
+            Out: "fantastic_outro"
         },
         max_win: {
             // params: {anchor: {x: 0.5, y: 0.5}, x: 0, y: 0},
-            In: "max_win_in",
-            Loop: "max_win_loop",
-            Out: "max_win_out"
+            In: "max_intro",
+            Loop: "max_loop",
+            Out: "max_outro"
         },
         totalWinAmount: {
-            params: { anchor: { x: 0.5, y: 0.5 }, x: 0, y: 122 },
-            finalPositionY: 122,
+            params: { anchor: { x: 0.5, y: 0.5 }, x: 35, y: 100 },
+            finalPositionY: 100,
             textStyle: {
                 "type": "BitmapFont",
                 // "font": "35px digitsIn-export"
@@ -3075,7 +3041,7 @@ _ng.UIConfig = {
 
             "continueButton": {
                 props: { x: 0, y: 128, scale:0.6,anchor: { x: 0.5, y: 0.5 } },
-                bgImage: "Cntinue",
+                bgImage: "continue",
                 // options: {
                 //     textField: {
                 //         text: "CONTINUE",
@@ -3156,7 +3122,7 @@ _ng.UIConfig = {
             // },
             "continueButton": {
                 props: { x: 0, y: 179, scale:0.6, anchor: { x: 0.5, y: 0.5 } },
-                bgImage: "Cntinue"
+                bgImage: "continue"
             },
             // continueText: {
             //     props: { x: 0, y: 210, anchor: { x: 0.5, y: 0.5 } },
@@ -3216,7 +3182,7 @@ _ng.UIConfig = {
             },
             "continueButton": {
                 props: { x: 0, y: 250,scale:0.6, anchor: { x: 0.5, y: 0.5 } },
-                bgImage: "Cntinue"
+                bgImage: "continue"
             },
 
             // continueText: {
@@ -3259,7 +3225,7 @@ _ng.UIConfig = {
 
             "continueButton": {
                 props: { x: 0, y: 135, anchor: { x: 0.5, y: 0.5 } },
-                bgImage: "Cntinue",
+                bgImage: "continue",
                 options: {
                     textField: {
                         text: "CONTINUE",

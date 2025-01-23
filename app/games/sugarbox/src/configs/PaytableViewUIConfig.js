@@ -434,7 +434,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "a",
-                            "VD": { x: 266, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 266, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "aSymTxt":
@@ -464,7 +464,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "b",
-                            "VD": { x: 509, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 509, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "bSymTxt":
@@ -494,7 +494,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "c",
-                            "VD": { x: 752, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 752, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "cSymTxt":
@@ -524,7 +524,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "d",
-                            "VD": { x: 988, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 988, y: 230, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "dSymTxt":
@@ -554,7 +554,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "e",
-                            "VD": { x: 204, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 204, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "eSymTxt":
@@ -584,7 +584,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "f",
-                            "VD": { x: 411, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 411, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "fSymTxt":
@@ -614,7 +614,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "g",
-                            "VD": { x: 624, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 624, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "gSymTxt":
@@ -642,7 +642,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "h",
-                            "VD": { x: 831, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 831, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "hSymTxt":
@@ -677,7 +677,7 @@ _ng.PaytableViewUIConfig = {
                         "type": "Sprite",
                         "props": {
                             "img": "i",
-                            "VD": { x: 1043, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 1043, y: 410, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.22, y: 0.22 } }
                         }
                     },
                     "iSymTxt":
@@ -705,7 +705,7 @@ _ng.PaytableViewUIConfig = {
                         "type":"Sprite",
                         "props":{
                             "img":"s",
-                            "VD": { x: 600, y: 600, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.35, y: 0.35 } }
+                            "VD": { x: 600, y: 600, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.25, y: 0.25 } }
                         }
                     },
                     "scatterExplainText":{
@@ -871,36 +871,36 @@ _ng.PaytableViewUIConfig = {
                     "multiplier1":{
                         "type":"Sprite",
                         "props":{
-                            "img":"m",
-                            "VD": { x: 400, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.4, y: 0.4 } }
+                            "img":"10x",
+                            "VD": { x: 345, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.3, y: 0.3 } }
                         }
                     },
                     "multiplier2":{
                         "type":"Sprite",
                         "props":{
                             "img":"15x",
-                            "VD": { x: 520, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.4, y: 0.4 } }
+                            "VD": { x: 500, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.3, y: 0.3 } }
                         }
                     },
                     "multiplier3":{
                         "type":"Sprite",
                         "props":{
                             "img":"20x",
-                            "VD": { x: 640, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.4, y: 0.4 } }
+                            "VD": { x: 655, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.3, y: 0.3 } }
                         }
                     },
                     "multiplier4":{
                         "type":"Sprite",
                         "props":{
                             "img":"50x",
-                            "VD": { x: 760, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.4, y: 0.4 } }
+                            "VD": { x: 810, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.3, y: 0.3 } }
                         }
                     },
                     "multiplier5":{
                         "type":"Sprite",
                         "props":{
                             "img":"100x",
-                            "VD": { x: 880, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.4, y: 0.4 } }
+                            "VD": { x: 965, y: 358, "anchor": { x: 0.5, y: 0.5 }, "scale": { x: 0.3, y: 0.3 } }
                         }
                     },
                     

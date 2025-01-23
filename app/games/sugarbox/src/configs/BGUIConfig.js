@@ -1,13 +1,13 @@
 var BGViewUiConfig = [
   {
-    "image": "backgroundBG",
+    "image": "base game bg",
     "id": "bgImg",
     //button/image/text/container
     // "type": "sprite",
     "isSeparatePortraitImage": true,
     "type": "Spine",
-    "potraitAnimation" : "main_port_idle",                                      //static image case not added.Update later
-    "defaultAnimation": "main_land_idle",
+    "potraitAnimation" : "Free Game_portrait",                                      //static image case not added.Update later
+    "defaultAnimation": "Free Game_desktop",
     "isSizeDoubled": false,
     "isAnchored": true,
     //only for text
@@ -23,7 +23,7 @@ var BGViewUiConfig = [
     //5: BOTTOM RIGHT 6: BOTTOM CENTER 7: BOTTOM LEFT 8: LEFT CENTER
     "props": {
       "VD": {
-        "x": 637, "y": 358,
+        "x": 640, "y": 360,
         anchor: { x: 0.5, y: 0.5 },
         scale: {x: 0.67, y: 0.67}
       },
@@ -32,13 +32,13 @@ var BGViewUiConfig = [
     }
   },
   {
-    "image": "backgroundFG",
+    "image": "base game bg",
     "id": "fsImg",
     // "type": "sprite",
     "isSeparatePortraitImage": true,
     "type": "Spine",
-    "potraitAnimation" : "freespin_port_idle",  //Portrait seperate sprite image case not added.
-    "defaultAnimation": "freespin_land_idle",
+    "potraitAnimation" : "Base Game_portrait",  //Portrait seperate sprite image case not added.
+    "defaultAnimation": "Base Game_desktop",
     "isSizeDoubled": false,
     "isAnchored": true,
     //"alignment" to be used only for mobiles:
@@ -46,7 +46,7 @@ var BGViewUiConfig = [
     //5: BOTTOM RIGHT 6: BOTTOM CENTER 7: BOTTOM LEFT 8: LEFT CENTER
     "props": {
       "VD": {
-        "x": 637, "y": 358,
+        "x": 640, "y": 360,
         anchor: { x: 0.5, y: 0.5 },
         scale: {x: 0.67, y: 0.67}
       },

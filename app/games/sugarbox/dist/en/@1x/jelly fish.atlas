@@ -1,0 +1,249 @@
+jelly fish.webp
+size:2045,1783
+filter:Linear,Linear
+Bg
+bounds:504,544,516,515
+offsets:1,1,518,517
+Frame
+bounds:2,738,500,500
+offsets:1,1,502,502
+Glow
+bounds:1014,1061,288,388
+offsets:3,4,295,396
+rotate:90
+Glow_2
+bounds:1022,159,535,522
+offsets:141,76,677,665
+Glow_3
+bounds:1404,683,500,500
+offsets:1,1,502,502
+Inner Fish
+bounds:2,1471,263,148
+offsets:0,82,263,230
+Tentacle1_2
+bounds:77,1756,25,76
+offsets:0,0,25,78
+rotate:90
+Tentacle_1
+bounds:990,1707,74,263
+rotate:90
+Tentacle_2
+bounds:1403,1693,88,218
+rotate:90
+Tentacle_3
+bounds:537,1719,62,204
+offsets:11,0,73,204
+rotate:90
+Tentacle_4
+bounds:764,1575,130,239
+rotate:90
+Tentacle_5
+bounds:1915,1585,128,196
+Tentacle_6
+bounds:1776,1691,90,137
+offsets:0,0,91,137
+rotate:90
+bubbles/bubbles_0
+bounds:2,2,960,540
+frame sweep/0
+bounds:2,1774,7,13
+offsets:0,0,251,251
+rotate:90
+frame sweep/1
+bounds:36,1758,23,39
+offsets:0,0,251,251
+rotate:90
+frame sweep/10
+bounds:1719,1438,161,251
+offsets:0,0,251,251
+frame sweep/11
+bounds:773,1395,177,251
+offsets:0,0,251,251
+rotate:90
+frame sweep/12
+bounds:1279,1351,192,251
+offsets:0,0,251,251
+rotate:90
+frame sweep/13
+bounds:255,1240,208,251
+offsets:0,0,251,251
+rotate:90
+frame sweep/14
+bounds:1806,1185,214,251
+offsets:9,0,251,251
+frame sweep/15
+bounds:761,1179,214,251
+offsets:24,0,251,251
+rotate:90
+frame sweep/16
+bounds:508,1194,212,251
+offsets:39,0,251,251
+rotate:90
+frame sweep/17
+bounds:2,1273,196,251
+offsets:55,0,251,251
+rotate:90
+frame sweep/18
+bounds:1026,1374,181,251
+offsets:70,0,251,251
+rotate:90
+frame sweep/19
+bounds:520,1408,165,251
+offsets:86,0,251,251
+rotate:90
+frame sweep/2
+bounds:201,1743,38,66
+offsets:0,0,251,251
+rotate:90
+frame sweep/20
+bounds:267,1450,150,251
+offsets:101,0,251,251
+rotate:90
+frame sweep/21
+bounds:1233,1557,134,231
+offsets:117,20,251,251
+rotate:90
+frame sweep/22
+bounds:558,1591,119,204
+offsets:132,47,251,251
+rotate:90
+frame sweep/23
+bounds:177,1621,104,178
+offsets:147,73,251,251
+rotate:90
+frame sweep/24
+bounds:1623,1693,88,151
+offsets:163,100,251,251
+rotate:90
+frame sweep/25
+bounds:864,1708,73,124
+offsets:178,127,251,251
+rotate:90
+frame sweep/26
+bounds:437,1724,57,98
+offsets:194,153,251,251
+rotate:90
+frame sweep/27
+bounds:269,1739,42,71
+offsets:209,180,251,251
+rotate:90
+frame sweep/28
+bounds:155,1754,27,44
+offsets:224,207,251,251
+rotate:90
+frame sweep/29
+bounds:17,1770,11,17
+offsets:240,234,251,251
+rotate:90
+frame sweep/3
+bounds:342,1727,54,93
+offsets:0,0,251,251
+rotate:90
+frame sweep/4
+bounds:743,1712,69,119
+offsets:0,0,251,251
+rotate:90
+frame sweep/5
+bounds:1255,1697,84,146
+offsets:0,0,251,251
+rotate:90
+frame sweep/6
+bounds:2,1652,100,173
+offsets:0,0,251,251
+rotate:90
+frame sweep/7
+bounds:357,1602,115,199
+offsets:0,0,251,251
+rotate:90
+frame sweep/8
+bounds:1005,1574,131,226
+offsets:0,0,251,251
+rotate:90
+frame sweep/9
+bounds:1466,1545,146,251
+offsets:0,0,251,251
+rotate:90
+head
+bounds:1532,1238,272,198
+offsets:0,0,286,203
+
+jelly fish_2.webp
+size:1926,1628
+filter:Linear,Linear
+bubbles/bubbles_1
+bounds:2,1086,960,540
+bubbles/bubbles_10
+bounds:964,1086,960,540
+bubbles/bubbles_11
+bounds:2,544,960,540
+bubbles/bubbles_12
+bounds:964,544,960,540
+bubbles/bubbles_13
+bounds:2,2,960,540
+bubbles/bubbles_14
+bounds:964,2,960,540
+
+jelly fish_3.webp
+size:1926,1628
+filter:Linear,Linear
+bubbles/bubbles_15
+bounds:2,1086,960,540
+bubbles/bubbles_16
+bounds:964,1086,960,540
+bubbles/bubbles_17
+bounds:2,544,960,540
+bubbles/bubbles_18
+bounds:964,544,960,540
+bubbles/bubbles_19
+bounds:2,2,960,540
+bubbles/bubbles_2
+bounds:964,2,960,540
+
+jelly fish_4.webp
+size:1926,1628
+filter:Linear,Linear
+bubbles/bubbles_20
+bounds:2,1086,960,540
+bubbles/bubbles_21
+bounds:964,1086,960,540
+bubbles/bubbles_22
+bounds:2,544,960,540
+bubbles/bubbles_23
+bounds:964,544,960,540
+bubbles/bubbles_24
+bounds:2,2,960,540
+bubbles/bubbles_25
+bounds:964,2,960,540
+
+jelly fish_5.webp
+size:1926,1628
+filter:Linear,Linear
+bubbles/bubbles_26
+bounds:2,1086,960,540
+bubbles/bubbles_27
+bounds:964,1086,960,540
+bubbles/bubbles_28
+bounds:2,544,960,540
+bubbles/bubbles_29
+bounds:964,544,960,540
+bubbles/bubbles_3
+bounds:2,2,960,540
+bubbles/bubbles_4
+bounds:964,2,960,540
+
+jelly fish_6.webp
+size:1926,1506
+filter:Linear,Linear
+bubbles/bubbles_5
+bounds:2,544,960,540
+rotate:90
+bubbles/bubbles_6
+bounds:2,2,960,540
+bubbles/bubbles_7
+bounds:544,544,960,540
+rotate:90
+bubbles/bubbles_8
+bounds:964,2,960,540
+bubbles/bubbles_9
+bounds:1086,544,960,540
+rotate:90

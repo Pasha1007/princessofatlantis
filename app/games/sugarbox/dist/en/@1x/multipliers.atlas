@@ -1,0 +1,302 @@
+multipliers.webp
+size:1958,1997
+filter:Linear,Linear
+10
+bounds:2,1140,495,266
+offsets:4,4,502,274
+100
+bounds:2,1635,498,180
+offsets:3,3,502,186
+100_glow
+bounds:1279,1145,568,252
+offsets:3,3,574,258
+12
+bounds:1061,870,498,273
+offsets:2,3,502,279
+15
+bounds:498,718,498,279
+offsets:3,3,502,285
+2
+bounds:2,818,494,320
+offsets:4,5,502,329
+20
+bounds:1460,1399,496,229
+offsets:3,3,502,235
+20_glow
+bounds:995,266,569,301
+offsets:2,3,574,307
+25
+bounds:780,1276,497,233
+offsets:3,3,502,239
+25_glow
+bounds:2,88,568,305
+offsets:3,3,574,311
+3
+bounds:498,395,495,321
+offsets:3,3,502,328
+4
+bounds:2,489,494,327
+offsets:4,3,502,334
+50
+bounds:2,1408,495,225
+offsets:3,3,502,231
+500
+bounds:1151,1733,498,172
+offsets:2,3,502,177
+50_glow
+bounds:998,569,567,297
+offsets:3,3,574,303
+8
+bounds:1566,2,496,343
+offsets:3,3,502,349
+rotate:90
+Circle
+bounds:1567,500,373,366
+offsets:1,1,375,368
+Left Gem Blue
+bounds:427,1907,88,253
+offsets:1,1,90,255
+rotate:90
+Left Gem Green
+bounds:682,1907,88,253
+offsets:1,1,90,255
+rotate:90
+Left Gem Purple
+bounds:937,1907,88,253
+offsets:1,1,90,255
+rotate:90
+Left Gem Red
+bounds:1192,1907,88,253
+offsets:1,1,90,255
+rotate:90
+Left Gem Yellow
+bounds:1447,1907,88,253
+offsets:1,1,90,255
+rotate:90
+Left Gems Base
+bounds:502,1595,220,477
+offsets:1,1,222,479
+rotate:90
+Main Gem Blue
+bounds:1651,1630,279,275
+offsets:1,1,281,277
+Main Gem Green
+bounds:499,1318,279,275
+offsets:1,1,281,277
+Main Gem Purple
+bounds:499,1041,279,275
+offsets:1,1,281,277
+Main Gem Red
+bounds:780,999,279,275
+offsets:1,1,281,277
+Main Gem Small
+bounds:1561,868,279,275
+offsets:1,1,281,277
+Right Gem Blue
+bounds:1702,1907,88,253
+offsets:1,1,90,255
+rotate:90
+Right Gem Green
+bounds:2,1823,88,253
+offsets:1,1,90,255
+rotate:90
+Right Gem Purple
+bounds:257,1817,88,253
+offsets:1,1,90,255
+rotate:90
+Right Gem Red
+bounds:512,1817,88,253
+offsets:1,1,90,255
+rotate:90
+Right Gem Yellow
+bounds:767,1817,88,253
+offsets:1,1,90,255
+rotate:90
+Right Gems Base
+bounds:981,1511,220,477
+offsets:1,1,222,479
+rotate:90
+Small Gem Base
+bounds:1022,1792,113,127
+offsets:1,1,115,129
+rotate:90
+Small Gem Blue
+bounds:2,1913,83,82
+offsets:1,1,85,84
+Small Gem Green
+bounds:87,1913,83,82
+offsets:1,1,85,84
+Small Gem Purple
+bounds:172,1913,83,82
+offsets:1,1,85,84
+Small Gem Red
+bounds:257,1913,83,82
+offsets:1,1,85,84
+Small Gem Yellow
+bounds:342,1913,83,82
+offsets:1,1,85,84
+
+multipliers_2.webp
+size:1917,2012
+filter:Linear,Linear
+15_glow
+bounds:1346,439,569,352
+offsets:3,3,575,358
+4_glow
+bounds:1346,37,568,400
+offsets:3,3,574,406
+5_glow
+bounds:1340,1607,570,403
+offsets:3,3,576,409
+6_glow
+bounds:1346,793,569,395
+offsets:3,3,575,401
+8_glow
+bounds:1340,1190,569,415
+offsets:3,3,574,421
+Glare Up/1
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+Glare Up/10
+bounds:2,8,334,1000
+offsets:333,0,1000,1000
+Glare Up/11
+bounds:338,1676,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/12
+bounds:338,1340,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/13
+bounds:338,1004,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/14
+bounds:338,2,334,1000
+offsets:333,0,1000,1000
+Glare Up/15
+bounds:674,2,334,1000
+offsets:333,0,1000,1000
+Glare Up/16
+bounds:1010,2,334,1000
+offsets:333,0,1000,1000
+
+multipliers_3.webp
+size:2002,2012
+filter:Linear,Linear
+10_glow
+bounds:1346,925,568,340
+offsets:3,3,574,346
+12_glow
+bounds:1340,1665,569,345
+offsets:3,3,575,351
+2_glow
+bounds:1346,570,528,353
+offsets:3,2,534,358
+3_glow
+bounds:1340,1267,568,396
+offsets:3,2,574,400
+5
+bounds:1346,71,497,329
+offsets:3,3,502,336
+rotate:90
+6
+bounds:1677,71,497,323
+offsets:3,3,502,329
+rotate:90
+Glare Up/17
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+Glare Up/18
+bounds:2,8,334,1000
+offsets:333,0,1000,1000
+Glare Up/19
+bounds:338,1676,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/2
+bounds:338,1340,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/20
+bounds:338,1004,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/21
+bounds:338,2,334,1000
+offsets:333,0,1000,1000
+Glare Up/22
+bounds:674,2,334,1000
+offsets:333,0,1000,1000
+Glare Up/23
+bounds:1010,2,334,1000
+offsets:333,0,1000,1000
+
+multipliers_4.webp
+size:2006,1346
+filter:Linear,Linear
+Glare Up/24
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/25
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/26
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/27
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/28
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/29
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/30
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/31
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/32
+bounds:2,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/3
+bounds:1004,1010,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/4
+bounds:2,674,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/5
+bounds:1004,674,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/6
+bounds:2,338,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/7
+bounds:1004,338,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/8
+bounds:2,2,334,1000
+offsets:333,0,1000,1000
+rotate:90
+Glare Up/9
+bounds:1004,2,334,1000
+offsets:333,0,1000,1000
+rotate:90

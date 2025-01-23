@@ -32,8 +32,8 @@ GTicker.createView = function () {
     this.symbol = pixiLib.getElement("Sprite","");
     this.ticker.addChild(this.symbol);
     this.symbol.anchor.set(0.5,0.5);
-    this.symbol.scale.set(0.15);
-    this.symbol.x=  -44; this.symbol.y = 33;
+    this.symbol.scale.set(0.1);
+    this.symbol.x=  -35; this.symbol.y = 33;
     this.symbol.name = "BurstSymbol";
     // this.symbol.visible = t;
     // pixiLib.setText(this.tickerTextNew, "FreeSpins Left : 10")

@@ -3,7 +3,8 @@ var _ng = _ng || {};
 _ng.LoadConfig = {
     "gameFiles": {
         "common": [
-            "libs/pixi-spine3.7v5.js",
+//            "libs/pixi-spine3.7v5.js",
+             "libs/pixi-spine4.1.js",
 
             "configs/BGUIConfig.js",
             "configs/SuperMeterConfig.js",
@@ -56,13 +57,13 @@ _ng.LoadConfig = {
     'gamePrimaryAssets': {
         "common": {
             "allResolutions": [
-                "backgroundBG.json","backgroundFG.json", "paytable.json", "symbols.json", "menu0.json",
-                "winnum-export.xml","featureBitmapFont-export.xml","numbers-export.xml","a_anim.json","b_anim.json","c_anim.json","d_anim.json","e_anim.json","f_anim.json","g_anim.json","h_anim.json","i_anim.json","m_anim.json",
-                "popAnim-0.json","tumbleWin.json","continuebtn.json","Logo_new.json","companyLogo.json",
-                 "All_Win.json","tickerbase.json","BG_frame.json","game_logo.json","reel_bg.json","FG_frame.json","loading.json","BuyFreespinPanel.json","buyPopupBackround.json","Free_Spin.json","betChance.json",
-                 "introscreen-1.json", "introscreen-2.json","tumble_box.json","portraitBuyFeature.json","CoinShower-0.json","CoinShower-1.json","fadingTexts.json","Animation_scatter.json","number_10x.json","number_12x.json","number_15x.json","BuyFeature.json",
-                 ,"number_20x.json","number_25x.json","number_50x.json","number_100x.json","scatter_anim-0.json","scatter_anim-1.json","skeleton.json","skeletondik.json","numbers.json","sugarBoxFont-export.xml","extraAssets.json","Candy_box.json",,"autoSpinBase.json","panelButtons.json","newGamePanel.json","autoplaybase.json","autoplayPopup.json","betPopup.json",,"newSetting.json","closesetting.json","autoSpin.json","turboActive.json","volumeBar.json","stopButtonAssets.json",
-                 "spinButton.json","radioButton.json","playstpbtn.json"
+                "paytable.json", "symbols.json", "menu0.json",
+                "winnum-export.xml","featureBitmapFont-export.xml","numbers-export.xml",
+                "popAnim-0.json","tumbleWin.json","continuebtn.json","Logo_new.json","multipliers.json","all win bg chopped final.json","static_logo.json","Game logo.json","Dolphine.json",
+                 "tickerbase.json","BG_frame.json","reel_bg.json","FG_frame.json","loading.json","BuyFreespinPanel.json","buyPopup-bg.json","Free_Spin.json","betChance.json","buyPanel.json",
+                 "introScreen-0.json","introscreen-1.json","tumble_box.json","portraitBuyFeature.json","CoinShower-0.json","CoinShower-1.json","fadingTexts.json","number_10x.json","number_12x.json","number_15x.json",
+                 ,"number_20x.json","number_25x.json","number_50x.json","number_100x.json","skeleton.json","numbers.json","sugarBoxFont-export.xml","extraAssets.json","Candy_box.json",,"autoSpinBase.json","panelButtons.json","newGamePanel.json","autoplaybase.json","autoplayPopup.json","betPopup.json",,"newSetting.json","closesetting.json","autoSpin.json","turboActive.json","volumeBar.json","stopButtonAssets.json",
+                 "spinButton.json","radioButton.json","playstpbtn.json","base game bg.json","jelly fish.json","pearl.json","royals.json","mermaid.json","treasure box.json","trident.json",
                 //  "scatter_fill-0.json", "scatter_fill-1.json", "scatter_fill-2.json", "scatter_fill-3.json", "scatter_fill-4.json", "scatter_fill-5.json", "scatter_fill-6.json", "scatter_fill-7.json", "scatter_fill-8.json", "scatter_fill-9.json", "scatter_fill-10.json", "scatter_fill-11.json", "scatter_fill-12.json", "scatter_fill-13.json", "scatter_fill-14.json", "scatter_fill-15.json",
             ],
             "@2x": []

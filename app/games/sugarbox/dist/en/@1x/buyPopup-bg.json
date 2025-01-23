@@ -1,0 +1,39 @@
+{
+  "frames": {
+    "buyPopup-bg": {
+      "frame": {
+        "x": 7,
+        "y": 7,
+        "w": 877,
+        "h": 584
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 877,
+        "h": 584
+      },
+      "sourceSize": {
+        "w": 877,
+        "h": 584
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "buyPopup-bg.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 891,
+      "h": 598
+    },
+    "scale": 1
+  }
+}

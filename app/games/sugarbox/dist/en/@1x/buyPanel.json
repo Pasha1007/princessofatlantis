@@ -1,0 +1,183 @@
+{"frames": {
+
+"buy_btn_press":
+{
+	"frame": {"x":884,"y":1,"w":653,"h":461},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":653,"h":461},
+	"sourceSize": {"w":653,"h":461}
+},
+"buy_btn_hover":
+{
+	"frame": {"x":1,"y":1100,"w":653,"h":461},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":653,"h":461},
+	"sourceSize": {"w":653,"h":461}
+},
+"buy_btn_normal":
+{
+	"frame": {"x":884,"y":468,"w":653,"h":461},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":653,"h":461},
+	"sourceSize": {"w":653,"h":461}
+},
+"frame_hover":
+{
+	"frame": {"x":1,"y":591,"w":756,"h":503},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":756,"h":503},
+	"sourceSize": {"w":756,"h":503}
+},
+"buy_btn_normal":
+{
+	"frame": {"x":763,"y":935,"w":653,"h":461},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":653,"h":461},
+	"sourceSize": {"w":653,"h":461}
+},
+"bet_text":
+{
+	"frame": {"x":1543,"y":677,"w":192,"h":213},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":192,"h":213},
+	"sourceSize": {"w":192,"h":213}
+},
+"buy_text":
+{
+	"frame": {"x":763,"y":591,"w":208,"h":76},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":208,"h":76},
+	"sourceSize": {"w":208,"h":76}
+},
+"bet_btn_disable":
+{
+	"frame": {"x":833,"y":1600,"w":239,"h":326},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":326},
+	"sourceSize": {"w":239,"h":326}
+},
+"bet_btn_hover":
+{
+	"frame": {"x":1165,"y":1600,"w":239,"h":326},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":326},
+	"sourceSize": {"w":239,"h":326}
+},
+"bet_btn_normal":
+{
+	"frame": {"x":1492,"y":1351,"w":239,"h":326},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":326},
+	"sourceSize": {"w":239,"h":326}
+},
+"bet_btn_press":
+{
+	"frame": {"x":1497,"y":1596,"w":239,"h":326},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":326},
+	"sourceSize": {"w":239,"h":326}
+},
+"no_btn_normal":
+{
+	"frame": {"x":660,"y":1100,"w":152,"h":71},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":152,"h":71},
+	"sourceSize": {"w":152,"h":71}
+},
+"no_btn_disabled":
+{
+	"frame": {"x":1,"y":1567,"w":410,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
+	"sourceSize": {"w":410,"h":192}
+},
+"no_btn_hover":
+{
+	"frame": {"x":1422,"y":935,"w":410,"h":192},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
+	"sourceSize": {"w":410,"h":192}
+},
+"no_btn_press":
+{
+	"frame": {"x":660,"y":1402,"w":410,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
+	"sourceSize": {"w":410,"h":192}
+},
+"text":
+{
+	"frame": {"x":1543,"y":1,"w":670,"h":289},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":670,"h":289},
+	"sourceSize": {"w":670,"h":289}
+},
+"text_base":
+{
+	"frame": {"x":1,"y":1,"w":877,"h":584},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":877,"h":584},
+	"sourceSize": {"w":877,"h":584}
+},
+"yes_btn_normal":
+{
+	"frame": {"x":1741,"y":677,"w":151,"h":71},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":151,"h":71},
+	"sourceSize": {"w":151,"h":71}
+},
+"yes_btn_disable":
+{
+	"frame": {"x":1076,"y":1402,"w":410,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
+	"sourceSize": {"w":410,"h":192}
+},
+"yes_btn_hover":
+{
+	"frame": {"x":1620,"y":896,"w":410,"h":192},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
+	"sourceSize": {"w":410,"h":192}
+},
+"yes_btn_press":
+{
+	"frame": {"x":417,"y":1600,"w":410,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
+	"sourceSize": {"w":410,"h":192}
+}},
+"animations": {
+	"Group ": ["Group 33","Group 34"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "buyPanel.png",
+	"format": "RGBA8888",
+	"size": {"w":1833,"h":1840},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6235fe627f3438a8695f935a0e04609d:10238459bcf68a505e32b9dba700f69d:962882e768f6aadd7452c00d60f75cd2$"
+}
+}

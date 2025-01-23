@@ -153,6 +153,44 @@ view.quickSpinStopDelay = function (matrix) {
 	}
 	
 };
+
+
+view.showFreespinGrid = function () {
+	if (this.fsBottomGrid) {
+		this.fsBottomGrid.alpha = 0;
+		this.bottomGrid.alpha=0;
+		this.fsBottomGrid.visible = true;
+		TweenMax.to(this.fsBottomGrid, 1, { alpha: 1 })
+	}
+
+	if (this.fsTopGrid) {
+		this.fsTopGrid.alpha = 0;
+		this.fsTopGrid.visible = true;
+		TweenMax.to(this.fsTopGrid, 1, { alpha: 1 })
+	}
+}
+view.hideFreespinGrid = function () {
+	if (this.fsBottomGrid) {
+	this.bottomGrid.alpha=1;
+		TweenMax.to(this.fsBottomGrid, 1, {
+			alpha: 0,
+			onComplete: function () {
+				this.fsBottomGrid.visible = false;
+				this.fsBottomGrid.alpha = 1;
+
+			}.bind(this)
+		})
+	}
+	if (this.fsTopGrid) {
+		TweenMax.to(this.fsTopGrid, 1, {
+			alpha: 0,
+			onComplete: function () {
+				this.fsTopGrid.visible = false;
+				this.fsTopGrid.alpha = 1;
+			}.bind(this)
+		})
+	}
+}
 view.individualStrip = function (spinType, isStopNow) {
 	if (spinType == "start") {
 		if (this.startSpinCounter >= this.reels.length) {

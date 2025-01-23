@@ -114,9 +114,9 @@ sView.createExtraElements = function () {
 
 			this.txt3B = pixiLib.getElement("Sprite","s");
 			this.txt3B.name = "SCATTER";
-			this.txt3B.x= -((this.txt3C.width/2)-105);
-			this.txt3B.y=-2.5;
-			this.txt3B.scale.set(.26);
+			this.txt3B.x= -((this.txt3C.width/2)-112);
+			this.txt3B.y=5.5;
+			this.txt3B.scale.set(0.2);
 			this.txt3C.addChild(this.txt3B);
 
 			this.fadingContainer.addChild(this.text3);
@@ -591,7 +591,7 @@ sView.createBuyFreeSpinPanel = function(){
 	else
 	{
 		this.BuyPanelCon.visible = true;
-		this.BuyPanelCon.x = 430;
+		this.BuyPanelCon.x = 463;
 		this.BuyPanelCon.y = 91;
 	}
 	this.mainContainer.addChild(this.BuyPanelCon);
@@ -649,11 +649,11 @@ sView.createBuyFreeSpinPanel = function(){
     "stroke": "#800020",
     "strokeThickness": 4     
 	}
-	this.BuyBtn = pixiLib.getButton("bet_on_btn");
+	this.BuyBtn = pixiLib.getButton("buy_btn");
 	if (_viewInfoUtil.viewType === "VD") {
-		this.BuyBtn.x = 125;
-		this.BuyBtn.y = 76;
-		this.BuyBtn.scale.set(0.7);
+		this.BuyBtn.x = -895;
+		this.BuyBtn.y = 10;
+		this.BuyBtn.scale.set(0.34);
 		this.BuyBtn.anchor.set(0.5);
 	}
 	else if(_viewInfoUtil.viewType === "VP")
@@ -665,15 +665,16 @@ sView.createBuyFreeSpinPanel = function(){
 	}
 	else
 	{
-		this.BuyBtn.x = -306.5;
+		this.BuyBtn.x = -375;
 		this.BuyBtn.y = 215;
 		this.BuyBtn.scale.set(0.7);
 		this.BuyBtn.anchor.set(0.5);
 	}
-	this.BuyFeatureTxt = pixiLib.getElement("Text",style);
-	this.BuyFeatureTxt.x=-94;
-	this.BuyFeatureTxt.y=-94;
-	pixiLib.setText(this.BuyFeatureTxt, gameLiterals.buyfeature)
+	this.BuyFeatureTxt = pixiLib.getElement("Sprite","buy_text");
+	this.BuyFeatureTxt.x=-255;
+	this.BuyFeatureTxt.y=-165;
+	this.BuyFeatureTxt.scale.set(2.5);
+//	pixiLib.setText(this.BuyFeatureTxt, gameLiterals.buyfeature)
 	this.BuyBtn.addChild(this.BuyFeatureTxt);
 	
 	pixiLib.addEvent(this.BuyBtn, function(){
@@ -701,12 +702,13 @@ sView.createBuyFreeSpinPanel = function(){
 	this.amtTxt.y=45;
 	this.BuyBtn.addChild(this.amtTxt);
 	this.amtTxt.anchor.set(0.5);
-	this.twoXBetBg = pixiLib.getButton("bet_on_btn");
+
+	this.twoXBetBg = pixiLib.getButton("bet_btn");
 
 	if (_viewInfoUtil.viewType === "VD") {
-		this.twoXBetBg.x = 127;
-		this.twoXBetBg.y = 240;
-		this.twoXBetBg.scale.set(0.7)
+		this.twoXBetBg.x = -895;
+		this.twoXBetBg.y = 250;
+		this.twoXBetBg.scale.set(0.9)
 		this.twoXBetBg.anchor.set(0.5);
 	}
 	else if(_viewInfoUtil.viewType === "VP")
@@ -719,25 +721,27 @@ sView.createBuyFreeSpinPanel = function(){
 	}
 	else
 	{
-		this.twoXBetBg.x = -306.5;
+		this.twoXBetBg.x = -375.5;
 		this.twoXBetBg.y = 385;
 		this.twoXBetBg.scale.set(0.7)
 		this.twoXBetBg.anchor.set(0.5);
 	}
 	this.BuyPanelCon.addChild(this.twoXBetBg);
-	this.twoxbetTxt = pixiLib.getElement("Text",bet_style);
-	this.twoxbetTxt.x=0;
-	this.twoxbetTxt.y=-75;
-	this.twoxbetTxt.anchor.set(0.5)
-	pixiLib.setText(this.twoxbetTxt, gameLiterals.bet_text)
-	this.twoXBetBg.addChild(this.twoxbetTxt);
-	this.twoxchanceTxt = pixiLib.getElement("Text",styledb);
-	this.twoxchanceTxt.x=0;
-	this.twoxchanceTxt.y=20;
-	this.twoxchanceTxt.anchor.set(0.5)
 
-	pixiLib.setText(this.twoxchanceTxt, gameLiterals.twoxchancetxt)
-	this.twoXBetBg.addChild(this.twoxchanceTxt);
+	this.twoxbetTxt = pixiLib.getElement("Sprite","bet_text");
+	this.twoxbetTxt.x=0;
+	this.twoxbetTxt.y=-25;
+	this.twoxbetTxt.scale.set(1);
+	this.twoxbetTxt.anchor.set(0.5)
+//	pixiLib.setText(this.twoxbetTxt, gameLiterals.bet_text)
+	this.twoXBetBg.addChild(this.twoxbetTxt);
+//	this.twoxchanceTxt = pixiLib.getElement("Text",styledb);
+//	this.twoxchanceTxt.x=0;
+//	this.twoxchanceTxt.y=20;
+//	this.twoxchanceTxt.anchor.set(0.5)
+
+//	pixiLib.setText(this.twoxchanceTxt, gameLiterals.twoxchancetxt)
+//	this.twoXBetBg.addChild(this.twoxchanceTxt);
 	this.twoxbetamt = pixiLib.getElement("Text",styleamt);
 	this.twoxbetamt.x=0
 	this.twoxbetamt.y=-30
@@ -757,7 +761,7 @@ sView.createBuyFreeSpinPanel = function(){
 	this.tickOn.scale.set(1);
 	this.twoxOn = pixiLib.getElement("Sprite","on");
 	this.twoxOn.x=0
-	this.twoxOn.y=75
+	this.twoxOn.y=110
 	this.twoxOn.scale.set(1)
 	this.twoxOn.interactive = true;
 	this.twoxOn.buttonMode = true;
@@ -787,7 +791,7 @@ this.twoXBetBg.addChild(this.twoxOn);
 this.twoxOn.addChild(this.tickOn);
 	this.twoxoff = pixiLib.getElement("Sprite","off")
 	this.twoxoff.x=0
-	this.twoxoff.y=75
+	this.twoxoff.y=110
 	this.twoxoff.scale.set(1)
 	this.twoxoff.interactive = true;
 	this.twoxoff.buttonMode = true;
@@ -1025,7 +1029,7 @@ sView.ResizeGview = function(){
 	if(this.BuyBtnVL){
 		if (_viewInfoUtil.viewType === "VL") {
 			this.BuyBtnVL.x = 30;
-		this.BuyBtnVL.y = 435;
+		    this.BuyBtnVL.y = 435;
 			this.BuyBtnVL.scale.set(0.6);
 			this.BuyBtnVL.visible=true;
 		}
@@ -1066,6 +1070,7 @@ sView.ResizeGview = function(){
 		if (_viewInfoUtil.viewType === "VD") {
 			this.BuyBtn.x = 89;
 		    this.BuyBtn.y = 76;
+
 		    this.BuyBtn.scale.set(0.7);
 		    this.BuyBtn.anchor.set(0.5);
 		}
@@ -1177,7 +1182,7 @@ sView.moveBuyFeature = function(){
 	
 	if(_viewInfoUtil.viewType === "VD"){
 		TweenMax.to(this.BuyPanelCon, 0.8, {
-			x: this.BuyPanelCon.x+1000,
+			x: this.BuyPanelCon.x-1000,
 			ease: Linear.easeInOut,
 		});
 	}
@@ -1222,13 +1227,13 @@ sView.CreateScatterWinAnim = function(){
 	// this.scatFillAnim=pixiLib.getElement("AnimatedSprite", { "prefix": "skeleton-animation_", "startIndex": "1", "endIndex": "56", "digit": "dual", "loop": false, "animationSpeed": "0.25", "type": "spriteAnimation" })
 
 	if (_viewInfoUtil.viewType === "VD") {
-		this.scatFillAnim=pixiLib.getElement("Spine","skeleton")
+		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine")
 		this.scatFillAnim.scale.set(0.67);
 		this.scatFillAnim.x = 640;
-		this.scatFillAnim.y = 724;
+		this.scatFillAnim.y = 360;
 	}
 	else if (_viewInfoUtil.viewType === "VP") {
-		this.scatFillAnim=pixiLib.getElement("Spine","skeletondik")
+		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine_portrait")
 		// this.scatFillAnim.scale.set(0.5);
 		if(_viewInfoUtil.isIpad())
 			{
@@ -1242,7 +1247,7 @@ sView.CreateScatterWinAnim = function(){
 		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-170;
 	}
 	else if (_viewInfoUtil.viewType === "VL") {
-		this.scatFillAnim=pixiLib.getElement("Spine","skeleton")
+		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine")
 		if(_viewInfoUtil.isIpad())
 		{
 			this.scatFillAnim.scale.set(0.8);
@@ -1254,7 +1259,7 @@ sView.CreateScatterWinAnim = function(){
 		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()+50;
 	}
 	_sndLib.play(_sndLib.sprite.scatter_Open);
-	this.scatFillAnim.state.setAnimation(0,'animation',false);
+	this.scatFillAnim.state.setAnimation(0,'transition',false);
 	// this.scatFillAnim.play();
 	this.stage.addChild(this.scatFillAnim);
 

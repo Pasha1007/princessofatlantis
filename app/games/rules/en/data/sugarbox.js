@@ -15,7 +15,7 @@ var gameLiterals = {
 	//Right side texts 
     "ontxt":"ON",
 	"offtxt":"OFF",
-	"buyfeaturetxt":"BUY FEATURE",
+	"buyfeaturetxt":"BUY ",
 	"bettxt":"BET",
 
 	//reality check popup

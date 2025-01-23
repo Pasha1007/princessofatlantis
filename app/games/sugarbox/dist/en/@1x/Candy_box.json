@@ -1,60 +1,135 @@
-{"frames": {
-
-"10x":
 {
-	"frame": {"x":259,"y":3,"w":253,"h":255},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
-	"sourceSize": {"w":255,"h":263}
-},
-"m":
-{
-	"frame": {"x":259,"y":3,"w":253,"h":255},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
-	"sourceSize": {"w":255,"h":263}
-},
-"15x":
-{
-	"frame": {"x":515,"y":3,"w":253,"h":255},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
-	"sourceSize": {"w":255,"h":263}
-},
-"20x":
-{
-	"frame": {"x":771,"y":3,"w":253,"h":255},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
-	"sourceSize": {"w":255,"h":263}
-},
-"50x":
-{
-	"frame": {"x":1027,"y":3,"w":253,"h":255},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
-	"sourceSize": {"w":255,"h":263}
-},
-"100x":
-{
-	"frame": {"x":3,"y":3,"w":253,"h":255},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":4,"w":253,"h":255},
-	"sourceSize": {"w":255,"h":263}
-}},
-"meta": {
-	"app": "https://www.codeandweb.com/texturepacker",
-	"version": "1.0",
-	"image": "Candy_box.png",
-	"format": "RGBA8888",
-	"size": {"w":1283,"h":261},
-	"scale": "0.5",
-	"smartupdate": "$TexturePacker:SmartUpdate:3b3eb0c0fc0b157ca30e81db038614da:dd5ac97eff1a977b2f2c78c7b1e33206:9f977ba6912fb5b97aaf0961a11fa1f5$"
-}
+  "frames": {
+    "100x": {
+      "frame": {
+        "x": 7,
+        "y": 7,
+        "w": 392,
+        "h": 382
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 9,
+        "w": 392,
+        "h": 382
+      },
+      "sourceSize": {
+        "w": 400,
+        "h": 400
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "10x": {
+      "frame": {
+        "x": 413,
+        "y": 7,
+        "w": 392,
+        "h": 382
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 9,
+        "w": 392,
+        "h": 382
+      },
+      "sourceSize": {
+        "w": 400,
+        "h": 400
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "15x": {
+      "frame": {
+        "x": 819,
+        "y": 7,
+        "w": 392,
+        "h": 382
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 9,
+        "w": 392,
+        "h": 382
+      },
+      "sourceSize": {
+        "w": 400,
+        "h": 400
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "20x": {
+      "frame": {
+        "x": 1225,
+        "y": 7,
+        "w": 392,
+        "h": 382
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 9,
+        "w": 392,
+        "h": 382
+      },
+      "sourceSize": {
+        "w": 400,
+        "h": 400
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "50x": {
+      "frame": {
+        "x": 1631,
+        "y": 7,
+        "w": 392,
+        "h": 382
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 9,
+        "w": 392,
+        "h": 382
+      },
+      "sourceSize": {
+        "w": 400,
+        "h": 400
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Candy_box.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2030,
+      "h": 396
+    },
+    "scale": 1
+  }
 }

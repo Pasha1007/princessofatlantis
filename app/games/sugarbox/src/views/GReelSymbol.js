@@ -9,10 +9,10 @@ v.changeSymbol = function (config, winId,counter,initialCreation) {
             multiplierValue = coreApp.gameModel.userModel.userData.current_round.screen_wins[winId];
         else
             multiplierValue = coreApp.gameModel.userModel.userData.current_round.misc_prizes[counter].screenWins[winId];
-            if(multiplierValue <= 10 ){
+            if(multiplierValue < 10 ){
                 config = "10x";
             }
-            else if(10 < multiplierValue  &&  multiplierValue < 20){
+            else if(10 <= multiplierValue  &&  multiplierValue < 20){
                 config = "15x";
             }
             else if(20 <= multiplierValue &&  multiplierValue < 30){

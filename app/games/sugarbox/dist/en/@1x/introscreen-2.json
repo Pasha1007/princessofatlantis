@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":1920,"h":1080},
 	"sourceSize": {"w":1920,"h":1080}
 },
-"Layer 7":
+"Layer 7_old":
 {
 	"frame": {"x":1083,"y":1,"w":840,"h":701},
 	"rotated": false,
@@ -24,7 +24,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":840,"h":701},
 	"sourceSize": {"w":840,"h":701}
 },
-"Layer 8":
+"Layer 8_old":
 {
 	"frame": {"x":1083,"y":704,"w":840,"h":701},
 	"rotated": false,
@@ -32,7 +32,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":840,"h":701},
 	"sourceSize": {"w":840,"h":701}
 },
-"Play_press":
+"Play_press_old":
 {
 	"frame": {"x":1725,"y":1407,"w":264,"h":108},
 	"rotated": true,

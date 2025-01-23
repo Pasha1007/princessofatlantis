@@ -24,6 +24,20 @@ gRStrip.createView = function (id) {
 	this.tickerCounter = 0;
 	this.tweens=[];
 	this.killTweens = [];
+	this.spineSymbols= new Map([
+        ["a", "pearl"],
+        ["b", "trident"],
+        ["c", "jelly fish"],
+        ["d", "treasure box"],
+        ["e", "A"],
+        ["f", "K"],
+        ["g", "Q"],
+        ["h", "J"],
+        ["i", "10"],
+        ["s", "mermaid"]
+
+
+    	  ]);
 	this.reelConfig = _ng.GameConfig.ReelViewUiConfig;
 	_ng.extraSymbols = this.reelConfig.data.extraAddSymbols;
 	this.tickerSymbolsCount = this.reelConfig.data.noOfSymbols+1;
@@ -141,12 +155,12 @@ gRStrip.removeWinSym = function(num){
 					//FAST ANIM on TURBO MODE
 					animTime = 1.5;
 					removalTime = 413;
-					SymbolAnim(this.symbolsArray[i],num, animTime,removalTime);
+					this.SymbolAnim(this.symbolsArray[i],num, animTime,removalTime);
 				}
 				else{
 					animTime = 0.9;
 					removalTime = 500;
-					SymbolAnim(this.symbolsArray[i],num, animTime,removalTime);
+					this.SymbolAnim(this.symbolsArray[i],num, animTime,removalTime);
 				}
 				// this.symbolsArray[i].alpha = 0;
 				this.symbolsArray = popArrAtIndex(this.symbolsArray, i);
@@ -601,12 +615,15 @@ function popArrAtIndex(Arr, index)
 
 function poptween(symbol,num,time,removalTime){
 
-	var popAnim = pixiLib.getElement("AnimatedSprite", { "prefix":"effect final_", "startIndex": "0", "endIndex": "35", "digit": "dual", "loop":false, "animationSpeed": time, "type": "spriteAnimation" });
-	popAnim.scale.set(0.8);
+//	var popAnim = pixiLib.getElement("AnimatedSprite", { "prefix":"effect final_", "startIndex": "0", "endIndex": "35", "digit": "dual", "loop":false, "animationSpeed": time, "type": "spriteAnimation" });
+
+	var popAnim =pixiLib.getElement("Spine","skeleton");
+	popAnim.scale.set(0.3);
 	popAnim.x  = symbol.x;
 	popAnim.y = symbol.y;
 	symbol.parent.addChild(popAnim);
-	popAnim.play();
+	popAnim.state.setAnimation(0,'main',false);
+//	popAnim.play();
 	
 	switch(num)
 	{
@@ -636,7 +653,7 @@ function poptween(symbol,num,time,removalTime){
 	}
 
 	setTimeout(function(){
-		popAnim.stop();
+//		popAnim.stop();
 		symbol.alpha=0;
 		symbol.parent.removeChild(popAnim);
 		symbol.parent.removeChild(symbol);
@@ -644,20 +661,61 @@ function poptween(symbol,num,time,removalTime){
 	
 }
 
-function SymbolAnim(symbol,num,animationTime,removalTime){
-	var sym = symbol.symName+"_";
-	var SymAnim = pixiLib.getElement("AnimatedSprite", { "prefix":sym, "startIndex": "0", "endIndex": "47", "digit": "dual", "loop":false, "animationSpeed": animationTime, "type": "spriteAnimation" });
-	SymAnim.scale.set(0.67);
-	SymAnim.x  = symbol.x;
-	SymAnim.y = symbol.y;
-	SymAnim.animationSpeed = 1.2;
-	symbol.parent.addChild(SymAnim);
-	SymAnim.play();
-	setTimeout(() => {
-		SymAnim.stop();
-		symbol.parent.removeChild(SymAnim);
-		poptween(symbol,num, animationTime,removalTime);
-	}, removalTime);
+gRStrip.SymbolAnim=function(symbol,num,animationTime,removalTime){
+	symbol.visible=false;
+    //	var sym = symbol.symName;
+            var sym = this.spineSymbols.get(symbol.symName);
+            console.log(symbol.symName);
+    //        console.log(this.spineSymbols);
+    //        console.log(this.spineSymbols.get("a"));
+            console.log(this.spineSymbols.get(symbol.symName));
+
+
+    //	var SymAnim = pixiLib.getElement("AnimatedSprite", { "prefix":sym, "startIndex": "0", "endIndex": "47", "digit": "dual", "loop":false, "animationSpeed": animationTime, "type": "spriteAnimation" });
+    	         var SymAnim;
+    	        if(sym== "10"|| sym== "A"||sym== "J"||sym== "K"||sym== "Q" ){
+
+    	           SymAnim=pixiLib.getElement("Spine","royals");
+    	            SymAnim.state.setAnimation(0,sym,false);
+    	             SymAnim.scale.set(0.23);
+    	        }
+
+
+
+    		else{
+    		      SymAnim=pixiLib.getElement("Spine",sym);
+    		       SymAnim.state.setAnimation(0,"main",false);
+    		       SymAnim.scale.set(0.2);
+                }
+//    		if(sym=="apple"){
+//    		SymAnim.scale.set(0.033);
+//    		}
+//            else{
+
+//            }
+    	SymAnim.x  = symbol.x;
+    	SymAnim.y = symbol.y;
+    	SymAnim.state.timeScale =2;
+    	symbol.parent.addChild(SymAnim);
+    //	SymAnim.play();
+//        SymAnim.state.setAnimation(0,sym,false);
+    //	setTimeout(() => {
+    ////		SymAnim.stop();
+    //		symbol.parent.removeChild(SymAnim);
+    //		poptween(symbol,num, animationTime,removalTime);
+    //	}, removalTime);
+
+    SymAnim.state.tracks[0].listener = {
+                complete: () => {
+                    SymAnim.alpha=0;
+    //                if(i==(mystPos.length-1))
+    //                _mediator.publish("callPostMatrixAction");
+                   setTimeout(() => {
+                    symbol.parent.removeChild(SymAnim);
+                    }, 100);
+                    poptween(symbol,num, animationTime,removalTime);
+                }
+            }
 }
 
 gRStrip.getNonZeroMultiplierPos = function(arr){

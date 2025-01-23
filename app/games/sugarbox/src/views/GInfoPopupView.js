@@ -531,7 +531,7 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
     this.BuypopupPanelCon.name = "BuypopupPanelCon";
     this.addChild(this.BuypopupPanelCon);
     this.BuypopupPanelCon.interactive = true;
-    this.BuypopupPanel = pixiLib.getElement("Sprite", "buyInfoBG");
+    this.BuypopupPanel = pixiLib.getElement("Sprite", "buyPopup-bg");
 	this.BuypopupPanelCon.addChild(this.BuypopupPanel);
 	this.BuypopupPanel.name = "BuyPanel"
 	this.BuypopupPanel.x=-257.5;
@@ -586,40 +586,40 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
      //Popup text elements for English
 
      //1
-    this.AreYouSure = pixiLib.getElement("Text",style);
+    this.AreYouSure = pixiLib.getElement("Sprite","text");
     this.AreYouSure.name = "AreYouSure";
-	this.AreYouSure.x=8;
-	this.AreYouSure.y=-411;
+	this.AreYouSure.x=115;
+	this.AreYouSure.y=-270;
     this.AreYouSure.anchor.set(0.5);
 
-    pixiLib.setText(this.AreYouSure,"Are you sure you want \n  to purchase ");
+//    pixiLib.setText(this.AreYouSure,"Are you sure you want \n  to purchase ");
 	this.BuypopupCon.addChild(this.AreYouSure);
 
     this.areSubTxt1 = pixiLib.getElement("Text",amountTextStyle);
     this.areSubTxt1.name = "areSubTxt1";
-	this.areSubTxt1.x = 72;
-	this.areSubTxt1.y = -382;
+	this.areSubTxt1.x = 160;
+	this.areSubTxt1.y = -315;
     this.areSubTxt1.anchor.set(0.5);
 
     pixiLib.setText(this.areSubTxt1,"10");
     this.BuypopupCon.addChild(this.areSubTxt1);
 
-    this.areSubTxt2 = pixiLib.getElement("Text",style);
-    this.areSubTxt2.name = "areSubTxt2";
-	this.areSubTxt2.x = 155;
-	this.areSubTxt2.y = -384;
-    this.areSubTxt2.anchor.set(0.5);
+//    this.areSubTxt2 = pixiLib.getElement("Text",style);
+//    this.areSubTxt2.name = "areSubTxt2";
+//	this.areSubTxt2.x = 155;
+//	this.areSubTxt2.y = -384;
+//    this.areSubTxt2.anchor.set(0.5);
+//
+//    pixiLib.setText(this.areSubTxt2,"Free");
+//    this.BuypopupCon.addChild(this.areSubTxt2);
 
-    pixiLib.setText(this.areSubTxt2,"Free");
-    this.BuypopupCon.addChild(this.areSubTxt2);
-
-    this.areSubTxt3 = pixiLib.getElement("Text",style);
-    this.areSubTxt3.name = "areSubTxt3";
-	this.areSubTxt3.x = 16;
-	this.areSubTxt3.y = -335;
-    this.areSubTxt3.anchor.set(0.5);
-    pixiLib.setText(this.areSubTxt3,"Spins at the cost of");
-    this.BuypopupCon.addChild(this.areSubTxt3);
+//    this.areSubTxt3 = pixiLib.getElement("Text",style);
+//    this.areSubTxt3.name = "areSubTxt3";
+//	this.areSubTxt3.x = 16;
+//	this.areSubTxt3.y = -335;
+//    this.areSubTxt3.anchor.set(0.5);
+//    pixiLib.setText(this.areSubTxt3,"Spins at the cost of");
+//    this.BuypopupCon.addChild(this.areSubTxt3);
 
 	this.amtTxt = pixiLib.getElement("Text",amountTextStyle);
     this.amtTxt.name = "amtTxt";
@@ -632,29 +632,29 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
 	this.BuypopupCon.addChild(this.amtTxt);
 	// this.amtTxt.anchor.set(0.5);
 
-    this.questTxt = pixiLib.getElement("Text",style);
-    this.questTxt.name = "questTxt";
-	this.questTxt.x = 95;
-	this.questTxt.y = -279;
-    this.questTxt.anchor.set(0.5);
-
-    pixiLib.setText(this.questTxt,"?");
-    this.BuypopupCon.addChild(this.questTxt);
+//    this.questTxt = pixiLib.getElement("Text",style);
+//    this.questTxt.name = "questTxt";
+//	this.questTxt.x = 95;
+//	this.questTxt.y = -279;
+//    this.questTxt.anchor.set(0.5);
+//
+//    pixiLib.setText(this.questTxt,"?");
+//    this.BuypopupCon.addChild(this.questTxt);
 
 	this.buyButton = pixiLib.getButton("yes_btn");
-    this.buyButton.name = "buyButton";
-	this.buyButton.x =31
-	this.buyButton.y = -197
+    this.buyButton.name = "yesButton";
+	this.buyButton.x =215
+	this.buyButton.y = -135
 	this.buyButton.scale.set(1);
 	this.buyButton.interactive = true;
 	this.buyButton.buttonMode = true;
-    this.yes_txt = pixiLib.getElement("Text",style);
-    this.yes_txt.name = "yes_txt";
-    this.yes_txt.x=100;
-    this.yes_txt.y=42;
-    this.yes_txt.anchor.set(0.5);
-    pixiLib.setText(this.yes_txt,"YES");
-    this.buyButton.addChild(this.yes_txt);
+//    this.yes_txt = pixiLib.getElement("Text",style);
+//    this.yes_txt.name = "yes_txt";
+//    this.yes_txt.x=100;
+//    this.yes_txt.y=42;
+//    this.yes_txt.anchor.set(0.5);
+//    pixiLib.setText(this.yes_txt,"YES");
+//    this.buyButton.addChild(this.yes_txt);
     pixiLib.addEvent(this.buyButton, function(){
         if(coreApp.gameController.allReelsStopped)
         {
@@ -682,19 +682,19 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
    
 
     this.CancelButton = pixiLib.getButton("no_btn");
-    this.CancelButton.name = "CancelButton";
-	this.CancelButton.x = -213
-	this.CancelButton.y = -197
+    this.CancelButton.name = "noButton";
+	this.CancelButton.x = -125
+	this.CancelButton.y = -135
 	this.CancelButton.scale.set(1);
 	this.CancelButton.interactive = true;
 	this.CancelButton.buttonMode = true;
-    this.no_txt = pixiLib.getElement("Text",style);
-    this.no_txt.name = "no_txt";
-    this.no_txt.x=100;
-    this.no_txt.y=42;
-    this.no_txt.anchor.set(0.5);
-    pixiLib.setText(this.no_txt,"NO");
-    this.CancelButton.addChild(this.no_txt);
+//    this.no_txt = pixiLib.getElement("Text",style);
+//    this.no_txt.name = "no_txt";
+//    this.no_txt.x=100;
+//    this.no_txt.y=42;
+//    this.no_txt.anchor.set(0.5);
+//    pixiLib.setText(this.no_txt,"NO");
+//    this.CancelButton.addChild(this.no_txt);
 	pixiLib.addEvent(this.CancelButton, function(){
         _sndLib.play(_sndLib.sprite.btnClick);
         _ng.buyFeaturePopupStatus = false;
@@ -767,7 +767,7 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
 
     this.BuypopupPanelCon.scale.set(0.01);
     TweenMax.to(this.BuypopupPanelCon, 0.2, {
-        x:-35, y:0.85,
+        x:-115, y:-27,
         ease: "easeInSine",
         onComplete: function() {
             this.BuypopupPanelCon.scale.set(0.8);
@@ -820,7 +820,7 @@ view.BuyFreeSpinPopup_tur = function(Updatevalue,show){
 
         this.BuypopupPanelCon.scale.set(0.01);
         TweenMax.to(this.BuypopupPanelCon, 0.2, {
-            x:-35, y:0.85,
+            x:-115, y:-27,
             ease: "easeInSine",
             onComplete: function() {
                 this.BuypopupPanelCon.scale.set(0.8);
@@ -891,12 +891,12 @@ view.BuyFreeSpinPopup_tur = function(Updatevalue,show){
     this.BuypopupPanelCon.name = "BuypopupPanelCon";
     this.addChild(this.BuypopupPanelCon);
     this.BuypopupPanelCon.interactive = true;
-    this.BuypopupPanel = pixiLib.getElement("Sprite", "buyInfoBG");
+    this.BuypopupPanel = pixiLib.getElement("Sprite", "buyPopup-bg");
 	this.BuypopupPanelCon.addChild(this.BuypopupPanel);
 	this.BuypopupPanel.name = "BuyPanel"
 	this.BuypopupPanel.x=-257.5;
 	this.BuypopupPanel.y = -205;
-	this.BuypopupPanel.scale.set(0.95,0.85)
+	this.BuypopupPanel.scale.set(0.85,0.85)
 
     //Turkish
     this.BuypopupCon1 = pixiLib.getContainer();
@@ -1253,7 +1253,7 @@ view.WinExceededPopup=function(totalBet)
     this.grayWinPop.y=-1000
     this.addChild(this.grayWinPop);
 
-    this.winPopupPanel = pixiLib.getElement("Sprite", "buyInfoBG");
+    this.winPopupPanel = pixiLib.getElement("Sprite", "buyPopup-bg");
 	this.addChild(this.winPopupPanel);
 	this.winPopupPanel.name = "WinPanel"
 	this.winPopupPanel.x=-234;

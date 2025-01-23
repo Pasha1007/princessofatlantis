@@ -1223,7 +1223,7 @@ gSC.changeContainerBg = function (isFreespin) {
  
     if (desktopFullScreen == false || desktopFullScreen == "false") {
         var elm = document.getElementById("containerbg");
-        elm.src = appPath + "games/" + gameName + "/dist/" + (isFreespin ? "containerfg.jpeg" : "containerbg.jpg");
+        elm.src = appPath + "games/" + gameName + "/dist/" + (isFreespin ? "containerfg.jpg" : "containerbg.jpg");
         elm.width = "100%";
         elm.height = "100%";
     }

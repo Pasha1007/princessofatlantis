@@ -522,45 +522,53 @@ gWV.createStickyandTween= function(){
 	this.symbolIndex= this.findSticky();
 	_mediator.publish("visibilityOfMultiplierSymbol",0);
 	for (let index = 0; index < this.symbolIndex.length; index++) {
+	console.log(this.symbolIndex[index][0]);
 		let newPos = this.calculatePosFromIndex(this.symbolIndex[index][1]);
-		if (this.TweenMultiplierText, this.symbolIndex[index][0] <= 10) {
-			var SymAnim = pixiLib.getElement("Spine", "number_10x");
-			SymAnim.state.setAnimation(0,this.symbolIndex[index][0],false);
+		if (this.TweenMultiplierText, this.symbolIndex[index][0] < 10) {
+			var SymAnim = pixiLib.getElement("Spine", "multipliers");
+			var animName=this.symbolIndex[index][0]+'x'
+			SymAnim.state.setAnimation(0,animName,false);
 			_sndLib.play(_sndLib.sprite.multiplier);
 		}
-		else if (this.TweenMultiplierText, this.symbolIndex[index][0] > 10 && this.symbolIndex[index][0] <= 20) {
+		else if (this.TweenMultiplierText, this.symbolIndex[index][0] >= 10 && this.symbolIndex[index][0] < 20) {
 			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 12) {
-				var SymAnim = pixiLib.getElement("Spine", "number_12x");
-				SymAnim.state.setAnimation(0,'animation2',false);
+				var SymAnim = pixiLib.getElement("Spine", "multipliers");
+				SymAnim.state.setAnimation(0,'12x',false);
 				_sndLib.play(_sndLib.sprite.multiplier)
 			}
 			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 15) {
-				var SymAnim = pixiLib.getElement("Spine", "number_15x");
-				SymAnim.state.setAnimation(0,'animation2',false);
+				var SymAnim = pixiLib.getElement("Spine", "multipliers");
+				SymAnim.state.setAnimation(0,'15x',false);
 				_sndLib.play(_sndLib.sprite.multiplier)
 			}
-			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 20) {
-				var SymAnim = pixiLib.getElement("Spine", "number_20x");
-				SymAnim.state.setAnimation(0,'animation2',false);
+			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 10) {
+				var SymAnim = pixiLib.getElement("Spine", "multipliers");
+				SymAnim.state.setAnimation(0,'10x',false);
 				_sndLib.play(_sndLib.sprite.multiplier)
 			}	
 		}
-		else if (this.TweenMultiplierText, this.symbolIndex[index][0] > 20 && this.symbolIndex[index][0] <= 50) {
+		else if (this.TweenMultiplierText, this.symbolIndex[index][0] >=20 && this.symbolIndex[index][0] <= 50) {
+			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 20) {
+				var SymAnim = pixiLib.getElement("Spine", "multipliers");
+				SymAnim.state.setAnimation(0,'20x',false);
+				_sndLib.play(_sndLib.sprite.multiplier)
+			}
 			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 25) {
-				var SymAnim = pixiLib.getElement("Spine", "number_25x");
-				SymAnim.state.setAnimation(0,'animation2',false);
+				var SymAnim = pixiLib.getElement("Spine", "multipliers");
+				SymAnim.state.setAnimation(0,'25x',false);
 				_sndLib.play(_sndLib.sprite.multiplier)
 			}
+
 			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 50) {
-				var SymAnim = pixiLib.getElement("Spine", "number_50x");
-				SymAnim.state.setAnimation(0,'animation2',false);
-				_sndLib.play(_sndLib.sprite.multiplier)
-			}
+            				var SymAnim = pixiLib.getElement("Spine", "multipliers");
+            				SymAnim.state.setAnimation(0,'50x',false);
+            				_sndLib.play(_sndLib.sprite.multiplier)
+            			}
 		}
 		else {
 			if (this.TweenMultiplierText, this.symbolIndex[index][0] == 100) {
-				var SymAnim = pixiLib.getElement("Spine", "number_100x");
-				SymAnim.state.setAnimation(0,'animation2',false);
+				var SymAnim = pixiLib.getElement("Spine", "multipliers");
+				SymAnim.state.setAnimation(0,'100x',false);
 				_sndLib.play(_sndLib.sprite.multiplier)
 			}	
 		}

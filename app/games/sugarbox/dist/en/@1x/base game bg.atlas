@@ -1,0 +1,108 @@
+base game bg_3.webp
+size:2015,1128
+filter:Linear,Linear
+10fish
+bounds:1021,1076,86,50
+11fish
+bounds:1439,1064,104,62
+12fish
+bounds:441,1084,104,42
+13fish
+bounds:547,1084,72,42
+1fish
+bounds:1545,1064,128,62
+2fish
+bounds:1877,1040,136,86
+3fish
+bounds:159,1090,74,36
+4fish
+bounds:46,1092,111,34
+5fish
+bounds:852,1080,86,46
+6fish
+bounds:1179,1069,120,57
+7fish
+bounds:1301,1066,136,60
+8fish
+bounds:297,1087,68,39
+9fish
+bounds:621,1084,84,42
+fish1
+bounds:367,1085,72,41
+fish10
+bounds:1675,1054,72,72
+fish11
+bounds:775,1082,75,44
+fish2
+bounds:940,1078,79,48
+fish4
+bounds:235,1088,60,38
+fish5
+bounds:235,1088,60,38
+fish6
+bounds:1109,1076,68,50
+fish7
+bounds:2,1096,42,30
+fish8
+bounds:306,975,180,107
+fosh 3
+bounds:707,1084,66,42
+left plant1
+bounds:1114,612,307,300
+left plant2
+bounds:1700,850,188,306
+rotate:90
+left plant3
+bounds:780,942,156,136
+plant left1
+bounds:2,793,241,194
+plant left2
+bounds:245,778,195,195
+plant left3
+bounds:1749,1046,126,80
+plant left4
+bounds:864,704,248,234
+plant left5
+bounds:1423,482,456,366
+plant right1
+bounds:442,753,214,198
+plant right2
+bounds:1364,914,172,148
+plant right3
+bounds:938,940,134,186
+rotate:90
+plant right4
+bounds:2,994,112,96
+rays
+bounds:2,2,738,748
+rotate:90
+right plant
+bounds:1126,920,236,144
+right plant2
+bounds:1538,904,160,148
+right plant3
+bounds:116,989,96,188
+rotate:90
+right plant4
+bounds:488,953,127,290
+rotate:90
+right plant5
+bounds:658,742,204,198
+
+base game bg_4.webp
+size:1924,1084
+filter:Linear,Linear
+filter
+bounds:2,2,1920,1080
+
+base game bg_5.webp
+size:1926,1086
+filter:Linear,Linear
+Free game bg copy
+bounds:2,2,1922,1082
+
+base game bg_6.webp
+size:1926,1086
+filter:Linear,Linear
+base game bg copy
+bounds:2,2,1922,1082

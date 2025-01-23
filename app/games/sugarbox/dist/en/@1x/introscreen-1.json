@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":52,"h":52},
 	"sourceSize": {"w":52,"h":52}
 },
-"DON’T SHOW AGAIN":
+"DON’T SHOW AGAIN_old":
 {
 	"frame": {"x":1969,"y":1364,"w":461,"h":47},
 	"rotated": true,
@@ -48,7 +48,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
-"Layer 6":
+"Layer 6_old":
 {
 	"frame": {"x":1017,"y":1083,"w":878,"h":739},
 	"rotated": false,
@@ -72,7 +72,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":1014,"h":782},
 	"sourceSize": {"w":1014,"h":782}
 },
-"Play_disable":
+"Play_disable_old":
 {
 	"frame": {"x":598,"y":1867,"w":264,"h":108},
 	"rotated": false,
@@ -80,7 +80,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":264,"h":108},
 	"sourceSize": {"w":264,"h":108}
 },
-"Play_hover":
+"Play_hover_old":
 {
 	"frame": {"x":864,"y":1882,"w":264,"h":108},
 	"rotated": false,
@@ -88,7 +88,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":264,"h":108},
 	"sourceSize": {"w":264,"h":108}
 },
-"Play_normal":
+"Play_normal_old":
 {
 	"frame": {"x":1130,"y":1882,"w":264,"h":108},
 	"rotated": false,
@@ -96,7 +96,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":264,"h":108},
 	"sourceSize": {"w":264,"h":108}
 },
-"RANDOM MULTIPLIER  UPTO 100X IN FREE SPINS":
+"RANDOM MULTIPLIER  UPTO 100X IN FREE SPINS_old":
 {
 	"frame": {"x":1923,"y":683,"w":679,"h":102},
 	"rotated": true,
@@ -104,7 +104,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":679,"h":102},
 	"sourceSize": {"w":679,"h":102}
 },
-"SYMBOLS PAY ANYWHERE  ON THE SCREEN":
+"SYMBOLS PAY ANYWHERE  ON THE SCREEN_old":
 {
 	"frame": {"x":1923,"y":1,"w":680,"h":102},
 	"rotated": true,
@@ -112,7 +112,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":680,"h":102},
 	"sourceSize": {"w":680,"h":102}
 },
-"Tick":
+"Tick_old":
 {
 	"frame": {"x":1450,"y":1882,"w":37,"h":33},
 	"rotated": false,
@@ -120,7 +120,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":33},
 	"sourceSize": {"w":37,"h":33}
 },
-"Tick_box":
+"Tick_box_sugarboxold":
 {
 	"frame": {"x":1396,"y":1936,"w":48,"h":48},
 	"rotated": false,
@@ -128,7 +128,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
 	"sourceSize": {"w":48,"h":48}
 },
-"WIN UP TO 21, 100 X BET":
+"WIN UP TO 21, 100 X BET_old":
 {
 	"frame": {"x":1017,"y":1824,"w":650,"h":56},
 	"rotated": false,
@@ -136,7 +136,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":650,"h":56},
 	"sourceSize": {"w":650,"h":56}
 }},
-"animations": {
+"animations_old": {
 	"Intro_P": ["Intro_P-1","Intro_P-2","Intro_P-3"],
 	"Layer ": ["Layer 6","Layer 7","Layer 8"]
 },
