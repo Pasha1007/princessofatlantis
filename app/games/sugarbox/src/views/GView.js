@@ -141,9 +141,9 @@ sView.createExtraElements = function () {
 
 			this.txt4B = pixiLib.getElement("Sprite","s");
 			this.txt4B.name = "SCATTER";
-			this.txt4B.x=-((this.txt4C.width/2)-105);;
-			this.txt4B.y=-10;
-			this.txt4B.scale.set(0.26)
+			this.txt4B.x=-((this.txt4C.width/2)-112);;
+			this.txt4B.y=0;
+			this.txt4B.scale.set(0.2)
 			this.txt4C.addChild(this.txt4B);
 			
 			this.text4.addChild(this.txt4C);
@@ -177,7 +177,7 @@ sView.createExtraElements = function () {
 	else if(_viewInfoUtil.viewType === "VP")
 	{
 		this.fadingContainer.x = -285;
-		this.fadingContainer.y = 210;
+		this.fadingContainer.y = 200;
 		this.text1.x=930;
 		this.text2.x=930;
 		this.text3.x=861;
@@ -406,7 +406,7 @@ sView.resizeFadingContainer = function(){
 	else if(_viewInfoUtil.viewType === "VP")
 	{
 		this.fadingContainer.x = -285;
-		this.fadingContainer.y = 210;
+		this.fadingContainer.y = 200;
 		// this.txt1.x= 925;
 		// this.txt2.x=925;
 		// this.txt3A.x=-340;
@@ -653,7 +653,7 @@ sView.createBuyFreeSpinPanel = function(){
 	if (_viewInfoUtil.viewType === "VD") {
 		this.BuyBtn.x = -895;
 		this.BuyBtn.y = 10;
-		this.BuyBtn.scale.set(0.34);
+		this.BuyBtn.scale.set(0.3);
 		this.BuyBtn.anchor.set(0.5);
 	}
 	else if(_viewInfoUtil.viewType === "VP")
@@ -665,9 +665,9 @@ sView.createBuyFreeSpinPanel = function(){
 	}
 	else
 	{
-		this.BuyBtn.x = -375;
-		this.BuyBtn.y = 215;
-		this.BuyBtn.scale.set(0.7);
+		this.BuyBtn.x = -315;
+		this.BuyBtn.y = 110;
+		this.BuyBtn.scale.set(0.35);
 		this.BuyBtn.anchor.set(0.5);
 	}
 	this.BuyFeatureTxt = pixiLib.getElement("Sprite","buy_text");
@@ -708,7 +708,7 @@ sView.createBuyFreeSpinPanel = function(){
 	if (_viewInfoUtil.viewType === "VD") {
 		this.twoXBetBg.x = -895;
 		this.twoXBetBg.y = 250;
-		this.twoXBetBg.scale.set(0.9)
+		this.twoXBetBg.scale.set(0.8)
 		this.twoXBetBg.anchor.set(0.5);
 	}
 	else if(_viewInfoUtil.viewType === "VP")
@@ -721,16 +721,16 @@ sView.createBuyFreeSpinPanel = function(){
 	}
 	else
 	{
-		this.twoXBetBg.x = -375.5;
-		this.twoXBetBg.y = 385;
-		this.twoXBetBg.scale.set(0.7)
+		this.twoXBetBg.x = -315;
+		this.twoXBetBg.y = 360;
+		this.twoXBetBg.scale.set(0.9)
 		this.twoXBetBg.anchor.set(0.5);
 	}
 	this.BuyPanelCon.addChild(this.twoXBetBg);
 
 	this.twoxbetTxt = pixiLib.getElement("Sprite","bet_text");
 	this.twoxbetTxt.x=0;
-	this.twoxbetTxt.y=-25;
+	this.twoxbetTxt.y=-20;
 	this.twoxbetTxt.scale.set(1);
 	this.twoxbetTxt.anchor.set(0.5)
 //	pixiLib.setText(this.twoxbetTxt, gameLiterals.bet_text)
@@ -1082,9 +1082,9 @@ sView.ResizeGview = function(){
 		}
 		else
 		{
-			this.BuyBtn.x = -306.5;
-			this.BuyBtn.y = 215;
-			this.BuyBtn.scale.set(0.7);
+			this.BuyBtn.x = -315;
+			this.BuyBtn.y = 110;
+			this.BuyBtn.scale.set(0.35);
 		}
 	}
 	if(this.twoXBetBg){
@@ -1104,9 +1104,9 @@ sView.ResizeGview = function(){
 		}
 		else
 		{
-			this.twoXBetBg.x = -306.5;
-			this.twoXBetBg.y = 385;
-			this.twoXBetBg.scale.set(0.7)
+			this.twoXBetBg.x = -315;
+			this.twoXBetBg.y = 360;
+			this.twoXBetBg.scale.set(0.9)
 			this.twoXBetBg.anchor.set(0.5);
 		}
 	}
@@ -1227,39 +1227,42 @@ sView.CreateScatterWinAnim = function(){
 	// this.scatFillAnim=pixiLib.getElement("AnimatedSprite", { "prefix": "skeleton-animation_", "startIndex": "1", "endIndex": "56", "digit": "dual", "loop": false, "animationSpeed": "0.25", "type": "spriteAnimation" })
 
 	if (_viewInfoUtil.viewType === "VD") {
-		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine")
+		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine");
+		this.scatFillAnim.state.setAnimation(0,'transition',false);
 		this.scatFillAnim.scale.set(0.67);
 		this.scatFillAnim.x = 640;
 		this.scatFillAnim.y = 360;
 	}
 	else if (_viewInfoUtil.viewType === "VP") {
-		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine_portrait")
+		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine")
+		this.scatFillAnim.state.setAnimation(0,'transition_portrait',false);
 		// this.scatFillAnim.scale.set(0.5);
 		if(_viewInfoUtil.isIpad())
 			{
 				this.scatFillAnim.scale.set(0.8);
 			}
 			else{
-			this.scatFillAnim.scale.set(0.5);
+			this.scatFillAnim.scale.set(0.4);
 			}		
 		// this.scatFillAnim.scale.set(0.67,1.55);
 		this.scatFillAnim.x = _viewInfoUtil.getWindowWidth()/2;
-		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-170;
+		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-342;
 	}
 	else if (_viewInfoUtil.viewType === "VL") {
-		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine")
+		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine");
+		this.scatFillAnim.state.setAnimation(0,'transition',false);
 		if(_viewInfoUtil.isIpad())
 		{
 			this.scatFillAnim.scale.set(0.8);
 		}
 		else{
-		this.scatFillAnim.scale.set(0.5);
+		this.scatFillAnim.scale.set(0.4);
 		}
 		this.scatFillAnim.x = _viewInfoUtil.getWindowWidth()/2;
-		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()+50;
+		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-200;
 	}
 	_sndLib.play(_sndLib.sprite.scatter_Open);
-	this.scatFillAnim.state.setAnimation(0,'transition',false);
+
 	// this.scatFillAnim.play();
 	this.stage.addChild(this.scatFillAnim);
 

@@ -54,9 +54,9 @@ _ng.ReelViewUiConfig = {
 
     },
     "layout": {
-        "VD": {"marginLeft": -92, "marginTop": -5, "scale": 0.95},
-        "VL": {"marginLeft": -121.5, "marginTop": -8, "scale": 0.9},
-        "VP": {"marginLeft": -130+10, "marginTop": -70, "scale": 0.95}
+        "VD": {"marginLeft": -95, "marginTop": -2.8, "scale": 0.95},
+        "VL": {"marginLeft": -70, "marginTop": -8, "scale": 0.95},
+        "VP": {"marginLeft": -100.3, "marginTop":-120, "scale": 0.82}
     },
     "showScatterLand":true,
     "iPadLayout": {

@@ -51,7 +51,7 @@ var BGViewUiConfig = [
         scale: {x: 0.67, y: 0.67}
       },
       "VL": { alignment: 12, scale: { x: 0, y: 0 } },    //Adjust the x and y for VL and VP in GBGView.js 
-      "VP": { alignment: 12, scale: { x: 0, y: 0 } },   //Add Anchor property 0.5 in the case of sprite
+      "VP": { alignment: 13, scale: { x: 0, y: 0 } },   //Add Anchor property 0.5 in the case of sprite
     }
   }
 ];

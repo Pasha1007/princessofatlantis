@@ -2485,7 +2485,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "a",
                                         "props": {
                                             "VL": { x: 180, y: 220, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 200, y: 250, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 200, y: 250, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2510,7 +2510,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "b",
                                         "props": {
                                             "VL": { x: 480, y: 220, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 500, y: 250, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 500, y: 250, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2535,7 +2535,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "c",
                                         "props": {
                                             "VL": { x: 780, y: 220, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 200, y: 500, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 200, y: 500, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2560,7 +2560,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "d",
                                         "props": {
                                             "VL": { x: 1080, y: 220, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 500, y: 500, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 500, y: 500, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2585,7 +2585,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "e",
                                         "props": {
                                             "VL": { x: 0, y: 500, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 200, y: 750, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 200, y: 750, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2610,7 +2610,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "f",
                                         "props": {
                                             "VL": { x: 300, y: 500, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 500, y: 750, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 500, y: 750, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2635,7 +2635,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "g",
                                         "props": {
                                             "VL": { x: 600, y: 500, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 200, y: 1000, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 200, y: 1000, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2660,7 +2660,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "h",
                                         "props": {
                                             "VL": { x: 900, y: 500, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 500, y: 1000, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 500, y: 1000, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2685,7 +2685,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "i",
                                         "props": {
                                             "VL": { x: 1200, y: 500, "anchor": { x: 0.5,y:0.5 },scale:0.5 },
-                                            "VP": { x: 200, y: 1250, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 200, y: 1250, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2710,7 +2710,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "s",
                                         "props": {
                                             "VL": { x: 600, y: 800, "anchor": { x: 0.5,y:0.5 },scale:0.6 },
-                                            "VP": { x: 342, y: 1500, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.5  }
+                                            "VP": { x: 342, y: 1500, scale:0.3,"anchor": { x: 0.5,y:0.5 },scale:0.3  }
                                         }
                                     }
                                 },
@@ -2821,7 +2821,7 @@ _ng.PaytableViewUIConfig = {
                                         "backgroundImage": "m",
                                         "props": {
                                             "VL": { x: 640, y: 450, "anchor": { x: 0.5,y:0.5 },scale:0.7 },
-                                            "VP": { x: 360, y: 600, "anchor": { x: 0.5,y:0.5 },scale:0.6  }
+                                            "VP": { x: 360, y: 600, "anchor": { x: 0.5,y:0.5 },scale:0.45  }
                                         }
                                     }
                                 },

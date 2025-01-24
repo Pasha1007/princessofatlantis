@@ -1256,15 +1256,15 @@ _ng.PanelConfig = {
                                     "subscribeToResize": true,
                                     "props": {
                                         "VL": { "x": -40, "y": 295, rotation: 0,anchor: 0.5, "scale": { x: 0.0, y: 0.0 } },
-                                        "VP": { "x": -179, "y": -80, rotation: 0, anchor: 0.5, "scale": { x: 0.65, y: 0.65 } }
+                                        "VP": { "x": -175, "y": -125, rotation: 0, anchor: 0.5, "scale": { x: 0.4, y: 0.4 } }
                                     },
-                                    "backgroundImage": "buybtn",
+                                    "backgroundImage": "buy_btn",
                                     // "hitArea": { "type": "circle", "params": { x: 0 } }
                                     "hitArea": { "type": "polygon", "params": [
-                                        -180,70,
-                                        -180,-70,
-                                        180,-70,
-                                        180,70
+                                        -310,205,
+                                        -310,-205,
+                                        310,-205,
+                                        310,205
                                     ] }
 
                                 },
@@ -1284,15 +1284,15 @@ _ng.PanelConfig = {
                                     "subscribeToResize": true,
                                     "props": {
                                         "VL": { "x": -40, "y": 295, rotation: 0,anchor: 0.5, "scale": { x: 0.0, y: 0.0 } },
-                                        "VP": { "x": 179, "y": -80, rotation: 0, anchor: 0.5, "scale": { x: 0.65, y: 0.65 } }
+                                        "VP": { "x": 170, "y": -125, rotation: 0, anchor: 0.5, "scale": { x: 0.8, y: 0.8 } }
                                     },
-                                    "backgroundImage": "buybtn",
+                                    "backgroundImage": "bet_btn",
                                     // "hitArea": { "type": "circle", "params": { x: 0 } }
                                     "hitArea": { "type": "polygon", "params": [
-                                        -180,70,
-                                        -180,-70,
-                                        180,-70,
-                                        180,70
+                                        -110,140,
+                                        -110,-140,
+                                        110,-140,
+                                        110,140
                                     ] }
 
                                 },

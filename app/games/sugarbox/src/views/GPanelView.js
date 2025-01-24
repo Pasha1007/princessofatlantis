@@ -256,31 +256,33 @@ Panel.createView = function () {
 
                     
                         //buy feature text
-                        this.bfText = pixiLib.getElement("Text",style);
+                        this.bfText = pixiLib.getElement("Sprite","buy_text");
                         this.bfText.x=0;
-                        this.bfText.y=-40;
+                        this.bfText.y=-65;
                         this.bfText.anchor.set(0.5);
-                        pixiLib.setText(this.bfText,gameLiterals.buyfeature)
+                        this.bfText.scale.set(2.5);
+//                        pixiLib.setText(this.bfText,gameLiterals.buyfeature)
                 
                         e.children[0].addChild(this.bfText);
 
                         //bet txt
-                         this.betText = pixiLib.getElement("Text",betstyle);
+                         this.betText = pixiLib.getElement("Sprite","bet_text");
                          this.betText.x=0;
-                         this.betText.y=-84;
+                         this.betText.y=-22;
                          this.betText.anchor.set(0.5);
-                         pixiLib.setText(this.betText,gameLiterals.bet_text)
+                         this.betText.scale.set(1);
+//                         pixiLib.setText(this.betText,gameLiterals.bet_text)
                  
                          e.children[1].addChild(this.betText);
 
                           //db chance txt
-                          this.dbchanceText = pixiLib.getElement("Text",amtstyledb);
-                          this.dbchanceText.x=0;
-                          this.dbchanceText.y=6;
-                          this.dbchanceText.anchor.set(0.5);
-                          pixiLib.setText(this.dbchanceText,gameLiterals.twoxchancetxt)
-                  
-                          e.children[1].addChild(this.dbchanceText);
+//                          this.dbchanceText = pixiLib.getElement("Text",amtstyledb);
+//                          this.dbchanceText.x=0;
+//                          this.dbchanceText.y=6;
+//                          this.dbchanceText.anchor.set(0.5);
+//                          pixiLib.setText(this.dbchanceText,gameLiterals.twoxchancetxt)
+//
+//                          e.children[1].addChild(this.dbchanceText);
 
                         this.amtTxt = pixiLib.getElement("Text",amtstyle);
                         this.amtTxt.x=0;
@@ -305,8 +307,8 @@ Panel.createView = function () {
                         this.tickOn.scale.set(1);
                         this.twoxOn = pixiLib.getElement("Sprite","on");
                         this.twoxOn.x=0
-                        this.twoxOn.y=67
-                        this.twoxOn.scale.set(1.5)
+                        this.twoxOn.y=110
+                        this.twoxOn.scale.set(1)
                         this.twoxOn.interactive = true;
                         this.twoxOn.buttonMode = true;
                         e.children[1].addChild(this.twoxOn);
@@ -317,8 +319,8 @@ Panel.createView = function () {
                         this.offIcon.scale.set(1)
                         this.twoxoff = pixiLib.getElement("Sprite","off")
                         this.twoxoff.x=0
-                        this.twoxoff.y=67
-                        this.twoxoff.scale.set(1.5)
+                        this.twoxoff.y=110
+                        this.twoxoff.scale.set(1)
                         this.twoxoff.interactive = true;
                         this.twoxoff.buttonMode = true;
                         e.children[1].addChild(this.twoxoff);

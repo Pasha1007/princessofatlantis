@@ -8,9 +8,9 @@ _ng.UIConfig = {
         "Mobile": {
             additionIndex: 2,
             props: {
-                "HX": 170, "HY": -110, "VX": 358, "VY": -200,
-                "landScaleX": 0.6, "landScaleY": 0.6, "landAlignX": "CENTER", "landAlignY": "TOP",
-                "portScaleX": 0.75, "portScaleY": 0.75, "portAlignX": "CENTER", "portAlignY": "TOP",
+                "HX": 1187, "HY": 74, "VX": 358, "VY": 100,
+                "landScaleX": 0.34, "landScaleY": 0.34, "landAlignX": "CENTER", "landAlignY": "TOP",
+                "portScaleX": 0.45, "portScaleY": 0.45, "portAlignX": "CENTER", "portAlignY": "TOP",
                 "portAnchorX": 0.5, "landAnchorX": 0.5,
             },
             // image: { "prefix": "logo_", "startIndex": "0", "endIndex": "23", "digit": "dual", "animationSpeed": ".7", "type": "spriteAnimation", "loop": false},
@@ -348,7 +348,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": {
                     "VL": { "x": 190, "y": 550, anchor: 0, scale: 1 },
-                    "VP": { "x": 255, "y": 792, anchor: 0, scale:1}
+                    "VP": { "x": 255, "y": 825, anchor: 0, scale:1}
                 },
                     "backgroundImage": "Fill_circle",
                 }
@@ -362,7 +362,7 @@ _ng.UIConfig = {
 
                    "props": { 
                     "VL": { "x": 120, "y": 550, anchor: 0, scale: 1 },
-                    "VP": { "x": 256, "y": 792, anchor: 0, scale:1 }
+                    "VP": { "x": 256, "y": 825, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Fill_circle",
                 }
@@ -374,7 +374,7 @@ _ng.UIConfig = {
 
                    "props": {  
                      "VL": { "x": 185, "y": 545, anchor: 0, scale: 1 },
-                   "VP": { "x": 250, "y": 787, anchor: 0, scale:1 } },
+                   "VP": { "x": 250, "y": 820, anchor: 0, scale:1 } },
                     "backgroundImage": "Base_circle",
                 }
             },
@@ -386,7 +386,7 @@ _ng.UIConfig = {
                     w: 17, h: 15.5, color: 0xff0000,
                     props: { 
                         "VL": { "x":193, "y": 555, anchor: 0, scale: 2,visible:true },
-                        "VP": { "x": 258, "y": 796, anchor: 0, scale:2,visible:true }
+                        "VP": { "x": 258, "y": 832, anchor: 0, scale:2,visible:true }
                      }
                 }
             },
@@ -396,7 +396,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": {
                     "VL": { "x": 270, "y": 545, anchor: 0, scale: 1 },
-                    "VP": { "x": 330, "y": 787, anchor: 0, scale:1 }
+                    "VP": { "x": 330, "y": 820, anchor: 0, scale:1 }
                 },
                     "backgroundImage": "Base_circle",
                 }
@@ -408,7 +408,7 @@ _ng.UIConfig = {
 
                    "props": { 
                     "VL": { "x":276206, "y": 550, anchor: 0, scale: 1 },
-                    "VP": { "x": 336, "y": 794, anchor: 0, scale:1 }
+                    "VP": { "x": 336, "y": 825, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Fill_circle",
                 }
@@ -420,7 +420,7 @@ _ng.UIConfig = {
 
                    "props": { 
                     "VL": { "x": 270, "y": 545, anchor: 0, scale: 1 },
-                    "VP": { "x": 330, "y": 787, anchor: 0, scale:1 }
+                    "VP": { "x": 330, "y": 820, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Base_circle",
                 }
@@ -433,7 +433,7 @@ _ng.UIConfig = {
                     w: 17, h: 15.5, color: 0xff2500,
                     props: { 
                         "VL": { "x": 279, "y": 554, anchor: 0, scale: 2,visible:true },
-                        "VP": { "x": 338, "y": 796, anchor: 0, scale:2,visible:true }
+                        "VP": { "x": 338, "y": 832, anchor: 0, scale:2,visible:true }
                      }
                 }
             },
@@ -443,7 +443,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": {
                     "VL": { "x": 350, "y": 545, anchor: 0, scale: 1 },
-                    "VP": { "x": 410, "y": 787, anchor: 0, scale:1 }
+                    "VP": { "x": 410, "y": 820, anchor: 0, scale:1 }
                 },
                     "backgroundImage": "Base_circle",
                 }
@@ -455,7 +455,7 @@ _ng.UIConfig = {
 
                    "props": {
                     "VL": { "x": 356, "y": 550, anchor: 0, scale: 1 },
-                    "VP": { "x": 416, "y": 794, anchor: 0, scale:1 }
+                    "VP": { "x": 416, "y": 825, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Fill_circle",
                 }
@@ -467,7 +467,7 @@ _ng.UIConfig = {
 
                    "props": { 
                     "VL": { "x": 350, "y": 545, anchor: 0, scale: 1 },
-                    "VP": { "x": 410, "y": 787, anchor: 0, scale:1 }
+                    "VP": { "x": 410, "y": 820, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Base_circle",
                 }
@@ -480,7 +480,7 @@ _ng.UIConfig = {
                     w: 17, h: 15.5, color: 0xff3500,
                     props: {
                         "VL": { "x": 360, "y": 554, anchor: 0, scale: 2,visible:true },
-                        "VP": { "x": 418, "y": 796, anchor: 0, scale:2,visible:true }
+                        "VP": { "x": 418, "y": 832, anchor: 0, scale:2,visible:true }
                      }
                 }
             },
@@ -490,7 +490,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": {
                     "VL": { "x": 750, "y": 110, anchor: 0, scale: 1 },
-                    "VP": { "x": 184, "y": 15, anchor: 0, scale:0.8 }
+                    "VP": { "x": 220, "y": -5, anchor: 0, scale:0.9 }
                 },
                     "backgroundImage": "static_logo",
                 }
@@ -501,7 +501,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": { 
                     "VL": { "x": 15, "y": 85, anchor: 0, scale: 0.55 ,visible:false},
-                    "VP": { "x": 65, "y":300, anchor: 0, scale:0.55,visible:false }
+                    "VP": { "x": 60, "y":275, anchor: 0, scale:0.6,visible:false }
                     },
                     "backgroundImage": "Layer 8",
                 }
@@ -512,9 +512,9 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": { 
                     "VL": { "x": 300, "y": 500, anchor: 0.5, scale: 0.5 },
-                    "VP": { "x": 350, "y": 745, anchor: 0.5, scale:0.55 }
+                    "VP": { "x": 365, "y": 750, anchor: 0.5, scale:0.65 }
                     },
-                    "backgroundImage": "SYMBOLS PAY ANYWHERE  ON THE SCREEN",
+                    "backgroundImage": "SYMBOLS PAY ANYWHERE ON THE SCREEN",
                           },
                 },
             "screen_2": {
@@ -523,7 +523,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": { 
                     "VL": { "x": 15, "y": 85, anchor: 0, scale: 0.5,visible:false },
-                    "VP": { "x": 65, "y": 300, anchor: 0, scale:0.55,visible:false  }
+                    "VP": { "x": 60, "y": 275, anchor: 0, scale:0.6,visible:false  }
                     },
                     "backgroundImage": "Layer 6",
                 }
@@ -534,7 +534,7 @@ _ng.UIConfig = {
                                     "subscribeToResize": true,
                                    "props": {
                                     "VL": { "x": 300, "y": 500, anchor: 0.5, scale: 0.5},
-                                    "VP": { "x": 350, "y": 745, anchor: 0.5, scale:0.55 }
+                                    "VP": { "x": 365, "y": 750, anchor: 0.5, scale:0.65 }
                                     },
                                      "backgroundImage": "WIN UP TO 5000 X BET",
                                  },
@@ -545,7 +545,7 @@ _ng.UIConfig = {
                   "subscribeToResize": true,
                   "props": {
                    "VL": { "x": 15, "y": 85, anchor: 0, scale: 0.55},
-                   "VP": { "x": 65, "y": 300, anchor: 0, scale:0.55 }
+                   "VP": { "x": 60, "y": 275, anchor: 0, scale:0.6 }
                },
                    "backgroundImage": "Layer 7",
                }
@@ -556,7 +556,7 @@ _ng.UIConfig = {
                            "subscribeToResize": true,
                            "props": {
                             "VL": { "x": 300, "y": 500, anchor: 0.5, scale: 0.5 },
-                            "VP": { "x": 350, "y": 745, anchor: 0.5, scale:0.55 }
+                            "VP": { "x": 365, "y": 750, anchor: 0.5, scale:0.65 }
                         },
 
                              "backgroundImage": "RANDOM MULTIPLIERS UP TO 1000X",
@@ -579,9 +579,9 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                     "props": {
                         "VL": { "x": 462, "y": 668, anchor: 0.5,scale:0.6  },
-                        "VP": { "x": 222, "y": 1100, anchor: 0.5,scale:0.6 },
+                        "VP": { "x": 175, "y": 1095, anchor: 0.5,scale:0.75 },
                     },
-                    "backgroundImage": "introRadioBtnOff",
+                    "backgroundImage": "Tick_box_old",
                 }
             },
             "radioButtonOn": {
@@ -590,9 +590,9 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                     "props": {
                         "VL": { "x": 462, "y": 668, anchor: 0.5,scale:0.6 },
-                        "VP": { "x": 222, "y": 1100, anchor: 0.5,scale:0.6},
+                        "VP": { "x": 173, "y": 1093, anchor: 0.5,scale:0.6},
                     },
-                    "backgroundImage": "introRadioBtnOn",
+                    "backgroundImage": "Tick",
                 }
             },
             "bottomText": {
@@ -601,7 +601,7 @@ _ng.UIConfig = {
                                     "subscribeToResize": true,
                                     "props": {
                                         "VL": { x: 650, y: 668, anchor: 0.5,scale:0.65 },
-                                        "VP": { x: 395, y: 1100, anchor: 0.5,scale:0.65 },
+                                        "VP": { x: 375, y: 1095, anchor: 0.5,scale:0.85 },
                                     },
                                     "backgroundImage": "DON’T SHOW AGAIN",             }
             },
@@ -612,7 +612,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                     "props": {
                         "VL": { x: 439, y: 653, anchor: 0.5,scale:0.7 },
-                        "VP": { x: 208, y: 1085, anchor: 0.5,scale:0.7 },
+                        "VP": { x: 162, y: 1080, anchor: 0.5,scale:0.75 },
                     },
                     
                 }
@@ -623,7 +623,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                     "props": {
                         "VL": { "x": 623.5, "y": 590, anchor: 0.5, scale: 0.6 },
-                        "VP": { "x": 354, "y": 930, anchor: 0.5, scale: 0.6 }
+                        "VP": { "x": 355, "y": 950, anchor: 0.5, scale: 0.95 }
                     },
                     "backgroundImage": "play",
                     // options: {
@@ -754,7 +754,7 @@ _ng.UIConfig = {
     //      "s": [{ animationDuration: 3000, winSound: { name: "sSym" } }, { "prefix": "s_","tween": { "scale": { "x": 0.8, "y": 0.8 } },"tweenDuration":0.1, "startIndex": "0", "endIndex": "47", "digit": "dual", "animationSpeed": "0.3", "props": {x:0, y:10,  "scale": 0.7},"type": "spineAnimation" }],
          "m": [{ animationDuration: 3000, winSound: { name: "sSym" } }, { "prefix": "m_", "startIndex": "0", "endIndex": "47", "digit": "dual", "animationSpeed": "0.3", "props": {x:0, y:8.5,  "scale":  0},"type": "spriteAnimation" }],
     // "s_land": [{ animationDuration: 3000, winSound: { name: "sSymLand" } }, { "prefix": "s_", "startIndex": "0", "endIndex": "24", "digit": "dual", "animationSpeed": "0.2", "props": {x:0, y:10,  "scale":  0.7}, "type": "spriteAnimation" }],
-   "s": [{ animationDuration: 4000, winSound: { name: "aSym" } , offset: { y: 5, x: 0 }}, { "animationSpeed": "0.5", "type": "spine", "winAnimation" : "main", "spineName" : "mermaid","props": {x:0, y:0, "scale":{x:0.25,y:0.25}}}],
+   "s": [{ animationDuration: 4000, winSound: { name: "aSym" } , offset: { y: 5, x: 0 }}, { "animationSpeed": "0.5", "type": "spine", "winAnimation" : "main", "spineName" : "mermaid","props": {x:0, y:0, "scale":{x:0.22,y:0.22}}}],
     // "s": [{ animationDuration: 2100, winSound: { name: "sSym" }},{  "animationSpeed": "0.2", "type": "spine", "winAnimation" : "animation", "spineName" : "Animation_scatter","props": {x:0, y:0,  "scale":{x:1,y:1}}}],        
 //        "s_land": [{ animationDuration: 2100, winSound: { name: "sLand_3" }},{  "animationSpeed": "0.5", "type": "spine", "winAnimation" : "main", "spineName" : "mermaid","props": {x:0, y:0,  "scale":{x:0.23,y:0.23}}}],
 },
@@ -3002,7 +3002,7 @@ _ng.UIConfig = {
                 props: {scale:0.6, anchor: { x: 0.5, y: 0.5 } }
             },
             descriptionText: {
-                props: { x: 0, y: 20,  anchor: { x: 0.5, y: 0.5 } },
+                props: { x: 0, y: -45,  anchor: { x: 0.5, y: 0.5 } },
                 text: "Freespins Awarded",
                 textStyle: {
                     // "dropShadow": true,
@@ -3018,7 +3018,7 @@ _ng.UIConfig = {
                     "fill": "#ffc800",
                     //ffc800 FFC000
                     "fontFamily": "Arial",
-                    "fontSize": 35,
+                    "fontSize": 50,
                     "fontWeight": "bolder",
                     "letterSpacing": 3,
                     "lineJoin": "bevel",
@@ -3040,7 +3040,7 @@ _ng.UIConfig = {
             },
 
             "continueButton": {
-                props: { x: 0, y: 128, scale:0.6,anchor: { x: 0.5, y: 0.5 } },
+                props: { x: 0, y: 200, scale:1,anchor: { x: 0.5, y: 0.5 } },
                 bgImage: "continue",
                 // options: {
                 //     textField: {
@@ -3073,7 +3073,7 @@ _ng.UIConfig = {
             },
             descriptionImg: {
                 // bgImage: "CongratulationsYW",
-                props: { x: -8, y: -78, scale:0.7,anchor: { x: 0.5, y: 0.5 } }
+                props: { x: 15, y: 10, scale:0.55,anchor: { x: 0.5, y: 0.5 } }
             },
             fsValue: {
                 props: { x: -220, y: 43, anchor: { x: 0.5, y: 0.5 } },
@@ -3152,12 +3152,18 @@ _ng.UIConfig = {
 
             descriptionImg: {
                 bgImage: "CongratulationsYW",
-                props: { x: -8, y: -78, scale:0.7,anchor: { x: 0.5, y: 0.5 } }
+                props: { x: 0, y: 15, scale:0.55,anchor: { x: 0.5, y: 0.5 } }
             },
             you_win: {
                 bgImage: "You_Win",
                 props: { x: 0, y: -47,scale:0.6, anchor: { x: 0.5, y: 0.5 } }
             },
+
+            fspintxt:{
+               props:{
+                      x: -40, y: 18,scale:0.9, anchor: { x: 0.5, y: 0.5 }
+                      }
+               },
           
             fsWinValue: {
                 props: { x: -10, y: 40, anchor: { x: 0.5, y: 0.5 } },
@@ -3182,7 +3188,8 @@ _ng.UIConfig = {
             },
             "continueButton": {
                 props: { x: 0, y: 250,scale:0.6, anchor: { x: 0.5, y: 0.5 } },
-                bgImage: "continue"
+                bgImage: "continue",
+                name:"continuebtn"
             },
 
             // continueText: {

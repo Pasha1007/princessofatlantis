@@ -1,28 +1,63 @@
-{"frames": {
-
-"tumble_win_landscape":
 {
-	"frame": {"x":0,"y":0,"w":253,"h":261},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":253,"h":261},
-	"sourceSize": {"w":253,"h":261}
-},
-"tumble_win_portrait":
-{
-	"frame": {"x":256,"y":0,"w":557,"h":161},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":557,"h":161},
-	"sourceSize": {"w":557,"h":161}
-}},
-"meta": {
-	"app": "https://www.codeandweb.com/texturepacker",
-	"version": "1.1",
-	"image": "tumbleWin.png",
-	"format": "RGBA8888",
-	"size": {"w":813,"h":261},
-	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:27470a1e472bdf40d3da2fcaa1cfb46e:2a55fdc1b08980c9edbd3d18c98c1d0d:c8e9d229307741cbdfe155a2f09691f1$"
-}
+  "frames": {
+    "tumble_win_landscape": {
+      "frame": {
+        "x": 5,
+        "y": 5,
+        "w": 373,
+        "h": 105
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 373,
+        "h": 105
+      },
+      "sourceSize": {
+        "w": 373,
+        "h": 105
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "tumble_win_portrait": {
+      "frame": {
+        "x": 388,
+        "y": 5,
+        "w": 256,
+        "h": 262
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 262
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 262
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "tumbleWin.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 655,
+      "h": 266
+    },
+    "scale": 1
+  }
 }

@@ -49,7 +49,7 @@ _ng.GameConfig = {
 
     "specialWins": {
         "nice": {
-            "multiplier": 1,
+            "multiplier": 15,
             "title": "Big Win",
             "sprite": "bigWinLogo"
         },

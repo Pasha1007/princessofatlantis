@@ -8,10 +8,10 @@ gWV.addGameElements = function () {
 	this.multiContainer.y = 210;
 	this.multiContainer.alpha = 0;
 
-	this.tumbleBox = pixiLib.getElement("Sprite", "tumble_win_portrait");
-	this.tumbleBox.x = -735;
-	this.tumbleBox.y = -397;
-	this.tumbleBox.scale.set(0.7);
+	this.tumbleBox = pixiLib.getElement("Sprite", "tumble_win_landscape");
+	this.tumbleBox.x = -620;
+	this.tumbleBox.y = -336;
+	this.tumbleBox.scale.set(0.9);
 	this.multiContainer.addChild(this.tumbleBox);
 	this.currentTotal =0;
 	this.finalValue =0;

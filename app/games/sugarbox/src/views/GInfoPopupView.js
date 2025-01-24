@@ -92,10 +92,10 @@ view.showFreeSpinAwarded = function (numSpins, nextAction) {
     // this.popupParent.addChild(fsBg);
     // pixiLib.setProperties(fsBg, fsPopupConfig.background.props);
 
-    var congTxt = pixiLib.getElement("Spine", "Free_Spin");
+    var congTxt = pixiLib.getElement("Spine", "congratulations");
     this.popupParent.addChild(congTxt);
     pixiLib.setProperties(congTxt, fsPopupConfig.descriptionImg.props);
-    congTxt.state.setAnimation(0,'Congratulation_loop',true);
+    congTxt.state.setAnimation(0,'congratulation_loop_freespins',true);
     // debugger;
     // var fsTitle = pixiLib.getElement("Text", fsPopupConfig.descriptionText1.textStyle);
     // fsTitle.style = fsPopupConfig.descriptionText1.textStyle;
@@ -125,9 +125,9 @@ view.showFreeSpinAwarded = function (numSpins, nextAction) {
     // this.popupParent.addChild(fsType);
     // pixiLib.setProperties(fsType, fsPopupConfig.descriptionText2.props);
 
-    var continueBtn = pixiLib.getButton(fsPopupConfig.continueButton.bgImage);
-    this.popupParent.addChild(continueBtn);
-    pixiLib.setProperties(continueBtn, fsPopupConfig.continueButton.props);
+//    var continueBtn = pixiLib.getButton(fsPopupConfig.continueButton.bgImage);
+//    this.popupParent.addChild(continueBtn);
+//    pixiLib.setProperties(continueBtn, fsPopupConfig.continueButton.props);
 
 
     // this.continueText = pixiLib.getElement("Text", fsPopupConfig.continueText.textStyle, fsPopupConfig.continueText.text);
@@ -138,10 +138,10 @@ view.showFreeSpinAwarded = function (numSpins, nextAction) {
         //Adding timeout so popup will be shown fully then enable spacebar
         _mediator.publish("setSpaceBarEvent", "onFSContinueClick");
     }, 500);
-    pixiLib.addEvent(continueBtn,() => {
-        _sndLib.play(_sndLib.sprite.btnClick);
-        this.onFSContinueClick();
-    });
+//    pixiLib.addEvent(continueBtn,() => {
+//        _sndLib.play(_sndLib.sprite.btnClick);
+//        this.onFSContinueClick();
+//    });
         
     
     pixiLib.addEvent(this.grayBg, 
@@ -154,7 +154,7 @@ view.showFreeSpinAwarded = function (numSpins, nextAction) {
 
     //skipping the popup
     if(_ng.autoPlayBeforeFg == true) {
-        pixiLib.setInteraction(continueBtn,false);
+//        pixiLib.setInteraction(continueBtn,false);
         this.grayBg.interactive = false;
         this.grayBg.buttonMode = false;
         setTimeout(function () {
@@ -273,10 +273,10 @@ view.showFreeSpinEnded = function () {
     // var youWin = pixiLib.getElement("Sprite", fsPopupConfig.you_win.bgImage);
     // this.popupParent.addChild(youWin);
     // pixiLib.setProperties(youWin, fsPopupConfig.you_win.props);
-    var congTxt = pixiLib.getElement("Spine", "Free_Spin");
+    var congTxt = pixiLib.getElement("Spine", "congratulations");
     this.popupParent.addChild(congTxt);
     pixiLib.setProperties(congTxt, fsPopupConfig.descriptionImg.props);
-    congTxt.state.setAnimation(0,'Free_Spin_loop',true);
+    congTxt.state.setAnimation(0,'congratulation_loop_amount',true);
     // var fsTitle = pixiLib.getElement("Text", fsPopupConfig.descriptionText1.textStyle);
     // fsTitle.style = fsPopupConfig.descriptionText1.textStyle;
     // pixiLib.setText(fsTitle, fsPopupConfig.descriptionText1.text);
@@ -308,22 +308,22 @@ view.showFreeSpinEnded = function () {
                 }       
     
 
-    this.inFs = pixiLib.getElement("Text",fsStyle);
-    this.popupParent.addChild(this.inFs);
-    this.inFs.position.set(-245,110);
+//    this.inFs = pixiLib.getElement("Text",fsStyle);
+//    this.popupParent.addChild(this.inFs);
+//    this.inFs.position.set(-245,110);
 
-    pixiLib.setText(this.inFs, gameLiterals.IN_text);
+//    pixiLib.setText(this.inFs, gameLiterals.IN_text);
 
     this.TotalFSCount = pixiLib.getElement("Text", fsStyle);
     this.popupParent.addChild(this.TotalFSCount);
-    this.TotalFSCount.position.set(gameLiterals.countPos.pos.x,gameLiterals.countPos.pos.y);
+    pixiLib.setProperties(this.TotalFSCount, fsPopupConfig.fspintxt.props);
+    this.TotalFSCount.scale.set(0.9);
     pixiLib.setText(this.TotalFSCount, coreApp.gameModel.freeSpinData.totalFreeSpins);
 
-
-    this.FStxt = pixiLib.getElement("Text", fsStyle);
-    this.popupParent.addChild(this.FStxt);
-    this.FStxt.position.set(gameLiterals.freespinText.pos.x,gameLiterals.freespinText.pos.y);
-    pixiLib.setText(this.FStxt, gameLiterals.freespinText.text);
+//    this.FStxt = pixiLib.getElement("Text", fsStyle);
+//    this.popupParent.addChild(this.FStxt);
+//    this.FStxt.position.set(gameLiterals.freespinText.pos.x,gameLiterals.freespinText.pos.y);
+//    pixiLib.setText(this.FStxt, gameLiterals.freespinText.text);
 
     this.counterWinAmount(this,0,this.winAmountTxt,3000);
     // var fsType = pixiLib.getElement("Text", fsPopupConfig.descriptionText2.textStyle);
@@ -333,9 +333,9 @@ view.showFreeSpinEnded = function () {
     // pixiLib.setProperties(fsType, fsPopupConfig.descriptionText2.props);
 
     
-    this.endcontinueBtn = pixiLib.getButton(fsPopupConfig.continueButton.bgImage);
-    this.popupParent.addChild(this.endcontinueBtn);
-    pixiLib.setProperties(this.endcontinueBtn, fsPopupConfig.continueButton.props);
+//    this.endcontinueBtn = pixiLib.getButton(fsPopupConfig.continueButton.bgImage);
+//    this.popupParent.addChild(this.endcontinueBtn);
+//    pixiLib.setProperties(this.endcontinueBtn, fsPopupConfig.continueButton.props);
 
     // this.continueText = pixiLib.getElement("Text", fsPopupConfig.continueText.textStyle, fsPopupConfig.continueText.text);
     // this.popupParent.addChild(this.continueText);
@@ -345,7 +345,7 @@ view.showFreeSpinEnded = function () {
         //Adding timeout so popup will be shown fully then enable spacebar
         _mediator.publish("setSpaceBarEvent", "onFsCloseHandler");
     }, 3000);
-    pixiLib.addEvent(this.endcontinueBtn, this.CountExit.bind(this));
+//    pixiLib.addEvent(this.endcontinueBtn, this.CountExit.bind(this));
     _ngFluid.call(this, fsPopupConfig.params);
 
     this.onViewResize();
@@ -363,10 +363,10 @@ view.CountExit=function()
         clearInterval(this.interVal);
     pixiLib.setText(this.winAmountTxt, pixiLib.getFormattedAmount(winAmount));
     pixiLib.addEvent(this.grayBg, this.onFsCloseHandler.bind(this));
-    pixiLib.addEvent(this.endcontinueBtn, () => {
-        _sndLib.play(_sndLib.sprite.btnClick);
-        this.onFsCloseHandler();
-    });
+//    pixiLib.addEvent(this.endcontinueBtn, () => {
+//        _sndLib.play(_sndLib.sprite.btnClick);
+//        this.onFsCloseHandler();
+//    });
         
         
 }
@@ -460,7 +460,7 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
 
         this.BuypopupPanelCon.scale.set(0.01);
         TweenMax.to(this.BuypopupPanelCon, 0.2, {
-            x:-35, y:0.85,
+            x:-115, y:-27,
             ease: "easeInSine",
             onComplete: function() {
                 this.BuypopupPanelCon.scale.set(0.8);
@@ -541,7 +541,7 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
     this.BuypopupCon = pixiLib.getContainer();
 	this.BuypopupCon.name = "BuypopupCon"
 	this.BuypopupCon.x =40;
-	this.BuypopupCon.y = 296;
+	this.BuypopupCon.y = 290;
 	this.BuypopupPanelCon.addChild(this.BuypopupCon);
 
 
@@ -1559,9 +1559,9 @@ After free game is finished
 */
 view.skipFreeSpinRewarded = function() {
     if(_ng.autoPlayBeforeFg == true) {
-        if(this.endcontinueBtn){
-            pixiLib.setInteraction(this.endcontinueBtn,false);
-        }
+//        if(this.endcontinueBtn){
+//            pixiLib.setInteraction(this.endcontinueBtn,false);
+//        }
         if(this.grayBg) {
             this.grayBg.interactive = false;
             this.grayBg.buttonMode = false;

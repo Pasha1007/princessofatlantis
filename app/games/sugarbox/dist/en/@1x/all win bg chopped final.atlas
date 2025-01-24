@@ -1,6 +1,7 @@
 all win bg chopped final.webp
 size:2005,1729
 filter:Linear,Linear
+pma:true
 fantasttic
 bounds:2,1026,1071,195
 offsets:10,5,1084,200
@@ -97,6 +98,7 @@ offsets:14,16,527,234
 all win bg chopped final_2.webp
 size:1868,2036
 filter:Linear,Linear
+pma:true
 Fantastic win
 bounds:2,554,1864,1480
 offsets:83,24,2028,1534
@@ -107,6 +109,7 @@ offsets:97,37,1600,588
 all win bg chopped final_3.webp
 size:1868,1992
 filter:Linear,Linear
+pma:true
 NICE WIN
 bounds:2,510,1864,1480
 offsets:83,24,2028,1534
@@ -117,6 +120,7 @@ offsets:99,43,1625,550
 all win bg chopped final_4.webp
 size:1926,1628
 filter:Linear,Linear
+pma:true
 bubbles/bubbles_0
 bounds:2,1086,960,540
 bubbles/bubbles_1
@@ -133,6 +137,7 @@ bounds:964,2,960,540
 all win bg chopped final_5.webp
 size:1926,1628
 filter:Linear,Linear
+pma:true
 bubbles/bubbles_14
 bounds:2,1086,960,540
 bubbles/bubbles_15
@@ -149,6 +154,7 @@ bounds:964,2,960,540
 all win bg chopped final_6.webp
 size:1926,1628
 filter:Linear,Linear
+pma:true
 bubbles/bubbles_2
 bounds:2,1086,960,540
 bubbles/bubbles_20
@@ -165,6 +171,7 @@ bounds:964,2,960,540
 all win bg chopped final_7.webp
 size:1926,1628
 filter:Linear,Linear
+pma:true
 bubbles/bubbles_25
 bounds:2,1086,960,540
 bubbles/bubbles_26
@@ -181,6 +188,7 @@ bounds:964,2,960,540
 all win bg chopped final_8.webp
 size:1926,1628
 filter:Linear,Linear
+pma:true
 bubbles/bubbles_4
 bounds:2,1086,960,540
 bubbles/bubbles_5
@@ -197,6 +205,7 @@ bounds:964,2,960,540
 all win bg chopped final_9.webp
 size:1912,1088
 filter:Linear,Linear
+pma:true
 bg
 bounds:1057,2,1084,853
 offsets:21,0,1124,853
@@ -208,6 +217,7 @@ offsets:72,49,1191,626
 all win bg chopped final_10.webp
 size:1856,1473
 filter:Linear,Linear
+pma:true
 Max win
 bounds:2,2,1852,1469
 offsets:83,29,2028,1534
@@ -215,6 +225,7 @@ offsets:83,29,2028,1534
 all win bg chopped final_11.webp
 size:1868,1484
 filter:Linear,Linear
+pma:true
 OMG
 bounds:2,2,1864,1480
 offsets:83,24,2028,1534
@@ -222,6 +233,7 @@ offsets:83,24,2028,1534
 all win bg chopped final_12.webp
 size:1868,1484
 filter:Linear,Linear
+pma:true
 Super win
 bounds:2,2,1864,1480
 offsets:83,24,2028,1534
