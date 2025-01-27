@@ -361,7 +361,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
 
                    "props": { 
-                    "VL": { "x": 120, "y": 550, anchor: 0, scale: 1 },
+                    "VL": { "x": 190, "y": 550, anchor: 0, scale: 1 },
                     "VP": { "x": 256, "y": 825, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Fill_circle",
@@ -407,7 +407,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
 
                    "props": { 
-                    "VL": { "x":276206, "y": 550, anchor: 0, scale: 1 },
+                    "VL": { "x":276, "y": 550, anchor: 0, scale: 1 },
                     "VP": { "x": 336, "y": 825, anchor: 0, scale:1 }
                     },
                     "backgroundImage": "Fill_circle",
@@ -489,7 +489,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                    "props": {
-                    "VL": { "x": 750, "y": 110, anchor: 0, scale: 1 },
+                    "VL": { "x": 800, "y": 110, anchor: 0, scale: 1.2 },
                     "VP": { "x": 220, "y": -5, anchor: 0, scale:0.9 }
                 },
                     "backgroundImage": "static_logo",
@@ -578,7 +578,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                     "props": {
-                        "VL": { "x": 462, "y": 668, anchor: 0.5,scale:0.6  },
+                        "VL": { "x": 480, "y": 660, anchor: 0.5,scale:0.7  },
                         "VP": { "x": 175, "y": 1095, anchor: 0.5,scale:0.75 },
                     },
                     "backgroundImage": "Tick_box_old",
@@ -589,7 +589,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                     "props": {
-                        "VL": { "x": 462, "y": 668, anchor: 0.5,scale:0.6 },
+                        "VL": { "x": 480, "y": 660, anchor: 0.5,scale:0.6 },
                         "VP": { "x": 173, "y": 1093, anchor: 0.5,scale:0.6},
                     },
                     "backgroundImage": "Tick",
@@ -600,7 +600,7 @@ _ng.UIConfig = {
                                 "params": {
                                     "subscribeToResize": true,
                                     "props": {
-                                        "VL": { x: 650, y: 668, anchor: 0.5,scale:0.65 },
+                                        "VL": { x: 675, y: 660, anchor: 0.5,scale:0.9 },
                                         "VP": { x: 375, y: 1095, anchor: 0.5,scale:0.85 },
                                     },
                                     "backgroundImage": "DON’T SHOW AGAIN",             }
@@ -611,7 +611,7 @@ _ng.UIConfig = {
                     w: 40, h: 38, color: 0xff0000,
                     "subscribeToResize": true,
                     "props": {
-                        "VL": { x: 439, y: 653, anchor: 0.5,scale:0.7 },
+                        "VL": { x:465, y: 642, anchor: 0.5,scale:0.75 },
                         "VP": { x: 162, y: 1080, anchor: 0.5,scale:0.75 },
                     },
                     
@@ -622,7 +622,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                     "props": {
-                        "VL": { "x": 623.5, "y": 590, anchor: 0.5, scale: 0.6 },
+                        "VL": { "x": 995, "y": 575, anchor: 0.5, scale: 1 },
                         "VP": { "x": 355, "y": 950, anchor: 0.5, scale: 0.95 }
                     },
                     "backgroundImage": "play",
@@ -2945,9 +2945,9 @@ _ng.UIConfig = {
         setSize: true,
         params: {
             desktopParams: { x: 650, y: 315, anchor: 0.5 ,scale:1.2},
-            HX: 640, HY: 360,
-            VX: 360, VY: 620,landScaleX: 1.2,landScaleY:1.2,
-            portScaleX: 0.9, portScaleY: 0.9
+            HX: 640, HY: 300,
+            VX: 330, VY: 500,landScaleX: 1.2,landScaleY:1.2,
+            portScaleX: 1.1, portScaleY: 1.1
         },
         nice: {
             // params: {anchor: {x: 0.5, y: 0.5}, x: 0, y: 0},
@@ -2980,13 +2980,13 @@ _ng.UIConfig = {
             Out: "max_outro"
         },
         totalWinAmount: {
-            params: { anchor: { x: 0.5, y: 0.5 }, x: 35, y: 100 },
-            finalPositionY: 100,
+            params: { anchor: { x: 0.5, y: 0.5 }, x: 25, y: 150 },
+            finalPositionY: 120,
             textStyle: {
                 "type": "BitmapFont",
                 // "font": "35px digitsIn-export"
-                "fontName": "winnum-export",
-                "fontSize": 35
+                "fontName": "buyPanel_font",
+                "fontSize": 20
             }
         }
     },
@@ -3064,8 +3064,8 @@ _ng.UIConfig = {
         "freeSpinPopup": {
             params: {
                 desktopParams: { x: 640, y: 330, anchor: { x: 0.5, y: 0.5 } },
-                HX: 640, HY: 350,
-                VX: 360, VY: 560, portScaleX: 0.85, portScaleY: 0.85
+                HX: 640, HY: 320,
+                VX: 360, VY: 525, portScaleX: 0.95, portScaleY: 0.95
             },
             background: {
                 bgImage: "panelBgIn",
@@ -3076,30 +3076,33 @@ _ng.UIConfig = {
                 props: { x: 15, y: 10, scale:0.55,anchor: { x: 0.5, y: 0.5 } }
             },
             fsValue: {
-                props: { x: -220, y: 43, anchor: { x: 0.5, y: 0.5 } },
+                props: { x: 10, y: 47, anchor: { x: 0.5, y: 0.5 } },
 
-                "textStyle":{
-                    "dropShadow": true,
-                    "dropShadowAlpha": 0.4,
-                    "dropShadowAngle": 0,
-                    "dropShadowBlur": 5,
-                    "dropShadowColor": "#ffffff",
-                    "dropShadowDistance": 0,
-                    "fill": [
-                        "#ffffff",
-                        "#f8e1b9"
-                    ],
-                    "fontFamily": "Arial Black",
-                    "fontSize": 85,
-                    "fontWeight": "bolder",
-                    "lineJoin": "round",
-                    "stroke": "#e647c9",
-                    "strokeThickness": 10
-                }
-                // "textStyle": {
-                //     "type": "BitmapFont",
-                //     "font": "60px digitsIn-export"
-                // }
+//                "textStyle":{
+//                    "dropShadow": true,
+//                    "dropShadowAlpha": 0.4,
+//                    "dropShadowAngle": 0,
+//                    "dropShadowBlur": 5,
+//                    "dropShadowColor": "#ffffff",
+//                    "dropShadowDistance": 0,
+//                    "fill": [
+//                        "#ffffff",
+//                        "#f8e1b9"
+//                    ],
+//                    "fontFamily": "Arial Black",
+//                    "fontSize": 85,
+//                    "fontWeight": "bolder",
+//                    "lineJoin": "round",
+//                    "stroke": "#e647c9",
+//                    "strokeThickness": 10
+//                }
+
+            "textStyle":{
+                "type": "BitmapFont",
+                "fontName": "winAmount_font",
+                 "fontSize": 45,
+                 "align": "center",
+                 }
             },
             // freespinImg: {
             //     bgImage: "txt_FREESPINS",
@@ -3142,8 +3145,8 @@ _ng.UIConfig = {
         "freeSpinEndPopup": {
             params: {
                 desktopParams: { x: 640, y: 330, anchor: { x: 0.5, y: 0.5 } },
-                HX: 640, HY: 350,
-                VX: 360, VY: 560, portScaleX: 0.75, portScaleY: 0.75
+                HX: 640, HY: 310,
+                VX: 360, VY: 515, portScaleX: 0.85, portScaleY: 0.85
             },
             background: {
                 bgImage: "panelBgIn",
@@ -3161,30 +3164,18 @@ _ng.UIConfig = {
 
             fspintxt:{
                props:{
-                      x: -40, y: 18,scale:0.9, anchor: { x: 0.5, y: 0.5 }
+                      x: -85, y: 115,scale:0.9, anchor: { x: 0.5, y: 0.5 }
                       }
                },
           
             fsWinValue: {
-                props: { x: -10, y: 40, anchor: { x: 0.5, y: 0.5 } },
-                "textStyle":{
-                    "dropShadow": true,
-                    "dropShadowAlpha": 0.4,
-                    "dropShadowAngle": 0,
-                    "dropShadowBlur": 5,
-                    "dropShadowColor": "#ffffff",
-                    "dropShadowDistance": 0,
-                    "fill": [
-                        "#ffffff",
-                        "#f8e1b9"
-                    ],
-                    "fontFamily": "Arial Black",
-                    "fontSize": 75,
-                    "fontWeight": "bolder",
-                    "lineJoin": "round",
-                    "stroke": "#e647c9",
-                    "strokeThickness": 10
-                }
+                props: { x: -10, y: 37, anchor: { x: 0.5, y: 0.5 } },
+                 "textStyle":{
+                                "type": "BitmapFont",
+                                "fontName": "buyPanel_font",
+                                 "fontSize": 17,
+                                 "align": "center",
+                                 }
             },
             "continueButton": {
                 props: { x: 0, y: 250,scale:0.6, anchor: { x: 0.5, y: 0.5 } },

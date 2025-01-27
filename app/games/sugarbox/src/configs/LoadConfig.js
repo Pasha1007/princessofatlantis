@@ -58,7 +58,7 @@ _ng.LoadConfig = {
         "common": {
             "allResolutions": [
                 "paytable.json", "symbols.json", "menu0.json",
-                "winnum-export.xml","featureBitmapFont-export.xml","numbers-export.xml",
+                "winnum-export.xml","featureBitmapFont-export.xml","numbers-export.xml","buyPanel_font.xml","multipliyer_font.xml","winAmount_font.xml","Bit-1_font.xml",
                 "popAnim-0.json","tumbleWin.json","continuebtn.json","Logo_new.json","multipliers.json","all win bg chopped final.json","static_logo.json","Game logo.json","Dolphine.json",
                  "tickerbase.json","BG_frame.json","reel_bg.json","FG_frame.json","loading.json","BuyFreespinPanel.json","buyPopup-bg.json","congratulations.json","betChance.json","buyPanel.json",
                  "introScreen-0.json","introscreen-1.json","portraitBuyFeature.json","CoinShower-0.json","CoinShower-1.json","fadingTexts.json","number_10x.json","number_12x.json","number_15x.json",

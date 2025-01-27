@@ -239,20 +239,18 @@ Panel.createView = function () {
                         "strokeThickness": 4        
                         }
                         var amtstyle = {
-                            "dropShadow": true,
-                            "dropShadowColor": "#800020",
-                        "fill": "#ffffff",
-                        "align":"center",
-                        "fontFamily": "Arial",
-                        "fontSize": 40
-                        ,
-                        "fontWeight": "bolder",
-                        "letterSpacing": 3,
-                        "lineJoin": "bevel",
-                        "miterLimit": 18,
-                        "stroke": "#800020",
-                          "strokeThickness": 4     
+                            "type": "BitmapFont",
+                            "fontName": "buyPanel_font",
+                            "fontSize": 35,
+                            "align": "center",
                         }
+                        var amtstyle_betbtn = {
+                            "type": "BitmapFont",
+                            "fontName": "buyPanel_font",
+                            "fontSize": 15,
+                            "align": "center",
+
+                           }
 
                     
                         //buy feature text
@@ -293,9 +291,9 @@ Panel.createView = function () {
                         e.children[0].addChild(this.amtTxt);
                         // e.children[3].zIndex = 9;
         
-                        this.twoxbetamt = pixiLib.getElement("Text",amtstyle);
+                        this.twoxbetamt = pixiLib.getElement("Text",amtstyle_betbtn);
                         this.twoxbetamt.x=0
-                        this.twoxbetamt.y=-44
+                        this.twoxbetamt.y=-87
                         this.twoxbetamt.scale.set(1);
                         this.twoxbetamt.anchor.set(0.5);
                         pixiLib.setText(this.twoxbetamt,"$2.8");

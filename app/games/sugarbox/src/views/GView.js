@@ -184,7 +184,7 @@ sView.createExtraElements = function () {
 		this.text4.x=930;
 		this.txt1.x=-400;
 		this.txt2.x=-450;
-		this.txt3B.x= -((this.txt3C.width/2)-105);
+		this.txt3B.x= -((this.txt3C.width/2)-115);
 		this.txt3C.x= -280;
 		this.txt4B.x= -((this.txt3C.width/2)-10);
 		this.txt4C.x= -465;
@@ -199,7 +199,7 @@ sView.createExtraElements = function () {
 		this.text3.x=614;
 		this.text4.x=614;
 
-		this.txt3B.x= -((this.txt3C.width/2)-105);
+		this.txt3B.x= -((this.txt3C.width/2)-115);
 		this.txt3C.x= 40;
 		this.txt4B.x= -((this.txt3C.width/2)-20);
 		this.txt4C.x= 75;
@@ -635,20 +635,20 @@ sView.createBuyFreeSpinPanel = function(){
     "stroke": "#800020",
     "strokeThickness": 4     
 	}
-	var styleamt = {
-		"dropShadow": true,
-		"dropShadowColor": "#800020",
-    "fill": "#ffffff",
-	"align":"center",
-    "fontFamily": "Arial",
-    "fontSize": 32,
-    "fontWeight": "bolder",
-    "letterSpacing": 3,
-    "lineJoin": "bevel",
-    "miterLimit": 18,
-    "stroke": "#800020",
-    "strokeThickness": 4     
+	var buy_styleamt = {
+		 "type": "BitmapFont",
+        		"fontName": "buyPanel_font",
+        		"fontSize": 40,
+        		"align": "center",
 	}
+
+	var bet_styleamt = {
+    		 "type": "BitmapFont",
+            		"fontName": "buyPanel_font",
+            		"fontSize": 13,
+            		"align": "center",
+    	}
+
 	this.BuyBtn = pixiLib.getButton("buy_btn");
 	if (_viewInfoUtil.viewType === "VD") {
 		this.BuyBtn.x = -895;
@@ -697,9 +697,9 @@ sView.createBuyFreeSpinPanel = function(){
 
 	
 
-	this.amtTxt = pixiLib.getElement("Text",styleamt);
+	this.amtTxt = pixiLib.getElement("Text",buy_styleamt);
 	this.amtTxt.x=0;
-	this.amtTxt.y=45;
+	this.amtTxt.y=75;
 	this.BuyBtn.addChild(this.amtTxt);
 	this.amtTxt.anchor.set(0.5);
 
@@ -742,9 +742,9 @@ sView.createBuyFreeSpinPanel = function(){
 
 //	pixiLib.setText(this.twoxchanceTxt, gameLiterals.twoxchancetxt)
 //	this.twoXBetBg.addChild(this.twoxchanceTxt);
-	this.twoxbetamt = pixiLib.getElement("Text",styleamt);
+	this.twoxbetamt = pixiLib.getElement("Text",bet_styleamt);
 	this.twoxbetamt.x=0
-	this.twoxbetamt.y=-30
+	this.twoxbetamt.y=-83
 	this.twoxbetamt.scale.set(1);
 	this.twoxbetamt.anchor.set(0.5);
 	pixiLib.setText(this.twoxbetamt,"$2.8");
@@ -1242,11 +1242,11 @@ sView.CreateScatterWinAnim = function(){
 				this.scatFillAnim.scale.set(0.8);
 			}
 			else{
-			this.scatFillAnim.scale.set(0.4);
+			this.scatFillAnim.scale.set(0.75);
 			}		
 		// this.scatFillAnim.scale.set(0.67,1.55);
 		this.scatFillAnim.x = _viewInfoUtil.getWindowWidth()/2;
-		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-342;
+		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-510;
 	}
 	else if (_viewInfoUtil.viewType === "VL") {
 		this.scatFillAnim=pixiLib.getElement("Spine","Dolphine");
@@ -1256,7 +1256,7 @@ sView.CreateScatterWinAnim = function(){
 			this.scatFillAnim.scale.set(0.8);
 		}
 		else{
-		this.scatFillAnim.scale.set(0.4);
+		this.scatFillAnim.scale.set(0.65);
 		}
 		this.scatFillAnim.x = _viewInfoUtil.getWindowWidth()/2;
 		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-200;

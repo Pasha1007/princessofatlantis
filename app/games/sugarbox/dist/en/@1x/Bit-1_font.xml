@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<font>
+    <info face="Bit-1_font" size="72" bold="0" italic="0" charset="" unicode="1" stretchH="100"
+        smooth="1" aa="1" padding="1,1,1,1" spacing="1,1" />
+    <common lineHeight="72" base="56" scaleW="346" scaleH="365" pages="1" packed="0" />
+    <pages>
+        <page id="0" file="Bit-1_font.png" />
+    </pages>
+    <chars count="16">
+        <char id="32" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="20"
+            page="0" chnl="15" /><!--   -->
+        <char id="36" x="0" y="0" width="75" height="139" xoffset="-1" yoffset="-1" xadvance="73"
+            page="0" chnl="15" /><!-- $ -->
+        <char id="44" x="303" y="176" width="26" height="44" xoffset="29" yoffset="73" xadvance="87"
+            page="0" chnl="15" /><!-- , -->
+        <char id="46" x="303" y="140" width="27" height="35" xoffset="30" yoffset="82" xadvance="87"
+            page="0" chnl="15" /><!-- . -->
+        <char id="48" x="60" y="140" width="60" height="112" xoffset="-1" yoffset="-1" xadvance="58"
+            page="0" chnl="15" /><!-- 0 -->
+        <char id="49" x="0" y="254" width="43" height="111" xoffset="-1" yoffset="-1" xadvance="41"
+            page="0" chnl="15" /><!-- 1 -->
+        <char id="50" x="155" y="0" width="64" height="113" xoffset="-1" yoffset="-1" xadvance="62"
+            page="0" chnl="15" /><!-- 2 -->
+        <char id="51" x="121" y="140" width="60" height="112" xoffset="-1" yoffset="-1"
+            xadvance="58" page="0" chnl="15" /><!-- 3 -->
+        <char id="52" x="44" y="254" width="74" height="111" xoffset="-1" yoffset="-1" xadvance="72"
+            page="0" chnl="15" /><!-- 4 -->
+        <char id="53" x="182" y="140" width="62" height="112" xoffset="-1" yoffset="-1"
+            xadvance="60" page="0" chnl="15" /><!-- 5 -->
+        <char id="54" x="220" y="0" width="59" height="113" xoffset="-1" yoffset="-1" xadvance="57"
+            page="0" chnl="15" /><!-- 6 -->
+        <char id="55" x="280" y="0" width="66" height="113" xoffset="-1" yoffset="-1" xadvance="64"
+            page="0" chnl="15" /><!-- 7 -->
+        <char id="56" x="245" y="140" width="57" height="112" xoffset="-1" yoffset="-1"
+            xadvance="55" page="0" chnl="15" /><!-- 8 -->
+        <char id="57" x="0" y="140" width="59" height="113" xoffset="-1" yoffset="-1" xadvance="57"
+            page="0" chnl="15" /><!-- 9 -->
+        <char id="120" x="119" y="254" width="67" height="88" xoffset="10" yoffset="29" xadvance="87"
+            page="0" chnl="15" /><!-- X -->
+        <char id="8364" x="76" y="0" width="78" height="115" xoffset="-1" yoffset="-1" xadvance="76"
+            page="0" chnl="15" /><!-- € -->
+    </chars>
+</font>

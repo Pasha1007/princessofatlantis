@@ -289,22 +289,10 @@ view.showFreeSpinEnded = function () {
     pixiLib.setText(this.winAmountTxt, pixiLib.getFormattedAmount(winAmount));
 
       var  fsStyle={
-                    "dropShadow": true,
-                    "dropShadowAlpha": 0.4,
-                    "dropShadowAngle": 0,
-                    "dropShadowBlur": 5,
-                    "dropShadowColor": "#ffffff",
-                    "dropShadowDistance": 0,
-                    "fill": [
-                        "#ffffff",
-                        "#f8e1b9"
-                    ],
-                    "fontFamily": "Arial Black",
-                    "fontSize": 50,
-                    "fontWeight": "bolder",
-                    "lineJoin": "round",
-                    "stroke": "#ff7300",
-                    "strokeThickness": 10
+                    "type": "BitmapFont",
+                    "fontName": "winAmount_font",
+                    "fontSize": 35,
+                    "align": "center",
                 }       
     
 
@@ -569,17 +557,10 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
 	}
 
     var amountTextStyle = {
-        "dropShadow": true,
-        "fill": "#ffc800",
-        //ffc800 FFC000
-        "fontFamily": "Arial",
-        "fontSize": 35,
-        "fontWeight": "bolder",
-        "letterSpacing": 3,
-        "lineJoin": "bevel",
-        "miterLimit": 18,
-       "stroke": "#FFC000",
-        "strokeThickness": 4     
+                     "type": "BitmapFont",
+               		"fontName": "buyPanel_font",
+               		"fontSize": 23,
+               		"align": "center",
     };
 //--------------------------------------------------------------------
 
@@ -598,7 +579,7 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
     this.areSubTxt1 = pixiLib.getElement("Text",amountTextStyle);
     this.areSubTxt1.name = "areSubTxt1";
 	this.areSubTxt1.x = 160;
-	this.areSubTxt1.y = -315;
+	this.areSubTxt1.y = -325;
     this.areSubTxt1.anchor.set(0.5);
 
     pixiLib.setText(this.areSubTxt1,"10");
@@ -624,8 +605,8 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
 	this.amtTxt = pixiLib.getElement("Text",amountTextStyle);
     this.amtTxt.name = "amtTxt";
     this.amtTxt.anchor.set(0.5);
-	this.amtTxt.x=-22;
-	this.amtTxt.y=-275;
+	this.amtTxt.x=115;
+	this.amtTxt.y=-185;
     this.amtTxt.anchor.set(0.5);
 
     pixiLib.setText(this.amtTxt,"$100");

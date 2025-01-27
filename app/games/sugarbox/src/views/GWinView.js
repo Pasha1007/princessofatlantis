@@ -19,20 +19,20 @@ gWV.addGameElements = function () {
 	this.addChild(this.multiContainer);
 	var multiplierWinTxtStyle = {
 		"type": "BitmapFont",
-		"fontName": "Numbers-export",
+		"fontName": "multipliyer_font",
 		"fontSize": 25,
 		"align": "center"
 	}
 	var multiText = {
 		"type": "BitmapFont",
-		"fontName": "featureBitmapFont-export",
-		"fontSize": 35,
+		"fontName": "multipliyer_font",
+		"fontSize": 20,
 		"align": "center"
 	}
 	var winStyle = {
 		"type": "BitmapFont",
-		"fontName": "numbers-export",
-		"fontSize": 45,
+		"fontName": "multipliyer_font",
+		"fontSize": 25,
 		"align": "center"
 	};
 	
@@ -40,8 +40,8 @@ gWV.addGameElements = function () {
 	this.multiContainer.addChild(this.allWin);
 	pixiLib.setText(this.allWin, "");
 	this.allWin.anchor.set(0.5);
-	this.allWin.x = -540;
-	this.allWin.y = -323;
+	this.allWin.x = -450;
+	this.allWin.y = -275;
 
 
 
@@ -50,7 +50,7 @@ gWV.addGameElements = function () {
 	pixiLib.setText(this.multiplierWinTxt, "");
 	this.multiplierWinTxt.anchor.set(0.5);
 	this.multiplierWinTxt.x = (this.allWin.x + this.allWin.width / 2);
-	this.multiplierWinTxt.y = -316;
+	this.multiplierWinTxt.y = -275;
     this.multiplierWinTxt.visible=true;
 	this.addChild(this.multiContainer);
 	this.BonusPos = [];
@@ -83,39 +83,44 @@ gWV.onGameResize = function (val) {
 	
 	_mediator.publish("ResizeGview");
 	if (_viewInfoUtil.viewType == "VP") {
-		this.tumbleBox.scale.set(0.7);
+		this.tumbleBox.scale.set(1);
 		// this.featureMBg.scale.set(0.5);
-		this.multiContainer.x = 435;
-		this.multiContainer.y = -170;
+		this.multiContainer.x = 460;
+		this.multiContainer.y = -140;
 		this.multiContainer.scale.set(0.8);
-		this.tumbleBox.x = -120;
+		this.tumbleBox.x = -60;
 	    this.tumbleBox.y = 90;
-		this.allWin.x = 80;
-	    this.allWin.y = 155;
-		this.multiplierWinTxt.x = 208;
-	    this.multiplierWinTxt.y = 162;
+		this.allWin.x =133;
+	    this.allWin.y = 160;
+		this.multiplierWinTxt.x = 230;
+	    this.multiplierWinTxt.y = 160;
+
+
 		// this.featureMBg.x = 250;
 	    // this.featureMBg.y = 120;
 
 	} 
 	else if(_viewInfoUtil.viewType == "VL"){
-        this.multiContainer.x = -35;
-		this.multiContainer.y = 230;
+        this.multiContainer.x = 75;
+		this.multiContainer.y = 275;
 		this.multiContainer.scale.set(0.8);
 		this.tumbleBox.x = 465;
-	    this.tumbleBox.y = -391;
-		this.tumbleBox.scale.set(0.65,0.6);
+	    this.tumbleBox.y = -400;
+		this.tumbleBox.scale.set(0.75,0.75);
 		// this.featureMBg.x = 810;
 	    // this.featureMBg.y = -382;
-		this.allWin.x = 655;
-	    this.allWin.y = -335;
-		this.multiplierWinTxt.x = 768;
-	    this.multiplierWinTxt.y = -327;
+		this.allWin.x = 600;
+	    this.allWin.y = -353;
+
+
+		this.multiplierWinTxt.x = 670;
+	    this.multiplierWinTxt.y = -345;
+
 
 	}else {
 		this.multiContainer.x = 925;
 		this.multiContainer.y = 215;
-		this.multiContainer.scale.set(0.8)
+		this.multiContainer.scale.set(0.8);
 
 	}
 	_mediator.publish("resizeBuypopup")
@@ -509,7 +514,7 @@ gWV.createSticky =function(){
 gWV.createStickyandTween= function(){
 	this.PottextStyle = {
 		"type": "BitmapFont",
-		"fontName": "sugarBoxFont-export",
+		"fontName": "multipliyer_font",
 		"fontSize": 25,
 		"align": "center"
 		};
@@ -738,7 +743,7 @@ gWV.tweenFinal = function(){
 		}
 			var multiText = {
 				"type": "BitmapFont",
-				"fontName": "featureBitmapFont-export",
+				"fontName": "multipliyer_font",
 				"fontSize": 28,
 				"align": "center"       
 			}
@@ -777,13 +782,13 @@ gWV.tweenFinal = function(){
 							{
 						// this.allWin.x = this.allWin.x+50;
 							if (_viewInfoUtil.viewType == "VP") {
-								this.allWin.x =80;
+								this.allWin.x =133;
 							}
 							else if (_viewInfoUtil.viewType == "VL") {
-								this.allWin.x =655
+								this.allWin.x =600
 							}
 							else {
-								this.allWin.x =-540
+								this.allWin.x =-450
 							}
 						this.allWinMoved = false;}
 						this.mText.parent.removeChild(this.mText);
@@ -837,8 +842,8 @@ gWV.TumbleWin = function (array, num, tickerValues) { //parsed values like which
 	// console.log("tumbleWin " + array);
 	this.winamtStyle = {
 		"type": "BitmapFont",
-		"fontName": "numbers-export",
-		"fontSize": 50,
+		"fontName": "Bit-1_font",
+		"fontSize": 30,
 		"align": "center"
 	};
 	for (var j = 0; j < coreApp.gameModel.obj.current_round.misc_prizes[num].old_reel_symbol.length; j++) {
@@ -905,8 +910,8 @@ gWV.removewinAnim = function(){
 gWV.ScatterWin = function(){
 	this.winamtStyle ={
 		"type": "BitmapFont",
-		"fontName": "numbers-export",
-		"fontSize": 40,
+		"fontName": "multipliyer_font",
+		"fontSize": 25,
 		"align": "center"
 	};
 		this.ScatterWintxt = pixiLib.getElement("Text", this.winamtStyle);
