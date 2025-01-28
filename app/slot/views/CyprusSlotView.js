@@ -250,27 +250,27 @@ p.createGameElements = function () {
 };
 p.createSwipeScreen = function () {
     // if (_viewInfoUtil.viewType !== "VD" && window.location.href.indexOf('localhost') === -1) { // enable swipeup image in local
-    if (_viewInfoUtil.checkForSwipeUp()) {
-        if (_viewInfoUtil.isAndroid()) {
-            this.createSwipeScreenForAndroid();
-        } else if (!_viewInfoUtil.isIpad() && _viewInfoUtil.isIOS() && !_viewInfoUtil.isIOSChrome()) {
-            this.iosSwipeScreen = document.createElement('div');
-            document.body.appendChild(this.iosSwipeScreen);
-
-            this.iosImage = document.createElement("img");
-            this.iosSwipeScreen.appendChild(this.iosImage);
-            this.iosImage.setAttribute("src", appPath + _ng.GameConfig.coreAssetsPath + "@1x/iosSwipeUp.png");
-            this.iosImage.setAttribute("id", "iosSwipeHand");
-            this.iosImage.style = "transform: scale(0.5, 0.5);"
-
-            this.iosSwipeScreen.style = "width: 100%; height: 140%; background-color: black; position: absolute; opacity: 0.8; left: 0px; top: 0px; z-index: 100000";
-            this.iosSwipeScreen.style.display = 'none';
-
-            window.addEventListener('touchstart', function () {
-                this.onTouchStart();
-            }.bind(this));
-        }
-    }
+//    if (_viewInfoUtil.checkForSwipeUp()) {
+//        if (_viewInfoUtil.isAndroid()) {
+//            this.createSwipeScreenForAndroid();
+//        } else if (!_viewInfoUtil.isIpad() && _viewInfoUtil.isIOS() && !_viewInfoUtil.isIOSChrome()) {
+//            this.iosSwipeScreen = document.createElement('div');
+//            document.body.appendChild(this.iosSwipeScreen);
+//
+//            this.iosImage = document.createElement("img");
+//            this.iosSwipeScreen.appendChild(this.iosImage);
+//            this.iosImage.setAttribute("src", appPath + _ng.GameConfig.coreAssetsPath + "@1x/iosSwipeUp.png");
+//            this.iosImage.setAttribute("id", "iosSwipeHand");
+//            this.iosImage.style = "transform: scale(0.5, 0.5);"
+//
+//            this.iosSwipeScreen.style = "width: 100%; height: 140%; background-color: black; position: absolute; opacity: 0.8; left: 0px; top: 0px; z-index: 100000";
+//            this.iosSwipeScreen.style.display = 'none';
+//
+//            window.addEventListener('touchstart', function () {
+//                this.onTouchStart();
+//            }.bind(this));
+//        }
+//    }
 };
 p.onTouchStart = function () {
     setTimeout(function () {

@@ -145,9 +145,9 @@ view.resizeBGImage = function(bg){
 				break;
 			case 12:
 			//set according to window dimensions
-			pixiLib.setProperties(this[bg.id], {x: _viewInfoUtil.getWindowWidth() / 2, y: _viewInfoUtil.getWindowHeight()/2 });
-			this[bg.id].width = _viewInfoUtil.getWindowWidth();
-			this[bg.id].height = _viewInfoUtil.getWindowHeight();
+			pixiLib.setProperties(this[bg.id], {x: _viewInfoUtil.getWindowWidth() / 2, y: _viewInfoUtil.getWindowHeight()/2});
+			this[bg.id].width = _viewInfoUtil.getWindowWidth()+50;
+			this[bg.id].height = _viewInfoUtil.getWindowHeight()+40;
 			break;
 
 			case 13:

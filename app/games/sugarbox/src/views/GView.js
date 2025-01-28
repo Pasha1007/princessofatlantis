@@ -1253,13 +1253,19 @@ sView.CreateScatterWinAnim = function(){
 		this.scatFillAnim.state.setAnimation(0,'transition',false);
 		if(_viewInfoUtil.isIpad())
 		{
-			this.scatFillAnim.scale.set(0.8);
+			this.scatFillAnim.scale.set(1);
+			this.scatFillAnim.x = _viewInfoUtil.getWindowWidth()/2;
+            this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-500;
 		}
 		else{
 		this.scatFillAnim.scale.set(0.65);
-		}
 		this.scatFillAnim.x = _viewInfoUtil.getWindowWidth()/2;
-		this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()-200;
+        this.scatFillAnim.y = _viewInfoUtil.getWindowHeight()/2;
+
+
+
+		}
+
 	}
 	_sndLib.play(_sndLib.sprite.scatter_Open);
 

@@ -57,6 +57,8 @@ view.addSubscription = function () {
     //     // }
     //     });
     this.exceed=false;
+
+
     // this.onViewResize();
 
     // this.popupOpenCount = 0;
@@ -92,10 +94,24 @@ view.showFreeSpinAwarded = function (numSpins, nextAction) {
     // this.popupParent.addChild(fsBg);
     // pixiLib.setProperties(fsBg, fsPopupConfig.background.props);
 
-    var congTxt = pixiLib.getElement("Spine", "congratulations");
-    this.popupParent.addChild(congTxt);
-    pixiLib.setProperties(congTxt, fsPopupConfig.descriptionImg.props);
-    congTxt.state.setAnimation(0,'congratulation_loop_freespins',true);
+//    var congTxt = pixiLib.getElement("Spine", "congratulations");
+//    this.popupParent.addChild(congTxt);
+//    pixiLib.setProperties(congTxt, fsPopupConfig.descriptionImg.props);
+//    congTxt.state.setAnimation(0,'congratulation_loop_freespins',true);
+//
+
+
+               var spineKey = _ng.GameConfig.infoPopupView.freeSpinPopup.spineImage;
+               var spine_resource = PIXI.Loader.shared.resources[spineKey];
+
+            this.Free_congTxt =  new PIXI.spine.Spine(spine_resource.spineData);
+            console.log(this.Free_congTxt);
+            this.popupParent.addChild(this.Free_congTxt);
+            pixiLib.setProperties(this.Free_congTxt, fsPopupConfig.descriptionImg.props);
+            this.Free_congTxt.state.setAnimation(0,'congratulation_loop_freespins',true);
+
+
+
     // debugger;
     // var fsTitle = pixiLib.getElement("Text", fsPopupConfig.descriptionText1.textStyle);
     // fsTitle.style = fsPopupConfig.descriptionText1.textStyle;
@@ -113,6 +129,11 @@ view.showFreeSpinAwarded = function (numSpins, nextAction) {
     this.popupParent.addChild(this.numSpinsTxt);
     pixiLib.setProperties(this.numSpinsTxt, fsPopupConfig.fsValue.props);
     pixiLib.setText(this.numSpinsTxt, numSpins);
+
+
+
+     this.Free_congTxt.skeleton.findSlot("placeholder").currentSprite.addChild(this.numSpinsTxt);
+     this.Free_congTxt.skeleton.findSlot("placeholder").currentSprite.texture = null;
     
     // var fsTxt = pixiLib.getElement("Sprite", fsPopupConfig.freespinImg.bgImage);
     // this.popupParent.addChild(fsTxt);
@@ -273,10 +294,16 @@ view.showFreeSpinEnded = function () {
     // var youWin = pixiLib.getElement("Sprite", fsPopupConfig.you_win.bgImage);
     // this.popupParent.addChild(youWin);
     // pixiLib.setProperties(youWin, fsPopupConfig.you_win.props);
-    var congTxt = pixiLib.getElement("Spine", "congratulations");
-    this.popupParent.addChild(congTxt);
-    pixiLib.setProperties(congTxt, fsPopupConfig.descriptionImg.props);
-    congTxt.state.setAnimation(0,'congratulation_loop_amount',true);
+
+
+                   var spineKey = _ng.GameConfig.infoPopupView.freeSpinPopup.spineImage;
+                   var spine_resource = PIXI.Loader.shared.resources[spineKey];
+
+                this.Freewin_congTxt =  new PIXI.spine.Spine(spine_resource.spineData);
+                console.log(this.Freewin_congTxt);
+                this.popupParent.addChild(this.Freewin_congTxt);
+                pixiLib.setProperties(this.Freewin_congTxt, fsPopupConfig.descriptionImg.props);
+                this.Freewin_congTxt.state.setAnimation(0,'congratulation_loop_amount',true);
     // var fsTitle = pixiLib.getElement("Text", fsPopupConfig.descriptionText1.textStyle);
     // fsTitle.style = fsPopupConfig.descriptionText1.textStyle;
     // pixiLib.setText(fsTitle, fsPopupConfig.descriptionText1.text);
@@ -291,9 +318,13 @@ view.showFreeSpinEnded = function () {
       var  fsStyle={
                     "type": "BitmapFont",
                     "fontName": "winAmount_font",
-                    "fontSize": 35,
+                    "fontSize": 45,
                     "align": "center",
-                }       
+                }
+
+
+                this.Freewin_congTxt.skeleton.findSlot("placeholder").currentSprite.addChild(this.winAmountTxt);
+                this.Freewin_congTxt.skeleton.findSlot("placeholder").currentSprite.texture = null;
     
 
 //    this.inFs = pixiLib.getElement("Text",fsStyle);
@@ -611,21 +642,22 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
 
     pixiLib.setText(this.amtTxt,"$100");
 	this.BuypopupCon.addChild(this.amtTxt);
-	// this.amtTxt.anchor.set(0.5);
 
-//    this.questTxt = pixiLib.getElement("Text",style);
-//    this.questTxt.name = "questTxt";
-//	this.questTxt.x = 95;
-//	this.questTxt.y = -279;
-//    this.questTxt.anchor.set(0.5);
-//
-//    pixiLib.setText(this.questTxt,"?");
-//    this.BuypopupCon.addChild(this.questTxt);
+
+	    this.questTxt = pixiLib.getElement("Text",amountTextStyle);
+        this.questTxt.name = "questTxt";
+    	this.questTxt.x =275;
+    	this.questTxt.y = -185;
+        this.questTxt.anchor.set(0.5);
+
+        pixiLib.setText(this.questTxt,"?");
+        this.BuypopupCon.addChild(this.questTxt);
+
 
 	this.buyButton = pixiLib.getButton("yes_btn");
     this.buyButton.name = "yesButton";
 	this.buyButton.x =215
-	this.buyButton.y = -135
+	this.buyButton.y = -125
 	this.buyButton.scale.set(1);
 	this.buyButton.interactive = true;
 	this.buyButton.buttonMode = true;
@@ -665,7 +697,7 @@ view.BuyFreeSpinPopup = function(Updatevalue,show){
     this.CancelButton = pixiLib.getButton("no_btn");
     this.CancelButton.name = "noButton";
 	this.CancelButton.x = -125
-	this.CancelButton.y = -135
+	this.CancelButton.y = -125
 	this.CancelButton.scale.set(1);
 	this.CancelButton.interactive = true;
 	this.CancelButton.buttonMode = true;
@@ -1174,7 +1206,7 @@ view.resizeBuypopup=function()
     this.BuypopupCon.scale.set(1);
     this.BuypopupPanel.x=-257.5;
 	this.BuypopupPanel.y = -205;
-	this.BuypopupPanel.scale.set(0.95,0.8)
+	this.BuypopupPanel.scale.set(0.95,0.85)
         }
     }
     if(this.BuypopupCon1){
@@ -1194,7 +1226,7 @@ view.resizeBuypopup=function()
         this.BuypopupCon1.scale.set(1);
         this.BuypopupPanel.x=-257.5;
         this.BuypopupPanel.y = -205;
-        this.BuypopupPanel.scale.set(0.95,0.8)
+        this.BuypopupPanel.scale.set(0.95,0.85)
             }
         }
 

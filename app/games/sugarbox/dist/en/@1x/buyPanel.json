@@ -88,7 +88,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":326},
 	"sourceSize": {"w":239,"h":326}
 },
-"no_btn_normal":
+"no_btn_normal_old":
 {
 	"frame": {"x":660,"y":1100,"w":152,"h":71},
 	"rotated": true,
@@ -96,7 +96,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":152,"h":71},
 	"sourceSize": {"w":152,"h":71}
 },
-"no_btn_disabled":
+"no_btn_disabled_old":
 {
 	"frame": {"x":1,"y":1567,"w":410,"h":192},
 	"rotated": false,
@@ -104,7 +104,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
 	"sourceSize": {"w":410,"h":192}
 },
-"no_btn_hover":
+"no_btn_hover_old":
 {
 	"frame": {"x":1422,"y":935,"w":410,"h":192},
 	"rotated": true,
@@ -112,7 +112,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
 	"sourceSize": {"w":410,"h":192}
 },
-"no_btn_press":
+"no_btn_press_old":
 {
 	"frame": {"x":660,"y":1402,"w":410,"h":192},
 	"rotated": false,
@@ -120,7 +120,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
 	"sourceSize": {"w":410,"h":192}
 },
-"text":
+"text_old":
 {
 	"frame": {"x":1543,"y":1,"w":670,"h":289},
 	"rotated": true,
@@ -128,7 +128,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":670,"h":289},
 	"sourceSize": {"w":670,"h":289}
 },
-"text_base":
+"text_base_old":
 {
 	"frame": {"x":1,"y":1,"w":877,"h":584},
 	"rotated": false,
@@ -136,7 +136,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":877,"h":584},
 	"sourceSize": {"w":877,"h":584}
 },
-"yes_btn_normal":
+"yes_btn_normal_old":
 {
 	"frame": {"x":1741,"y":677,"w":151,"h":71},
 	"rotated": true,
@@ -144,7 +144,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":151,"h":71},
 	"sourceSize": {"w":151,"h":71}
 },
-"yes_btn_disable":
+"yes_btn_disable_old":
 {
 	"frame": {"x":1076,"y":1402,"w":410,"h":192},
 	"rotated": false,
@@ -152,7 +152,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
 	"sourceSize": {"w":410,"h":192}
 },
-"yes_btn_hover":
+"yes_btn_hover_old":
 {
 	"frame": {"x":1620,"y":896,"w":410,"h":192},
 	"rotated": true,
@@ -160,7 +160,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":410,"h":192},
 	"sourceSize": {"w":410,"h":192}
 },
-"yes_btn_press":
+"yes_btn_press_old":
 {
 	"frame": {"x":417,"y":1600,"w":410,"h":192},
 	"rotated": false,

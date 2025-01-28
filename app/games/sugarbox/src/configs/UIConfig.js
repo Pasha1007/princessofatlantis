@@ -622,7 +622,7 @@ _ng.UIConfig = {
                 "params": {
                     "subscribeToResize": true,
                     "props": {
-                        "VL": { "x": 995, "y": 575, anchor: 0.5, scale: 1 },
+                        "VL": { "x": 995, "y": 550, anchor: 0.5, scale: 1 },
                         "VP": { "x": 355, "y": 950, anchor: 0.5, scale: 0.95 }
                     },
                     "backgroundImage": "play",
@@ -3062,6 +3062,7 @@ _ng.UIConfig = {
         },
         //start freespin popup
         "freeSpinPopup": {
+         spineImage: "congratulations.json",
             params: {
                 desktopParams: { x: 640, y: 330, anchor: { x: 0.5, y: 0.5 } },
                 HX: 640, HY: 320,
@@ -3076,7 +3077,7 @@ _ng.UIConfig = {
                 props: { x: 15, y: 10, scale:0.55,anchor: { x: 0.5, y: 0.5 } }
             },
             fsValue: {
-                props: { x: 10, y: 47, anchor: { x: 0.5, y: 0.5 } },
+                props: { x: 5, y: 5.5, anchor: { x: 0.5, y: 0.5 } },
 
 //                "textStyle":{
 //                    "dropShadow": true,
@@ -3164,16 +3165,16 @@ _ng.UIConfig = {
 
             fspintxt:{
                props:{
-                      x: -85, y: 115,scale:0.9, anchor: { x: 0.5, y: 0.5 }
+                      x: -100, y: 145,scale:1, anchor: { x: 0.5, y: 0.5 }
                       }
                },
           
             fsWinValue: {
-                props: { x: -10, y: 37, anchor: { x: 0.5, y: 0.5 } },
+                props: { x: -5.5, y: -8.5, anchor: { x: 0.5, y: 0.5 } },
                  "textStyle":{
                                 "type": "BitmapFont",
                                 "fontName": "buyPanel_font",
-                                 "fontSize": 17,
+                                 "fontSize": 13,
                                  "align": "center",
                                  }
             },

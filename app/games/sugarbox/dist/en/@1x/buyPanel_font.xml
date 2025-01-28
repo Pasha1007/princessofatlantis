@@ -37,7 +37,7 @@
             xadvance="100" page="0" chnl="15" /><!-- 9 -->
         <char id="8364" x="0" y="335" width="94" height="140" xoffset="3" yoffset="3" xadvance="100"
             page="0" chnl="15" /><!-- € -->
-        <char id="113" x="291" y="320" width="82" height="125" xoffset="-1" yoffset="-1"
+        <char id="63" x="291" y="320" width="82" height="125" xoffset="-1" yoffset="-1"
             xadvance="80" page="0" chnl="15" /><!-- question_mark -->
         <char id="88" x="374" y="320" width="92" height="103" xoffset="3" yoffset="3" xadvance="98"
             page="0" chnl="15" /><!-- x -->

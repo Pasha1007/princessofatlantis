@@ -26,13 +26,13 @@ gWV.addGameElements = function () {
 	var multiText = {
 		"type": "BitmapFont",
 		"fontName": "multipliyer_font",
-		"fontSize": 20,
+		"fontSize": 17,
 		"align": "center"
 	}
 	var winStyle = {
 		"type": "BitmapFont",
 		"fontName": "multipliyer_font",
-		"fontSize": 25,
+		"fontSize": 20,
 		"align": "center"
 	};
 	
@@ -110,11 +110,11 @@ gWV.onGameResize = function (val) {
 		// this.featureMBg.x = 810;
 	    // this.featureMBg.y = -382;
 		this.allWin.x = 600;
-	    this.allWin.y = -353;
+	    this.allWin.y = -347;
 
 
 		this.multiplierWinTxt.x = 670;
-	    this.multiplierWinTxt.y = -345;
+	    this.multiplierWinTxt.y = -347;
 
 
 	}else {

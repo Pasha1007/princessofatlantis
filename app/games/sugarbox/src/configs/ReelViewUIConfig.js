@@ -66,14 +66,14 @@ _ng.ReelViewUiConfig = {
             "scale": 1
         },
         "VL":{
-            "marginLeft": -120,
-            "marginTop": -80,
-            "scale": 1
+            "marginLeft": -73,
+            "marginTop": -15,
+            "scale": 0.95
         },
         "VP": {
-            "marginLeft": -145+19,
-            "marginTop": -65,
-            "scale":1
+            "marginLeft": -109,
+            "marginTop": -123,
+            "scale":0.875
         }
     },
     "reelGridBottom": {
