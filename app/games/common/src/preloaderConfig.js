@@ -158,7 +158,7 @@ tr - turkish
       }
       break;
 
-      case "sugarbox":
+      case "princessofatlantis":
             preloaderConfig = {
               // "preloader": { "file": "introLoading-0.json", "path": "games/" + gameName + "/dist/@1x/" },
               "preloader": { "file": "loading.json", "path": "games/" + gameName + "/dist/"+lang+"/@1x/" },

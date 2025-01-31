@@ -1,9 +1,9 @@
 var _ng = _ng || {};
 
 _ng.GameConfig = {
-    "displayName": "Sugar Box",
-    "gameName": "sugarbox",
-    "gameId": 716,//1081,
+    "displayName": "Princess Of Atlantis",
+    "gameName": "princessofatlantis",
+    "gameId": 735,//1081,
     "spineSymbolHit":true,
     "game_version":"v1.1.3",
     "rtp":"RTP 94%",

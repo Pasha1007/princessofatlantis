@@ -52,7 +52,7 @@ v.setModel = function (model) { this.slotModel = model; };
 
 v.sendInitReq = function (obj) {
 	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=1&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username");
-	if(_ng.GameConfig.gameName === "terracottawarrior"|| _ng.GameConfig.gameName === "sugarbox"){
+	if(_ng.GameConfig.gameName === "terracottawarrior"|| _ng.GameConfig.gameName === "princessofatlantis"){
 		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=1&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username")+"&sub_game_id="+_ng.GameConfig.sub_game_id;
 	}
 	if (this.isNewUrl) {
@@ -99,7 +99,7 @@ v.sendFSSpinReq = function (obj) {
 		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+_ng.GameConfig.sub_game_id;
 		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
 	}
-	if(_ng.GameConfig.gameName === "sugarbox"){
+	if(_ng.GameConfig.gameName === "princessofatlantis"){
 		if(_ng.BuyFSenabled===true){
 			// console.log("fsbuy started");
 			var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+4;
@@ -133,8 +133,8 @@ v.sendSpinReq = function (obj) {
 	if(_ng.GameConfig.gameName === "queensakura"){
 		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=40&num_betlines=40&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username");
 	}
-	if(_ng.GameConfig.gameName === "terracottawarrior"||_ng.GameConfig.gameName === "sugarbox"){
-		if(_ng.GameConfig.gameName === "sugarbox" && _ng.twoXBetEnabled===true){
+	if(_ng.GameConfig.gameName === "terracottawarrior"||_ng.GameConfig.gameName === "princessofatlantis"){
+		if(_ng.GameConfig.gameName === "princessofatlantis" && _ng.twoXBetEnabled===true){
 			var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+5;
 		}
 		else{
@@ -355,7 +355,7 @@ v.BuyFreeSpinRequest = function (obj) {
 	// if (coreApp.gameModel.getIsPFSActive()) {
 	// 	amountType = 3;
 	// }
-	if(_ng.GameConfig.gameName === "sugarbox"){
+	if(_ng.GameConfig.gameName === "princessofatlantis"){
 		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=8&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+3;
 			obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
 		

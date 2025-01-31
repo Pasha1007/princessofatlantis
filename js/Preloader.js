@@ -144,7 +144,7 @@ class PreloaderApp {
     this.barFill.name = "barFill";
     this.barCtnr.addChild(this.barFill);
 
-    if (gameName === "gatesofninja" || gameName==="fruityjewels" || gameName ==="sugarbox") {
+    if (gameName === "gatesofninja" || gameName==="fruityjewels" || gameName ==="princessofatlantis") {
       this.barBg.x = -1;
       this.barBg.y = -3;
       this.barBg.scale.set(0.99);
@@ -177,7 +177,7 @@ class PreloaderApp {
       this.preLogo.name = "preLogo";
       this.preCtnr.addChild(this.preLogo);
 
-      if(gameName == "gatesofninja"|| gameName==="fruityjewels" || gameName==="sugarbox" ){
+      if(gameName == "gatesofninja"|| gameName==="fruityjewels" || gameName==="princessofatlantis" ){
       this.preCompLogo = new PIXI.Sprite(PIXI.Texture.from(this.config.preCompLogo.img)); //pixiLib.getElement("Sprite", this.config.preBar.barBg);
       this.preCompLogo.name = "preCompLogo";
       this.preCtnr.addChild(this.preCompLogo)
@@ -293,7 +293,7 @@ class PreloaderApp {
 
       if (this.preBg) {
 
-        if(gameName == "gatesofninja" || gameName==="fruityjewels" || gameName==="sugarbox"){
+        if(gameName == "gatesofninja" || gameName==="fruityjewels" || gameName==="princessofatlantis"){
           
           this.preBg.anchor.set(0.5);
           this.preBg.scale.set(1.45);
@@ -417,7 +417,7 @@ class PreloaderApp {
     setProperties(this.barCtnr, this.config.preBar[this.viewType]);
 
     if (this.preLogo) {
-      if(gameName == "gatesofninja" || gameName==="fruityjewels" || gameName==="sugarbox"){
+      if(gameName == "gatesofninja" || gameName==="fruityjewels" || gameName==="princessofatlantis"){
   //        setProperties(this.preCompLogo, this.config.preCompLogo[this.viewType]);
       }
 

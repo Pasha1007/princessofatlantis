@@ -44,7 +44,7 @@ if (gameName == "ninjagold") {
 if (gameName == "terracottawarrior" || gameName == "mysticalforestadventure"|| gameName == "sugarbox") {
 	commonConfig["serverURL"] = "/Server/server.php";
 }
-if (gameName == "sugarbox") {
+if (gameName == "princessofatlantis") {
     commonConfig["serverURL"] = "/src/cyprusSlots/server.php";
 	// commonConfig["serverURL"] = "/Server/server.php";
 }
