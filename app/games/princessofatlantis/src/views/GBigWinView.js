@@ -168,90 +168,188 @@ GBigview.onShowBigWin = function (){
 	this.runSpineAnimation(0, this.bigWinAmount);
 }
 
+//GBigview.runSpineAnimation = function () {
+//	if (1) {
+//		var winAmount = coreApp.gameModel.getTotalWin();
+//		var totalBet = coreApp.gameModel.getTotalBet();
+//		var specialWinObj = _ng.GameConfig.specialWins;
+//
+//		TweenMax.to(this.bigWinAmtTxt, commonConfig.bigWinInitialDuration, {
+//			incrementalAmount: 0,
+//			ease: Expo.easeOut,
+//
+//			onInit: function () {
+//
+//				if (this.isBigWinRunning) {
+//					_sndLib.play(_sndLib.sprite.counterLoop);
+//				}
+//			}.bind(this),
+//
+//			onUpdate: function () {
+//
+//				var amount = Math.round(this.bigWinAmtTxt.incrementalAmount);
+//				amount = pixiLib.getFormattedAmount(amount, true);
+//				pixiLib.setText(this.bigWinAmtTxt, amount);
+//			}.bind(this),
+//
+//			onComplete: function () {
+//
+//				TweenMax.to(this.bigWinAmtTxt, 0.5, {
+//					y: this.bigWinConfig.totalWinAmount.finalPositionY,
+//					ease: Back.easeOut.config(1.5),
+//					onComplete: function () { }
+//				});
+//
+//				this.bigWinTimer = setTimeout(function () {
+//					_mediator.publish("playSpineAnimation", "bigWinAnimation");
+//					this.bigWinSpine.visible = true;
+//					this.playSequentionalAnim([this.bigWinConfig[this.winType].In,this.bigWinConfig[this.winType].Loop],false);
+//					_sndLib.play(_sndLib.sprite.bigWin);
+//					if (winAmount > specialWinObj[this.winType].multiplier * totalBet) {
+//						if (this.isBigWinRunning) {
+//							_sndLib.play(_sndLib.sprite.counterBigWinLoop);
+//						}
+//					} else {
+//						_sndLib.play(_sndLib.sprite.counterEnd);
+//					}
+//					//if Bigwin, Return from here
+//					// if (this.winType === "niceWin") {
+//						TweenMax.to(this.bigWinAmtTxt, 3, {
+//							incrementalAmount: this.winAmount,
+//							ease: Expo.easeIn,
+//							onInit: function () {
+//								_sndLib.stop(_sndLib.sprite.counterLoop);
+//								_sndLib.play(_sndLib.sprite.counterLoop);
+//							}.bind(this),
+//							onUpdate: function () {
+//								var amount = Math.round(this.bigWinAmtTxt.incrementalAmount);
+//								amount = pixiLib.getFormattedAmount(amount, true);
+//								pixiLib.setText(this.bigWinAmtTxt, amount);
+//								// _sndLib.play(_sndLib.sprite.counterLoop);
+//							}.bind(this),
+//							onComplete: function () {
+//								setTimeout(() => {
+//									this.hideBigWin_click();
+//								}, 1000);
+//								_sndLib.stop(_sndLib.sprite.counterBigWinLoop);
+//								if (winAmount > specialWinObj[this.winType].multiplier * totalBet) {
+//									// _sndLib.play(_sndLib.sprite.counterEnd);
+//								}
+//								if (commonConfig.holdBigWinAnimation) {
+//									this.currentBigwinName = "nicewin";
+//									this.grayBg.interactive = true;
+//									this.grayBg.buttonMode = true;
+//									pixiLib.addEvent(this.grayBg, this.hideBigWinAnimation.bind(this), "click");
+//									_mediator.publish("setSpaceBarEvent", "hideBigWin");
+//								} else {
+//									this.currentBigwinName = "nicewin";
+//									this.hideBigWinAnimation();
+//								}
+//							}.bind(this)
+//						});
+//						return;
+//				}.bind(this), 1);
+//			}.bind(this)
+//		})
+//	}
+//};
+
+
 GBigview.runSpineAnimation = function () {
-	if (1) {
-		var winAmount = coreApp.gameModel.getTotalWin();
-		var totalBet = coreApp.gameModel.getTotalBet();
-		var specialWinObj = _ng.GameConfig.specialWins;
+    if (1) {
+        var winAmount = coreApp.gameModel.getTotalWin();
+        var totalBet = coreApp.gameModel.getTotalBet();
+        var specialWinObj = _ng.GameConfig.specialWins;
 
-		TweenMax.to(this.bigWinAmtTxt, commonConfig.bigWinInitialDuration, {
-			incrementalAmount: 0,
-			ease: Expo.easeOut,
+        TweenMax.to(this.bigWinAmtTxt, commonConfig.bigWinInitialDuration, {
+            incrementalAmount: 0,
+            ease: Expo.easeOut,
 
-			onInit: function () {
-		
-				if (this.isBigWinRunning) {
-					_sndLib.play(_sndLib.sprite.counterLoop);
-				}
-			}.bind(this),
+            onInit: function () {
 
-			onUpdate: function () {
-			
-				var amount = Math.round(this.bigWinAmtTxt.incrementalAmount);
-				amount = pixiLib.getFormattedAmount(amount, true);
-				pixiLib.setText(this.bigWinAmtTxt, amount);
-			}.bind(this),
+                if (this.isBigWinRunning) {
+                    // _sndLib.play(_sndLib.sprite.counterLoop);
+                }
+            }.bind(this),
 
-			onComplete: function () {
-		
-				TweenMax.to(this.bigWinAmtTxt, 0.5, {
-					y: this.bigWinConfig.totalWinAmount.finalPositionY,
-					ease: Back.easeOut.config(1.5),
-					onComplete: function () { }
-				});
+            onUpdate: function () {
 
-				this.bigWinTimer = setTimeout(function () {
-					_mediator.publish("playSpineAnimation", "bigWinAnimation");
-					this.bigWinSpine.visible = true;
-					this.playSequentionalAnim([this.bigWinConfig[this.winType].In,this.bigWinConfig[this.winType].Loop],false);
-					_sndLib.play(_sndLib.sprite.bigWin);
-					if (winAmount > specialWinObj[this.winType].multiplier * totalBet) {
-						if (this.isBigWinRunning) {
-							_sndLib.play(_sndLib.sprite.counterBigWinLoop);
-						}
-					} else {
-						_sndLib.play(_sndLib.sprite.counterEnd);
-					}
-					//if Bigwin, Return from here
-					// if (this.winType === "niceWin") {
-						TweenMax.to(this.bigWinAmtTxt, 3, {
-							incrementalAmount: this.winAmount,
-							ease: Expo.easeIn,
-							onInit: function () { 
-								_sndLib.stop(_sndLib.sprite.counterLoop);
-								_sndLib.play(_sndLib.sprite.counterLoop);
-							}.bind(this),
-							onUpdate: function () {
-								var amount = Math.round(this.bigWinAmtTxt.incrementalAmount);
-								amount = pixiLib.getFormattedAmount(amount, true);
-								pixiLib.setText(this.bigWinAmtTxt, amount);
-								// _sndLib.play(_sndLib.sprite.counterLoop);
-							}.bind(this),
-							onComplete: function () {
-								setTimeout(() => {
-									this.hideBigWin_click();		
-								}, 1000);
-								_sndLib.stop(_sndLib.sprite.counterBigWinLoop);
-								if (winAmount > specialWinObj[this.winType].multiplier * totalBet) {
-									// _sndLib.play(_sndLib.sprite.counterEnd);
-								}
-								if (commonConfig.holdBigWinAnimation) {
-									this.currentBigwinName = "nicewin";
-									this.grayBg.interactive = true;
-									this.grayBg.buttonMode = true;
-									pixiLib.addEvent(this.grayBg, this.hideBigWinAnimation.bind(this), "click");
-									_mediator.publish("setSpaceBarEvent", "hideBigWin");
-								} else {
-									this.currentBigwinName = "nicewin";
-									this.hideBigWinAnimation();
-								}
-							}.bind(this)
-						});
-						return;
-				}.bind(this), 1);
-			}.bind(this)
-		})
-	}
+                var amount = Math.round(this.bigWinAmtTxt.incrementalAmount);
+                amount = pixiLib.getFormattedAmount(amount, true);
+                pixiLib.setText(this.bigWinAmtTxt, amount);
+            }.bind(this),
+
+            onComplete: function () {
+                this.bigWinAmtTxt.y=(_viewInfoUtil.viewType=="VP" ?-45:0);
+                TweenMax.to(this.bigWinAmtTxt, 0.5, {
+                    y: (_viewInfoUtil.viewType=="VP"? (this.bigWinConfig.totalWinAmount.finalPositionY-120):(this.bigWinConfig.totalWinAmount.finalPositionY)),
+                    ease: Back.easeOut.config(1.5),
+                    onComplete: function () { }
+                });
+
+                this.bigWinTimer = setTimeout(function () {
+                    _mediator.publish("playSpineAnimation", "bigWinAnimation");
+                    this.bigWinSpine.visible = true;
+                    this.playSequentionalAnim([this.bigWinConfig[this.winType].In,this.bigWinConfig[this.winType].Loop],false);
+                    var soundWinType=this.winType;
+                    _sndLib.play(_sndLib.sprite[soundWinType]);
+
+
+
+
+                    if (winAmount > specialWinObj[this.winType].multiplier * totalBet) {
+                        if (this.isBigWinRunning) {
+                            _sndLib.play(_sndLib.sprite.counterBigWinLoop);
+                        }
+                    } else {
+                        _sndLib.play(_sndLib.sprite.counterEnd);
+                    }
+                    //if Bigwin, Return from here
+                    // if (this.winType === "niceWin") {
+
+                        TweenMax.to(this.bigWinAmtTxt, 3, {
+                            incrementalAmount: this.winAmount,
+                            ease: Expo.easeIn,
+                            onInit: function () {
+                                // this.soundInterval=setInterval(()=>{
+                                //  _sndLib.stop(_sndLib.sprite.counterLoop);
+                                //  _sndLib.play(_sndLib.sprite.counterLoop);
+                                // },900)
+
+                            }.bind(this),
+                            onUpdate: function () {
+                                var amount = Math.round(this.bigWinAmtTxt.incrementalAmount);
+                                amount = pixiLib.getFormattedAmount(amount, true);
+                                pixiLib.setText(this.bigWinAmtTxt, amount);
+                                // _sndLib.stop(_sndLib.sprite.counterLoop);
+                                // _sndLib.play(_sndLib.sprite.counterLoop);
+                            }.bind(this),
+                            onComplete: function () {
+                                setTimeout(() => {
+                                    this.hideBigWin_click();
+                                }, 1000);
+                                _sndLib.stop(_sndLib.sprite.counterBigWinLoop);
+                                // clearInterval(this.soundInterval);
+                                if (winAmount > specialWinObj[this.winType].multiplier * totalBet) {
+                                    // _sndLib.play(_sndLib.sprite.counterEnd);
+                                }
+                                if (commonConfig.holdBigWinAnimation) {
+                                    this.currentBigwinName = "nicewin";
+                                    this.grayBg.interactive = true;
+                                    this.grayBg.buttonMode = true;
+                                    pixiLib.addEvent(this.grayBg, this.hideBigWinAnimation.bind(this), "click");
+                                    _mediator.publish("setSpaceBarEvent", "hideBigWin");
+                                } else {
+                                    this.currentBigwinName = "nicewin";
+                                    this.hideBigWinAnimation();
+                                }
+                            }.bind(this)
+                        });
+                        return;
+                }.bind(this), 1);
+            }.bind(this)
+        })
+    }
 };
 
 GBigview.wrapperBigwin = function () {

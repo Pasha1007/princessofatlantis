@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":7,"y":0,"w":990,"h":715},
 	"sourceSize": {"w":1007,"h":715}
 },
-"Layer 6":
+"Layer 6_old":
 {
 	"frame": {"x":998,"y":1,"w":990,"h":715},
 	"rotated": true,

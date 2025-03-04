@@ -1,0 +1,126 @@
+{
+  "urls": [
+    "SecondarySounds.ac3",
+    "SecondarySounds.mp3",
+    "SecondarySounds.m4a",
+    "SecondarySounds.ogg"
+  ],
+  "sprite": {
+    "Big Win": [
+      0,
+      8046
+    ],
+    "Bonus Game Start": [
+      10000,
+      3440
+    ],
+    "CoinCounter": [
+      15000,
+      2403
+    ],
+    "Freegame_BGM": [
+      19000,
+      40860
+    ],
+    "Freegame_BGM2": [
+      61000,
+      73370
+    ],
+    "Multiplier Increase": [
+      136000,
+      2403
+    ],
+    "Multiplier_Opening": [
+      140000,
+      6740
+    ],
+    "Multipliers_tween": [
+      148000,
+      4833
+    ],
+    "Regular Burst1": [
+      154000,
+      2952
+    ],
+    "Regular Burst2": [
+      158000,
+      2952
+    ],
+    "Regular Burst3": [
+      162000,
+      3291
+    ],
+    "Regular Burst4": [
+      167000,
+      2952
+    ],
+    "Regular Burst5": [
+      171000,
+      4493
+    ],
+    "Scatter Box Opening": [
+      177000,
+      2730
+    ],
+    "Scatter Box Opening2": [
+      181000,
+      3265
+    ],
+    "ScatterLanding2": [
+      186000,
+      1411
+    ],
+    "ScatterLanding3": [
+      189000,
+      1855
+    ],
+    "ScatterLanding4": [
+      192000,
+      3605
+    ],
+    "Symbol Burst_1st": [
+      197000,
+      4023
+    ],
+    "Symbol Burst_2nd": [
+      203000,
+      1123
+    ],
+    "Symbol Burst_3rd": [
+      206000,
+      2194
+    ],
+    "Symbol Burst_4th": [
+      210000,
+      1254
+    ],
+    "Symbol Burst_5th": [
+      213000,
+      4571
+    ],
+    "Winning Combination": [
+      219000,
+      2900
+    ],
+    "congratsPopup": [
+      223000,
+      4010
+    ],
+    "multiplier_box_opening": [
+      229000,
+      5132
+    ],
+    "totalwin": [
+      236000,
+      1750
+    ],
+    "totalwin2": [
+      239000,
+      2612
+    ],
+    "totalwin3": [
+      243000,
+      2140
+    ]
+  }
+}

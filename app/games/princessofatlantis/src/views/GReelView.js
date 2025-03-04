@@ -197,6 +197,7 @@ view.individualStrip = function (spinType, isStopNow) {
 			this.startSpinCounter = this.reels.length - 1;
 		}
 		this.updateReelWiseMask(this.startSpinCounter, 1);
+		_sndLib.play(_sndLib.sprite.reelStart);
 		_mediator.publish("onEachReelStart", this.startSpinCounter);
 		this.reels[this.startSpinCounter].startSpin();
 	} else {

@@ -1,0 +1,39 @@
+{
+  "frames": {
+    "Layer 6": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 1315,
+        "h": 953
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 0,
+        "w": 1315,
+        "h": 953
+      },
+      "sourceSize": {
+        "w": 1343,
+        "h": 953
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Layer 6.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1315,
+      "h": 953
+    },
+    "scale": 1
+  }
+}

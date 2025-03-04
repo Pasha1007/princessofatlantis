@@ -171,7 +171,7 @@ _ng.UIConfig = {
         "screen_2": {
             "elementConstructor": "sprite",
             "params": {
-               "props": { "x": 415, "y": 290, anchor: 0.5, scale: 0.65 },
+               "props": { "x": 415, "y": 290, anchor: 0.5, scale: 0.465 },
                 "backgroundImage": "Layer 6",
             }
         },
@@ -523,7 +523,7 @@ _ng.UIConfig = {
                     "subscribeToResize": true,
                    "props": { 
                     "VL": { "x": 15, "y": 85, anchor: 0, scale: 0.5,visible:false },
-                    "VP": { "x": 60, "y": 275, anchor: 0, scale:0.6,visible:false  }
+                    "VP": { "x": 60, "y": 275, anchor: 0, scale:0.45,visible:false  }
                     },
                     "backgroundImage": "Layer 6",
                 }
@@ -3315,29 +3315,34 @@ _ng.UIConfig = {
             /********************************************/
 
 
-            "intro": { name: "background2" },
-            "bg": { name: "background", volume: 0.7 , fadeIn: true},
+            "intro": { name: "BBGM" },
+            "bg": { name: "BBGM", volume: 0.7 , fadeIn: true},
 
 
             "spinStartBtn": { name: "spinStartBtn",volume: 0.3 },
             "spinStopBtn": { name: "spinStopBtn" },
-            "reelStart": { name: "spinStart" },
-            "reelSpinning": { name: "reelspinning", fadeIn: true, volume: 0 },
-            "reelStop": { name: "reelhit", volume: 0.4 },
+            "reelStart": { name: "REEL SPIN",volume: 0.5  },
+            "reelSpinning": { name: "REEL DROP", fadeIn: true, volume: 0.4 },
+            "reelStop": { name: "REEL STOP SFX", volume: 0.4 },
             "anticipation": { name: "anticipation" },
 
 
             /*********** Big Win Animation ************/
-            "counterLoop": { name: "CoinCounter" },
-            "counterBigWinLoop": { name: "Big Win" },
-            "counterMegaWinLoop": { name: "Big Win" },
-            "counterSuperMegaWinLoop": { name: "Big Win" },
-            "counterEnd": { name: "counterEnd" },
+            "counterLoop": { name: "Outro Rollup" },
+            "counterBigWinLoop": { name: "Win counter Loop" },
+            "counterMegaWinLoop": { name: "Win counter Loop" },
+            "counterSuperMegaWinLoop": { name: "Outro Rollup" },
+            "counterEnd": { name: "Win counter end" },
 
-            "totalWin": { name: "totalwin" , volume: 0.7 },
-            "bigWin": { name: "Big Win" },
-            "megaWin": { name: "Big Win" },
-            "superMegaWin": { name: "Big Win" },
+            "totalWin": { name: "totalwin2" , volume: 0.7 },
+            "bigWin": { name: "BIG WIN" },
+            "megaWin": { name: "MEGA WIN" },
+            "superMegaWin": { name: "BIG WIN" },
+            "nice": { name: "NICE WIN" },
+            "omg": { name: "OMG WIN" },
+            "super_win": { name: "SUPER WIN" },
+            "fantastic_win": { name: "MEGA WIN" },
+            "max_win": { name: "MEGA WIN" },
 
             "bigWinDisappear": { name: "superMegaWinDissapear" },
             "megaWinDisappear": { name: "superMegaWinDissapear" },
@@ -3347,51 +3352,51 @@ _ng.UIConfig = {
             /********************************************/
 
             //button clicks
-            "btnClick": { name: "button_click" , volume: 0.1 },
+            "btnClick": { name: "UI BUTTON" , volume: 0.1 },
 
             // Panel 
             "coinValueChange": { name: "button_click" },
-            "maxbetBtnClick": { name: "button_click" },
-            "autoSpinBtnClick": { name: "button_click" },
-            "autoSpinSelClick": { name: "button_click" },
+            "maxbetBtnClick": { name: "UI BUTTON" },
+            "autoSpinBtnClick": { name: "UI BUTTON" },
+            "autoSpinSelClick": { name: "UI BUTTON" },
 
             // Menu
-            "menuBtnClick": { name: "button_click" },// done
-            "menuBtnCloseClick": { name: "button_click" },    // done        
-            "paytableBtnClick": { name: "button_click" },// done
-            "settingsBtnClick": { name: "button_click" },// done
-            "gRulesBtnClick": { name: "button_click" },// done
-            "fullScreenBtnClick": { name: "button_click" },// done
-            "soundBtnClick": { name: "button_click" },// done
+            "menuBtnClick": { name: "UI BUTTON" },// done
+            "menuBtnCloseClick": { name: "UI BUTTON" },    // done
+            "paytableBtnClick": { name: "UI BUTTON" },// done
+            "settingsBtnClick": { name: "UI BUTTON" },// done
+            "gRulesBtnClick": { name: "UI BUTTON" },// done
+            "fullScreenBtnClick": { name: "UI BUTTON" },// done
+            "soundBtnClick": { name: "UI BUTTON" },// done
 
             // Settings window
-            "sCloseBtnClick": { name: "button_click" },  // done
-            "sSoundSelBtnClick": { name: "button_click" }, // done
-            "sAmbienceBtnClick": { name: "button_click" }, // done
-            "sQuickSpinBtnClick": { name: "button_click" }, // done
-            "sAnyWinBtnClick": { name: "button_click" }, // done
-            "sWinLimitBtnClick": { name: "button_click" }, // done
-            "sWinLimitSelBtnClick": { name: "button_click" }, // done
-            "sLossLimitBtnClick": { name: "button_click" }, // done
-            "sLossLimitSelBtnClick": { name: "button_click" }, // done 
+            "sCloseBtnClick": { name: "UI BUTTON" },  // done
+            "sSoundSelBtnClick": { name: "UI BUTTON" }, // done
+            "sAmbienceBtnClick": { name: "UI BUTTON" }, // done
+            "sQuickSpinBtnClick": { name: "UI BUTTON" }, // done
+            "sAnyWinBtnClick": { name: "UI BUTTON" }, // done
+            "sWinLimitBtnClick": { name: "UI BUTTON" }, // done
+            "sWinLimitSelBtnClick": { name: "UI BUTTON" }, // done
+            "sLossLimitBtnClick": { name: "UI BUTTON" }, // done
+            "sLossLimitSelBtnClick": { name: "UI BUTTON" }, // done
 
             // Paytable window            
-            "pArrowBtnClick": { name: "button_click" },  // done
-            "pCloseBtnClick": { name: "button_click" }, // done
-            "pIndicatorBtnClick": { name: "button_click" }, // done
+            "pArrowBtnClick": { name: "UI BUTTON" },  // done
+            "pCloseBtnClick": { name: "UI BUTTON" }, // done
+            "pIndicatorBtnClick": { name: "UI BUTTON" }, // done
 
             /********************************************/
 
 
             //Popup Sounds            
-            "showPopup": { name: "showPopup" },//done
-            "hidePopup": { name: "hidePopup" },//done
-            "errorPopup": { name: "errorPopup" },//done
+            "showPopup": { name: "SFX's - POP" },//done
+            "hidePopup": { name: "SFX's - POP OUT" },//done
+            "errorPopup": { name: "SFX's - ERROR" },//done
             "Meter_Amount_Revel":{name: "Meter_Amount_Revel"},
             //freespin appear
-            "bgFS": { name: "Freegame_BGM2" , fadeIn: true, fadeOut: true, volume: 0.7},
-            "fsAwardPopup": { name: "congratsPopup" },
-            "fsWinPopup": { name: "congratsPopup" },
+            "bgFS": { name: "FBGM" , fadeIn: true, fadeOut: true, volume: 0.7},
+            "fsAwardPopup": { name: "INTRO 2" },
+            "fsWinPopup": { name: "OUTRO" },
 
             /********************************************/
             "aSym": { name: "aSym" },
@@ -3407,8 +3412,8 @@ _ng.UIConfig = {
             "kSym": { name: "lowPaySym" },
             "lSym": { name: "bonus" },
             "wSym": { name: "wildSym" },
-            "sSym": { name: "Scatter Box Opening2" }, // bonusSym
-            "sSymLand": { name: "Scatter Box Opening" },
+            "sSym": { name: "SCATTER" }, // bonusSym
+            "sSymLand": { name: "SCATTER" },
 
             //features settings            
             "symbolsFireEnergyShots": { name: "symbolsFireEnergyShots" },
@@ -3422,14 +3427,14 @@ _ng.UIConfig = {
             "goldenFrameOnReel2": { name: "goldenFrameOnReel2" },
 
 
-            "multiplier": { name: "multiplier_box_opening" },
-            "multiplierTween": { name: "Multipliers_tween" },
-            "multiplierIncrease": { name: "Multiplier Increase"},
-            "pop1":{name:"Regular Burst1",volume:0.3},
-            "pop2":{name:"Regular Burst2",volume:0.3},
-            "pop3":{name:"Regular Burst3",volume:0.3},
-            "pop4":{name:"Regular Burst4",volume:0.3},
-            "pop5":{name:"Regular Burst5",volume:0.3},
+            "multiplier": { name: "Atlantis - MULTIPLIER" },//need to change later after sounds provided
+            "multiplierTween": { name: "MULTIPLIER" },//need to change later after sounds provided
+            "multiplierIncrease": { name: "MULTIPLIER"},//need to change later after sounds provided
+            "pop1":{name:"SYMBOL BURST 1",volume:0.2},
+            "pop2":{name:"SYMBOL BURST 2",volume:0.2},
+            "pop3":{name:"SYMBOL BURST 3",volume:0.2},
+            "pop4":{name:"SYMBOL BURST 4",volume:0.2},
+            "pop5":{name:"SYMBOL BURST 4",volume:0.2},
             // "pop6":{name:"Symbol Burst_1st",volume:0.5},
 
             // "multi_1":{name:"bonus_01"},
@@ -3441,9 +3446,9 @@ _ng.UIConfig = {
             // "multi_7":{name:"bonus_07"},
             // "multi_8":{name:"bonus_08"},
             // "multi_9":{name:"bonus_09"},
-            "scatter_Open":{name:"Scatter Box Opening2"},
-            "sLand_3":{name:"ScatterLanding3"},
-            "sLand_4":{name:"ScatterLanding4"},
+            "scatter_Open":{name:"TRANSITION"},
+            "sLand_3":{name:"Atlantis - SCATTER 3"},
+            "sLand_4":{name:"Atlantis - SCATTER 4"},
 
         }
     },

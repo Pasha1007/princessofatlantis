@@ -6,73 +6,41 @@
     "PrimarySounds.ogg"
   ],
   "sprite": {
-    "Bet Change": [
+    "BBGM": [
       0,
-      183
+      80000
     ],
-    "Spin_Click": [
-      2000,
-      202
+    "REEL DROP": [
+      81000,
+      1094
     ],
-    "background": [
-      4000,
-      106130
+    "REEL SPIN": [
+      84000,
+      750
     ],
-    "background2": [
-      112000,
-      143640
+    "REEL STOP SFX": [
+      86000,
+      107
     ],
-    "background3": [
-      257000,
-      17470
+    "SFX's - ERROR": [
+      88000,
+      2894
     ],
-    "button_click": [
-      276000,
-      247
+    "SFX's - POP OUT": [
+      92000,
+      2313
     ],
-    "errorPopup": [
-      278000,
-      914
+    "SFX's - POP": [
+      96000,
+      2250
     ],
-    "errorPopup2": [
-      280000,
-      627
+    "UI BUTTON": [
+      100000,
+      429
     ],
-    "errorPopup3": [
-      282000,
-      731
-    ],
-    "falltest": [
-      284000,
-      180
-    ],
-    "hidePopup": [
-      286000,
-      2070
-    ],
-    "menuNavigation": [
-      290000,
-      5407
-    ],
-    "menuNavigation2": [
-      297000,
-      6818
-    ],
-    "reelhit": [
-      305000,
-      252
-    ],
-    "showPopup": [
-      307000,
-      1411
-    ],
-    "spinStartBtn": [
-      310000,
-      1970
-    ],
-    "spinStopBtn": [
-      313000,
-      340
+    "totalwin2": [
+      102000,
+      2612
     ]
   }
 }
