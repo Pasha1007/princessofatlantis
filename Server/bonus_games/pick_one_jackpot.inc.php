@@ -121,7 +121,7 @@ class PickOneJackpot extends BonusPickGame implements iBonus {
         $this->processPrizes($gameData, $state, $pickedPosition);
         $state = 1;
 
-        
+       
         update_bonus_game($pickedPosition,
                         $this->round->bonusGames['num_user_picks'],
                         $gameData, $winAmount, $state,
@@ -202,12 +202,17 @@ class PickOneJackpot extends BonusPickGame implements iBonus {
         $prevPicks = $this->round->bonusGames['picks_data'];
         if(!isset($pickedPosition) or in_array($pickedPosition, $prevPicks) or
             $pickedPosition < 0 or count($prevPicks) >= 1 ) {
-                ErrorHandler::handleError(1, "POSTBONUS_0001", "Invalid pick position");
+                ErrorHandler::handleError(1, "POSTBONUS_00011", "Invalid pick position");
         }
     }
 
 
     private function getBonusConfig($numSymbols, $spinType) {
+        if(ENGINE_MODE_SIMULATION){
+            global $bonus_fs;
+            return $bonus_fs[$this->bonusGameId]; 
+        }
+        
         global $db;
         $table = "game.bonus_config";
         $query = <<<QUERY

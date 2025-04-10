@@ -46,6 +46,14 @@ class WildPayoutHandler extends LineWinsHandler {
 			}
 		}
 		$extraMultiplierValue = $this->extraMultiplier();
+		// if($this->round->spinType=="freespin")
+		// {
+		// 	$this->round->multipliers=$extraMultiplierValue*$fsMultiplier;
+		// }
+		if($this->round->spinType=="normal")
+		{
+			$this->round->multipliers=$extraMultiplierValue;
+		}
 		$this->round->paylineWinAmount *= $extraMultiplierValue;
 		$this->round->paylineWins['format']  = array1d_to_string($this->round->paylineWins['format']);
 		$this->round->paylineWins['details'] = array2d_to_string($this->round->paylineWins['details'], ':');

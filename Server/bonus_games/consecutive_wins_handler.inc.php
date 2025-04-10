@@ -27,7 +27,9 @@ class ConsecutiveWinsHandler {
     }
 
     public function loadBonusGame() {
+        // echo 1;
         $this->loadOtherPrizes();
+        // echo 1;
         if(!$this->otherPrizeRound or empty($this->otherPrizeRound))
             return;
 
@@ -47,11 +49,14 @@ class ConsecutiveWinsHandler {
      * @func checkAndGrantBonusGame
      */
     public function checkAndGrantBonusGame() {
+        // echo 1;
         $details = $this->round->featureData['details'];
         if ($this->round->spinType == 'normal') {
             $this->checkConsecutiveWins($details);
+            // echo 1;
         }
         $this->checkMiyabiFeature($details);    
+        // echo 1;
     }
 
     private function checkMiyabiFeature($details) {
@@ -60,6 +65,7 @@ class ConsecutiveWinsHandler {
         $sticky_reel = $details['sticky_reel'];
         $matrix = $this->round->matrix;
         $respinState = false;
+        // echo 1;
         if ($spinType == 'normal') {
             $last = $details['last'];
             $last_col = array_column($matrix, $last);
@@ -68,6 +74,7 @@ class ConsecutiveWinsHandler {
                 $respinState = true;
             }
         } elseif ($spinType == 'freespin') {
+            // echo 1;
             $first = $details['first'];
             $last = $details['last'];
             $first_col = array_column($matrix, $first);
@@ -75,6 +82,7 @@ class ConsecutiveWinsHandler {
             $qsFirstCnt = get_element_count($first_col, $princess_symbol);
             $qsLastCnt = get_element_count($last_col, $princess_symbol);
             $exReels = Array();
+            // echo 1;
             if ($qsFirstCnt >= 1 and $qsLastCnt >= 1) {
                 array_push($exReels, $first);
                 array_push($exReels, $last);

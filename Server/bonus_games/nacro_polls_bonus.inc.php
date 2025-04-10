@@ -26,6 +26,7 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
     }
 
     public function checkAndGrantBonusGame() {
+      
         $spinType = $this->round->spinType;
         $config = $this->getBonusConfig( $spinType);
           $config = decode_object($config);
@@ -80,10 +81,11 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
             'num_prizes'    => 60
             ); 
             array_push($this->round->bonusGamesWon, $bonusGameWon);
-    
+        
     }
 
     public function loadBonusGame() {
+
         $gameData = decode_object($this->round->bonusGames['game_data']);
         $this->round->nextRound = Array(
 
@@ -112,6 +114,7 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
 
     public function playBonusGame($pickedPosition)
     {
+     
         $prizeValue = 0;
         $spinType = $this->round->spinType;
         $config = $this->getBonusConfig($spinType);
@@ -139,6 +142,7 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
         $state = 0;
         if($pop_ele == "exit"){
             $prizeValue = to_base_currency($this->round->bonusGames['multiplier']* $this->round->totalBet);
+            // print_r("$prizeValue \n");
             $state = 1;
             $this->round->winAmount = $this->round->bonusGames['multiplier']* $this->round->totalBet;
             $left_data = $gameData['bonus_win']["level".$currentLevel]["left"];
@@ -162,6 +166,7 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
                         $this->round->bonusGames['game_id'],
                         $this->accountId,
                         $this->round->bonusGames['id'], $this->round->amountType);
+                     
         $this->round->bonusGameRound = Array(
             'prize_value'   => $pop_ele,
             'picked_position'     => $soliderPosition,
@@ -172,10 +177,17 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
             'total_win'         => (float)number_format(floatval($gameData["total_win"]),2),
             'total_fs_win' => $prizeValue,
         );
+    
     }
 
 
     private function getBonusConfig($spinType) {
+        if(ENGINE_MODE_SIMULATION){
+          
+            global $bonus_fs;
+            return $bonus_fs[$this->bonusGameId]; 
+        }
+        
         global $db;
         $table = "game.bonus_config";
         $query = <<<QUERY
@@ -191,9 +203,12 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
         }
         $row = $db->fetchRow($rs);
         return $row[0]; 
+
+
     }
 
     public function generateWinData($level1,$levelnum){
+   
         $state = 0;
         // array_push($this->jackpotWin,array("level".$levelnum-1=>array("left" => [],"reveled" => [])));
         $pure_data = [];
@@ -222,6 +237,7 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
                 array_push($this ->bonus_win, $val);
                 $str_pop = strpos($key,"Level");
                 $this->multiplier += $value;
+             
                 if($str_pop !== false) {
                     return $state;
                 }
@@ -231,6 +247,7 @@ class NacroPollsBonus extends BonusPickGame implements iBonus {
                 }
             }
         }
+        
         return $state;
     }
 

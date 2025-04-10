@@ -78,6 +78,7 @@ class BonusFactory
 		$this->game = $game;
 		$this->round = $round;
 		$this->bonusGameHandlers = get_bonus_game_handlers();
+
 	}
 
 	/**
@@ -92,12 +93,17 @@ class BonusFactory
 	{
 		$object = null;
 		$factoryObject = new BonusFactory($game, $round);
+	
 		list($symbol, $bonusGameId) = $factoryObject->getBonusGameId();
+		
 		if($symbol == null or $bonusGameId == -1) {
 			return null;
 		}
-
+		
 		$object = $factoryObject->getObjectFromId($bonusGameId, $symbol);
+		// echo("*******************");
+		// print_r($object);
+		// echo("*******************");
 		return $object;
 	}
 
@@ -112,7 +118,10 @@ class BonusFactory
 	public function getObjectFromId($bonusGameId, $symbol='')
 	{
 		$object = null;
+		
+		
 		$handler = $this->bonusGameHandlers[$bonusGameId];
+	
 		if(!empty($handler)) {
 			$object = new $handler($this->game,
 								   $this->round,
@@ -121,7 +130,7 @@ class BonusFactory
 								   $symbol,
 								   $this->round->scattersCount);
 		}
-		
+  
 		return $object;
 	}
 
@@ -144,6 +153,7 @@ class BonusFactory
 	 */
 	private function getBonusGameIdTemp()
 	{
+		
 		if(!isset($this->game->bonusConfig) or
 		   !isset($this->game->bonusConfig['bonus_config']) or
 		   !$this->game->bonusConfig['bonus_config']) {
@@ -167,6 +177,8 @@ class BonusFactory
 			}
 
 			if($count >= $configuration[$symbol]['min_count']) {
+
+			
 				
 				return array(
 					$symbol,

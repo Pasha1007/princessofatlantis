@@ -16,6 +16,7 @@ require_once 'bonus_games/ageofdavinci_bonus_game.php';
 require_once 'bonus_games/candyburst_bonus_game.php';
 require_once 'bonus_games/warriorsquest_bonus_game.php';
 require_once 'linewins/line_win_factory.inc.php';
+
 function close_expired_pfs($game, $round, $player)
 {
   if (
@@ -56,6 +57,9 @@ function close_expired_pfs($game, $round, $player)
 function close_abandoned_fun($round, $player, $request_params)
 {
 
+  if (ENGINE_MODE_SIMULATION) {
+    return;
+  }
   global $db;
 
   if (
@@ -148,13 +152,14 @@ function load_misc_data(&$game, &$round, &$player)
 
 function handle_spin(&$game, &$round, &$player)
 {
+
+  // print_r($round->requestParams);
   if ($round->bonusGames) {
 
     $round->requestParams['request_type'] = 1;
     handle_initialization($game, $round, $player);
     return;
   }
-
   if ($round->spinType != 'normal' || isset($round->freeSpins)) {
     $round->setBetDetails(
       $round->freeSpins['coin_value'],
@@ -167,12 +172,12 @@ function handle_spin(&$game, &$round, &$player)
       $round->requestParams['num_coins'],
       $round->requestParams['num_betlines']
     );
-
-
+    
+    
   }
-
+  
   $round_id_key = "round_id";
-
+  
   if ($round->amountType == AMOUNT_TYPE_FUN) {
     $round_id_key = 'round_id_fun';
   }
@@ -180,98 +185,110 @@ function handle_spin(&$game, &$round, &$player)
 
   # todo do the logging
   # debits and credits here
-  if ($round->player->amountType != AMOUNT_TYPE_PFS && $_POST['request_type'] != INIT_MODE && !isset($round->freeSpins)) {
-    $round->player->promoDetails = array();
-  }
-  $round->roundId = get_round_id($round_id_key);
-  $pre_balance = $player->balance;
-  $base_round_id = $round->getBaseRoundId();
-  $round_end_state = $round->getRoundEndState();
-  // Ante bet
-  $round->getAnteBetPrize();
-
-  if (is_wager_allowed($game, $round, $player)) {
-    $prevBaseRoundId = $round->getPrevBaseRoundId();
-    if ($prevBaseRoundId > 0) {
-      $win_amount_gc = 0;
-      $round_end_state_gc = 1;
-      // $player->updateBalance($
-      $round->closeRoundId($prevBaseRoundId, $round_end_state_gc);
+  if (ENGINE_MODE_SIMULATION) {
+    $round->roundId = 1;
+    $pre_balance = $player->balance;
+    $round->getAnteBetPrize();
+  
+  } else {
+    if ($round->player->amountType != AMOUNT_TYPE_PFS && $_POST['request_type'] != INIT_MODE && !isset($round->freeSpins)) {
+      $round->player->promoDetails = array();
     }
-    /**
-     * todo need to update this whole player transactions layer
-     * Check Player Balance before debit
-     * Change the game type from 'SL'
-     */
-    $num_coins = $round->totalBet / $round->requestParams['coin_value'];
+    $round->roundId = get_round_id($round_id_key);
+    $pre_balance = $player->balance;
+    $base_round_id = $round->getBaseRoundId();
+    $round_end_state = $round->getRoundEndState();
+    // Ante bet
+    $round->getAnteBetPrize();
 
-    $context = array(
-      'supermeter' => to_base_currency($round->requestParams['coin_value2'] * $num_coins),
-      'cash' => to_base_currency($round->totalBet - ($round->requestParams['coin_value2'] * $num_coins))
-    );
+    if (is_wager_allowed($game, $round, $player)) {
+      $prevBaseRoundId = $round->getPrevBaseRoundId();
+      if ($prevBaseRoundId > 0) {
+        $win_amount_gc = 0;
+        $round_end_state_gc = 1;
+        // $player->updateBalance($
+        $round->closeRoundId($prevBaseRoundId, $round_end_state_gc);
+      }
+      /**
+       * todo need to update this whole player transactions layer
+       * Check Player Balance before debit
+       * Change the game type from 'SL'
+       */
+      $num_coins = $round->totalBet / $round->requestParams['coin_value'];
+      
+      $context = array(
+        'supermeter' => to_base_currency($round->requestParams['coin_value2'] * $num_coins),
+        'cash' => to_base_currency($round->totalBet - ($round->requestParams['coin_value2'] * $num_coins))
+      );
+      
+      validate_wager_limit($round, $player);
+      $player->updateBalance(
+        $game->categoryId,
+        $round->totalBet,
+        $game->gameId,
+        WAGERING,
+        $round->amountType,
+        $round->roundId,
+        $game->gameName,
+        $round->spinType,
+        $base_round_id,
+        $round_end_state,
+        $round->requestParams['platform_type'],
+        $context
+      );
+      
+      # todo what should happen if wagering fails
+      # todo TODO kill the API and check what happends with failed Debit request
+    }
+  }
 
-    validate_wager_limit($round, $player);
+  SpinHandler::handleSpin($game, $round);
+
+
+    //$round_end_state = $round->getRoundEndState();
+  if (ENGINE_MODE_SIMULATION == false) {
+    $round_end_state = $round->getRoundStatePostDebit();
+  }
+    # @ todo: ensure if debit has not happened, crediting should not happen
+    # @ todo: need to change hardcoded money_type
     $player->updateBalance(
       $game->categoryId,
-      $round->totalBet,
+      $round->winAmount,
       $game->gameId,
-      WAGERING,
+      WINNING,
       $round->amountType,
       $round->roundId,
       $game->gameName,
       $round->spinType,
       $base_round_id,
       $round_end_state,
-      $round->requestParams['platform_type'],
-      $context
+      $round->requestParams['platform_type']
     );
 
-    # todo what should happen if wagering fails
-    # todo TODO kill the API and check what happends with failed Debit request
-  }
-  SpinHandler::handleSpin($game, $round);
+    $player->loadPlayerDetails();
+    #$player->endGameRound($round_end_state, $base_round_id);
 
-  //$round_end_state = $round->getRoundEndState();
-  $round_end_state = $round->getRoundStatePostDebit();
-  # @ todo: ensure if debit has not happened, crediting should not happen
-  # @ todo: need to change hardcoded money_type
-  $player->updateBalance(
-    $game->categoryId,
-    $round->winAmount,
-    $game->gameId,
-    WINNING,
-    $round->amountType,
-    $round->roundId,
-    $game->gameName,
-    $round->spinType,
-    $base_round_id,
-    $round_end_state,
-    $round->requestParams['platform_type']
-  );
+    // fun_mode
+    if ($round->amountType == AMOUNT_TYPE_FUN) {
+      return;
+    }
 
-  $player->loadPlayerDetails();
-  #$player->endGameRound($round_end_state, $base_round_id);
+    $extra_data = array(
+      'round_id' => $round->roundId,
+      'game_name' => $game->gameName,
+      'spin_type' => $round->spinType,
+      'base_round_id' => $base_round_id,
+      'platform' => $round->requestParams['platform_type']
+    );
 
-  // fun_mode
-  if ($round->amountType == AMOUNT_TYPE_FUN) {
-    return;
-  }
-
-  $extra_data = array(
-    'round_id' => $round->roundId,
-    'game_name' => $game->gameName,
-    'spin_type' => $round->spinType,
-    'base_round_id' => $base_round_id,
-    'platform' => $round->requestParams['platform_type']
-  );
-
-  //   $player->endPFSGame(
-  //   $game->categoryId,
-  //   $game->gameId,
-  //   $round->amountType,
-  //   array(),
-  //   $extra_data
-  // );
+    //   $player->endPFSGame(
+    //   $game->categoryId,
+    //   $game->gameId,
+    //   $round->amountType,
+    //   array(),
+    //   $extra_data
+    // );
+  
   log_round($game, $round, $player, $pre_balance);
 }
 
@@ -307,64 +324,73 @@ function handle_extra_fg_request(&$game, &$round, &$player)
 
   # todo do the logging
   # debits and credits here
-  if ($round->player->amountType != AMOUNT_TYPE_PFS && $_POST['request_type'] != INIT_MODE && !isset($round->freeSpins)) {
-    $round->player->promoDetails = array();
-  }
-  $round->roundId = get_round_id($round_id_key);
-  $pre_balance = $player->balance;
-  $base_round_id = $round->getBaseRoundId();
-  $round->getBuyFgBetPrize();
-  $round->totalBet;
-  $round_end_state = $round->getRoundEndState();
-  $round->totalBet;
-  if (is_wager_allowed($game, $round, $player)) {
-    $prevBaseRoundId = $round->getPrevBaseRoundId();
-    if ($prevBaseRoundId > 0) {
-      $win_amount_gc = 0;
-      $round_end_state_gc = 1;
-      // $player->updateBalance($
-      $round->closeRoundId($prevBaseRoundId, $round_end_state_gc);
+  if (ENGINE_MODE_SIMULATION) {
+    $round->roundId = 1;
+    $pre_balance = $player->balance;
+    $round->getAnteBetPrize();
+
+  } else {
+    if ($round->player->amountType != AMOUNT_TYPE_PFS && $_POST['request_type'] != INIT_MODE && !isset($round->freeSpins)) {
+      $round->player->promoDetails = array();
     }
+    $round->roundId = get_round_id($round_id_key);
+    $pre_balance = $player->balance;
+    $base_round_id = $round->getBaseRoundId();
+    $round->getBuyFgBetPrize();
+    $round->totalBet;
+    $round_end_state = $round->getRoundEndState();
+    $round->totalBet;
+    if (is_wager_allowed($game, $round, $player)) {
+      $prevBaseRoundId = $round->getPrevBaseRoundId();
+      if ($prevBaseRoundId > 0) {
+        $win_amount_gc = 0;
+        $round_end_state_gc = 1;
+        // $player->updateBalance($
+        $round->closeRoundId($prevBaseRoundId, $round_end_state_gc);
+      }
 
-    /**
-     * todo need to update this whole player transactions layer
-     * Check Player Balance before debit
-     * Change the game type from 'SL'
-     */
+      /**
+       * todo need to update this whole player transactions layer
+       * Check Player Balance before debit
+       * Change the game type from 'SL'
+       */
 
 
-    $num_coins = $round->totalBet / $round->requestParams['coin_value'];
+      $num_coins = $round->totalBet / $round->requestParams['coin_value'];
 
-    $context = array(
-      'supermeter' => to_base_currency($round->requestParams['coin_value2'] * $num_coins),
-      'cash' => to_base_currency($round->totalBet - ($round->requestParams['coin_value2'] * $num_coins))
-    );
+      $context = array(
+        'supermeter' => to_base_currency($round->requestParams['coin_value2'] * $num_coins),
+        'cash' => to_base_currency($round->totalBet - ($round->requestParams['coin_value2'] * $num_coins))
+      );
 
-    validate_wager_limit($round, $player);
-    $player->updateBalance(
-      $game->categoryId,
-      $round->totalBet,
-      $game->gameId,
-      WAGERING,
-      $round->amountType,
-      $round->roundId,
-      $game->gameName,
-      $round->spinType,
-      $base_round_id,
-      $round_end_state,
-      $round->requestParams['platform_type'],
-      $context
-    );
+      validate_wager_limit($round, $player);
+      $player->updateBalance(
+        $game->categoryId,
+        $round->totalBet,
+        $game->gameId,
+        WAGERING,
+        $round->amountType,
+        $round->roundId,
+        $game->gameName,
+        $round->spinType,
+        $base_round_id,
+        $round_end_state,
+        $round->requestParams['platform_type'],
+        $context
+      );
 
-    # todo what should happen if wagering fails
-    # todo TODO kill the API and check what happends with failed Debit request
+      # todo what should happen if wagering fails
+      # todo TODO kill the API and check what happends with failed Debit request
+    }
   }
-
   // $round->generateExtraFG($round, $player);
   // SpinHandler::handleSpin($game, $round);
   //$round_end_state = $round->getRoundEndState();
   ExtraFgSpin::handleFgSpin($game, $round);
-  $round_end_state = $round->getRoundStatePostDebit();
+  if (ENGINE_MODE_SIMULATION == false) {
+
+    $round_end_state = $round->getRoundStatePostDebit();
+  }
   # @ todo: ensure if debit has not happened, crediting should not happen
   # @ todo: need to change hardcoded money_type
   $player->updateBalance(
@@ -484,7 +510,9 @@ function handle_bonus_round(&$game, &$round, &$player)
 
   $pick_position = $round->requestParams['pick_position'];
   $bonus_object->playBonusGame($pick_position);
+
   $base_round_id = $round->getBaseRoundId();
+
   //$round_end_state = $round->getRoundEndState();
   $round_end_state = $round->getRoundStatePostDebit();
 
@@ -810,11 +838,11 @@ function is_wager_allowed($game, $round, $player)
 
 function log_round($game, $round, $player, $pre_balance)
 {
-  global $db;
-
+  
   if (defined('ENGINE_MODE_SIMULATION') && ENGINE_MODE_SIMULATION) {
     return; # for simulation code simcode
   }
+  global $db;
 
   # todo look at the following if block
   /*if($game->spin_type == SPINTYPE_DUMMY || $game->money_type == MONEYTYPE_FREE) {
@@ -1585,8 +1613,7 @@ function award_freespins(
   $details = "",
   $total_win_amount = 0
 ) {
-  global $db;
-
+  
   $spins_left = $num_spins;
   $state = 0;
   $win_amount = 0;
@@ -1598,16 +1625,41 @@ function award_freespins(
   if ($amount_type == AMOUNT_TYPE_FUN) {
     $table_name = 'gamelog.freespins_fun';
   }
+  if (ENGINE_MODE_SIMULATION == false) {
+    global $db;
 
-  $fs_query = <<<QRY
+    $fs_query = <<<QRY
     INSERT INTO {$table_name}(game_id, sub_game_id, amount_type, base_round_id,
-          round_ids, history, account_id, coin_value, num_coins, num_betlines, num_spins,
-          spins_left, multiplier, win_amount, details, state, spin_type, total_win_amount)
-         VALUES ($game_id, $sub_game_id, $amount_type, $base_round_id,
+    round_ids, history, account_id, coin_value, num_coins, num_betlines, num_spins,
+    spins_left, multiplier, win_amount, details, state, spin_type, total_win_amount)
+    VALUES ($game_id, $sub_game_id, $amount_type, $base_round_id,
          '{$round_ids}', '{$history}', $account_id, $coin_value, $num_coins, $num_betlines,
          $num_spins, $spins_left, $multiplier, {$win_amount}, '{$details}', $state, $spin_type, $total_win_amount)
 QRY;
-  $result = $db->runQuery($fs_query) or ErrorHandler::handleError(1, "CASINO_LIB0033");
+    $result = $db->runQuery($fs_query) or ErrorHandler::handleError(1, "CASINO_LIB0033");
+  }
+  else{
+    global $freegame_fs;
+    $freegame_fs["game_id"] = $game_id;
+    $freegame_fs["sub_game_id"] = $sub_game_id;
+    $freegame_fs["amount_type"] = $amount_type;
+    $freegame_fs["base_round_id"] = $base_round_id;
+    $freegame_fs["round_ids"] = $round_ids;
+    $freegame_fs["history"] = $history;
+    $freegame_fs["account_id"] = $account_id;
+    $freegame_fs["coin_value"] = $coin_value;
+    $freegame_fs["num_coins"] = $num_coins;
+    $freegame_fs["num_betlines"] = $num_betlines;
+    $freegame_fs["num_spins"] = $num_spins;
+    $freegame_fs["spins_left"] = $spins_left;
+    $freegame_fs["multiplier"] = $multiplier;
+    $freegame_fs["win_amount"] = $win_amount;
+    $freegame_fs["details"] = $details;
+    $freegame_fs["state"] = $state;
+    $freegame_fs["spin_type"] = $spin_type;
+    $freegame_fs["total_win_amount"] = $total_win_amount;
+  
+  }
 }
 
 function update_freespins(
@@ -1624,7 +1676,6 @@ function update_freespins(
   $details = "",
   $state = 0
 ) {
-  global $db;
   $details = encode_objects($details);
   $round_ids = encode_objects($round_ids);
   $history = encode_objects($history);
@@ -1633,9 +1684,11 @@ function update_freespins(
   if ($amount_type == AMOUNT_TYPE_FUN) {
     $table_name = 'gamelog.freespins_fun';
   }
+  if (ENGINE_MODE_SIMULATION == false) {
+    
+    global $db;
 
-
-  $fs_query = <<<QRY
+    $fs_query = <<<QRY
 	UPDATE {$table_name}
      SET spins_left = spins_left + {$num_spins},
          num_spins = num_spins + {$num_spins},
@@ -1651,8 +1704,17 @@ function update_freespins(
 				amount_type = {$amount_type} AND
 				state = {$state}
 QRY;
-  $result = $db->runQuery($fs_query) or ErrorHandler::handleError(1, "CASINO_LIB003");
-  # $round->loadFreeSpins();
+    $result = $db->runQuery($fs_query) or ErrorHandler::handleError(1, "CASINO_LIB003");
+    # $round->loadFreeSpins();
+  }
+  else{
+    global $freegame_fs;
+    $freegame_fs["spins_left"] = $freegame_fs["spins_left"]+$num_spins;
+    $freegame_fs["num_spins"] = $freegame_fs["num_spins"]+$num_spins;
+    $freegame_fs["details"] = $details;
+    $freegame_fs["sub_game_id"] = $sub_game_id;
+    $freegame_fs["multiplier"] = $multiplier;
+  }
 }
 
 function handle_screen_wins(&$round, $details)
@@ -2685,14 +2747,19 @@ function handle_wild_multiplier(&$round, $details)
     if (isset($round->freeSpins['details']["type"])) {
       $type = $round->freeSpins['details']["type"];
     }
+    if (!isset($details["onereel"]) and $details["onereel"] != true) {
+      $round->screenWins = $round->freeSpins['details']["screen_win"];
+    }
     $mul = 1;
     $fs_deatils = $round->freeSpins['details'];
     $reel_multipliar = $fs_deatils['multiplier_reel'];
+    // print_r($round->screenWins);
     for ($col = 0; $col < ($round->game->numColumns); $col++) {
       for ($i = 0; $i < $round->game->numRows; $i++) {
         $index = ($i * $round->game->numColumns) + $col;
-        if ($round->matrix[$i][$col] == "w") {
-          if (isset($details["onereel"]) and $details["onereel"] == true) {
+
+        if (isset($details["onereel"]) and $details["onereel"] == true) {
+            if ($round->matrix[$i][$col] == "w") {
             $mul_arr = checkReelMultplier($round, $details, $i, $col, $type, $reel_multipliar);
             $mul = $mul_arr[0];
             $reel_multipliar = $mul_arr[1];
@@ -2700,32 +2767,29 @@ function handle_wild_multiplier(&$round, $details)
               $is_handle_wild_multiplier = true;
               $round->screenWins[$index] = $mul;
               array_push($wild_position, $index);
-              // echo "mul = ",$round->freeSpins['multiplier'], $mul;
               $round->freeSpins['multiplier'] *= $mul;
-              // echo  "ag ",$round->freeSpins['multiplier'];
-            }
+            }}
           } else {
-            $round->screenWins = $round->freeSpins['details']["screen_win"];
-            // if($round->matrix[$i][$col] == "w" and array_key_exists($index, $round->screenWins) == false ){
-            if ($round->screenWins[$index] == 0) {
-              $round->screenWins[$index] = $round->getMultiplierValue($details[$type]["total_weight"], $details[$type]["bonus_weight"]);
-              array_push($wild_position, $index);
+          
+            if ($round->screenWins[$index] == 0 and $round->matrix[$i][$col] == "w") {
+              $mul = $round->getMultiplierValue($details[$type]["total_weight"], $details[$type]["bonus_weight"]);
+              $round->screenWins[$index] = $mul;
               $is_handle_wild_multiplier = true;
+              array_push($wild_position, $index);
             } elseif ($round->screenWins[$index] > 0) {
               $round->matrix[$i][$col] = "w";
-
             }
           }
-        }
+        
       }
     }
     $round->postMatrixInfo['reel_multipliar'] = $reel_multipliar;
 
   }
+  $round->matrixString = array2d_to_string($round->matrix);
+  $round->matrixFlatten = $round->generateFlatMatrix($round->matrix);
+  $matrix = $round->matrix;
   if ($is_handle_wild_multiplier) {
-    $round->matrixString = array2d_to_string($round->matrix);
-    $round->matrixFlatten = $round->generateFlatMatrix($round->matrix);
-    $matrix = $round->matrix;
     $round->postMatrixInfo['matrix'] = $matrix;
     $round->postMatrixInfo['feature_name'] = "StickyWild";
     $round->postMatrixInfo['matrixString'] = array2d_to_string($matrix);
@@ -2900,11 +2964,13 @@ function get_element_count($array, $element)
 
 function check_nacro_bonus(&$round, $details)
 {
+  // echo 1;
   $bonus_game_id = 0;
   $count = get_element_count($round->matrixFlatten, $round->game->scatters[0]);
   if ($count >= 3) {
     return;
   }
+  // echo 1;
   $bonus_occurance = $details['total_weight'];
   $generate_random = rand(1, $bonus_occurance);
   /** Hard code for terracotta nacro bonus
@@ -2914,13 +2980,14 @@ function check_nacro_bonus(&$round, $details)
    * 
    */
   // TODO
-  // $generate_random = 199;
+  // $generate_random = 201;
   for ($i = 0; $i < count($details['bonus_weight']); $i++) {
     if ($details['bonus_weight'][$i] >= $generate_random) { //200 >= 219
       $bonus_game_id = $details['bonus_game_ids'][$i];
       break;
     }
   }
+
   if ($bonus_game_id) {
     $factoryObject = new BonusFactory($round->game, $round);
     $bonusObject = $factoryObject->getObjectFromId($bonus_game_id);
@@ -3281,25 +3348,47 @@ function grant_bonus_game(
   $num_betlines,
   $state = 0
 ) {
-  global $db;
   $table_name = 'gamelog.bonus_games';
-
+  
   if ($amount_type == AMOUNT_TYPE_FUN) {
     $table_name = 'gamelog.bonus_games_fun';
   }
-
-  $bonus_query = <<<QUERY
+  if (ENGINE_MODE_SIMULATION == false) {
+    global $db;
+    $bonus_query = <<<QUERY
     INSERT INTO {$table_name}(game_id, sub_game_id,
-                base_round_id, round_id, account_id, bonus_game_id,
-                bonus_game_code, num_picks, num_user_picks, picks_data,
-                game_data, multiplier, win_amount, amount_type, state,
-                coin_value, num_coins, num_betlines)
-         VALUES ($game_id, $sub_game_id, $base_round_id, $round_id,
-                 $account_id, $bonus_game_id, '$bonus_game_code', $num_picks,
-                 0, '', '$game_data', $multiplier, 0, $amount_type, $state,
-                 $coin_value, $num_coins, $num_betlines)
+    base_round_id, round_id, account_id, bonus_game_id,
+    bonus_game_code, num_picks, num_user_picks, picks_data,
+    game_data, multiplier, win_amount, amount_type, state,
+    coin_value, num_coins, num_betlines)
+    VALUES ($game_id, $sub_game_id, $base_round_id, $round_id,
+    $account_id, $bonus_game_id, '$bonus_game_code', $num_picks,
+    0, '', '$game_data', $multiplier, 0, $amount_type, $state,
+    $coin_value, $num_coins, $num_betlines)
 QUERY;
-  $db->runQuery($bonus_query) or ErrorHandler::handleError(1, "CASINO_LIB004");
+    $db->runQuery($bonus_query) or ErrorHandler::handleError(1, "CASINO_LIB004");
+  }
+  else{
+    global $bonusgame_fs;
+    $bonusgame_fs['game_id'] =  $game_id;
+    $bonusgame_fs['sub_game_id'] =  $sub_game_id;
+    $bonusgame_fs['base_round_id'] =  $base_round_id;
+    $bonusgame_fs['round_id'] =  $round_id;
+    $bonusgame_fs['account_id'] =  $account_id;
+    $bonusgame_fs['bonus_game_id'] =  $bonus_game_id;
+    $bonusgame_fs['bonus_game_code'] =  $bonus_game_code;
+    $bonusgame_fs['num_picks'] =  $num_picks;
+    $bonusgame_fs['num_user_picks'] =  0;
+    $bonusgame_fs['game_data'] =  $game_data;
+    $bonusgame_fs['picks_data'] =  '';
+    $bonusgame_fs['multiplier'] =  $multiplier;
+    $bonusgame_fs['win_amount'] = 0;
+    $bonusgame_fs['amount_type'] =  $amount_type;
+    $bonusgame_fs['state'] =  $state;
+    $bonusgame_fs['coin_value'] =  $coin_value;
+    $bonusgame_fs['num_coins'] =  $num_coins;
+    $bonusgame_fs['num_betlines'] =  $num_betlines;
+  }
 }
 
 function update_bonus_game(
@@ -3314,17 +3403,18 @@ function update_bonus_game(
   $row_id,
   $amount_type = AMOUNT_TYPE_CASH
 ) {
-  global $db;
-
+  
   $picks_data = encode_objects($picks_data);
   $game_data = encode_objects($game_data);
   $table_name = 'gamelog.bonus_games';
-
+  
   if ($amount_type == AMOUNT_TYPE_FUN) {
     $table_name = 'gamelog.bonus_games_fun';
   }
+  if (ENGINE_MODE_SIMULATION == false) {
+    global $db;
 
-  $query = <<<QUERY
+    $query = <<<QUERY
         UPDATE {$table_name}
            SET picks_data     = '{$picks_data}',
                num_user_picks = {$num_user_picks},
@@ -3338,7 +3428,21 @@ function update_bonus_game(
                state = 0
 QUERY;
 
-  $db->runQuery($query) or ErrorHandler::handleError(1, "CASINO_LIB005");
+    $db->runQuery($query) or ErrorHandler::handleError(1, "CASINO_LIB005");
+  }
+  else{
+    global $bonusgame_fs;
+    if ( $state == 1){
+      $bonusgame_fs = array();
+  }else{
+  
+    $bonusgame_fs["picks_data"] = $picks_data;
+    $bonusgame_fs["num_user_picks"] = $num_user_picks;
+    $bonusgame_fs["game_data"] = $game_data;
+    $bonusgame_fs["win_amount"] = $win_amount;
+    $bonusgame_fs["state"] = $state;
+  }
+  }
 }
 
 /*
@@ -3362,14 +3466,17 @@ function grant_queued_bonus(
   $num_betlines,
   $state = 0
 ) {
-  global $db;
-
+  
   $tableName = 'gamelog.queued_bonus_games';
-
+  
   if ($amount_type == AMOUNT_TYPE_FUN) {
     $tableName = 'gamelog.queued_bonus_games_fun';
   }
-
+  // change this in future if using this table
+  if (ENGINE_MODE_SIMULATION) {
+    return;
+  }
+  global $db;
   $queued_query = <<<QUERY
     INSERT INTO {$tableName}(game_id, sub_game_id,
                 base_round_id, round_id, account_id, bonus_game_id,
@@ -3390,8 +3497,10 @@ QUERY;
  */
 function update_queued_bonus($id, $amount_type = AMOUNT_TYPE_CASH, $state = 1)
 {
+  if (ENGINE_MODE_SIMULATION) {
+    return;
+  }
   global $db;
-
   $tableName = 'gamelog.queued_bonus_games';
 
   if ($amount_type == AMOUNT_TYPE_FUN) {

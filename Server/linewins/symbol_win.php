@@ -20,22 +20,22 @@ class SymbolWin
 		$scatterMultiplier = $this->getScatterMultiplier();
 		$baseBet = $this->changeBet();
 		$this->round->scatterWin =  $scatterMultiplier*$baseBet;
-		$this->round->winAmount += $scatterMultiplier*$baseBet;
-		
+		if (ENGINE_MODE_SIMULATION == false) {
+			$this->round->winAmount += $scatterMultiplier * $baseBet;
+		}
 		if ($this->game->left2Right) {
 			// echo $this->round->numBetLines;
 			// print_r($this->round->betLines);
 			$numBetLines = $this->round->numBetLines;
 			for ($i=0; $i < $numBetLines; $i++) { // a,b,c
 				$betLine = $this->round->betLines[$i];
-				
 				$blast_position = $this->round->blastPosition[$i];
 				$prizeInfo = $this->checkWin($betLine);
 				//'mult' => $win, 'numRepeats' => $repeat, 'symbol' => $symbol);
 				$multiplier = $prizeInfo['mult'];
 				$numRepeats = $prizeInfo['numRepeats'];
 				$symbol = $prizeInfo['symbol'];
-
+				
 				$multiplier = $multiplier * $baseBet;
 				if ($multiplier > 0) {
 					// $multiplier *= $fsMultiplier;

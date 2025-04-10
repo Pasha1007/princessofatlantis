@@ -6,6 +6,7 @@ class BonusPickFeature extends BonusPickGame implements iBonus
 	public function checkAndGrantBonusGame($param='scatter', $type='')
 	{
 		global $summary;
+	
 
 		$numScatters = $this->scattersCount['total'];
 		$config = $this->getBonusConfig($numScatters, $this->round->spinType);
@@ -142,6 +143,11 @@ class BonusPickFeature extends BonusPickGame implements iBonus
 
 	private function getBonusConfig($numSymbols, $spinType)
 	{
+		if(ENGINE_MODE_SIMULATION){
+            global $bonus_fs;
+            return $bonus_fs[$this->bonusGameId]; 
+        }
+        
 		global $db;
 
 		$table = "game.bonus_config";

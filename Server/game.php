@@ -21,30 +21,35 @@ class Game
 
 	public static function loadGame($gameId, $subGameId=1)
 	{
-		global $db;
+		
 		$tableName = Game::BASE_GAME_CONFIG;
 		$tableAllGames = Game::ALL_GAMES;
-		if($_POST['request_type'] == INIT_MODE){
+		
+		if (ENGINE_MODE_SIMULATION) {
+			global $game_fs;
+			$row = $game_fs;
+		} else {
 			global $db;
-			$op_id = $_SESSION['operator_id'];
+			if ($_POST['request_type'] == INIT_MODE) {
+				$op_id = $_SESSION['operator_id'];
 
-		$query = <<<QRY
+				$query = <<<QRY
                         SELECT sub_game_id, rtp
                         FROM gamelobby.var_rtp_games
                         WHERE operator_id ={$op_id}
                         AND game_id  = {$gameId} AND enabled = 1
 QRY;
-		$result = $db->runQuery($query) or ErrorHandler::handleError(1, "ROUND_RTPSUBGAMEID 1");
+				$result = $db->runQuery($query) or ErrorHandler::handleError(1, "ROUND_RTPSUBGAMEID 1");
 
-		
-		if ($db->numRows($result) > 0) {
-			$row = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "ROUND_RTPSUBGAMEID 2");
-			
-			$subGameId = $row['sub_game_id'];
-		}
-		}
 
-		$loadGame = "
+				if ($db->numRows($result) > 0) {
+					$row = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "ROUND_RTPSUBGAMEID 2");
+
+					$subGameId = $row['sub_game_id'];
+				}
+			}
+
+			$loadGame = "
 			SELECT gs.game_id, sub_game_id, gs.game_name, gs.title, gs.description, num_rows,
 				   num_columns, min_coins, max_coins, default_coins, default_coin_value,
 				   coin_values, paylines, elements, wilds, bonus, scatters, symbol_config,
@@ -55,13 +60,13 @@ QRY;
 			 WHERE gs.game_id = {$gameId} AND
 				   sub_game_id = {$subGameId} AND
 				   gs.game_id = gg.game_id";
-		$result = $db->runQuery($loadGame) or ErrorHandler::handleError(1, "GAME_ERR1". $loadGame);
-		$row    = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "GAME_ERR2");
+			$result = $db->runQuery($loadGame) or ErrorHandler::handleError(1, "GAME_ERR1" . $loadGame);
+			$row = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "GAME_ERR2");
 
-		if($row['enabled'] == 0 or $row['enabled'] == false) {
-			ErrorHandler::handleError(1, 'GAME_DISABLED', 'Game is disabled');
+			if ($row['enabled'] == 0 or $row['enabled'] == false) {
+				ErrorHandler::handleError(1, 'GAME_DISABLED', 'Game is disabled');
+			}
 		}
-
 		$gameObj = new Game;
 		$gameObj->gameId = $row['game_id'];
 		$gameObj->subGameId = $row['sub_game_id'];
@@ -97,7 +102,14 @@ QRY;
 		$gameObj->misc = decode_object($row['misc']);
 		$gameObj->categoryId = $row['category_id'];
 		$gameObj->rtp = $row['rtp'];
-
+		if (ENGINE_MODE_SIMULATION) {
+			$gameObj->symbolConfig = decode_object($game_fs['symbol_config' . $subGameId]);
+			$gameObj->reels = decode_object($game_fs['reels' . $subGameId]);
+			$gameObj->payTable = decode_object($game_fs['pay_table' . $subGameId]);
+			$gameObj->reelsetConfig = decode_object($game_fs['reelset_config']);
+			$gameObj->bonusConfig = decode_object($game_fs["bonus_config" . $subGameId]);
+		}
+		// print_r($gameObj);
 		return $gameObj;
 	}
 

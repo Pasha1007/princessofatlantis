@@ -19,6 +19,7 @@ class PickFreeGame extends BonusPickGame{
     }
 	public function checkAndGrantBonusGame()
 	{
+		
 		$numScatters = $this->scattersCount['total'];
 		$config = $this->getBonusConfig($numScatters, $this->round->spinType);
 
@@ -120,6 +121,11 @@ class PickFreeGame extends BonusPickGame{
 		#$this->setNextRound($num_freespins, $multiplier);
 	}
 	private function getBonusConfig($numSymbols, $spinType) {
+		if(ENGINE_MODE_SIMULATION){
+            global $bonus_fs;
+            return $bonus_fs[$this->bonusGameId]; 
+        }
+        
 		global $db;
 
 		$table = "game.bonus_config";

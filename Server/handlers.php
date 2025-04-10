@@ -4,13 +4,18 @@ require_once 'spin_handler.php';
 require_once 'extraFgSpins.php';
 require_once 'bonus_handler.php';
 require_once 'default_handler.php';
+require_once 'casino_constants.php';
+
+if ( ENGINE_MODE_SIMULATION == false) {
 require_once 'database.inc.php';
+}
 require_once 'rng.lib.php';
 require_once 'paylines.php';
 require_once 'casino.lib.php';
-require_once 'casino_constants.php';
-
-$db = Database::getObject('core');
+if ( ENGINE_MODE_SIMULATION == false) {
+	$db = Database::getObject('core');
+}
+global $game_handlers, $bonus_game_handlers, $line_win_handler, $bet_line_handlers, $misc_handlers;
 
 $game_handlers = Array(
 	"stickywildreel" => "handle_sticky_wild_reel", # Egypt Clyopatra
@@ -88,8 +93,8 @@ $bonus_game_handlers = Array(
 	2001 =>  "SpinMultiplier",		#
 	26001 => "MiyabiFeature",		# QS
 	26002 => "ConsecutiveWinsHandler",# QS
-	28001	=> "PickJackpotFeature",# Ninja Gold
-	28002	=> "PostWinJackpotFeature", 	# Ninja Gold
+	280001	=> "PickJackpotFeature",# Ninja Gold
+	280002	=> "PostWinJackpotFeature", 	# Ninja Gold
 	380001	=> "PickOneJackpot", 	# TeraCotta, kamakura, olymgolds
 	380002	=> "NacroPollsBonus", 	# TeraCotta
 	380003	=> "NacroPollsBonus", 	# TeraCotta
@@ -111,7 +116,9 @@ $line_win_handler = Array(
 $bet_line_handlers = Array(
 	12004 => "WaysBetlines",
 	12005 => "SymbolCountLines",  #new
-	12006 => "WaysBetreel",
+	// 12006 => "WaysBetreel",
+	12006 => "ClusterCountLines",
+
 );
 
 $misc_handlers = Array(

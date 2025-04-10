@@ -118,6 +118,7 @@ class LightningFeature {
             $fs_details['multiplier'] = $details["multiplier"];
             $matrix = $matrix2;
             $details = $fs_details;
+          
             $this->round->miscPrizes = $fs_array;
         }
         if ($respinState) {

@@ -2,7 +2,7 @@
 	# Engine Modes
 	define('FORCING_ENABLED',        1); # todo TODO Must be False when in Prod
 	define('ENGINE_MODE_PRODUCTION', 1); # todo TODO Must be True when in Dev / Prod
-	// define('ENGINE_MODE_SIMULATION', 1); # todo TODO Must be True when in Dev / Prod
+	define('ENGINE_MODE_SIMULATION', 0); # todo TODO Must be False when in Dev / Prod
 
 	# Game modes
 	define('INIT_MODE',     1);

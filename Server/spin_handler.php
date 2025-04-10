@@ -17,10 +17,14 @@ class SpinHandler
     private function doSpin()
     {
         $this->loadNewGame();
+        // echo 1;
         $this->round->resetRound();
+        // echo 1;
         $this->round->mystFeature(); // Avi
+        // echo 1;
         $this->round->generateReelPointers();
         $this->round->generateMatrix();
+        // echo 1;
         // 6*4 at 40 position at 4th reel  
         /* @func handlePostMatrixFeatures.This is used to so the changes in
         *       the generated matrix. Like replacing some symbols. Used to
@@ -29,7 +33,9 @@ class SpinHandler
         */
         // s 40 reel pointer
         $this->round->handlePostMatrixFeatures(); # todo need to handle this case
+        // echo 1;
         $this->round->generateBetLines();
+      
         $this->round->calculatePaylineWins();
         $this->round->handlePostWinCalculations();
         $this->round->calculatescattersymbolwin(); # LOTR scatter win cal

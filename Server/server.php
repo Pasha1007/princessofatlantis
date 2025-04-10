@@ -8,12 +8,24 @@
  *       It is the core hanlder for casino slots server from where all
  *       the required funtions are called
  */
+
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-ini_set("display_errors", 0); error_reporting(~E_ALL);
+// ini_set("display_errors", 1); error_reporting(~E_ALL);
+
+// added by harshu
+ini_set('display_errors', 0);  // Display errors in the browser
+error_reporting(E_ALL & ~E_WARNING);        // Report all errors
+
+// Or log errors to a file (if you have access to your server's log file)
+ini_set('log_errors', 1);
+ini_set('error_log', 'C:\xampp\htdocs\harshita\CPGameSim\game_simulator_type\new_slots_detached\error.log');
+// added by harshu
 // ini_set("display_errors", 1); error_reporting(E_ALL);
 require_once 'sanitizer.php';
 if(isset($_POST['session_id']) && ($_POST['session_id'] == "" || strlen($_POST['session_id']) <= 0)) {
+	
 	require_once 'session_handler_inhouse.php';
 }
 else {
@@ -21,6 +33,7 @@ else {
 }
 require_once 'tools.lib.php';
 require_once 'casino.lib.php';
+
 class CasinoServer {
 	var $game, $round, $player;
 	private function __construct($game, $round, $player)
@@ -28,17 +41,17 @@ class CasinoServer {
 		$this->game   = $game;
 		$this->round  = $round;
 		$this->player = $player;
+		
 	}
-
+	
 	public static function initializeAndRunCasino($requestParams)
 	{
+
 		if(!is_request_allowed($requestParams['request_type'])) {
 			return;
 		}
-
         $player = new Player($requestParams['amount_type'],
 		$requestParams['game_id'], $requestParams['platform_type']);
-
 		$game   = Game::loadGame($requestParams['game_id'],$requestParams['sub_game_id']);
 		
 		$round  = new Round($game, $player);
@@ -62,7 +75,6 @@ class CasinoServer {
         // If there is no any FS or bonus game from promo spin,
         // set request params back to what sent by client. And load the bonus and FS
         // $round->player->amountType = 3, means Promo spins are remaining.
-		
         if(!$casinoServerObj->round->bonusGames && !$casinoServerObj->round->freeSpins
 		&& $requestParams['amount_type'] != AMOUNT_TYPE_PFS) {
 			$casinoServerObj->setRequestParams($requestParams);
@@ -71,6 +83,7 @@ class CasinoServer {
 			
         }
 		// print_r($round->player);
+		
         $casinoServerObj->loadPreviousRound();  # simcode
         $casinoServerObj->loadQueuedBonusGames(); #simcode
         $casinoServerObj->loadGamble();
@@ -120,6 +133,7 @@ class CasinoServer {
 				$this->handleInitialization();
 				break;
 			case PLAY_MODE:
+				// echo 1;
 				$this->handleSpin();
 				break;
 			case BONUS_MODE:
@@ -189,11 +203,13 @@ class CasinoServer {
 		MessageHandler::sendMessage($this->game, $this->round, $this->player);
 	}
 }
-
 function main($request_params)
+
 {
 	CasinoServer::initializeAndRunCasino($request_params);
 }
 // print_r($request_params);
+if ( ENGINE_MODE_SIMULATION == false) {
 main($request_params); # simcode
+}
 ?>

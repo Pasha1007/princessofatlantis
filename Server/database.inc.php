@@ -7,15 +7,12 @@
  * @author Raman
  * @date   03 May 2018
  */
-
-//   $db_config =  Array('core' => Array ('host' => 'localhost',
-//                                         'username' => 'root',
-//                                         'password' => ''));
-
+  $db_config =  Array('core' => Array ('host' => 'localhost',
+                                        'username' => 'root',
+                                        'password' => ''));
 class Database {
     var $conn;
-
-   /**
+    /**
      * @function __construct
      * @param $config Array contains DB host, username and passwd
      *
@@ -23,11 +20,13 @@ class Database {
      *       creating using the instance/constructor
      *
      */
-	private function __construct($config) {
+    private function __construct($config) {
+        // echo "!";
+        
 		$this->conn = null;
 		$this->conn = mysqli_connect($config['host'],
-                                      $config['username'],
-                                      $config['password']);
+        $config['username'],
+        $config['password']);
     }
 
 	public function __destruct() {
@@ -53,6 +52,7 @@ class Database {
     }
 
     public static function GetDBObject($name) {
+        
         static $ConnectionCache = array();
         $db_config = Database::getDbConfig($name);
 

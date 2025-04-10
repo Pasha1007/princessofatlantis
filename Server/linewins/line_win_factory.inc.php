@@ -19,20 +19,18 @@ class LineWinFactory {
 	public static function getLineWinObject(&$game, &$round, &$player) {
 		$base_game_factory = new LineWinFactory($game, $round, $player);
 
+		
 		return $base_game_factory->getObject();
 	}
 
 	public function getObject() {
 		$line_win_id = isset($this->game->misc['linewin_handler_id']) ?
 						$this->game->misc['linewin_handler_id'] : '';
-
 		if(!$line_win_id) {
 			return ;
 		}
-
 		$handlers = get_line_win_handlers();
 		$class_name = empty($handlers[$line_win_id]) ? '' : $handlers[$line_win_id];
-
 		return new $class_name($this->game, $this->round, $this->player);
 	}
 }

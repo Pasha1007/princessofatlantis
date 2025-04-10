@@ -29,7 +29,6 @@ class SymbolCountLines implements iBetLines
 
         // todo
         // check thumble with index 
-        
         $rows = $this->game->numRows;
         $cols = $this->game->numColumns;
         $elementMatrix = $this->round->matrix;

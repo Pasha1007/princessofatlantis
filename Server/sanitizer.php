@@ -10,7 +10,7 @@ class Sanitizer {
         $this->requestTypes = Array(1, 2, 3, 4, 5, 6, 7, 8);
         $this->amountTypes  = Array(1, 3, 4);
         # todo TODO need to move from username to session_id
-        
+
         $this->initParams = Array('game_id', 'sub_game_id', 'request_type',
                                   'amount_type','username');
         $this->spinParams = Array('game_id','sub_game_id' ,'request_type',
@@ -31,6 +31,7 @@ class Sanitizer {
                                    'bet_amount', 'pick_position');
        $this->endGameParams = Array('game_id', 'request_type',
                                     'amount_type', 'session_id');
+
     }
 
     public static function sanitizeInputParams(&$requestParams) {

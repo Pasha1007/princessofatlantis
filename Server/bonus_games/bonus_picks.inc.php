@@ -49,7 +49,7 @@ class BonusPickGame implements iBonus
 	 * */
 
 	public function checkAndGrantBonusGame() {
-
+		
 		$numScatters = $this->scattersCount['total'];
 		$config = $this->getBonusConfig($numScatters, $this->round->spinType);
 
@@ -277,7 +277,11 @@ class BonusPickGame implements iBonus
 
 	private function getBonusConfig($numSymbols, $spinType) {
 		global $db;
-
+		if(ENGINE_MODE_SIMULATION){
+            global $bonus_fs;
+            return $bonus_fs[$this->bonusGameId]; 
+        }
+        
 		$table = "game.bonus_config";
 		$query = <<<QUERY
 			SELECT configuration
@@ -311,7 +315,9 @@ QUERY;
 		if($this->round->amountType == AMOUNT_TYPE_FUN) {
 			$tableName = 'gamelog.freespins_fun';
 		}
+   
 
+		echo($multiplier);
 
 		$fs_query = <<<QRY
 		UPDATE {$tableName}

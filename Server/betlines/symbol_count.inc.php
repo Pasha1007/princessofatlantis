@@ -48,6 +48,7 @@ class SymbolCountLines implements iBetLines
             $symbol_con = $symbol_config["symbol_check"][$this->round->spinType];
         }
         $new_sym_ponter = array();
+
         while (count($betines_samp) > 0) {
             $count++;
             $sym_key = array();
@@ -92,6 +93,7 @@ class SymbolCountLines implements iBetLines
             $betines_samp = $this->checkArraySize($betines_samp);
 
         }
+        
         // echo "multiplier win = ", $screenWinAmount;
         $this->round->screenWinAmount = $screenWinAmount;
         $this->round->miscPrizes["count"] = $count;

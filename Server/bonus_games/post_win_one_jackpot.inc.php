@@ -83,6 +83,7 @@ class PostwinOneJackpot {
             array_push($this->jackpotDetails, $jackpotDetailsArray);
 
             // For client communication.
+          
             $this->round->miscPrizes = $this->jackpotDetails;
         }
 

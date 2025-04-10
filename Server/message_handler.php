@@ -307,13 +307,14 @@ private function add_pattable(){
 			'payline_win_amount'    => $this->round->paylineWinAmount,
 			'spin_type'     => $this->round->spinType,
 			'extra_info'    => $this->player->extraInfo,
-			'game_extra_info'    => $extra_info,
+			// 'game_extra_info'    => $extra_info,
 			// 'misc_prizes'	=> $this->round->miscPrizes==null ? '':json_encode($this->round->miscPrizes),
 			'misc_prizes'	=> $this->round->miscPrizes==null ? '': $this->round->miscPrizes,
 			// 'positions'	=>json_encode( $this->round->reelPointers),
 			'positions'	=> $this->round->reelPointers,
 			'blastPosition'	=> $this->round->blastPosition,
 			'scatter_win'	=> $this->round->scatterWin,
+			'num_ways'=> $this->round->numWays,
 			
 		);
 

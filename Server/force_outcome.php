@@ -3,8 +3,11 @@ define('ALLOW_FORCING', 1); # todo TODO simcode make it 0
 
 function handle_forced_outcome(&$round) {
 	global $db;
-
-	if(!ALLOW_FORCING) {
+	if (ENGINE_MODE_SIMULATION) {
+  
+		return;
+	  }
+	  	if(!ALLOW_FORCING) {
 		return;
 	}
 
@@ -39,14 +42,24 @@ QUERY;
 		/////////////////// To handle the reel pointers in forced . for games having rows 5,7,9....
 		/// forced was lagging behinde
 		$temp_reel_pointers = [];
-
+		// print_r($round->reelPointers);
 		for($i = 0; $i < count($round->reelPointers); $i++) {
 			$numRows = $round->game->numRows;
 			$offset = ($numRows % 2 != 0) ? ($numRows - 1)/2 : $numRows/2;
-			$temp_reel_pointers[$i] = $round->reelPointers[$i] + ($offset -1);
+			// echo "offset", $offset;
+			$reelsetConfig = $round->game->reelsetConfig;
+			if ($reelsetConfig or isset($reelsetConfig[$round->spinType]) or isset($reelsetConfig[$round->spinType]["is_mega"])or $reelsetConfig[$round->spinType]["is_mega"] == true) {
+				$temp_reel_pointers[$i] = $round->reelPointers[$i] - 1;
+			}else{
+				$temp_reel_pointers[$i] = $round->reelPointers[$i] + ($offset -1);
+				
+			}
+			
+			
+			// $temp_reel_pointers[$i] = $round->reelPointers[$i] + ($offset -1);
 		}
 		//////////////////////////////////
-
+		
 		$round->reelPointers = $temp_reel_pointers;
 		$round->game->subGameId = $tempSubGameId;
 	}

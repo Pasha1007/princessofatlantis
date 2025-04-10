@@ -1,6 +1,7 @@
 <?php
 require_once 'line_wins_handler.inc.php';
 require_once 'betlines_factory.inc.php';
+// require_once 'tools.lib.php';
 
 class Round
 {
@@ -12,7 +13,7 @@ class Round
 	$bonusGames, $nextRound, $sticky_win_round, $reSpin, $bonusGameRound,
 	$wildMultiplier, $parentSpintype, $freespinState, $respinState, $message,
 	$lineBet, $idToNameSpinType, $queuedBonusGames, $gamble, $roundEndData, $rtpSubGameId,
-	$prevBonusGames, $miscPrizes, $postFreeSpinInfo, $scatterwin, $baseFeature, $blastPosition, $screenWinAmount, $sub_game, $matrixData;
+	$prevBonusGames, $miscPrizes, $postFreeSpinInfo, $scatterwin, $baseFeature, $blastPosition, $screenWinAmount, $sub_game, $matrixData,$numWays;
 
 	# todo change $sticky_win_round to camelcase
 	var $multipliers; # todo todo handle this property
@@ -55,6 +56,7 @@ class Round
 		$this->getOpCoinValues();
 		$this->loadPromoDetails();
 		$this->loadRTPSubGameId();
+		
 	}
 
 	/*
@@ -64,10 +66,12 @@ class Round
 	public function loadRTPSubGameId()
 	{
 		// return; # todo TODO hardcoded
-		global $db;
 		// print_r( $_SESSION);
-
-
+		if (ENGINE_MODE_SIMULATION) {
+			return;
+		}
+		
+		global $db;
 		$game_id = $this->game->gameId;
 		$op_id = $_SESSION['operator_id'];
 		#$site_id    = $_SESSION['site_id'];
@@ -114,8 +118,10 @@ QRY;
 
 	public function getOpCoinValues()
 	{
+		if (ENGINE_MODE_SIMULATION) {
+			return;
+		}
 		global $db;
-
 		$game_id = $this->game->gameId;
 		$op_id = $_SESSION['operator_id'];
 		$site_id = $_SESSION['site_id'];
@@ -203,6 +209,9 @@ QRY;
 
 	private function loadPromoDetails()
 	{
+		if (ENGINE_MODE_SIMULATION) {
+			return;
+		}
 		$bal_details = $this->player->balDetails;
 		$promo_fs = isset($bal_details['promo_freespins']) ? $bal_details['promo_freespins'] : [];
 		$promo_details = array('expired' => array(), 'alive' => array(), );
@@ -345,7 +354,9 @@ QRY;
 		if ($this->amountType != AMOUNT_TYPE_PFS  ) {
 			return;
 		}
-		
+		if (ENGINE_MODE_SIMULATION) {
+			return;
+		}
 		if(!isset($this->player->promoDetails['alive']) and !isset($this->player->promoDetails['curr_spin'])and !isset($this->player->promoDetails['expired']) ){
 			return;
 		}
@@ -577,7 +588,7 @@ QRY;
 
 			}
 			$reelLength = strlen($reel);
-			$reelPointer = $this->reelPointers[$i] ;
+			// $reelPointer = $this->reelPointers[$i] ;
 			array_push($pointer, $reelPointer);
 			for ($j = 0; $j < $this->game->numRows; $j++) {
 				// echo ($reelPointer + $reelLength) % $reelLength;
@@ -591,30 +602,28 @@ QRY;
 		/** Hard code for LOTR Lightning Feature luckoftherainbow
 		 *
 		 * $this->matrix = Array(
-		 * 	Array('c', 'e', 's', 's', 'd'),
+		 * 	Array('c', 'e', 's', 's', 'w'),
 		 *	Array('s', 'a', 's', 'b', 's'),
 		 *	Array('b', 'k', 'k', 'c', 'w'));
 		 *
 		 */
 		// $this->matrix = Array(
-		// 	 	Array('c', 'e', 's', 's', 'd'),
-		// 		Array('s', 'a', 's', 'b', 's'),
-		// 		Array('b', 'k', 'k', 'c', 'w'));
+		// 	 	Array('c', 'e', 'e', 'b', 'd'),
+		// 		Array('a', 'a', 'a', 'a', 'w'),
+		// 		Array('b', 'k', 'k', 'c', 'a'));
 		# todo comment the follwoing line
 
 		# below for candy burst game
 
 		#ANimCheck
 		// $this->matrix=Array(
-		// Array('k', 'h', 'k', 'j', 'b'),
-		// Array('g', 'g', 'g', 'g', 'g'),
-		// Array('c', 'i', 'd', 'e', 's')
+		// Array('a', 'a', 'a', 'd', 'b'),
+		// Array('b', 'c', 'c', 'c', 'c'),
+		// Array('c', 'd', 's', 's', 's')  
 		// );
-		#edge Cases
-		// $this->matrix=Array(
-		// Array('d', 'e', 'b', 'a', 'd'),
-		// Array('a', 'd', 'b', 'b', 'a'),
-		// Array('w', 'k', 'a', 'd', 'w'));
+		#edge Cases amith
+		 
+	
 		#3 scatter
 		// $this->matrix = Array(
 		// // 	//without win
@@ -645,8 +654,8 @@ QRY;
 		// $this->matrix = Array(
 		// 		//Bonus 2           
 		// 		Array('c', 'b', 'd', 'b', 'b','c'),
-		// 		Array('c', 's', 's', 's', 'd', 'c'),
-		// 		Array('b', 'b', 'a', 'a', 'g',"a"));
+		// 		Array('a', 'c', 'a', 'a', 'a', 'c'),
+		// 		Array('b', 'b', 'c', 'a', 'g',"b"));
 		$this->matrixString = array2d_to_string($this->matrix);
 		$this->generateMatrixData($this->matrix);
 		$this->matrixFlatten = $this->generateFlatMatrix($this->matrix);
@@ -673,6 +682,7 @@ QRY;
 	{
 
 		$betlines_object = BetLinesFactory::getBetLinesObject($this->game, $this);
+	
 		$betlines_object->generateBetLines();
 		return;
 	}
@@ -824,20 +834,24 @@ public function generate_freespins($fs_reel_size, $bonus_details){
 
 	public function loadPreviousRound($gameId, $accountId)
 	{
-		global $db;
-
-		$prevQry = "
-			SELECT game_id, sub_game_id, account_id, round_id, coin_value, num_coins,
-				   num_betlines, reel_pointers, matrix, win_lines, amount_won,
-				   amount_type, spin_type, currency, timestamp, matrix2, misc
-			  FROM gamelog.prev_round
-			 WHERE account_id = {$accountId} AND
-				   game_id ={$gameId} AND
-				   amount_type = {$this->amountType}";
-
+		$count = 0;
+		if (ENGINE_MODE_SIMULATION == false) {
+			
+			global $db;
+			$prevQry = "
+				SELECT game_id, sub_game_id, account_id, round_id, coin_value, num_coins,
+					   num_betlines, reel_pointers, matrix, win_lines, amount_won,
+					   amount_type, spin_type, currency, timestamp, matrix2, misc
+				  FROM gamelog.prev_round
+				 WHERE account_id = {$accountId} AND
+					   game_id ={$gameId} AND
+					   amount_type = {$this->amountType}";
+	
+			$result = $db->runQuery($prevQry) or ErrorHandler::handleError(1, "ROUND_0001");
+			$count = $db->numRows($result);
+		}
 		$this->previousRound = array();
-		$result = $db->runQuery($prevQry) or ErrorHandler::handleError(1, "ROUND_0001");
-		if ($db->numRows($result) <= 0) {
+		if ($count <= 0) {
 			$this->previousRound['round_id'] = 0;
 			$this->previousRound['coin_value'] = '';
 			$this->previousRound['num_coins'] = '';
@@ -940,9 +954,9 @@ public function generate_freespins($fs_reel_size, $bonus_details){
 		# todo return bet amount as per the game cofniguration for reels
 		return $this->coinValue * $this->numCoins;
 	}
-
 	public function handlePostMatrixFeatures()
 	{
+		// print_r($GLOBALS);
 		global $game_handlers;
 		$featureConfig = $this->game->bonusConfig;
 		//$featureConfig['post_matrix_handlers'][$this->spinType]);
@@ -1161,18 +1175,28 @@ public function generate_freespins($fs_reel_size, $bonus_details){
 
 	public function loadBonusGames()
 	{
-		global $db;
+		if (ENGINE_MODE_SIMULATION) {
+			global $bonusgame_fs;
+			
+			if (isset($bonusgame_fs) && count($bonusgame_fs) > 1) {
+				$row = $bonusgame_fs;
+			}
+			else{
+				return;
+			}
+		} else {
+			global $db;
 
-		$gameId = $this->game->gameId;
-		$amountType = $this->amountType;
-		$accountId = $this->player->accountId;
-		$tableName = 'gamelog.bonus_games';
+			$gameId = $this->game->gameId;
+			$amountType = $this->amountType;
+			$accountId = $this->player->accountId;
+			$tableName = 'gamelog.bonus_games';
 
-		if ($this->amountType == AMOUNT_TYPE_FUN) {
-			$tableName = 'gamelog.bonus_games_fun';
-		}
+			if ($this->amountType == AMOUNT_TYPE_FUN) {
+				$tableName = 'gamelog.bonus_games_fun';
+			}
 
-		$bonusQuery = <<<QUERY
+			$bonusQuery = <<<QUERY
 			SELECT id, game_id, sub_game_id, base_round_id, round_id,
 				   account_id, bonus_game_id, bonus_game_code, amount_type,
 				   num_picks, num_user_picks, picks_data, game_data, multiplier,
@@ -1182,11 +1206,11 @@ public function generate_freespins($fs_reel_size, $bonus_details){
 				  amount_type = {$amountType} AND state = 0
 			ORDER BY round_id DESC LIMIT 1
 QUERY;
-		$result = $db->runQuery($bonusQuery) or ErrorHandler::handleError(1, 'ROUND_0007');
-		if ($db->numRows($result) <= 0)
-			return;
-
-		$row = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "ROUND_0008");
+			$result = $db->runQuery($bonusQuery) or ErrorHandler::handleError(1, 'ROUND_0007');
+			if ($db->numRows($result) <= 0)
+				return;
+			$row = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "ROUND_0008");
+		}
 		$this->bonusGames['id'] = $row['id'];
 		$this->bonusGames['game_id'] = $row['game_id'];
 		$this->bonusGames['sub_game_id'] = $row['sub_game_id'];
@@ -1199,7 +1223,7 @@ QUERY;
 		$this->bonusGames['num_picks'] = $row['num_picks'];
 		$this->bonusGames['num_user_picks'] = $row['num_user_picks'];
 		$this->bonusGames['picks_data'] = decode_object($row['picks_data']);
-		$this->bonusGames['game_data'] = $row['game_data'];
+		$this->bonusGames['game_data'] =  $row['game_data'];
 		$this->bonusGames['multiplier'] = $row['multiplier'];
 		$this->bonusGames['win_amount'] = $row['win_amount'];
 		$this->bonusGames['state'] = $row['state'];
@@ -1218,7 +1242,7 @@ QUERY;
 			$this->bonusGames['num_coins'],
 			$this->bonusGames['num_betlines']
 		);
-
+    //   echo 3;
 	}
 
 	/*
@@ -1228,8 +1252,10 @@ QUERY;
 	 */
 	public function loadQueuedBonusGames()
 	{
+		if (ENGINE_MODE_SIMULATION) {
+			return;
+		}
 		global $db;
-
 		$gameId = $this->game->gameId;
 		$amountType = $this->amountType;
 		$accountId = $this->player->accountId;
@@ -1269,18 +1295,26 @@ QUERY;
 
 	public function loadFreeSpins()
 	{
-		global $db;
+		if (ENGINE_MODE_SIMULATION) {
+			global $freegame_fs;
+			
+			if (isset($freegame_fs) && count($freegame_fs) > 1) {
+				$row = $freegame_fs;
+			} else {
+				return;
+			}
+		} else {
+			global $db;
+			$gameId = $this->game->gameId;
+			$amountType = $this->amountType;
+			$accountId = $this->player->accountId;
+			$tableName = 'gamelog.freespins';
 
-		$gameId = $this->game->gameId;
-		$amountType = $this->amountType;
-		$accountId = $this->player->accountId;
-		$tableName = 'gamelog.freespins';
+			if ($this->amountType == AMOUNT_TYPE_FUN) {
+				$tableName = 'gamelog.freespins_fun';
+			}
 
-		if ($this->amountType == AMOUNT_TYPE_FUN) {
-			$tableName = 'gamelog.freespins_fun';
-		}
-
-		$fsQuery = <<<QUERY
+			$fsQuery = <<<QUERY
 			SELECT id, game_id, base_round_id, round_ids, history, coin_value,
 				   num_coins, num_betlines, num_spins, spins_left, multiplier,
 				   amount_type, win_amount, details, sub_game_id, spin_type,
@@ -1293,12 +1327,12 @@ QUERY;
 			  ORDER BY id DESC LIMIT 1
 QUERY;
 
-		$result = $db->runQuery($fsQuery) or ErrorHandler::handleError(1, "ROUND_0004");
-		if ($db->numRows($result) <= 0)
-			return;
+			$result = $db->runQuery($fsQuery) or ErrorHandler::handleError(1, "ROUND_0004");
+			if ($db->numRows($result) <= 0)
+				return;
 
-		$row = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "ROUND_0005");
-
+			$row = $db->fetchAssoc($result) or ErrorHandler::handleError(1, "ROUND_0005");
+		}
 		$this->freeSpins['id'] = $row['id'];
 		$this->freeSpins['game_id'] = $row['game_id'];
 		$this->freeSpins['base_round_id'] = $row['base_round_id'];
@@ -1311,17 +1345,27 @@ QUERY;
 		$this->freeSpins['spins_left'] = $row['spins_left'];
 		$this->freeSpins['multiplier'] = $row['multiplier'];
 		$this->freeSpins['amount_type'] = $row['amount_type'];
-		$this->freeSpins['win_amount'] = to_coin_currency($row['win_amount']);
 		# todo need to de-serialize the following details spin_type
 		$this->freeSpins['details'] = decode_object($row['details']);
 		$this->freeSpins['sub_game_id'] = $row['sub_game_id'];
 		$this->freeSpins['spin_type'] = $row['spin_type'];
-		$this->freeSpins['total_win_amount'] = to_coin_currency($row['total_win_amount']);
+		if (ENGINE_MODE_SIMULATION) {
+			$this->freeSpins['win_amount'] = $row['win_amount'];
+			$this->freeSpins['total_win_amount'] = $row['total_win_amount'];
+		}else{
+			$this->freeSpins['win_amount'] = to_coin_currency($row['win_amount']);
+			$this->freeSpins['total_win_amount'] = to_coin_currency($row['total_win_amount']);
+		}
 		$this->loadTotalWinAmount();
 	}
 
 	private function loadTotalWinAmount()
 	{
+		if (ENGINE_MODE_SIMULATION) {
+			global $freegame_fs;
+			$this->freeSpins['total_win_amount'] = $freegame_fs['total_win_amount'];
+			return;
+				}
 		global $db;
 
 		if (!isset($this->freeSpins['details']['parent_id_primary'])) {
@@ -1364,6 +1408,7 @@ QUERY;
 		$factoryObject = new BonusFactory($this->game, $this);
 
 		$bonusObject = $factoryObject->getObjectFromId($bonusGameId);
+		// print_r($bonusObject);
 		if ($bonusObject != null and !empty($bonusObject)) {
 			$bonusObject->loadBonusGame();
 		}
@@ -1473,9 +1518,11 @@ QUERY;
 			!$bonusConfig or !isset($bonusConfig[$this->spinType]['queued_bonus_id'])
 			or $bonusConfig[$this->spinType]['queued_bonus_id'] <= 0
 		) {
+			
 			return;
 		}
 
+		
 		$bonusFactoryObj = new BonusFactory($this->game, $this);
 		$queuedBonusId = $bonusConfig[$this->spinType]['queued_bonus_id'];
 		$bonusObject = $bonusFactoryObj->getObjectFromId($queuedBonusId);
@@ -1553,7 +1600,9 @@ QUERY;
 			$this->scattersCount['total'] += $count;
 
 		}
+		
 		$bonusObject = BonusFactory::getBonusObject($this->game, $this);
+	
 		if ($bonusObject != null and !empty($bonusObject)) {
 			$bonusObject->checkAndGrantBonusGame();
 		}
@@ -1564,11 +1613,13 @@ QUERY;
 
 	public function handleExtraBonusGames()
 	{
+		
 		if (
 			!isset($this->game->bonusConfig['bonus_config']) or
 			!isset($this->game->bonusConfig['bonus_config']['extra_bonus_game']) or
 			$this->game->bonusConfig['bonus_config']['extra_bonus_game'] != 1
 		) {
+			
 			return;
 		}
 
@@ -1576,7 +1627,7 @@ QUERY;
 		if (!isset($this->game->bonusConfig['bonus_config'][$this->spinType])) {
 			return;
 		}
-
+    
 		$config = $this->game->bonusConfig['bonus_config'][$this->spinType];
 		$this->scattersCount = array('total' => 0);
 		#{"w":{"bonus_game_id":9001,"min_count":2}
@@ -1587,6 +1638,7 @@ QUERY;
 			$this->scattersCount['total'] += $count;
 
 			$bonusObject = BonusFactory::getBonusObject($this->game, $this);
+		
 			if ($bonusObject != null and !empty($bonusObject)) {
 				$bonusObject->checkAndGrantBonusGame();
 			}
@@ -1598,7 +1650,6 @@ QUERY;
 	public function decrementAndLoadFreeSpins()
 	{
 
-		global $db;
 		if (!$this->freeSpins or $this->freeSpins['spins_left'] <= 0) {
 			return;
 		}
@@ -1606,25 +1657,29 @@ QUERY;
 		$spinsLeft = $this->freeSpins['spins_left'];
 		$winAmount = ($this->freeSpins['win_amount'] > 0) ? $this->freeSpins['win_amount'] : 0;
 		$winAmount += $this->winAmount;
-		$winAmount = to_base_currency($winAmount);
 		$totalWinAmount = ($this->freeSpins['total_win_amount'] > 0) ? $this->freeSpins['total_win_amount'] : 0;
 		$totalWinAmount += $this->winAmount;
-		$totalWinAmount = to_base_currency($totalWinAmount);
+		if (ENGINE_MODE_SIMULATION == false) {
+			global $db;
 
+			$winAmount = to_base_currency($winAmount);
+			$totalWinAmount = to_base_currency($totalWinAmount);
+		}
 		# todo TODO. Below line needed ??
 		$this->freeSpins['win_amount'] += $this->winAmount;
-
-		$state = ($spinsLeft === 0) ? 1 : 0;
 		$id = $this->freeSpins['id'];
 		$accountId = $this->player->accountId;
 		$gameId = $this->game->gameId;
 		$amountType = $this->amountType;
-		$tableName = 'gamelog.freespins';
+		if (ENGINE_MODE_SIMULATION == false) {
 
-		if ($this->amountType == AMOUNT_TYPE_FUN) {
-			$tableName = 'gamelog.freespins_fun';
-		}
-		$fsQuery = <<<QUERY
+			$state = ($spinsLeft === 0) ? 1 : 0;
+			$tableName = 'gamelog.freespins';
+
+			if ($this->amountType == AMOUNT_TYPE_FUN) {
+				$tableName = 'gamelog.freespins_fun';
+			}
+			$fsQuery = <<<QUERY
 		UPDATE {$tableName}
 		   SET spins_left = {$spinsLeft},
 			   win_amount = {$winAmount},
@@ -1637,11 +1692,32 @@ QUERY;
 				state = 0
 QUERY;
 
-		$result = $db->runQuery($fsQuery) or ErrorHandler::handleError(1, "ROUND_0006");
-		# following wont be set if if is the last free spins. Hence setting here
-		$this->freeSpins['win_amount'] = to_coin_currency($winAmount);
-		$this->message['current_round']['total_fs_win_amount'] = to_coin_currency($winAmount);
-
+			$result = $db->runQuery($fsQuery) or ErrorHandler::handleError(1, "ROUND_0006");
+			# following wont be set if if is the last free spins. Hence setting here
+			$this->freeSpins['win_amount'] = to_coin_currency($winAmount);
+			$this->message['current_round']['total_fs_win_amount'] = to_coin_currency($winAmount);
+			if ($totalWinAmount > 0) {
+				$this->message['current_round']['total_fs_win_amount'] = to_coin_currency($totalWinAmount);
+			}
+		}
+		else{
+			global $freegame_fs;
+			if($spinsLeft === 0){
+				$freegame_fs = array();
+			}
+			else{
+				$state = 0;
+				$freegame_fs["spins_left"] = $spinsLeft;
+				$freegame_fs["win_amount"] = $winAmount;
+				$freegame_fs["total_win_amount"] = $totalWinAmount;
+				$freegame_fs["state"] = $state;
+			}
+			$this->freeSpins['win_amount'] = $winAmount;
+			$this->message['current_round']['total_fs_win_amount'] = $winAmount;
+			if ($totalWinAmount > 0) {
+				$this->message['current_round']['total_fs_win_amount'] = $totalWinAmount;
+			}
+		}
 		if (
 			isset($this->game->misc) &&
 			isset($this->game->misc['fs_state'])
@@ -1653,11 +1729,9 @@ QUERY;
 			if ($this->spinType == 'freespin') {
 				$this->freespinState = 1;
 			}
+			
 		}
 
-		if ($totalWinAmount > 0) {
-			$this->message['current_round']['total_fs_win_amount'] = to_coin_currency($totalWinAmount);
-		}
 
 		$this->updateTotalWinAmount();
 		$this->loadFreeSpins();
@@ -1681,8 +1755,10 @@ QUERY;
 
 	private function updateFsTotalWinAmount($rowId, $winAmount)
 	{
+		if (ENGINE_MODE_SIMULATION ) {
+			return;
+		}
 		global $db;
-
 		$winAmount = to_base_currency($winAmount);
 
 		$tableName = 'gamelog.freespins';
@@ -1702,6 +1778,9 @@ QUERY;
 
 	private function setFreespinState()
 	{
+		if (ENGINE_MODE_SIMULATION ) {
+			return;
+		}
 		if (
 			$this->freeSpins['spins_left'] == 0 &&
 			isset($this->freeSpins['details']['parent_spins_left']) &&
@@ -1791,8 +1870,10 @@ QUERY;
 
 	public function loadGamble()
 	{
+		if (ENGINE_MODE_SIMULATION) {
+			return;
+		}
 		global $db;
-
 		$gameId = $this->game->gameId;
 		$amountType = $this->amountType;
 		$accountId = $this->player->accountId;

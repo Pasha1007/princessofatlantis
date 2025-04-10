@@ -1,4 +1,5 @@
 <?php
+require_once 'ibonus.inc.php';
 class BonusGameFeature implements iBonus
 {
     protected $game;
@@ -19,6 +20,7 @@ class BonusGameFeature implements iBonus
 
     public function checkAndGrantBonusGame()
     {
+        
         $scatter_count = get_element_count($this->round->matrixFlatten, "s");
         if ($scatter_count >= 3) {
             $this->bonusGameId = null;
@@ -34,6 +36,7 @@ class BonusGameFeature implements iBonus
         $flag=0;
         $data["feature"] = "";
         if($this->round->spinType == "normal"){
+         
             $random=rand(1,$details["basebonus"]);
             if($random == $details["basebonus"]){
                 $data["feature"] = "basebonus_game";
@@ -41,7 +44,9 @@ class BonusGameFeature implements iBonus
             }
 
         }elseif($this->round->spinType == "freespin"){
+          
             $random=rand(1,$details["freebonus"]);
+          
             if($random == $details["freebonus"]){
                 $data["feature"] = "freebonus_game";
                 $flag = 1;
@@ -108,12 +113,17 @@ class BonusGameFeature implements iBonus
         $flag=0;
         $details = decode_object($this->getBonusConfig());
         $random=rand(1, $details["total_weightage"]);
+       
         if($random>$details["nogoal"]["weight"]){
             $flag=1;
         }
         $pickPosition = (int)$pickedPosition;
         $data = decode_object($this->round->bonusGames['game_data']);  //getBonusData();
-        
+        //  ($data['spintype']);
+        // echo("\n");
+        // echo($flag);
+        // echo("\n");
+      
         if ($data['spintype'] == 'normal') {
             
             /** Hard code for medusa  normal base game win
@@ -137,7 +147,9 @@ class BonusGameFeature implements iBonus
              * $flag=1;
              *
              */
+        
             if ($flag==1) {
+             
                 $index = (rand(1, count($details["free_multiplier"]))) - 1;
                 $multiplier = $details["free_multiplier"][$index];
                 $data["multiplier"] = $multiplier;
@@ -184,6 +196,11 @@ class BonusGameFeature implements iBonus
 
     private function getBonusConfig()
     {
+        if(ENGINE_MODE_SIMULATION){
+            global $bonus_fs;
+            return $bonus_fs[$this->bonusGameId]; 
+        }
+        
         global $db;
 
         $table = "game.bonus_config";

@@ -31,10 +31,12 @@ class MiyabiFeature extends ConsecutiveWinsHandler {
      * @func checkAndGrantBonusGame
      */
     public function checkAndGrantBonusGame() {
+       
         $spinType = $this->round->spinType;
         $details = $this->round->featureData['details'];
         if ($spinType == 'respin') {
             $each_princess_pay = $details['each_princess_pay'];
+        
             $this->handleRespins($each_princess_pay);
         }
         $this->round->miscPrizes = $this->respinDetails;
@@ -45,14 +47,19 @@ class MiyabiFeature extends ConsecutiveWinsHandler {
         $rs_details = $this->round->freeSpins['details'];
         $princess_symbol = $rs_details['princess_symbol'];
         $rs_sticky_reel = $rs_details['sticky_reel'];
-	    $matrixArray = $rs_details['matrix_array'];
-
+	    // $matrixArray = $rs_details['matrix_array'];
+        $matrix_array=$rs_details['matrix_array'];
+       
         list($queensCount, $win_positions) = $this->restoreStickyMatrix($rs_details, $princess_symbol);
 
         $rs_details['matrix'] = $this->round->matrix;
         $rs_details['win_positions'] = $win_positions;
+        // echo 3;
+        // var_dump($matrix_array);
         array_push($matrix_array, array2d_to_string($this->round->matrix));
+        // echo 3;
         $rs_details['matrix_array'] = $matrix_array;
+        // echo 3;
 	if ($queensCount) {
             $rs_details['id'] = $id;
             array_push($this->round->postFreeSpinInfo, $rs_details);

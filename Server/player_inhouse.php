@@ -28,13 +28,10 @@ class Player
 	}
 
 	function loadPlayerDetails()  {
-		global $db;
-		$playerAccount = Player::PLAYER_ACCOUNT;
-		$playerDetails = Player::PLAYER_DETAILS;
 
 		if(defined('ENGINE_MODE_SIMULATION') && ENGINE_MODE_SIMULATION) {
+			
 			global $username_sim;
-
 			$this->firstName    = $username_sim;
 			$this->userName     = $username_sim;
 			$this->bank         = 2.00;
@@ -51,6 +48,10 @@ class Player
 
 			return ;
 		}
+		global $db;
+		$playerAccount = Player::PLAYER_ACCOUNT;
+		$playerDetails = Player::PLAYER_DETAILS;
+
 		if($this->amountType == AMOUNT_TYPE_FUN ) {
 			// print_r($_SESSION);
             if( !isset($_SESSION['balance' . $this->gameId]) ) {
@@ -190,7 +191,6 @@ QUERY;
 
 		# update_user_balance($user['id'], $machine->game_type, $game->total_bet, $machine->id, CASINO_WAGER, $game->money_type, $game->id);
 		# todo modify this function's body
-		global $db;
 		# todo if trans_type is credit and amoun < 0 only need to handle
 		if($transType == WINNING and $amount <= 0) {
 						return;
@@ -215,7 +215,8 @@ QUERY;
 			}
 						return;
 		}
-		
+		global $db;
+
 		# todo need to debit/credit as money type
 		# todo TODO be sure about $this->cash or $this->cash2 or $this->balance in if condition
 				$amount = to_base_currency($amount);

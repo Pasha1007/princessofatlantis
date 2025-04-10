@@ -22,9 +22,17 @@ class ExtraFgSpin
         $this->round->generateMatrix();
         $this->getScatterMatrix();
 		$scatterMultiplier = $this->getScatterMultiplier();
-        $baseBet = $this->changeBet();
+        if (ENGINE_MODE_SIMULATION == false) {
+            $baseBet = $this->changeBet();
+        }
+        else{
+            $baseBet = $this->round->totalBet;
+        }
         $this->round->scatterWin =  $scatterMultiplier*$baseBet;
-		$this->round->winAmount += $scatterMultiplier*$baseBet;
+
+        if (ENGINE_MODE_SIMULATION == false) {
+            $this->round->winAmount += $scatterMultiplier*$baseBet;
+		}
         $this->round->handleFreeSpins();
         }
 

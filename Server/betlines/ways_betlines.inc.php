@@ -80,6 +80,37 @@ class WaysBetlines implements iBetLines
         
         $betlines = $this->arrangeBetlines($betlines);        
         $this->round->betLines = $betlines['bet_strings'];
+
+        $firstCharCount = [];
+ 
+        foreach ($betlines['bet_strings'] as $string) {
+            // print_r($betlines['bet_strings'] );
+       
+            $firstThree = substr($string, 0, 3);
+ 
+            $charCounts = array_count_values(str_split(str_replace('w', '', $firstThree)));
+ 
+            if (!empty($charCounts)) {
+           
+                arsort($charCounts);
+                $replacementChar = key($charCounts);
+ 
+                $string = preg_replace('/w/', $replacementChar, $string, 3);
+            }
+ 
+            $firstChar = $string[0];
+ 
+       
+            if (preg_match('/^' . $firstChar . '{3,}/', $string)) {
+                if (isset($firstCharCount[$firstChar])) {
+                    $firstCharCount[$firstChar]++;
+                } else {
+                    $firstCharCount[$firstChar] = 1;
+                }
+            }
+        }
+        $this->round->numWays = $firstCharCount;
+
         $this->round->numBetLines =  count($betlines['bet_strings']) > 0 ? count($betlines['bet_strings']): $this->round->numBetLines;
         $this->game->paylinesConfig = $this->getPaylineConfig($betlines);
         // print_r($betlines);
