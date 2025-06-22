@@ -9,7 +9,7 @@
  */
   $db_config =  Array('core' => Array ('host' => 'localhost',
                                         'username' => 'root',
-                                        'password' => ''));
+                                        'password' => 'COww8cE!7AsBaxoN'));
 class Database {
     var $conn;
     /**

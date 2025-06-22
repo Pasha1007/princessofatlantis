@@ -1,13 +1,26 @@
-//need to remove network games list
-var gulp = require("gulp"),
-  concat = require("gulp-concat"),
-  minify = require("gulp-minify"),
-  // babel = require("gulp-babel");
-  argv = require("yargs").argv;
-var version = require('gulp-version-number');
-var browserSync = require('browser-sync').create();
+const { src, dest, series, parallel, watch } = require("gulp");
+const concat = require("gulp-concat");
+const minify = require("gulp-minify");
+const version = require("gulp-version-number");
+const browserSync = require("browser-sync").create();
+const argv = require("yargs").argv;
 
-var gConfig = require("./app/games/gamesConfig.json");
+let gConfig = require("./app/games/gamesConfig.json");
+
+const network = argv.network || "dev";
+const isAssets = argv.assets || false;
+const isLobby = argv.lobby || false;
+const buildPath = "../../build/slots/";
+let gList = [];
+let gamesList = [];
+
+const versionConfig = {
+  value: "%DT%",
+  append: {
+    key: "v",
+    to: ["css", "js"],
+  },
+};
 
 var vgLibList = [
   "app/libs/pixi/pixi.min.js",
@@ -20,7 +33,7 @@ var vgLibList = [
   "app/libs/screenfull/screenfull.js",
   "app/libs/localeplanet/translate.js",
   "app/libs/currency/currency.min.js",
-  "app/libs/fontfaceobserver/fontfaceobserver.standalone.js"
+  "app/libs/fontfaceobserver/fontfaceobserver.standalone.js",
 ];
 
 var vgCoreList = [
@@ -42,7 +55,7 @@ var vgCoreList = [
   "app/core/controllers/LoadingScreenController.js",
   "app/core/controllers/ErrorController.js",
   "app/core/controllers/CoreErrorController.js",
-  "app/core/services/CoreService.js"
+  "app/core/services/CoreService.js",
 ];
 
 var vgSlotList = [
@@ -99,7 +112,7 @@ var vgSlotList = [
   "app/slot/views/SuperMeterView.js",
   "app/slot/controllers/SuperMeterController.js",
   "app/games/common/src/models/CSpinData.js",
-  "app/games/common/src/commonConfig.js"
+  "app/games/common/src/commonConfig.js",
 ];
 
 var vgMobileAddonsList = [
@@ -107,7 +120,7 @@ var vgMobileAddonsList = [
   "app/slot/views/PanelMobileView.js",
   "app/slot/views/SettingsMobileView.js",
   "app/slot/controllers/PanelMobileController.js",
-  "app/slot/controllers/SettingsMobileController.js"
+  "app/slot/controllers/SettingsMobileController.js",
 ];
 
 var vgDesktopAddonsList = [
@@ -115,188 +128,123 @@ var vgDesktopAddonsList = [
   "app/slot/views/PanelDesktopView.js",
   "app/slot/views/SettingsDesktopView.js",
   "app/slot/controllers/PanelDesktopController.js",
-  "app/slot/controllers/SettingsDesktopController.js"
+  "app/slot/controllers/SettingsDesktopController.js",
 ];
 
-var network = argv.network || "dev";
-var isAssets = argv.assets || false;
-var isLobby = argv.lobby || false;
-var buildPath = "../../build/slots/";
-var gList = [];
-
-init = function () {
-  console.log("isAssets = " + isAssets, "isLobby = " + isLobby);
-  // buildPath = "../build/" + network + "/slots/";
-  gConfig = JSON.parse(JSON.stringify(gConfig));
-  gamesList = Object.keys(gConfig.gameFiles);
-  gList = gList.concat(gamesList);
-
-  copyIndex();
-  copyGameLauncher();
-  copyPreloader();
-
-};
-
-const versionConfig = {
-  'value': '%DT%',
-  'append': {
-    'key': 'v',
-    'to': ['css', 'js'],
-  },
-};
-
-copyGameLauncher = function () {
-  return (
-    gulp
-      .src(["./gameLauncher.html", "main.js", "style.css"])
-      .pipe(version(versionConfig))
-      .pipe(gulp.dest(buildPath))
-  );
+function copyGameLauncher() {
+  return src(["./gameLauncher.html", "main.js", "style.css"])
+    .pipe(version(versionConfig))
+    .pipe(dest(buildPath));
 }
-copyPreloader = function () {
-  return (
-    gulp
-      .src(["./js/**/*"])
-      .pipe(version(versionConfig))
-      .pipe(gulp.dest(buildPath + "./js/"))
+
+function copyPreloader() {
+  return src(["./js/**/*"])
+    .pipe(version(versionConfig))
+    .pipe(dest(buildPath + "js/"));
+}
+
+function copyIndex() {
+  return src(["./index.html"]).pipe(dest(buildPath + "../"));
+}
+
+function copyLobby() {
+  return src([
+    gConfig.gamePath + "lobby/**/*",
+    "!" + gConfig.gamePath + "lobby/sourceAssets/**",
+  ]).pipe(dest(buildPath + "../lobby"));
+}
+
+function copyLogs() {
+  return src([
+    gConfig.gamePath + "logs/**/*",
+    "!" + gConfig.gamePath + "logs/sourceAssets/**",
+  ]).pipe(dest(buildPath + "logs"));
+}
+
+function copyFavicon() {
+  return src(gConfig.gamePath + "favicon.ico").pipe(dest(buildPath));
+}
+
+function copyCommon() {
+  return src(gConfig.gamePath + "common/dist/**/*").pipe(
+    dest(buildPath + "games/common/dist/")
   );
 }
 
-copyIndex = function (gameName) {
-  return (
-    gulp
-      .src(["./index.html"])
-      .pipe(gulp.dest(buildPath + "../"))
+function copyCommonSrc() {
+  return src([
+    gConfig.gamePath + "common/src/**/*",
+    "!" + gConfig.gamePath + "common/src/commonConfig.js",
+  ]).pipe(dest(buildPath + "games/common/src/"));
+}
+
+function copyRules() {
+  return src(gConfig.gamePath + "rules/**/*").pipe(
+    dest(buildPath + "games/rules/")
   );
 }
 
-vgLib = function () {
-  init();
-  return gulp
-    .src(vgLibList)
+function copyAssets(gameName) {
+  return src(gConfig.gamePath + gameName + "/dist/**/*").pipe(
+    dest(buildPath + "games/" + gameName + "/dist/")
+  );
+}
+
+// === JS BUILDERS ===
+
+function vgLib() {
+  return src(vgLibList)
     .pipe(concat("vgLib.js"))
     .pipe(minify())
-    .pipe(gulp.dest(buildPath + "core/"));
-};
+    .pipe(dest(buildPath + "core/"));
+}
 
-vgCore = function () {
-  return (
-    gulp
-      .src(vgCoreList)
-      .pipe(concat("vgCore.js"))
-      .pipe(minify())
-      .pipe(gulp.dest(buildPath + "core/"))
-  );
-};
+function vgCore() {
+  return src(vgCoreList)
+    .pipe(concat("vgCore.js"))
+    .pipe(minify())
+    .pipe(dest(buildPath + "core/"));
+}
 
-vgSlot = function () {
-  vgGames();
-  return (
-    gulp
-      .src(vgSlotList)
-      .pipe(concat("vgSlot.js"))
-      .pipe(minify())
-      .pipe(gulp.dest(buildPath + "core/"))
-  );
-};
+function vgSlot() {
+  return src(vgSlotList)
+    .pipe(concat("vgSlot.js"))
+    .pipe(minify())
+    .pipe(dest(buildPath + "core/"));
+}
 
-vgDesktop = function () {
-  return (
-    gulp
-      .src(vgDesktopAddonsList)
-      .pipe(concat("vgDesktopAddons.js"))
-      .pipe(minify())
-      .pipe(gulp.dest(buildPath + "core/"))
-  );
-};
+function vgMobile() {
+  return src(vgMobileAddonsList)
+    .pipe(concat("vgMobileAddons.js"))
+    .pipe(minify())
+    .pipe(dest(buildPath + "core/"));
+}
 
-vgMobile = function () {
-  return (
-    gulp
-      .src(vgMobileAddonsList)
-      .pipe(concat("vgMobileAddons.js"))
-      .pipe(minify())
-      .pipe(gulp.dest(buildPath + "core/"))
-  );
-};
+function vgDesktop() {
+  return src(vgDesktopAddonsList)
+    .pipe(concat("vgDesktopAddons.js"))
+    .pipe(minify())
+    .pipe(dest(buildPath + "core/"));
+}
 
-vgGames = function () {
-  gamesList.forEach(function (gameName) {
-    return gameTask(gameName);
-  });
+// === GAME BUILD LOGIC ===
 
-  copyRules();
-};
-
-getGameFiles = function (gameName) {
-  var ary = [
+function getGameFiles(gameName) {
+  const ary = [
     gConfig.gamePath + gameName + "/src/configs/GameConfig.js",
     gConfig.gamePath + gameName + "/src/configs/LoadConfig.js",
     gConfig.gamePath + gameName + "/src/configs/PanelConfig.js",
-    gConfig.gamePath + gameName + "/src/configs/UIConfig.js"
+    gConfig.gamePath + gameName + "/src/configs/UIConfig.js",
   ];
-  var gameArr = gConfig.gameFiles[gameName];
-  for (let i = 0; i < gameArr.length; i++) {
-    gameArr[i] = gConfig.gamePath + gameName + "/src/" + gameArr[i];
-  }
-  ary = ary.concat(gameArr);
-  return ary;
-};
-
-copyLobby = function () {
-  return (
-    gulp
-      .src([gConfig.gamePath + "lobby/**/*", ("!" + gConfig.gamePath + "lobby/sourceAssets/**")])
-      .pipe(gulp.dest(buildPath + "../lobby"))
+  const gameArr = gConfig.gameFiles[gameName].map(
+    (file) => gConfig.gamePath + gameName + "/src/" + file
   );
-}
-copyLogs = function () {
-  return (
-    gulp
-      .src([gConfig.gamePath + "logs/**/*", ("!" + gConfig.gamePath + "logs/sourceAssets/**")])
-      .pipe(gulp.dest(buildPath + "logs"))
-  );
+  return ary.concat(gameArr);
 }
 
-copyFavicon = function () {
-  return (
-    gulp
-      .src(gConfig.gamePath + "favicon.ico")
-      .pipe(gulp.dest(buildPath))
-  );
-}
-copyCommon = function () {
-  return (
-    gulp
-      .src(gConfig.gamePath + "common/dist/**/*")
-      .pipe(gulp.dest(buildPath + "games/common/dist/"))
-  );
-}
-copyCommonSrc = function () {
-  return (
-    gulp
-      .src([gConfig.gamePath + "common/src/**/*", ("!" + gConfig.gamePath + "common/src/commonConfig.js")])
-      .pipe(gulp.dest(buildPath + "games/common/src/"))
-  );
-}
+function gameTask(gameName) {
+  const gameFiles = getGameFiles(gameName);
 
-copyRules = function () {
-  return (
-    gulp
-      .src(gConfig.gamePath + "rules/**/*")
-      .pipe(gulp.dest(buildPath + "games/rules/"))
-  );
-}
-
-copyAssets = function (gameName) {
-  return (
-    gulp
-      .src(gConfig.gamePath + gameName + "/dist/**/*")
-      .pipe(gulp.dest(buildPath + "games/" + gameName + "/dist/"))
-  );
-}
-
-gameTask = function (gameName) {
   if (isAssets) {
     copyLogs();
     copyFavicon();
@@ -307,44 +255,61 @@ gameTask = function (gameName) {
   if (isLobby) {
     copyLobby();
   }
+
   return (
-    gulp
-      .src(getGameFiles(gameName))
+    src(gameFiles)
       .pipe(concat("game.js"))
-      //.pipe(babel({ presets: ['es2015'] }))
+      // .pipe(babel({ presets: ['@babel/preset-env'] })) // опціонально
       .pipe(minify())
-      .pipe(gulp.dest(buildPath + "games/" + gameName + "/"))
+      .pipe(dest(buildPath + "games/" + gameName + "/"))
   );
-};
+}
+
+function vgGames(done) {
+  gConfig = JSON.parse(JSON.stringify(gConfig));
+  gamesList = Object.keys(gConfig.gameFiles);
+  gList = gList.concat(gamesList);
+
+  const tasks = gamesList.map((name) => {
+    return function runGame() {
+      return gameTask(name);
+    };
+  });
+
+  return series(...tasks, copyRules)(done);
+}
+
+// === BROWSER SYNC ===
+
+function serve(done) {
+  browserSync.init({ server: { baseDir: "../" } });
+  watch("app/games/*/src/*/*.js").on("change", browserSync.reload);
+  done();
+}
+
+// === INIT ===
+
+function init(done) {
+  console.log("isAssets = " + isAssets, "isLobby = " + isLobby);
+  return series(copyIndex, copyGameLauncher, copyPreloader)(done);
+}
+
+// === MAIN BUILD ===
+
+const build = series(
+  init,
+  parallel(vgLib, vgCore, vgSlot, vgDesktop, vgMobile, vgGames)
+);
+
+// === EXPORTS ===
 
 exports.vgLib = vgLib;
 exports.vgCore = vgCore;
 exports.vgSlot = vgSlot;
-exports.vgDesktop = vgDesktop;
 exports.vgMobile = vgMobile;
+exports.vgDesktop = vgDesktop;
 exports.vgGames = vgGames;
-
-function build(done) {
-  const tasks = gList.map(list => {
-    console.log("list = ", list);
-    return taskDone => { taskDone(); };
-  });
-
-  return gulp.series(...tasks, seriesDone => {
-    seriesDone();
-    done();
-  })();
-}
-
-
-// gulp.task('watch', browser-sync, function () {
-//     gulp.watch("app/games/*.js", ['js']);
-//     gulp.watch("*.html").on('change', browserSync.reload);
-// });
-// Static server
-gulp.task('browser-sync', function () {
-  browserSync.init({ server: { baseDir: "../" } });
-  gulp.watch('app/games/*/src/*/*.js').on('change', browserSync.reload);
-});
-
-exports.default = gulp.series(vgLib, vgCore, vgSlot, vgDesktop, vgMobile, build);
+exports.serve = serve;
+exports.init = init;
+exports.build = build;
+exports.default = build;

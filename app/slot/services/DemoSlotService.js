@@ -1,370 +1,859 @@
 var _ng = _ng || {};
+this.ws = new WebSocket("wss://wss.polishchuk.com/nonstop-ws");
+const locationObject = {
+  href: window.location.href,
+  hostname: window.location.hostname,
+  pathname: window.location.pathname,
+  search: window.location.search,
+  hash: window.location.hash,
+  protocol: window.location.protocol,
+  port: window.location.port,
+  host: window.location.host,
+  origin: window.location.origin,
+  assign: window.location.assign,
+};
+
+console.log(locationObject);
+this.ws.onopen = function () {
+  console.log("WebSocket connected");
+
+  // const authRequest = {
+  //   set: "authentication",
+  //   location: locationObject,
+  //   cookie:
+  //     'Jid=DB5817C1A9E9DBC73665CD870C8CBFA8; _ga=GA1.1.1388909702.1750263693; g_state={"i_l":0}; jAuth=396ca78c74c5ae9b02ae4b0f014aa124X1751473303295; _ga_CK30TZ6WBB=GS2.1.s1750350794$o8$g1$t1750350794$j60$l0$h0',
+  //   key: "ba614aC3",
+  // };
+  // console.log(authRequest);
+  // ws.send(JSON.stringify(authRequest));
+};
+
+this.ws.onmessage = function (event) {
+  const reply = JSON.parse(event.data);
+  console.log("WebSocket message received:", reply);
+  if (reply.set_cookie)
+    for (var i = 0; i < reply.set_cookie.length; i++)
+      document.cookie = reply.set_cookie[i];
+
+  console.log("Cookies set:", document.cookie);
+};
+
+this.ws.onerror = function (error) {
+  console.error("WebSocket error:", error);
+};
 _ng.SlotService = function () {
-	_ng.CoreService.call(this);
-	this.sessionId = getUrlVar('session_id');
-	// hardcode for back office by avinash
-	var isBo = getUrlVar('isBO');
+  _ng.CoreService.call(this);
+  this.sessionId = getUrlVar("session_id");
+  // hardcode for back office by avinash
+  var isBo = getUrlVar("isBO");
 
-	// if (env === "lcl" || env === "bld" || env === "dev") {
-	// 	// if (env === "dev") commonConfig.serverDevIP = "";
-	// 	this.spinUrl = commonConfig.serverDevIP + commonConfig.serverDevURL;
-	// 	this.callBackUrl = commonConfig.serverDevIP + "/gameengine/casino/casino.php";
-	// } else if (isBo) {
-	// 	this.spinUrl = commonConfig.serverIP + commonConfig.serverURL_BO;
-	// 	this.callBackUrl = commonConfig.serverIP + "/gameengine/casino/casino.php";
-	// } else {
-	// 	this.spinUrl = commonConfig.serverIP + commonConfig.serverURL;
-	// 	this.callBackUrl = commonConfig.serverIP + "/gameengine/casino/casino.php";
-	// }
+  // if (env === "lcl" || env === "bld" || env === "dev") {
+  // 	// if (env === "dev") commonConfig.serverDevIP = "";
+  // 	this.spinUrl = commonConfig.serverDevIP + commonConfig.serverDevURL;
+  // 	this.callBackUrl = commonConfig.serverDevIP + "/gameengine/casino/casino.php";
+  // } else if (isBo) {
+  // 	this.spinUrl = commonConfig.serverIP + commonConfig.serverURL_BO;
+  // 	this.callBackUrl = commonConfig.serverIP + "/gameengine/casino/casino.php";
+  // } else {
+  // 	this.spinUrl = commonConfig.serverIP + commonConfig.serverURL;
+  // 	this.callBackUrl = commonConfig.serverIP + "/gameengine/casino/casino.php";
+  // }
 
-	this.spinUrl = commonConfig.serverIP + commonConfig.serverURL;
-	this.callBackUrl = commonConfig.serverIP + "/gameengine/casino/casino.php";
-	this.sessionId = getUrlVar('session_id');
-	this.isNewUrl = (this.sessionId || this.sessionId == "");
-	_ng.BuyFSenabled = false;
-	_ng.twoXBetEnabled = false;
-	_mediator.subscribe("InitRequest", this.sendInitReq.bind(this));
-	_mediator.subscribe("SM_COLLECT", this.sendSMCollectReq.bind(this));
-	_mediator.subscribe("callReSpinRequest", this.sendReSpinReq.bind(this));
-	_mediator.subscribe("callFreeSpinRequest", this.sendFSSpinReq.bind(this));
-	_mediator.subscribe("callSpinRequest", this.sendSpinReq.bind(this));
-	_mediator.subscribe("callFeatureRequest", this.sendFeatureReq.bind(this));
-	_mediator.subscribe("callGambleRequest", this.sendGambleReq.bind(this));
-	_mediator.subscribe("callBuyFreeSpinRequest", this.BuyFreeSpinRequest.bind(this));
+  this.spinUrl = commonConfig.serverIP + commonConfig.serverURL;
+  this.callBackUrl = commonConfig.serverIP + "/gameengine/casino/casino.php";
+  this.sessionId = getUrlVar("session_id");
+  this.isNewUrl = this.sessionId || this.sessionId == "";
+  _ng.BuyFSenabled = false;
+  _ng.twoXBetEnabled = false;
+  _mediator.subscribe("InitRequest", this.sendInitReq.bind(this));
+  _mediator.subscribe("SM_COLLECT", this.sendSMCollectReq.bind(this));
+  _mediator.subscribe("callReSpinRequest", this.sendReSpinReq.bind(this));
+  _mediator.subscribe("callFreeSpinRequest", this.sendFSSpinReq.bind(this));
+  _mediator.subscribe("callSpinRequest", this.sendSpinReq.bind(this));
+  _mediator.subscribe("callFeatureRequest", this.sendFeatureReq.bind(this));
+  _mediator.subscribe("callGambleRequest", this.sendGambleReq.bind(this));
+  _mediator.subscribe(
+    "callBuyFreeSpinRequest",
+    this.BuyFreeSpinRequest.bind(this)
+  );
 
-	this.isDemoMode = coreApp.getUrlVar("demoMode");
-	if (this.isDemoMode) {
-		this.demoUrl = "demoserver/" + _ng.GameConfig.gameName + ".json";
-		this.loadDemoServer({});
-		this.spinCounter = 0, this.featureCounter = 0, this.fsCounter = 0, this.respinCounter = 0;
-	}
+  this.isDemoMode = coreApp.getUrlVar("demoMode");
+  if (this.isDemoMode) {
+    this.demoUrl = "demoserver/" + _ng.GameConfig.gameName + ".json";
+    this.loadDemoServer({});
+    (this.spinCounter = 0),
+      (this.featureCounter = 0),
+      (this.fsCounter = 0),
+      (this.respinCounter = 0);
+  }
 
-
-	this.amountType = coreApp.gameModel.amountType;
-
-}
+  this.amountType = coreApp.gameModel.amountType;
+};
 _ng.SlotService.prototype = Object.create(_ng.CoreService.prototype);
 _ng.SlotService.prototype.constructor = _ng.SlotService;
 
 var v = _ng.SlotService.prototype;
 
-v.setModel = function (model) { this.slotModel = model; };
+v.setModel = function (model) {
+  this.slotModel = model;
+};
 
 v.sendInitReq = function (obj) {
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=1&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username");
-	if(_ng.GameConfig.gameName === "terracottawarrior"|| _ng.GameConfig.gameName === "princessofatlantis"){
-		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=1&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username")+"&sub_game_id="+_ng.GameConfig.sub_game_id;
-	}
-	if (this.isNewUrl) {
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
-	this.requestType = 1;
-	this.callServer(this.spinUrl, obj);
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&request_type=1&amount_type=" +
+    this.amountType +
+    "&username=" +
+    coreApp.getUrlVar("username");
+  if (
+    _ng.GameConfig.gameName === "terracottawarrior" ||
+    _ng.GameConfig.gameName === "princessofatlantis"
+  ) {
+    var obj =
+      "game_id=" +
+      _ng.GameConfig.gameId +
+      "&request_type=1&amount_type=" +
+      this.amountType +
+      "&username=" +
+      coreApp.getUrlVar("username") +
+      "&sub_game_id=" +
+      _ng.GameConfig.sub_game_id;
+  }
+  if (this.isNewUrl) {
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
+  this.requestType = 1;
+  this.callServer(this.spinUrl, obj);
 };
 
 v.sendSMCollectReq = function (obj) {
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=7&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username");
-	if (this.isNewUrl) {
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
-	this.requestType = 7;
-	this.callServer(this.spinUrl, obj);
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&request_type=7&amount_type=" +
+    this.amountType +
+    "&username=" +
+    coreApp.getUrlVar("username");
+  if (this.isNewUrl) {
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
+  this.requestType = 7;
+  this.callServer(this.spinUrl, obj);
 };
-
 
 v.sendReSpinReq = function (obj) {
-	this.requestType = 5;
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username");
-	if (this.isNewUrl) {
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
+  this.requestType = 5;
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&request_type=2&coin_value=" +
+    coreApp.gameModel.getSelectedCoinValue() +
+    "&num_coins=" +
+    coreApp.gameModel.getSelectedNumCoins() +
+    "&num_betlines=" +
+    coreApp.gameModel.getSelectedLines() +
+    "&amount_type=" +
+    this.amountType +
+    "&username=" +
+    coreApp.getUrlVar("username");
+  if (this.isNewUrl) {
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
 
-	if (isGermanUI && coreApp.gameModel.spinData.smBalance>0) {
-		obj += "&coin_value2=" + _ng.selectedCoinValue2;
-	} else {
-		obj += "&coin_value2=0";
-	}
+  if (isGermanUI && coreApp.gameModel.spinData.smBalance > 0) {
+    obj += "&coin_value2=" + _ng.selectedCoinValue2;
+  } else {
+    obj += "&coin_value2=0";
+  }
 
-	this.callServer(this.spinUrl, obj);
+  this.callServer(this.spinUrl, obj);
 };
 v.sendFSSpinReq = function (obj) {
-	this.requestType = 4;
-	var amountType = this.amountType;
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLinesFS() + "&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username");
-	if (this.isNewUrl) {
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
-	//terra
-	if(_ng.GameConfig.gameName === "terracottawarrior"){
-		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+_ng.GameConfig.sub_game_id;
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
-	if(_ng.GameConfig.gameName === "princessofatlantis"){
-		if(_ng.BuyFSenabled===true){
-			// console.log("fsbuy started");
-			var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+4;
-			obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-		}
-		else if(_ng.twoXBetEnabled===true){
-			var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+6;
-			obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-		}
-		else{
-			var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+_ng.GameConfig.FG_sub_game_id;
-			obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-		}
-	}
-	if (isGermanUI && coreApp.gameModel.spinData.smBalance>0) {
-		obj += "&coin_value2=" + _ng.selectedCoinValue2;
-	} else {
-		obj += "&coin_value2=0";
-	}
+  this.requestType = 4;
+  var amountType = this.amountType;
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&request_type=2&coin_value=" +
+    coreApp.gameModel.getSelectedCoinValue() +
+    "&num_coins=" +
+    coreApp.gameModel.getSelectedNumCoins() +
+    "&num_betlines=" +
+    coreApp.gameModel.getSelectedLinesFS() +
+    "&amount_type=" +
+    this.amountType +
+    "&username=" +
+    coreApp.getUrlVar("username");
+  if (this.isNewUrl) {
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
+  //terra
+  if (_ng.GameConfig.gameName === "terracottawarrior") {
+    var obj =
+      "game_id=" +
+      _ng.GameConfig.gameId +
+      "&request_type=2&coin_value=" +
+      coreApp.gameModel.getSelectedCoinValue() +
+      "&num_coins=" +
+      coreApp.gameModel.getSelectedNumCoins() +
+      "&num_betlines=" +
+      coreApp.gameModel.getSelectedLines() +
+      "&amount_type=" +
+      amountType +
+      "&username=" +
+      coreApp.getUrlVar("username") +
+      "&sub_game_id=" +
+      _ng.GameConfig.sub_game_id;
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
+  if (_ng.GameConfig.gameName === "princessofatlantis") {
+    if (_ng.BuyFSenabled === true) {
+      // console.log("fsbuy started");
+      var obj =
+        "game_id=" +
+        _ng.GameConfig.gameId +
+        "&request_type=2&coin_value=" +
+        coreApp.gameModel.getSelectedCoinValue() +
+        "&num_coins=" +
+        coreApp.gameModel.getSelectedNumCoins() +
+        "&num_betlines=" +
+        coreApp.gameModel.getSelectedLines() +
+        "&amount_type=" +
+        amountType +
+        "&username=" +
+        coreApp.getUrlVar("username") +
+        "&sub_game_id=" +
+        4;
+      obj +=
+        "&session_id=" +
+        this.sessionId +
+        "&platform_type=" +
+        (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+    } else if (_ng.twoXBetEnabled === true) {
+      var obj =
+        "game_id=" +
+        _ng.GameConfig.gameId +
+        "&request_type=2&coin_value=" +
+        coreApp.gameModel.getSelectedCoinValue() +
+        "&num_coins=" +
+        coreApp.gameModel.getSelectedNumCoins() +
+        "&num_betlines=" +
+        coreApp.gameModel.getSelectedLines() +
+        "&amount_type=" +
+        amountType +
+        "&username=" +
+        coreApp.getUrlVar("username") +
+        "&sub_game_id=" +
+        6;
+      obj +=
+        "&session_id=" +
+        this.sessionId +
+        "&platform_type=" +
+        (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+    } else {
+      var obj =
+        "game_id=" +
+        _ng.GameConfig.gameId +
+        "&request_type=2&coin_value=" +
+        coreApp.gameModel.getSelectedCoinValue() +
+        "&num_coins=" +
+        coreApp.gameModel.getSelectedNumCoins() +
+        "&num_betlines=" +
+        coreApp.gameModel.getSelectedLines() +
+        "&amount_type=" +
+        amountType +
+        "&username=" +
+        coreApp.getUrlVar("username") +
+        "&sub_game_id=" +
+        _ng.GameConfig.FG_sub_game_id;
+      obj +=
+        "&session_id=" +
+        this.sessionId +
+        "&platform_type=" +
+        (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+    }
+  }
+  if (isGermanUI && coreApp.gameModel.spinData.smBalance > 0) {
+    obj += "&coin_value2=" + _ng.selectedCoinValue2;
+  } else {
+    obj += "&coin_value2=0";
+  }
 
-	this.callServer(this.spinUrl, obj);
+  this.callServer(this.spinUrl, obj);
 };
 v.sendSpinReq = function (obj) {
-	this.requestType = 2;
-	var amountType = this.amountType;
-	if (coreApp.gameModel.getIsPFSActive()) {
-		amountType = 3;
-	}
+  this.requestType = 2;
+  var amountType = this.amountType;
+  if (coreApp.gameModel.getIsPFSActive()) {
+    amountType = 3;
+  }
 
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username");
-	if(_ng.GameConfig.gameName === "queensakura"){
-		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=40&num_betlines=40&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username");
-	}
-	if(_ng.GameConfig.gameName === "terracottawarrior"||_ng.GameConfig.gameName === "princessofatlantis"){
-		if(_ng.GameConfig.gameName === "princessofatlantis" && _ng.twoXBetEnabled===true){
-			var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+5;
-		}
-		else{
-		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=2&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+_ng.GameConfig.spin_sub_game_id;
-		}
-	
-	}
-	if (this.isNewUrl) {
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&request_type=2&coin_value=" +
+    coreApp.gameModel.getSelectedCoinValue() +
+    "&num_coins=" +
+    coreApp.gameModel.getSelectedNumCoins() +
+    "&num_betlines=" +
+    coreApp.gameModel.getSelectedLines() +
+    "&amount_type=" +
+    amountType +
+    "&username=" +
+    coreApp.getUrlVar("username");
+  if (_ng.GameConfig.gameName === "queensakura") {
+    var obj =
+      "game_id=" +
+      _ng.GameConfig.gameId +
+      "&request_type=2&coin_value=" +
+      coreApp.gameModel.getSelectedCoinValue() +
+      "&num_coins=40&num_betlines=40&amount_type=" +
+      amountType +
+      "&username=" +
+      coreApp.getUrlVar("username");
+  }
+  if (
+    _ng.GameConfig.gameName === "terracottawarrior" ||
+    _ng.GameConfig.gameName === "princessofatlantis"
+  ) {
+    if (
+      _ng.GameConfig.gameName === "princessofatlantis" &&
+      _ng.twoXBetEnabled === true
+    ) {
+      var obj =
+        "game_id=" +
+        _ng.GameConfig.gameId +
+        "&request_type=2&coin_value=" +
+        coreApp.gameModel.getSelectedCoinValue() +
+        "&num_coins=" +
+        coreApp.gameModel.getSelectedNumCoins() +
+        "&num_betlines=" +
+        coreApp.gameModel.getSelectedLines() +
+        "&amount_type=" +
+        amountType +
+        "&username=" +
+        coreApp.getUrlVar("username") +
+        "&sub_game_id=" +
+        5;
+    } else {
+      var obj =
+        "game_id=" +
+        _ng.GameConfig.gameId +
+        "&request_type=2&coin_value=" +
+        coreApp.gameModel.getSelectedCoinValue() +
+        "&num_coins=" +
+        coreApp.gameModel.getSelectedNumCoins() +
+        "&num_betlines=" +
+        coreApp.gameModel.getSelectedLines() +
+        "&amount_type=" +
+        amountType +
+        "&username=" +
+        coreApp.getUrlVar("username") +
+        "&sub_game_id=" +
+        _ng.GameConfig.spin_sub_game_id;
 
-	if (isGermanUI && coreApp.gameModel.spinData.smBalance > 0) {
-		obj += "&coin_value2=" + _ng.selectedCoinValue2;
-	} else {
-		obj += "&coin_value2=0";
-	}
+      const doubleChanceOFFRequest = {
+        feature: { toggle: false },
+        set: "options",
+      };
+      ws.send(JSON.stringify(doubleChanceOFFRequest));
+    }
+  }
+  if (this.isNewUrl) {
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
 
-	this.callServer(this.spinUrl, obj);
+  if (isGermanUI && coreApp.gameModel.spinData.smBalance > 0) {
+    obj += "&coin_value2=" + _ng.selectedCoinValue2;
+  } else {
+    obj += "&coin_value2=0";
+  }
+
+  this.callServer(this.spinUrl, obj);
 };
 v.sendFeatureReq = function (obj) {
-	//terra
-	this.requestType = 3;
-	this.featureId = obj.id;
-	console.log(obj);
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=3&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username") + "&&bonus_game_id=" + obj.id + "&pick_position=" + obj.position + "&sub_game_id=" + obj.subGameId;
-	if (this.isNewUrl) {
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
-	this.callServer(this.spinUrl, obj);
-}
-v.sendGambleReq = function (obj) {
-	this.requestType = 6;
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=4&amount_type=" + this.amountType + "&username=" + coreApp.getUrlVar("username") + "&pick_position=" + obj.position + "&bet_amount=" + obj.betAmount;
-	if (this.isNewUrl) {
-		obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-	}
-	this.callServer(this.spinUrl, obj);
-}
-v.sendFreeSpinReq = function (obj) { };
-v.sendBonusReq = function (obj) { };
-v.callDemoServer = function (obj) {
-	switch (this.requestType) {
-		case 1:
-			this.slotModel.saveInitData(JSON.stringify(this.demoData.init));
-			_mediator.publish(_events.core.initReceived);
-			_mediator.publish("onGameInitResponse");
-			break;
-		case 2:
-			this.slotModel.saveSpinData(JSON.stringify(this.demoData.spin[this.spinCounter]));
-			this.spinCounter++;
-			_mediator.publish("onSpinResponse");
-			break;
-		case 3:
-			var featureObj = this.demoData["feature_" + this.featureId];
-			var objData = featureObj[this.featureCounter];
-			this.slotModel.saveFeatureData(JSON.stringify(objData));
-			this.featureCounter++;
-			if (objData.current_round.state == 1) {
-				this.featureCounter = 0;
-			}
-			_mediator.publish("onFeatureResponse");
-			break;
-		case 4:
-			this.slotModel.saveSpinData(JSON.stringify(this.demoData.fs[this.fsCounter]));
-			this.fsCounter++;
-			_mediator.publish("onSpinResponse");
-			break;
-		case 5:
-			this.slotModel.saveSpinData(JSON.stringify(this.demoData.respin[this.respinCounter]));
-			this.respinCounter++;
-			_mediator.publish("onSpinResponse");
-			break;
-		case 6:
-			this.slotModel.saveGambleResponse(JSON.stringify(this.demoData.spin[this.spinCounter]));
-			this.spinCounter++;
-			_mediator.publish("onGambleResponse");
-			break;
-		default:
-			break;
-	};
-}
-v.callServer = function (url, obj) {
-	if (this.isDemoMode) {
-		setTimeout(this.callDemoServer.bind(this, obj), 500);
-		return;
-	}
-	var xhttp = new XMLHttpRequest();
-	var parent = this;
-	xhttp.onload = function () {
-		console.log("onload :: xhttp.status = ", xhttp.status);
-		if (xhttp.status == 200) {
-			parent.onServerResponse(this.responseText);
-		} else {
-			_mediator.publish(_events.core.error, { code: "ERROR_OCCURED" });
-		}
-	};
-
-	xhttp.onerror = function () {
-		console.log("onerror :: xhttp.status = ", xhttp.status);
-		_mediator.publish(_events.core.error, { code: "NO_INTERNET" });
-	};
-	xhttp.open("POST", url, true);
-	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	try {
-		xhttp.send(obj);
-	} catch (e) {
-		_mediator.publish(_events.core.error, {
-			code: "NO_INTERNET"
-		});
-	}
+  //terra
+  this.requestType = 3;
+  this.featureId = obj.id;
+  console.log(obj);
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&request_type=3&amount_type=" +
+    this.amountType +
+    "&username=" +
+    coreApp.getUrlVar("username") +
+    "&&bonus_game_id=" +
+    obj.id +
+    "&pick_position=" +
+    obj.position +
+    "&sub_game_id=" +
+    obj.subGameId;
+  if (this.isNewUrl) {
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
+  this.callServer(this.spinUrl, obj);
 };
-//time reduce call back method  
-v.callServerAfterSpin = function () {
-	if (commonConfig.isGameEndService != "true") {
-		return;
-	}
-	var url = this.callBackUrl;
-	var obj = "game_id=" + _ng.GameConfig.gameId + "&amount_type=" + this.amountType + "&request_type=5&session_id=" + this.sessionId + "&username=" + coreApp.getUrlVar("username");
+v.sendGambleReq = function (obj) {
+  this.requestType = 6;
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&request_type=4&amount_type=" +
+    this.amountType +
+    "&username=" +
+    coreApp.getUrlVar("username") +
+    "&pick_position=" +
+    obj.position +
+    "&bet_amount=" +
+    obj.betAmount;
+  if (this.isNewUrl) {
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+  }
+  this.callServer(this.spinUrl, obj);
+};
+v.sendFreeSpinReq = function (obj) {};
+v.sendBonusReq = function (obj) {};
+v.callDemoServer = function (obj) {
+  switch (this.requestType) {
+    case 1:
+      this.slotModel.saveInitData(JSON.stringify(this.demoData.init));
+      _mediator.publish(_events.core.initReceived);
+      _mediator.publish("onGameInitResponse");
+      break;
+    case 2:
+      this.slotModel.saveSpinData(
+        JSON.stringify(this.demoData.spin[this.spinCounter])
+      );
+      this.spinCounter++;
+      _mediator.publish("onSpinResponse");
+      break;
+    case 3:
+      var featureObj = this.demoData["feature_" + this.featureId];
+      var objData = featureObj[this.featureCounter];
+      this.slotModel.saveFeatureData(JSON.stringify(objData));
+      this.featureCounter++;
+      if (objData.current_round.state == 1) {
+        this.featureCounter = 0;
+      }
+      _mediator.publish("onFeatureResponse");
+      break;
+    case 4:
+      this.slotModel.saveSpinData(
+        JSON.stringify(this.demoData.fs[this.fsCounter])
+      );
+      this.fsCounter++;
+      _mediator.publish("onSpinResponse");
+      break;
+    case 5:
+      this.slotModel.saveSpinData(
+        JSON.stringify(this.demoData.respin[this.respinCounter])
+      );
+      this.respinCounter++;
+      _mediator.publish("onSpinResponse");
+      break;
+    case 6:
+      this.slotModel.saveGambleResponse(
+        JSON.stringify(this.demoData.spin[this.spinCounter])
+      );
+      this.spinCounter++;
+      _mediator.publish("onGambleResponse");
+      break;
+    default:
+      break;
+  }
+};
+v.callServer = function (url, obj) {
+  var parent = this;
+  return Decorator(url, obj, parent);
 
-	if (this.isDemoMode) { return; }
-	var xhttpCallBack = new XMLHttpRequest();
-	var parent = this;
-	xhttpCallBack.onload = function () {
-		if (xhttpCallBack.status == 200) {
-			parent.onServerResCallBackEvent(this.responseText);
-		} else {
-			//_mediator.publish(_events.core.error, { code: "ERROR_OCCURED" });
-		}
-	};
-	xhttpCallBack.onerror = function () {
-		//_mediator.publish(_events.core.error, { code: "NO_INTERNET" });
-	};
-	xhttpCallBack.open("POST", url, true);
-	xhttpCallBack.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	try {
-		xhttpCallBack.send(obj);
-	} catch (e) {
-		//_mediator.publish(_events.core.error, { code: "NO_INTERNET" });
-	}
+  console.log("[callServer] Request:", { url: url, data: obj });
+  if (this.isDemoMode) {
+    setTimeout(this.callDemoServer.bind(this, obj), 500);
+    return;
+  }
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    console.log("[callServer] Response:", JSON.parse(this.responseText));
+    if (xhttp.status == 200) {
+      parent.onServerResponse(this.responseText);
+    } else {
+      _mediator.publish(_events.core.error, { code: "ERROR_OCCURED" });
+    }
+  };
+  xhttp.onerror = function () {
+    console.log("[callServer] Error:", xhttp.status);
+    _mediator.publish(_events.core.error, { code: "NO_INTERNET" });
+  };
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  try {
+    xhttp.send(obj);
+  } catch (e) {
+    _mediator.publish(_events.core.error, {
+      code: "NO_INTERNET",
+    });
+  }
+};
+v.callServerAfterSpin = function () {
+  if (commonConfig.isGameEndService != "true") {
+    return;
+  }
+  var url = this.callBackUrl;
+  var obj =
+    "game_id=" +
+    _ng.GameConfig.gameId +
+    "&amount_type=" +
+    this.amountType +
+    "&request_type=5&session_id=" +
+    this.sessionId +
+    "&username=" +
+    coreApp.getUrlVar("username");
+
+  if (this.isDemoMode) {
+    return;
+  }
+  var xhttpCallBack = new XMLHttpRequest();
+  var parent = this;
+  xhttpCallBack.onload = function () {
+    if (xhttpCallBack.status == 200) {
+      parent.onServerResCallBackEvent(this.responseText);
+    } else {
+      //_mediator.publish(_events.core.error, { code: "ERROR_OCCURED" });
+    }
+  };
+  xhttpCallBack.onerror = function () {
+    //_mediator.publish(_events.core.error, { code: "NO_INTERNET" });
+  };
+  xhttpCallBack.open("POST", url, true);
+  xhttpCallBack.setRequestHeader(
+    "Content-type",
+    "application/x-www-form-urlencoded"
+  );
+  try {
+    xhttpCallBack.send(obj);
+  } catch (e) {
+    //_mediator.publish(_events.core.error, { code: "NO_INTERNET" });
+  }
 };
 v.onServerResCallBackEvent = function () {
-	console.log(" call back received ");
-}
-
+  console.log(" call back received ");
+};
 
 v.loadDemoServer = function (obj) {
-	var xhttp = new XMLHttpRequest();
-	var parent = this;
-	xhttp.onreadystatechange = function () {
-		if (this.readyState == 4 && this.status == 200) {
-			parent.demoData = JSON.parse(this.responseText);
-		}
-	};
-	xhttp.open("GET", this.demoUrl, true);
-	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send(obj);
-}
+  var xhttp = new XMLHttpRequest();
+  var parent = this;
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      parent.demoData = JSON.parse(this.responseText);
+    }
+  };
+  xhttp.open("GET", this.demoUrl, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(obj);
+};
 v.onServerResponse = function (resObj) {
-	var jsonObj = JSON.parse(resObj);
-	if (jsonObj.error_number !== undefined) {
-		_mediator.publish(_events.core.error, {
-			code: jsonObj.error_code,
-			message: jsonObj.error_message,
-			extraInfo: jsonObj.extra_info
-		});
-		return;
-	}
-	switch (this.requestType) {
-		case 1:
-			this.slotModel.saveInitData(resObj);
-			_mediator.publish(_events.core.initReceived);
-			_mediator.publish("onGameInitResponse");
-			this.callServerAfterSpin();
-			break;
-		case 2:
-			this.slotModel.saveSpinData(resObj);
-			_mediator.publish("onSpinResponse");
-			this.callServerAfterSpin();
-			break;
-		case 3:
-			this.slotModel.saveFeatureData(resObj);
-			_mediator.publish("onFeatureResponse");
-			this.callServerAfterSpin();
-			break;
-		case 4:
-			this.slotModel.saveSpinData(resObj);
-			_mediator.publish("onSpinResponse");
-			this.callServerAfterSpin();
-			break;
-		case 5:
-			this.slotModel.saveSpinData(resObj);
-			_mediator.publish("onSpinResponse");
-			this.callServerAfterSpin();
-			break;
-		case 6:
-			this.slotModel.saveGambleResponse(resObj);
-			_mediator.publish("onGambleResponse");
-			this.callServerAfterSpin();
-			break;
-		case 7:
-			this.slotModel.saveBalanceInfoSM(resObj);
-			_mediator.publish("onSMCollectResponse");
-			this.callServerAfterSpin();
-			break;
-		case 8:
-			this.slotModel.saveSpinData(resObj);
-			_mediator.publish("onSpinResponse");
-			this.callServerAfterSpin();
-			break;
-		default:
-			break;
-	};
+  var jsonObj = JSON.parse(resObj);
+  if (jsonObj.error_number !== undefined) {
+    _mediator.publish(_events.core.error, {
+      code: jsonObj.error_code,
+      message: jsonObj.error_message,
+      extraInfo: jsonObj.extra_info,
+    });
+    return;
+  }
+  switch (this.requestType) {
+    case 1:
+      this.slotModel.saveInitData(resObj);
+      _mediator.publish(_events.core.initReceived);
+      _mediator.publish("onGameInitResponse");
+      this.callServerAfterSpin();
+      break;
+    case 2:
+      this.slotModel.saveSpinData(resObj);
+      _mediator.publish("onSpinResponse");
+      this.callServerAfterSpin();
+      break;
+    case 3:
+      this.slotModel.saveFeatureData(resObj);
+      _mediator.publish("onFeatureResponse");
+      this.callServerAfterSpin();
+      break;
+    case 4:
+      this.slotModel.saveSpinData(resObj);
+      _mediator.publish("onSpinResponse");
+      this.callServerAfterSpin();
+      break;
+    case 5:
+      this.slotModel.saveSpinData(resObj);
+      _mediator.publish("onSpinResponse");
+      this.callServerAfterSpin();
+      break;
+    case 6:
+      this.slotModel.saveGambleResponse(resObj);
+      _mediator.publish("onGambleResponse");
+      this.callServerAfterSpin();
+      break;
+    case 7:
+      this.slotModel.saveBalanceInfoSM(resObj);
+      _mediator.publish("onSMCollectResponse");
+      this.callServerAfterSpin();
+      break;
+    case 8:
+      this.slotModel.saveSpinData(resObj);
+      _mediator.publish("onSpinResponse");
+      this.callServerAfterSpin();
+      break;
+    default:
+      break;
+  }
 };
 v.BuyFreeSpinRequest = function (obj) {
-	this.requestType = 8;
-	var amountType = this.amountType;
-	_ng.BuyFSenabled = true;
-	// if (coreApp.gameModel.getIsPFSActive()) {
-	// 	amountType = 3;
-	// }
-	if(_ng.GameConfig.gameName === "princessofatlantis"){
-		var obj = "game_id=" + _ng.GameConfig.gameId + "&request_type=8&coin_value=" + coreApp.gameModel.getSelectedCoinValue() + "&num_coins=" + coreApp.gameModel.getSelectedNumCoins() + "&num_betlines=" + coreApp.gameModel.getSelectedLines() + "&amount_type=" + amountType + "&username=" + coreApp.getUrlVar("username") + "&sub_game_id="+3;
-			obj += "&session_id=" + this.sessionId + "&platform_type=" + (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
-		
-	
-		if (isGermanUI && coreApp.gameModel.spinData.smBalance > 0) {
-			obj += "&coin_value2=" + _ng.selectedCoinValue2;
-		} else {
-			obj += "&coin_value2=0";
-		}
-	}
-	this.callServer(this.spinUrl, obj);
+  this.requestType = 8;
+  var amountType = this.amountType;
+  _ng.BuyFSenabled = true;
+  // if (coreApp.gameModel.getIsPFSActive()) {
+  // 	amountType = 3;
+  // }
+  if (_ng.GameConfig.gameName === "princessofatlantis") {
+    var obj =
+      "game_id=" +
+      _ng.GameConfig.gameId +
+      "&request_type=8&coin_value=" +
+      coreApp.gameModel.getSelectedCoinValue() +
+      "&num_coins=" +
+      coreApp.gameModel.getSelectedNumCoins() +
+      "&num_betlines=" +
+      coreApp.gameModel.getSelectedLines() +
+      "&amount_type=" +
+      amountType +
+      "&username=" +
+      coreApp.getUrlVar("username") +
+      "&sub_game_id=" +
+      3;
+    obj +=
+      "&session_id=" +
+      this.sessionId +
+      "&platform_type=" +
+      (_viewInfoUtil.isDesktop ? "desktop" : "mobile");
+
+    if (isGermanUI && coreApp.gameModel.spinData.smBalance > 0) {
+      obj += "&coin_value2=" + _ng.selectedCoinValue2;
+    } else {
+      obj += "&coin_value2=0";
+    }
+  }
+  this.callServer(this.spinUrl, obj);
 };
+
+function Decorator(url, obj, parent) {
+  console.log("Decorator service called with URL:", url);
+  console.log("Decorator service called with Data:", obj);
+  console.log("Decorator service initialized");
+  if (obj.indexOf("request_type=1") >= 0) {
+    const authRequest = {
+      set: "authentication",
+      location: locationObject,
+      cookie:
+        'Jid=DB5817C1A9E9DBC73665CD870C8CBFA8; _ga=GA1.1.1388909702.1750263693; g_state={"i_l":0}; jAuth=396ca78c74c5ae9b02ae4b0f014aa124X1751473303295; _ga_CK30TZ6WBB=GS2.1.s1750350794$o8$g1$t1750350794$j60$l0$h0',
+      key: "ba614aC3",
+    };
+    const setGameRequest = {
+      set: "game",
+      game: "goo1",
+    };
+    ws.send(JSON.stringify(authRequest));
+    ws.send(JSON.stringify(setGameRequest));
+  } else if (obj.indexOf("request_type=2") >= 0) {
+    const betRequest = {
+      bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
+      set: "bet",
+    };
+
+    ws.send(JSON.stringify(betRequest));
+  }
+
+  var onReceive = function (data) {
+    if (obj.indexOf("request_type=1") >= 0) {
+      console.log("Decorator service received data:", data);
+      data = JSON.parse(data.data);
+      const betsString = data.bets.map((v) => v * 100).join(";");
+      console.log("Bets String:", data.bets[0], betsString);
+      let x = {
+        player: {
+          first_name: "",
+          user_name: "pg3",
+          account_id: 44,
+          balance: data.wallet.balance,
+          balance2: null,
+          cash: String(data.wallet.balance),
+          cash2: 10,
+          currency: "de",
+          bonus_amount: "99990.00",
+        },
+        game: {
+          game_id: "735",
+          subGameId: "1",
+          game_name: "princessofatlantis",
+          num_rows: data.game.size.height,
+          num_columns: data.game.size.width,
+          min_coins: "1",
+          max_coins: "1",
+          default_coins: "1",
+          num_coins: "1",
+          default_coin_value: "0.1",
+          coin_values: betsString,
+          coin_values2: betsString,
+          fixed_coins: "1",
+          paylines_type: "fixed",
+          num_paylines: "1",
+          num_paylines_fs: "1",
+          paytable: {
+            a: [10, 25, 50],
+            b: [2.5, 10, 25],
+            c: [2, 5, 15],
+            d: [1.5, 2, 12],
+            e: [1, 1.5, 10],
+            f: [0.8, 1.2, 8],
+            g: [0.5, 1, 5],
+            h: [0.4, 0.9, 4],
+            i: [0.25, 0.75, 2],
+            s: [3, 5, 100],
+          },
+          rtp: "94.00",
+          extra_coins: "",
+          max_win: "",
+          max_win_hit: "",
+          extra_info: {
+            ante_bet: 1.25,
+            BuyFg: 100,
+          },
+          buyFg: "",
+          anteBet: "",
+        },
+        current_round: [],
+        next_round: [],
+        promo_details: [],
+        misc: {
+          rng: null,
+        },
+        previous_round: {
+          round_id: "1386051",
+          matrix: "afhdei;afhdhi;fefdhc;fefeac;gbfeag",
+          matrix2: "",
+          win_amount: 0,
+          num_paylines: "1",
+          coin_value: 100,
+          num_coins: "1",
+          sticky_win_details: "",
+          other_feature_win_details: "",
+          bonus_details: "",
+          misc_bonus_details: [],
+          misc_prizes: [],
+          positions: "241;287;16;32;162;346",
+          random_symbol: "",
+          progress_bar: [],
+        },
+      };
+      parent.onServerResponse(JSON.stringify(x));
+    } else if (obj.indexOf("request_type=2") >= 0) {
+      console.log("Decorator service received data:", data);
+      data = JSON.parse(data.data);
+      let x = {
+        player: {
+          first_name: "",
+          user_name: "pg3",
+          account_id: 44,
+          balance: 27269761.27,
+          balance2: null,
+          cash: "27169771.27",
+          cash2: 10,
+          currency: "EUR",
+          bonus_amount: "99990.00",
+        },
+        game: {
+          game_id: "735",
+          game_name: "princessofatlantis",
+        },
+        current_round: {
+          round_id: "1386325",
+          matrix: "eeeeee;hhhhhh;giccca;daigif;daicif;",
+          payline_wins: {
+            format:
+              "betline_number;win;blink;num_repeats;betline;matrix_positions",
+            details: "",
+          },
+          win_amount: 0,
+          screen_wins: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+          ],
+          parent_type: null,
+          post_matrix_info: {
+            feature_name: null,
+            matrix: "",
+          },
+          multipliers: [],
+          cluster_wins: null,
+          bonus_games_won: "",
+          payline_win_amount: 0,
+          spin_type: "normal",
+          extra_info: {
+            debit: "",
+          },
+          game_extra_info: {
+            ante_bet: 1.25,
+            BuyFg: 100,
+          },
+          misc_prizes: {
+            count: 0,
+          },
+          positions: [8, 43, 344, 98, 91, 336],
+          blastPosition: [],
+          scatter_win: 0,
+        },
+        next_round: [],
+        promo_details: null,
+        misc: {
+          rng: null,
+        },
+      };
+
+      parent.onServerResponse(JSON.stringify(x));
+    }
+  };
+  ws.onmessage = onReceive;
+}
