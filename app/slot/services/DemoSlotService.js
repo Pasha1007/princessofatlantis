@@ -679,39 +679,199 @@ v.BuyFreeSpinRequest = function (obj) {
   this.callServer(this.spinUrl, obj);
 };
 
+const numToLetter = {
+  1: "i",
+  2: "h",
+  3: "g",
+  4: "f",
+  5: "e",
+  6: "d",
+  7: "c",
+  8: "b",
+  9: "a" || "z",
+  10: "s",
+  11: "m",
+  12: "m",
+  13: "m",
+  14: "m",
+};
+
 function Decorator(url, obj, parent) {
   console.log("Decorator service called with URL:", url);
   console.log("Decorator service called with Data:", obj);
   console.log("Decorator service initialized");
+  function reelsToString(reels, numToLetter) {
+    if (
+      !Array.isArray(reels) ||
+      reels.length === 0 ||
+      !Array.isArray(reels[0])
+    ) {
+      return "";
+    }
+    const numRows = reels[0].length;
+    const numReels = reels.length;
+    let result = "";
+    for (let row = 0; row < numRows; row++) {
+      let rowStr = "";
+      for (let col = 0; col < numReels; col++) {
+        const symbolNum = reels[col][row];
+        if (typeof symbolNum === "object" && symbolNum !== null) {
+          rowStr += "m";
+        } else {
+          rowStr +=
+            numToLetter[symbolNum] !== undefined ? numToLetter[symbolNum] : "0";
+        }
+      }
+      result += rowStr + ";";
+    }
+    return result;
+  }
+  function findSymbolPositions(matrixStr, symbol) {
+    if (!matrixStr || typeof matrixStr !== "string" || !symbol) return [];
+    const columns = matrixStr.split(";").filter((col) => col.length > 0);
+    if (columns.length === 0) return [];
+    const numRows = columns[0].length;
+    const positions = [];
+    for (let col = 0; col < columns.length; col++) {
+      const colStr = columns[col];
+      for (let row = 0; row < numRows; row++) {
+        if (colStr[row] === symbol || colStr[row] === "0") {
+          positions.push(col * numRows + row);
+        }
+      }
+    }
+    console.log("Positions found for symbol", symbol, ":", positions);
+    return positions;
+  }
+
+  function findNonZeroSymbol(reels) {
+    const positions = [];
+    let symbol = null;
+    for (let col = 0; col < reels.length; col++) {
+      for (let row = 0; row < reels[col].length; row++) {
+        const val = reels[col][row];
+        if (val !== 0) {
+          if (symbol === null) symbol = val;
+          if (val === symbol) {
+            positions.push(col * reels[col].length + row);
+          }
+        }
+      }
+    }
+    if (positions.length > 0 && symbol !== null) {
+      return { symbol, positions };
+    }
+    return null;
+  }
+  function getStepData(data) {
+    function findByType(arr, type) {
+      return arr.find((obj) => obj.type === type);
+    }
+
+    function findByTypeState(arr, type, state, startIdx = 0) {
+      for (let i = startIdx; i < arr.length; i++) {
+        if (arr[i].type === type && arr[i].state === state)
+          return { obj: arr[i], idx: i };
+      }
+      return null;
+    }
+
+    let steps = {};
+    let stepIdx = 0;
+    let i = 0;
+    while (i < data?.length) {
+      let regular = findByType(data.slice(i), "regular");
+      if (!regular) break;
+      let regularIdx = data.indexOf(regular, i);
+
+      let tumbleInfo = findByTypeState(data, "reels", "tumble", regularIdx + 1);
+      if (!tumbleInfo) break;
+      let newInfo = findByTypeState(data, "reels", "new", tumbleInfo.idx + 1);
+      if (!newInfo) break;
+
+      let oldSymbolNum = findNonZeroSymbol(regular.reels);
+      let old_reel_symbol = [numToLetter[oldSymbolNum.symbol]];
+
+      let win = regular.win;
+
+      let new_reel = reelsToString(newInfo.obj.reels, numToLetter);
+      console.log("new_reel", new_reel);
+      let screenWins = [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+      ];
+
+      let tumbleReels = tumbleInfo.obj.reels;
+      console.log("tumbleReels", tumbleReels);
+      let postions = findSymbolPositions(
+        reelsToString(tumbleReels, numToLetter),
+        old_reel_symbol[0]
+      );
+      console.log("postions", reelsToString(tumbleReels, numToLetter));
+      let newReels = newInfo.obj.reels;
+      let numCols = tumbleReels.length;
+      let numRows = tumbleReels[0].length;
+      let newSymbolsArr = [];
+      for (let col = 0; col < numCols; col++) {
+        let colSymbols = "";
+        for (let row = 0; row < numRows; row++) {
+          if (tumbleReels[col][row] === 0 && newReels[col][row] !== 0) {
+            colSymbols += numToLetter[newReels[col][row]];
+          }
+        }
+        newSymbolsArr.push(colSymbols);
+      }
+      let new_symbols = newSymbolsArr.join(";");
+
+      steps[stepIdx] = {
+        old_reel_symbol,
+        win,
+        new_reel,
+        new_symbols,
+        postions,
+        screenWins,
+      };
+      stepIdx++;
+
+      i = newInfo.idx + 1;
+    }
+    return steps;
+  }
+  const authRequest = {
+    set: "authentication",
+    location: locationObject,
+    cookie:
+      'Jid=DB5817C1A9E9DBC73665CD870C8CBFA8; _ga=GA1.1.1388909702.1750263693; g_state={"i_l":0}; jAuth=396ca78c74c5ae9b02ae4b0f014aa124X1751473303295; _ga_CK30TZ6WBB=GS2.1.s1750350794$o8$g1$t1750350794$j60$l0$h0',
+    key: "C302c9A3",
+  };
+  const setGameRequest = {
+    set: "game",
+    game: "goo1",
+    multipliers: 5,
+  };
+  const betRequest = {
+    bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
+    set: "bet",
+  };
+  const fsRequest = {
+    bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
+    set: "bet",
+    buy_bonus: "f15",
+  };
+
   if (obj.indexOf("request_type=1") >= 0) {
-    const authRequest = {
-      set: "authentication",
-      location: locationObject,
-      cookie:
-        'Jid=DB5817C1A9E9DBC73665CD870C8CBFA8; _ga=GA1.1.1388909702.1750263693; g_state={"i_l":0}; jAuth=396ca78c74c5ae9b02ae4b0f014aa124X1751473303295; _ga_CK30TZ6WBB=GS2.1.s1750350794$o8$g1$t1750350794$j60$l0$h0',
-      key: "ba614aC3",
-    };
-    const setGameRequest = {
-      set: "game",
-      game: "goo1",
-    };
     ws.send(JSON.stringify(authRequest));
     ws.send(JSON.stringify(setGameRequest));
   } else if (obj.indexOf("request_type=2") >= 0) {
-    const betRequest = {
-      bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
-      set: "bet",
-    };
-
     ws.send(JSON.stringify(betRequest));
+  } else if (obj.indexOf("request_type=8") >= 0) {
+    ws.send(JSON.stringify(fsRequest));
   }
 
   var onReceive = function (data) {
     if (obj.indexOf("request_type=1") >= 0) {
-      console.log("Decorator service received data:", data);
       data = JSON.parse(data.data);
       const betsString = data.bets.map((v) => v * 100).join(";");
-      console.log("Bets String:", data.bets[0], betsString);
       let x = {
         player: {
           first_name: "",
@@ -790,18 +950,41 @@ function Decorator(url, obj, parent) {
       };
       parent.onServerResponse(JSON.stringify(x));
     } else if (obj.indexOf("request_type=2") >= 0) {
-      console.log("Decorator service received data:", data);
       data = JSON.parse(data.data);
+      const steps = getStepData(data.bet?.win);
+      console.log("Steps data:", steps);
+      let paylineWinsDetails = Object.entries(steps)
+        .map(([idx, step]) => {
+          let count = 0;
+          if (step && step.regularReels) {
+            const nonZero = findNonZeroSymbol(step.regularReels);
+            count = nonZero && nonZero.positions ? nonZero.positions.length : 0;
+          } else if (Array.isArray(step.postions)) {
+            count = step.postions.length;
+          }
+          const win = step.win * 100 || 0;
+          const winSymbol = step.old_reel_symbol[0];
+
+          return `${idx}:${win}:1:${count}:${winSymbol}::`;
+        })
+        .join(";");
+      function generateRandom7DigitNumber() {
+        const now = Date.now();
+        const base = String(now % 1e7).padStart(7, "0");
+        const rand = Math.floor(Math.random() * 10);
+        return base.slice(0, 6) + rand;
+      }
+
       let x = {
         player: {
           first_name: "",
           user_name: "pg3",
           account_id: 44,
-          balance: 27269761.27,
+          balance: data.wallet.balance,
           balance2: null,
-          cash: "27169771.27",
+          cash: String(data.wallet.balance),
           cash2: 10,
-          currency: "EUR",
+          currency: data.wallet.currency,
           bonus_amount: "99990.00",
         },
         game: {
@@ -809,14 +992,15 @@ function Decorator(url, obj, parent) {
           game_name: "princessofatlantis",
         },
         current_round: {
-          round_id: "1386325",
-          matrix: "eeeeee;hhhhhh;giccca;daigif;daicif;",
+          round_id: generateRandom7DigitNumber(),
+          matrix: reelsToString(data.bet.reels, numToLetter),
+          // matrix: "aaaaaa;aaaaaa;ssssaa;aaaaaa;aamaaa",
           payline_wins: {
             format:
               "betline_number;win;blink;num_repeats;betline;matrix_positions",
-            details: "",
+            details: paylineWinsDetails,
           },
-          win_amount: 0,
+          win_amount: data.bet?.total?.win,
           screen_wins: [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0,
@@ -824,11 +1008,97 @@ function Decorator(url, obj, parent) {
           parent_type: null,
           post_matrix_info: {
             feature_name: null,
-            matrix: "",
+            matrix:
+              steps && Object.keys(steps).length > 0
+                ? steps[Math.max(...Object.keys(steps))].new_reel
+                : "",
           },
           multipliers: [],
           cluster_wins: null,
           bonus_games_won: "",
+          payline_win_amount: data.bet?.total?.win,
+          spin_type: "normal",
+          extra_info: {
+            debit: "",
+          },
+          game_extra_info: {
+            ante_bet: 1.25,
+            BuyFg: 100,
+          },
+          misc_prizes:
+            Object.keys(steps).length > 0
+              ? {
+                  count: Object.keys(steps).length,
+                  ...Object.fromEntries(
+                    Object.values(steps).map((step, idx) => [idx, step])
+                  ),
+                }
+              : { count: 0 },
+          positions: [167, 380, 20, 227, 292, 123],
+          blastPosition: [],
+          scatter_win: null,
+        },
+        next_round: {},
+        promo_details: null,
+        misc: {
+          rng: null,
+        },
+      };
+      console.log("Response data (request_type=2):", x);
+      parent.onServerResponse(JSON.stringify(x));
+    } else if (obj.indexOf("request_type=8") >= 0) {
+      data = JSON.parse(data.data);
+      let x = {
+        player: {
+          first_name: "",
+          user_name: "pg3",
+          account_id: 44,
+          balance: data.wallet.balance,
+          balance2: null,
+          cash: String(data.wallet.balance),
+          cash2: 10,
+          currency: data.wallet.currency,
+          bonus_amount: "99990.00",
+        },
+        game: {
+          game_id: "735",
+          game_name: "princessofatlantis",
+        },
+        current_round: {
+          round_id: "1387112",
+          matrix: reelsToString(data.bet?.reels, numToLetter),
+          payline_wins: {
+            format: [
+              "betline_number",
+              "win",
+              "blink",
+              "num_repeats",
+              "betline",
+              "matrix_positions",
+            ],
+            details: [],
+          },
+          win_amount: 6000,
+          screen_wins: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+          ],
+          parent_type: null,
+          post_matrix_info: {
+            count: 4,
+          },
+          multipliers: [],
+          cluster_wins: null,
+          bonus_games_won: [
+            {
+              type: "freespins",
+              num_spins: data.bet?.freespin.limit,
+              spins_left: data.bet?.freespin.limit - data.bet?.freespin.counter,
+              win_amount: data.bet?.freespin.win,
+              parent_type: "normal",
+              extra_fs: 0,
+            },
+          ],
           payline_win_amount: 0,
           spin_type: "normal",
           extra_info: {
@@ -838,20 +1108,24 @@ function Decorator(url, obj, parent) {
             ante_bet: 1.25,
             BuyFg: 100,
           },
-          misc_prizes: {
-            count: 0,
-          },
-          positions: [8, 43, 344, 98, 91, 336],
+          misc_prizes: "",
+          positions: [17, 18, 2, 4, 21, 14],
           blastPosition: [],
-          scatter_win: 0,
+          scatter_win: 6000,
         },
-        next_round: [],
-        promo_details: null,
+        next_round: {
+          type: "freespins",
+          num_spins: data.bet?.freespin.limit,
+          spins_left: data.bet?.freespin.limit - data.bet?.freespin.counter,
+          win_amount: data.bet?.freespin.win,
+          parent_type: "normal",
+          extra_fs: 0,
+        },
+        promo_details: [],
         misc: {
           rng: null,
         },
       };
-
       parent.onServerResponse(JSON.stringify(x));
     }
   };

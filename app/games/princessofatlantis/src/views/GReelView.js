@@ -257,12 +257,12 @@ view.individualStrip = function (spinType, isStopNow) {
     if (isStopNow) {
       var delay = 5;
     }
-    for (let i = 0; i < this.reels.length; i++) {
-      console.log(`Reel ${i}:`);
-      this.reels[i].symbolsArray.forEach((symbol, pos) => {
-        console.log(`  Position ${pos}: Symbol ${symbol.symName}`);
-      });
-    }
+    // for (let i = 0; i < this.reels.length; i++) {
+    //   console.log(`Reel ${i}:`);
+    //   this.reels[i].symbolsArray.forEach((symbol, pos) => {
+    //     console.log(`  Position ${pos}: Symbol ${symbol.symName}`);
+    //   });
+    // }
     this.callNextReelInterval = setTimeout(
       this.individualStrip.bind(this, spinType, isStopNow),
       delay
