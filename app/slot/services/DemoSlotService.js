@@ -700,6 +700,7 @@ function Decorator(url, obj, parent) {
   console.log("Decorator service called with URL:", url);
   console.log("Decorator service called with Data:", obj);
   console.log("Decorator service initialized");
+
   function reelsToString(reels, numToLetter) {
     if (
       !Array.isArray(reels) ||
@@ -718,6 +719,9 @@ function Decorator(url, obj, parent) {
         if (typeof symbolNum === "object" && symbolNum !== null) {
           rowStr += "m";
         } else {
+          if (numToLetter[symbolNum] === undefined) {
+            console.log("Unmapped symbol:", symbolNum, "at", col, row);
+          }
           rowStr +=
             numToLetter[symbolNum] !== undefined ? numToLetter[symbolNum] : "0";
         }
@@ -726,42 +730,113 @@ function Decorator(url, obj, parent) {
     }
     return result;
   }
-  function findSymbolPositions(matrixStr, symbol) {
-    if (!matrixStr || typeof matrixStr !== "string" || !symbol) return [];
-    const columns = matrixStr.split(";").filter((col) => col.length > 0);
-    if (columns.length === 0) return [];
+
+  function extractMultipliersFromReels(reels) {
+    const multipliers = [];
+    if (!Array.isArray(reels)) return multipliers;
+    for (let col = 0; col < reels.length; col++) {
+      for (let row = 0; row < reels[col].length; row++) {
+        const cell = reels[col][row];
+        if (cell && typeof cell === "object" && "multiplier" in cell) {
+          multipliers.push(cell.multiplier);
+        }
+      }
+    }
+    return multipliers;
+  }
+  function findSymbolPositions(matrixStr, letter) {
+    console.log(
+      "findSymbolPositions called with matrixStr:",
+      matrixStr,
+      letter
+    );
+    if (!matrixStr || !letter) return [];
+
+    const columns = matrixStr.split(";").filter(Boolean);
     const numRows = columns[0].length;
-    const positions = [];
+    const hits = [];
+
     for (let col = 0; col < columns.length; col++) {
       const colStr = columns[col];
       for (let row = 0; row < numRows; row++) {
-        if (colStr[row] === symbol || colStr[row] === "0") {
-          positions.push(col * numRows + row);
+        if (colStr[row] === "0") {
+          hits.push(col * numRows + row);
         }
       }
     }
-    console.log("Positions found for symbol", symbol, ":", positions);
-    return positions;
+    console.log(hits);
+    return hits;
   }
 
-  function findNonZeroSymbol(reels) {
-    const positions = [];
-    let symbol = null;
-    for (let col = 0; col < reels.length; col++) {
-      for (let row = 0; row < reels[col].length; row++) {
-        const val = reels[col][row];
-        if (val !== 0) {
-          if (symbol === null) symbol = val;
-          if (val === symbol) {
-            positions.push(col * reels[col].length + row);
+  // function findDistinctSymbols(reels) {
+  //   const buckets = new Map();
+  //   const rowsPerReel = reels[0].length;
+
+  //   for (let col = 0; col < reels.length; col++) {
+  //     for (let row = 0; row < rowsPerReel; row++) {
+  //       const cell = reels[col][row];
+  //       if (cell === 0) continue;
+
+  //       const key = typeof cell === "object" ? cell : Number(cell);
+  //       if (!buckets.has(key)) buckets.set(key, []);
+
+  //       buckets.get(key).push(col * rowsPerReel + row);
+  //     }
+  //   }
+  //   return Array.from(buckets, ([symbol, positions]) => ({
+  //     symbol,
+  //     positions,
+  //   }));
+  // }
+
+  // function findNonZeroSymbol(reels) {
+  //   const positions = [];
+  //   let symbol = null;
+  //   for (let col = 0; col < reels.length; col++) {
+  //     for (let row = 0; row < reels[col].length; row++) {
+  //       const val = reels[col][row];
+  //       if (val !== 0) {
+  //         if (symbol === null) symbol = val;
+  //         if (val === symbol) {
+  //           positions.push(col * reels[col].length + row);
+  //         }
+  //       }
+  //     }
+  //   }
+  //   if (positions.length > 0 && symbol !== null) {
+  //     return { symbol, positions };
+  //   }
+  //   return null;
+  // }
+
+  function reelsTomatrix(wins, numToLetter) {
+    let a = {},
+      result = [];
+    for (let i = 0; i < wins.length; i++) {
+      if (wins[i].type === "regular" && !wins[i].state) {
+        for (let x = 0; x < 6; x++) {
+          for (let y = 0; y < 5; y++) {
+            if (wins[i].reels[x][y] !== 0) {
+              let c = numToLetter[wins[i].reels[x][y]];
+              if (!a[c]) {
+                a[c] = { n: 0, postions: [] };
+              }
+              a[c].n++;
+              a[c].postions.push(y * 6 + x);
+            }
           }
         }
       }
+      if (wins[i].state === "tumble") {
+        result.push(a);
+        a = {};
+      }
     }
-    if (positions.length > 0 && symbol !== null) {
-      return { symbol, positions };
+    if (Object.keys(a)) {
+      result.push(a);
     }
-    return null;
+    console.log("Winning reels:", result);
+    return result;
   }
   function getStepData(data) {
     function findByType(arr, type) {
@@ -778,50 +853,87 @@ function Decorator(url, obj, parent) {
 
     let steps = {};
     let stepIdx = 0;
+    let flat_postions = [];
     let i = 0;
     while (i < data?.length) {
-      let regular = findByType(data.slice(i), "regular");
-      if (!regular) break;
-      let regularIdx = data.indexOf(regular, i);
+      let regulars = [];
+      let startIdx = i;
+      while (i < data.length && data[i].type === "regular") {
+        regulars.push(data[i]);
+        i++;
+      }
+      if (regulars.length === 0) break;
+      let regularIdx = startIdx;
 
-      let tumbleInfo = findByTypeState(data, "reels", "tumble", regularIdx + 1);
+      let tumbleInfo = findByTypeState(data, "reels", "tumble", i);
       if (!tumbleInfo) break;
       let newInfo = findByTypeState(data, "reels", "new", tumbleInfo.idx + 1);
       if (!newInfo) break;
 
-      let oldSymbolNum = findNonZeroSymbol(regular.reels);
-      let old_reel_symbol = [numToLetter[oldSymbolNum.symbol]];
-
-      let win = regular.win;
-
-      let new_reel = reelsToString(newInfo.obj.reels, numToLetter);
-      console.log("new_reel", new_reel);
-      let screenWins = [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0,
-      ];
+      let winningSymbols = [];
+      let postions = [];
+      // for (const reg of regulars) {
+      //   for (const hit of reelsTomatrix(data)) {
+      //     winningSymbols.push(numToLetter[hit.symbol]);
+      //   }
+      // }
+      console.log("winningSymbols", winningSymbols);
 
       let tumbleReels = tumbleInfo.obj.reels;
-      console.log("tumbleReels", tumbleReels);
-      let postions = findSymbolPositions(
-        reelsToString(tumbleReels, numToLetter),
-        old_reel_symbol[0]
-      );
-      console.log("postions", reelsToString(tumbleReels, numToLetter));
-      let newReels = newInfo.obj.reels;
+      let tumbleMatrixStr = reelsToString(tumbleReels, numToLetter);
+
+      // for (const letter of winningSymbols) {
+      //   postions.push(...findSymbolPositions(tumbleMatrixStr, letter));
+      // }
+
+      let old_reel_symbol = [];
+
+      const res = reelsTomatrix(data, numToLetter);
+      for (const prop of Object.entries(res)[stepIdx]) {
+        old_reel_symbol = Object.keys(prop);
+        console.log("Symb", old_reel_symbol);
+        for (const sym in prop) {
+          if (prop[sym].postions) {
+            postions.push(prop[sym].postions);
+          }
+          console.log("pos", prop[sym].postions);
+        }
+      }
+      flat_postions = postions;
+      postions = postions.flat();
+
+      // for (let i = 0; i < res.length; i++) {
+      //   for (symb[i] in res) {
+      //     console.log(symb);
+      //   }
+      // }
+      let flat_win = regulars.map((obj) => obj.win);
+      let win = 0;
+      win = flat_win.reduce((accVal, currVal) => accVal + currVal, win) * 100;
+
+      let new_reel = reelsToString(newInfo.obj.reels, numToLetter);
       let numCols = tumbleReels.length;
       let numRows = tumbleReels[0].length;
       let newSymbolsArr = [];
+      let newReels = newInfo.obj.reels;
       for (let col = 0; col < numCols; col++) {
         let colSymbols = "";
         for (let row = 0; row < numRows; row++) {
           if (tumbleReels[col][row] === 0 && newReels[col][row] !== 0) {
-            colSymbols += numToLetter[newReels[col][row]];
+            if (
+              typeof newReels[col][row] === "object" &&
+              newReels[col][row] !== null
+            ) {
+              colSymbols += "m";
+            } else {
+              colSymbols += numToLetter[newReels[col][row]];
+            }
           }
         }
         newSymbolsArr.push(colSymbols);
       }
       let new_symbols = newSymbolsArr.join(";");
+      let screenWins = Array(numCols * numRows).fill(0);
 
       steps[stepIdx] = {
         old_reel_symbol,
@@ -830,6 +942,8 @@ function Decorator(url, obj, parent) {
         new_symbols,
         postions,
         screenWins,
+        flat_postions,
+        flat_win,
       };
       stepIdx++;
 
@@ -943,7 +1057,7 @@ function Decorator(url, obj, parent) {
           bonus_details: "",
           misc_bonus_details: [],
           misc_prizes: [],
-          positions: "241;287;16;32;162;346",
+          positions: "241;287;16;32;162;111",
           random_symbol: "",
           progress_bar: [],
         },
@@ -953,29 +1067,25 @@ function Decorator(url, obj, parent) {
       data = JSON.parse(data.data);
       const steps = getStepData(data.bet?.win);
       console.log("Steps data:", steps);
-      let paylineWinsDetails = Object.entries(steps)
-        .map(([idx, step]) => {
-          let count = 0;
-          if (step && step.regularReels) {
-            const nonZero = findNonZeroSymbol(step.regularReels);
-            count = nonZero && nonZero.positions ? nonZero.positions.length : 0;
-          } else if (Array.isArray(step.postions)) {
-            count = step.postions.length;
-          }
-          const win = step.win * 100 || 0;
-          const winSymbol = step.old_reel_symbol[0];
 
-          return `${idx}:${win}:1:${count}:${winSymbol}::`;
-        })
+      const paylineWinsDetails = Object.entries(steps)
+        .flatMap(([stepIdx, step]) =>
+          step.flat_postions.map((pos, winIdx) => {
+            const count = pos?.length ?? 0;
+            const win = step.flat_win[winIdx] * 100;
+            const sym = step.old_reel_symbol?.[winIdx] ?? "";
+
+            return `${stepIdx}:${win}:1:${count}:${sym}::`;
+          })
+        )
         .join(";");
-      function generateRandom7DigitNumber() {
+      function generateRandomNumber() {
         const now = Date.now();
         const base = String(now % 1e7).padStart(7, "0");
         const rand = Math.floor(Math.random() * 10);
         return base.slice(0, 6) + rand;
       }
-
-      let x = {
+      let regSpin = {
         player: {
           first_name: "",
           user_name: "pg3",
@@ -992,15 +1102,79 @@ function Decorator(url, obj, parent) {
           game_name: "princessofatlantis",
         },
         current_round: {
-          round_id: generateRandom7DigitNumber(),
-          matrix: reelsToString(data.bet.reels, numToLetter),
-          // matrix: "aaaaaa;aaaaaa;ssssaa;aaaaaa;aamaaa",
+          round_id: generateRandomNumber(),
+          matrix:
+            data.bet && Array.isArray(data.bet.reels)
+              ? reelsToString(data.bet.reels, numToLetter)
+              : "",
+          payline_wins: {
+            format:
+              "betline_number;win;blink;num_repeats;betline;matrix_positions",
+            details: "",
+          },
+          win_amount: 0,
+          screen_wins: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+          ],
+          parent_type: null,
+          post_matrix_info: {
+            feature_name: null,
+            matrix: "",
+          },
+          multipliers: [],
+          cluster_wins: null,
+          bonus_games_won: "",
+          payline_win_amount: 0,
+          spin_type: "normal",
+          extra_info: {
+            debit: "",
+          },
+          game_extra_info: {
+            ante_bet: 1.25,
+            BuyFg: 100,
+          },
+          misc_prizes: {
+            count: 0,
+          },
+          positions: [163, 133, 314, 405, 87, 220],
+          blastPosition: [],
+          scatter_win: 0,
+        },
+        next_round: [],
+        promo_details: null,
+        misc: {
+          rng: null,
+        },
+      };
+      let winSpin = {
+        player: {
+          first_name: "",
+          user_name: "pg3",
+          account_id: 44,
+          balance: data.wallet.balance,
+          balance2: null,
+          cash: String(data.wallet.balance),
+          cash2: 10,
+          currency: data.wallet.currency,
+          bonus_amount: "99990.00",
+        },
+        game: {
+          game_id: "735",
+          game_name: "princessofatlantis",
+        },
+        current_round: {
+          round_id: generateRandomNumber(),
+          matrix:
+            data.bet && Array.isArray(data.bet.reels)
+              ? reelsToString(data.bet.reels, numToLetter)
+              : "",
           payline_wins: {
             format:
               "betline_number;win;blink;num_repeats;betline;matrix_positions",
             details: paylineWinsDetails,
           },
-          win_amount: data.bet?.total?.win,
+          win_amount: data.bet.total.win,
           screen_wins: [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0,
@@ -1034,11 +1208,112 @@ function Decorator(url, obj, parent) {
                   ),
                 }
               : { count: 0 },
-          positions: [167, 380, 20, 227, 292, 123],
+          positions: [218, 58, 151, 200, 130, 399],
+          blastPosition: [],
+          scatter_win: 0,
+        },
+        next_round: [],
+        promo_details: null,
+        misc: {
+          rng: null,
+        },
+      };
+      let x = {
+        player: {
+          first_name: "",
+          user_name: "pg3",
+          account_id: 44,
+          balance: data.wallet.balance,
+          balance2: null,
+          cash: String(data.wallet.balance),
+          cash2: 10,
+          currency: data.wallet.currency,
+          bonus_amount: "99990.00",
+        },
+        game: {
+          game_id: "735",
+          game_name: "princessofatlantis",
+        },
+        current_round: {
+          round_id: generateRandomNumber(),
+          matrix:
+            data.bet && Array.isArray(data.bet.reels)
+              ? reelsToString(data.bet.reels, numToLetter)
+              : "",
+          // matrix: "aaaaaa;aaaaaa;bbbbbb;bbbbbb;bbbbbb",
+          payline_wins: {
+            format:
+              "betline_number;win;blink;num_repeats;betline;matrix_positions",
+            details: paylineWinsDetails,
+          },
+          win_amount: data.bet?.total?.win,
+          screen_wins: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+          ],
+          parent_type: null,
+          post_matrix_info: {
+            feature_name: null,
+            matrix:
+              steps && Object.keys(steps).length > 0
+                ? steps[Math.max(...Object.keys(steps))].new_reel
+                : "",
+            multipliers: extractMultipliersFromReels(
+              data.bet && data.bet.reels ? data.bet.reels : []
+            ),
+            symbol: "m",
+            win: extractMultipliersFromReels(
+              data.bet && data.bet.reels ? data.bet.reels : []
+            ).reduce(
+              (accumulator, currentValue) => accumulator + currentValue,
+              0
+            ),
+          },
+          multipliers: [],
+          cluster_wins: null,
+          bonus_games_won: "",
+          total_fs_win_amount: 0,
+          payline_win_amount: data.bet?.total?.win,
+          spin_type: data.bet?.freespin ? "freespins" : "normal",
+          extra_info: {
+            debit: "",
+          },
+          game_extra_info: {
+            ante_bet: 1.25,
+            BuyFg: 100,
+          },
+          misc_prizes:
+            Object.keys(steps).length > 0
+              ? {
+                  count: Object.keys(steps).length,
+                  ...Object.fromEntries(
+                    Object.values(steps).map((step, idx) => [idx, step])
+                  ),
+                }
+              : { count: 0 },
+          positions: [],
           blastPosition: [],
           scatter_win: null,
         },
-        next_round: {},
+        next_round: data.bet?.freespin
+          ? {
+              type: "freespins",
+              num_spins: String(data.bet.freespin.limit),
+              spins_left: String(
+                data.bet.freespin.limit - data.bet.freespin.counter
+              ),
+              multiplier: 1,
+              parent_type: "normal",
+              additional_fs: "",
+              coin_value: String(data.bet.bet_sum * 100),
+              symbol: "",
+              total_fs_win_amount: data.bet.freespin.win * 100,
+              sub_type: "select_soldiers",
+              fg_type: "",
+              multipler_arr: [],
+              fs_game_id: 4,
+            }
+          : {},
         promo_details: null,
         misc: {
           rng: null,
@@ -1066,7 +1341,10 @@ function Decorator(url, obj, parent) {
         },
         current_round: {
           round_id: "1387112",
-          matrix: reelsToString(data.bet?.reels, numToLetter),
+          matrix:
+            data.bet && data.bet.reels
+              ? reelsToString(data.bet.reels, numToLetter)
+              : "",
           payline_wins: {
             format: [
               "betline_number",
