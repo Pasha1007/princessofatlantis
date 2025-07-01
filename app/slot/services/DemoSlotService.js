@@ -697,8 +697,6 @@ const numToLetter = {
 };
 
 function Decorator(url, obj, parent) {
-  console.log("Decorator service called with URL:", url);
-  console.log("Decorator service called with Data:", obj);
   console.log("Decorator service initialized");
 
   function reelsToString(reels, numToLetter) {
@@ -720,7 +718,6 @@ function Decorator(url, obj, parent) {
           rowStr += "m";
         } else {
           if (numToLetter[symbolNum] === undefined) {
-            console.log("Unmapped symbol:", symbolNum, "at", col, row);
           }
           rowStr +=
             numToLetter[symbolNum] !== undefined ? numToLetter[symbolNum] : "0";
@@ -739,33 +736,11 @@ function Decorator(url, obj, parent) {
         const cell = reels[col][row];
         if (cell && typeof cell === "object" && "multiplier" in cell) {
           multipliers.push(cell.multiplier);
+          console.log("M:", row * 6 + col);
         }
       }
     }
     return multipliers;
-  }
-  function findSymbolPositions(matrixStr, letter) {
-    console.log(
-      "findSymbolPositions called with matrixStr:",
-      matrixStr,
-      letter
-    );
-    if (!matrixStr || !letter) return [];
-
-    const columns = matrixStr.split(";").filter(Boolean);
-    const numRows = columns[0].length;
-    const hits = [];
-
-    for (let col = 0; col < columns.length; col++) {
-      const colStr = columns[col];
-      for (let row = 0; row < numRows; row++) {
-        if (colStr[row] === "0") {
-          hits.push(col * numRows + row);
-        }
-      }
-    }
-    console.log(hits);
-    return hits;
   }
 
   // function findDistinctSymbols(reels) {
@@ -835,7 +810,6 @@ function Decorator(url, obj, parent) {
     if (Object.keys(a)) {
       result.push(a);
     }
-    console.log("Winning reels:", result);
     return result;
   }
   function getStepData(data) {
@@ -857,56 +831,35 @@ function Decorator(url, obj, parent) {
     let i = 0;
     while (i < data?.length) {
       let regulars = [];
-      let startIdx = i;
       while (i < data.length && data[i].type === "regular") {
         regulars.push(data[i]);
         i++;
       }
       if (regulars.length === 0) break;
-      let regularIdx = startIdx;
 
       let tumbleInfo = findByTypeState(data, "reels", "tumble", i);
       if (!tumbleInfo) break;
       let newInfo = findByTypeState(data, "reels", "new", tumbleInfo.idx + 1);
       if (!newInfo) break;
 
-      let winningSymbols = [];
       let postions = [];
-      // for (const reg of regulars) {
-      //   for (const hit of reelsTomatrix(data)) {
-      //     winningSymbols.push(numToLetter[hit.symbol]);
-      //   }
-      // }
-      console.log("winningSymbols", winningSymbols);
 
       let tumbleReels = tumbleInfo.obj.reels;
-      let tumbleMatrixStr = reelsToString(tumbleReels, numToLetter);
-
-      // for (const letter of winningSymbols) {
-      //   postions.push(...findSymbolPositions(tumbleMatrixStr, letter));
-      // }
 
       let old_reel_symbol = [];
 
       const res = reelsTomatrix(data, numToLetter);
       for (const prop of Object.entries(res)[stepIdx]) {
         old_reel_symbol = Object.keys(prop);
-        console.log("Symb", old_reel_symbol);
         for (const sym in prop) {
           if (prop[sym].postions) {
             postions.push(prop[sym].postions);
           }
-          console.log("pos", prop[sym].postions);
         }
       }
       flat_postions = postions;
       postions = postions.flat();
 
-      // for (let i = 0; i < res.length; i++) {
-      //   for (symb[i] in res) {
-      //     console.log(symb);
-      //   }
-      // }
       let flat_win = regulars.map((obj) => obj.win);
       let win = 0;
       win = flat_win.reduce((accVal, currVal) => accVal + currVal, win) * 100;
@@ -1065,262 +1018,132 @@ function Decorator(url, obj, parent) {
       parent.onServerResponse(JSON.stringify(x));
     } else if (obj.indexOf("request_type=2") >= 0) {
       data = JSON.parse(data.data);
-      const steps = getStepData(data.bet?.win);
-      console.log("Steps data:", steps);
+      if (data.bet && data.bet.reels && data.bet.total) {
+        const steps = getStepData(data.bet?.win);
+        console.log("Steps data:", steps);
 
-      const paylineWinsDetails = Object.entries(steps)
-        .flatMap(([stepIdx, step]) =>
-          step.flat_postions.map((pos, winIdx) => {
-            const count = pos?.length ?? 0;
-            const win = step.flat_win[winIdx] * 100;
-            const sym = step.old_reel_symbol?.[winIdx] ?? "";
+        const paylineWinsDetails = Object.entries(steps)
+          .flatMap(([stepIdx, step]) =>
+            step.flat_postions.map((pos, winIdx) => {
+              const count = pos?.length ?? 0;
+              const win = step.flat_win[winIdx] * 100;
+              const sym = step.old_reel_symbol?.[winIdx] ?? "";
 
-            return `${stepIdx}:${win}:1:${count}:${sym}::`;
-          })
-        )
-        .join(";");
-      function generateRandomNumber() {
-        const now = Date.now();
-        const base = String(now % 1e7).padStart(7, "0");
-        const rand = Math.floor(Math.random() * 10);
-        return base.slice(0, 6) + rand;
-      }
-      let regSpin = {
-        player: {
-          first_name: "",
-          user_name: "pg3",
-          account_id: 44,
-          balance: data.wallet.balance,
-          balance2: null,
-          cash: String(data.wallet.balance),
-          cash2: 10,
-          currency: data.wallet.currency,
-          bonus_amount: "99990.00",
-        },
-        game: {
-          game_id: "735",
-          game_name: "princessofatlantis",
-        },
-        current_round: {
-          round_id: generateRandomNumber(),
-          matrix:
-            data.bet && Array.isArray(data.bet.reels)
-              ? reelsToString(data.bet.reels, numToLetter)
-              : "",
-          payline_wins: {
-            format:
-              "betline_number;win;blink;num_repeats;betline;matrix_positions",
-            details: "",
+              return `${stepIdx}:${win}:1:${count}:${sym}::`;
+            })
+          )
+          .join(";");
+        function generateRandomNumber() {
+          const now = Date.now();
+          const base = String(now % 1e7).padStart(7, "0");
+          const rand = Math.floor(Math.random() * 10);
+          return base.slice(0, 6) + rand;
+        }
+        let x = {
+          player: {
+            first_name: "",
+            user_name: "pg3",
+            account_id: 44,
+            balance: data.wallet.balance,
+            balance2: null,
+            cash: String(data.wallet.balance),
+            cash2: 10,
+            currency: data.wallet.currency,
+            bonus_amount: "99990.00",
           },
-          win_amount: 0,
-          screen_wins: [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0,
-          ],
-          parent_type: null,
-          post_matrix_info: {
-            feature_name: null,
-            matrix: "",
+          game: {
+            game_id: "735",
+            game_name: "princessofatlantis",
           },
-          multipliers: [],
-          cluster_wins: null,
-          bonus_games_won: "",
-          payline_win_amount: 0,
-          spin_type: "normal",
-          extra_info: {
-            debit: "",
-          },
-          game_extra_info: {
-            ante_bet: 1.25,
-            BuyFg: 100,
-          },
-          misc_prizes: {
-            count: 0,
-          },
-          positions: [163, 133, 314, 405, 87, 220],
-          blastPosition: [],
-          scatter_win: 0,
-        },
-        next_round: [],
-        promo_details: null,
-        misc: {
-          rng: null,
-        },
-      };
-      let winSpin = {
-        player: {
-          first_name: "",
-          user_name: "pg3",
-          account_id: 44,
-          balance: data.wallet.balance,
-          balance2: null,
-          cash: String(data.wallet.balance),
-          cash2: 10,
-          currency: data.wallet.currency,
-          bonus_amount: "99990.00",
-        },
-        game: {
-          game_id: "735",
-          game_name: "princessofatlantis",
-        },
-        current_round: {
-          round_id: generateRandomNumber(),
-          matrix:
-            data.bet && Array.isArray(data.bet.reels)
-              ? reelsToString(data.bet.reels, numToLetter)
-              : "",
-          payline_wins: {
-            format:
-              "betline_number;win;blink;num_repeats;betline;matrix_positions",
-            details: paylineWinsDetails,
-          },
-          win_amount: data.bet.total.win,
-          screen_wins: [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0,
-          ],
-          parent_type: null,
-          post_matrix_info: {
-            feature_name: null,
+          current_round: {
+            round_id: generateRandomNumber(),
             matrix:
-              steps && Object.keys(steps).length > 0
-                ? steps[Math.max(...Object.keys(steps))].new_reel
+              data.bet && Array.isArray(data.bet.reels)
+                ? reelsToString(data.bet.reels, numToLetter)
                 : "",
-          },
-          multipliers: [],
-          cluster_wins: null,
-          bonus_games_won: "",
-          payline_win_amount: data.bet?.total?.win,
-          spin_type: "normal",
-          extra_info: {
-            debit: "",
-          },
-          game_extra_info: {
-            ante_bet: 1.25,
-            BuyFg: 100,
-          },
-          misc_prizes:
-            Object.keys(steps).length > 0
-              ? {
-                  count: Object.keys(steps).length,
-                  ...Object.fromEntries(
-                    Object.values(steps).map((step, idx) => [idx, step])
-                  ),
-                }
-              : { count: 0 },
-          positions: [218, 58, 151, 200, 130, 399],
-          blastPosition: [],
-          scatter_win: 0,
-        },
-        next_round: [],
-        promo_details: null,
-        misc: {
-          rng: null,
-        },
-      };
-      let x = {
-        player: {
-          first_name: "",
-          user_name: "pg3",
-          account_id: 44,
-          balance: data.wallet.balance,
-          balance2: null,
-          cash: String(data.wallet.balance),
-          cash2: 10,
-          currency: data.wallet.currency,
-          bonus_amount: "99990.00",
-        },
-        game: {
-          game_id: "735",
-          game_name: "princessofatlantis",
-        },
-        current_round: {
-          round_id: generateRandomNumber(),
-          matrix:
-            data.bet && Array.isArray(data.bet.reels)
-              ? reelsToString(data.bet.reels, numToLetter)
-              : "",
-          // matrix: "aaaaaa;aaaaaa;bbbbbb;bbbbbb;bbbbbb",
-          payline_wins: {
-            format:
-              "betline_number;win;blink;num_repeats;betline;matrix_positions",
-            details: paylineWinsDetails,
-          },
-          win_amount: data.bet?.total?.win,
-          screen_wins: [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0,
-          ],
-          parent_type: null,
-          post_matrix_info: {
-            feature_name: null,
-            matrix:
-              steps && Object.keys(steps).length > 0
-                ? steps[Math.max(...Object.keys(steps))].new_reel
-                : "",
-            multipliers: extractMultipliersFromReels(
-              data.bet && data.bet.reels ? data.bet.reels : []
-            ),
-            symbol: "m",
-            win: extractMultipliersFromReels(
-              data.bet && data.bet.reels ? data.bet.reels : []
-            ).reduce(
-              (accumulator, currentValue) => accumulator + currentValue,
-              0
-            ),
-          },
-          multipliers: [],
-          cluster_wins: null,
-          bonus_games_won: "",
-          total_fs_win_amount: 0,
-          payline_win_amount: data.bet?.total?.win,
-          spin_type: data.bet?.freespin ? "freespins" : "normal",
-          extra_info: {
-            debit: "",
-          },
-          game_extra_info: {
-            ante_bet: 1.25,
-            BuyFg: 100,
-          },
-          misc_prizes:
-            Object.keys(steps).length > 0
-              ? {
-                  count: Object.keys(steps).length,
-                  ...Object.fromEntries(
-                    Object.values(steps).map((step, idx) => [idx, step])
-                  ),
-                }
-              : { count: 0 },
-          positions: [],
-          blastPosition: [],
-          scatter_win: null,
-        },
-        next_round: data.bet?.freespin
-          ? {
-              type: "freespins",
-              num_spins: String(data.bet.freespin.limit),
-              spins_left: String(
-                data.bet.freespin.limit - data.bet.freespin.counter
+            payline_wins: {
+              format:
+                "betline_number;win;blink;num_repeats;betline;matrix_positions",
+              details: paylineWinsDetails,
+            },
+            win_amount: data.bet?.total?.win * 100,
+            screen_wins: [
+              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,
+            ],
+            parent_type: null,
+            post_matrix_info: {
+              feature_name: null,
+              matrix:
+                steps && Object.keys(steps).length > 0
+                  ? steps[Math.max(...Object.keys(steps))].new_reel
+                  : "",
+              multipliers: extractMultipliersFromReels(
+                data.bet && data.bet.reels ? data.bet.reels : []
               ),
-              multiplier: 1,
-              parent_type: "normal",
-              additional_fs: "",
-              coin_value: String(data.bet.bet_sum * 100),
-              symbol: "",
-              total_fs_win_amount: data.bet.freespin.win * 100,
-              sub_type: "select_soldiers",
-              fg_type: "",
-              multipler_arr: [],
-              fs_game_id: 4,
-            }
-          : {},
-        promo_details: null,
-        misc: {
-          rng: null,
-        },
-      };
-      console.log("Response data (request_type=2):", x);
-      parent.onServerResponse(JSON.stringify(x));
+              symbol: "m",
+              win: extractMultipliersFromReels(
+                data.bet && data.bet.reels ? data.bet.reels : []
+              ).reduce(
+                (accumulator, currentValue) => accumulator + currentValue,
+                0
+              ),
+            },
+            multipliers: [],
+            cluster_wins: null,
+            bonus_games_won: "",
+            total_fs_win_amount: 0,
+            payline_win_amount: data.bet?.total?.win * 100,
+            spin_type: data.bet?.freespin ? "freespins" : "normal",
+            extra_info: {
+              debit: "",
+            },
+            game_extra_info: {
+              ante_bet: 1.25,
+              BuyFg: 100,
+            },
+            misc_prizes:
+              Object.keys(steps).length > 0
+                ? {
+                    count: Object.keys(steps).length,
+                    ...Object.fromEntries(
+                      Object.values(steps).map((step, idx) => [idx, step])
+                    ),
+                  }
+                : { count: 0 },
+            positions: [],
+            blastPosition: [],
+            scatter_win: null,
+          },
+          next_round:
+            data.bet?.freespin && data.bet?.freespin?.counter !== 0
+              ? {
+                  type: "freespins",
+                  num_spins: data.bet.freespin.limit,
+                  spins_left:
+                    data.bet.freespin.limit - data.bet.freespin.counter,
+                  multiplier: 1,
+                  parent_type: "normal",
+                  additional_fs: "",
+                  coin_value: String(data.bet.bet_sum * 100),
+                  symbol: "",
+                  total_fs_win_amount: data.bet.freespin.win * 100,
+                  sub_type: "select_soldiers",
+                  fg_type: "",
+                  multipler_arr: [],
+                  fs_game_id: 4,
+                }
+              : [],
+          promo_details: null,
+          misc: {
+            rng: null,
+          },
+        };
+        console.log("Response data (request_type=2):", x);
+        parent.onServerResponse(JSON.stringify(x));
+      } else {
+        console.log("Waiting for all required fields from WebSocket...");
+      }
     } else if (obj.indexOf("request_type=8") >= 0) {
       data = JSON.parse(data.data);
       let x = {
@@ -1356,7 +1179,7 @@ function Decorator(url, obj, parent) {
             ],
             details: [],
           },
-          win_amount: 6000,
+          win_amount: data.bet.total.win * 100,
           screen_wins: [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0,
@@ -1370,8 +1193,8 @@ function Decorator(url, obj, parent) {
           bonus_games_won: [
             {
               type: "freespins",
-              num_spins: data.bet?.freespin.limit,
-              spins_left: data.bet?.freespin.limit - data.bet?.freespin.counter,
+              num_spins: 10,
+              spins_left: 10,
               win_amount: data.bet?.freespin.win,
               parent_type: "normal",
               extra_fs: 0,
@@ -1389,7 +1212,11 @@ function Decorator(url, obj, parent) {
           misc_prizes: "",
           positions: [17, 18, 2, 4, 21, 14],
           blastPosition: [],
-          scatter_win: 6000,
+          scatter_win: data.bet.win.map((key) => {
+            if (key.type === "scatter") {
+              return key.win * 100;
+            }
+          })[0],
         },
         next_round: {
           type: "freespins",
@@ -1405,6 +1232,7 @@ function Decorator(url, obj, parent) {
         },
       };
       parent.onServerResponse(JSON.stringify(x));
+      console.log(x);
     }
   };
   ws.onmessage = onReceive;
