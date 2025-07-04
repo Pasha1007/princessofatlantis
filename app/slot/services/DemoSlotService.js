@@ -498,7 +498,7 @@ v.callDemoServer = function (obj) {
 };
 v.callServer = function (url, obj) {
   var parent = this;
-  // return Decorator(url, obj, parent);
+  return Decorator(url, obj, parent);
 
   console.log("[callServer] Request:", { url: url, data: obj });
   if (this.isDemoMode) {
@@ -869,10 +869,12 @@ function Decorator(url, obj, parent) {
       ];
 
       //fix screen wins
+      new_mult_pos = [];
       const mult_res = extractMultipliersFromNewReel(newReels);
       for (let m = 0; m < new_mult_pos.length; m++) {
-        screenWins[new_mult_pos[m]] = mult_res[m];
-        console.log(screenWins);
+        if (new_mult_pos[m] < screenWins.length) {
+          screenWins[new_mult_pos[m]] = mult_res[m];
+        }
       }
       steps[stepIdx] = {
         old_reel_symbol,
@@ -1029,7 +1031,11 @@ function Decorator(url, obj, parent) {
         const mults = extractMultipliersFromReels(
           data.bet && data.bet.reels ? data.bet.reels : []
         );
+        const totalWin =
+          typeof data.bet?.total?.win === "number" ? data.bet.total.win : 0;
         let post_matrix_info = {};
+        let payline_gen_win_amount = 0;
+
         if (mults.length === 0) {
           post_matrix_info = {
             feature_name: null,
@@ -1045,6 +1051,7 @@ function Decorator(url, obj, parent) {
                 })[0]
               : null,
           };
+          payline_gen_win_amount = totalWin * 100;
         } else {
           post_matrix_info = {
             feature_name: null,
@@ -1055,18 +1062,25 @@ function Decorator(url, obj, parent) {
             extra_fs: data.bet.win
               ? data.bet.win.map((key) => {
                   if (key.type === "scatter" && key.award) {
-                    return key.win.award.number;
+                    return key.award.number;
                   }
                 })[0]
               : null,
-            // multiplier: mults,
-            // symbol: "m",
-            // win: mults.reduce(
-            //   (accumulator, currentValue) => accumulator + currentValue,
-            //   0
-            // ),
-            // count: mults.length,
+            multiplier: mults,
+            symbol: "m",
+            win: mults.reduce(
+              (accumulator, currentValue) => accumulator + currentValue,
+              0
+            ),
+            count: mults.length,
           };
+          payline_gen_win_amount =
+            totalWin *
+            mults.reduce(
+              (accumulator, currentValue) => accumulator + currentValue,
+              0
+            ) *
+            100;
         }
         let screen_wins = [
           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1075,6 +1089,15 @@ function Decorator(url, obj, parent) {
         for (let m = 0; m < mults.length; m++) {
           screen_wins[mult_pos[m]] = mults[m];
           console.log(screen_wins);
+        }
+        if (typeof parent._fsTotalWin === "undefined") {
+          parent._fsTotalWin = 0;
+        }
+        if (data.bet?.freespin && data.bet?.freespin?.counter === 1) {
+          parent._fsTotalWin = 0;
+        }
+        if (data.bet?.freespin) {
+          parent._fsTotalWin += payline_gen_win_amount;
         }
         let x = {
           player: {
@@ -1103,7 +1126,7 @@ function Decorator(url, obj, parent) {
                 "betline_number;win;blink;num_repeats;betline;matrix_positions",
               details: paylineWinsDetails,
             },
-            win_amount: data.bet?.total?.win * 100,
+            win_amount: payline_gen_win_amount,
             screen_wins: screen_wins,
             parent_type: null,
             freespin_state: data.bet?.freespin?.last === true ? 1 : null,
@@ -1112,9 +1135,9 @@ function Decorator(url, obj, parent) {
             multipliers: [],
             cluster_wins: null,
             bonus_games_won: "",
-            total_fs_win_amount: data.bet?.freespin?.win * 100,
-            payline_win_amount: data.bet?.total?.win * 100,
-            spin_type: data.bet?.freespin ? "freespins" : "normal",
+            total_fs_win_amount: data.bet?.freespin ? parent._fsTotalWin : 0,
+            payline_win_amount: payline_gen_win_amount,
+            spin_type: data.bet?.freespin ? "freespin" : "normal",
             extra_info: {
               debit: "",
             },
