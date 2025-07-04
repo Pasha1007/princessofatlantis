@@ -498,7 +498,7 @@ v.callDemoServer = function (obj) {
 };
 v.callServer = function (url, obj) {
   var parent = this;
-  return Decorator(url, obj, parent);
+  // return Decorator(url, obj, parent);
 
   console.log("[callServer] Request:", { url: url, data: obj });
   if (this.isDemoMode) {
@@ -727,7 +727,7 @@ function Decorator(url, obj, parent) {
     }
     return result;
   }
-
+  let mult_pos = [];
   function extractMultipliersFromReels(reels) {
     const multipliers = [];
     if (!Array.isArray(reels)) return multipliers;
@@ -736,54 +736,30 @@ function Decorator(url, obj, parent) {
         const cell = reels[col][row];
         if (cell && typeof cell === "object" && "multiplier" in cell) {
           multipliers.push(cell.multiplier);
-          console.log("M:", row * 6 + col);
+          mult_pos.push(row * 6 + col);
         }
       }
     }
+    console.log(mult_pos);
     return multipliers;
   }
 
-  // function findDistinctSymbols(reels) {
-  //   const buckets = new Map();
-  //   const rowsPerReel = reels[0].length;
-
-  //   for (let col = 0; col < reels.length; col++) {
-  //     for (let row = 0; row < rowsPerReel; row++) {
-  //       const cell = reels[col][row];
-  //       if (cell === 0) continue;
-
-  //       const key = typeof cell === "object" ? cell : Number(cell);
-  //       if (!buckets.has(key)) buckets.set(key, []);
-
-  //       buckets.get(key).push(col * rowsPerReel + row);
-  //     }
-  //   }
-  //   return Array.from(buckets, ([symbol, positions]) => ({
-  //     symbol,
-  //     positions,
-  //   }));
-  // }
-
-  // function findNonZeroSymbol(reels) {
-  //   const positions = [];
-  //   let symbol = null;
-  //   for (let col = 0; col < reels.length; col++) {
-  //     for (let row = 0; row < reels[col].length; row++) {
-  //       const val = reels[col][row];
-  //       if (val !== 0) {
-  //         if (symbol === null) symbol = val;
-  //         if (val === symbol) {
-  //           positions.push(col * reels[col].length + row);
-  //         }
-  //       }
-  //     }
-  //   }
-  //   if (positions.length > 0 && symbol !== null) {
-  //     return { symbol, positions };
-  //   }
-  //   return null;
-  // }
-
+  let new_mult_pos = [];
+  function extractMultipliersFromNewReel(reels) {
+    const multipliers = [];
+    if (!Array.isArray(reels)) return multipliers;
+    for (let col = 0; col < reels.length; col++) {
+      for (let row = 0; row < reels[col].length; row++) {
+        const cell = reels[col][row];
+        if (cell && typeof cell === "object" && "multiplier" in cell) {
+          multipliers.push(cell.multiplier);
+          new_mult_pos.push(row * 6 + col);
+        }
+      }
+    }
+    console.log(new_mult_pos);
+    return multipliers;
+  }
   function reelsTomatrix(wins, numToLetter) {
     let a = {},
       result = [];
@@ -885,9 +861,19 @@ function Decorator(url, obj, parent) {
         }
         newSymbolsArr.push(colSymbols);
       }
-      let new_symbols = newSymbolsArr.join(";");
-      let screenWins = Array(numCols * numRows).fill(0);
 
+      let new_symbols = newSymbolsArr.join(";");
+      let screenWins = [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+      ];
+
+      //fix screen wins
+      const mult_res = extractMultipliersFromNewReel(newReels);
+      for (let m = 0; m < new_mult_pos.length; m++) {
+        screenWins[new_mult_pos[m]] = mult_res[m];
+        console.log(screenWins);
+      }
       steps[stepIdx] = {
         old_reel_symbol,
         win,
@@ -1033,11 +1019,62 @@ function Decorator(url, obj, parent) {
             })
           )
           .join(";");
+
         function generateRandomNumber() {
           const now = Date.now();
           const base = String(now % 1e7).padStart(7, "0");
           const rand = Math.floor(Math.random() * 10);
           return base.slice(0, 6) + rand;
+        }
+        const mults = extractMultipliersFromReels(
+          data.bet && data.bet.reels ? data.bet.reels : []
+        );
+        let post_matrix_info = {};
+        if (mults.length === 0) {
+          post_matrix_info = {
+            feature_name: null,
+            matrix:
+              steps && Object.keys(steps).length > 0
+                ? steps[Math.max(...Object.keys(steps))].new_reel
+                : "",
+            extra_fs: data.bet.win
+              ? data.bet.win.map((key) => {
+                  if (key.type === "scatter" && key.award) {
+                    return key.award.number;
+                  }
+                })[0]
+              : null,
+          };
+        } else {
+          post_matrix_info = {
+            feature_name: null,
+            matrix:
+              steps && Object.keys(steps).length > 0
+                ? steps[Math.max(...Object.keys(steps))].new_reel
+                : "",
+            extra_fs: data.bet.win
+              ? data.bet.win.map((key) => {
+                  if (key.type === "scatter" && key.award) {
+                    return key.win.award.number;
+                  }
+                })[0]
+              : null,
+            // multiplier: mults,
+            // symbol: "m",
+            // win: mults.reduce(
+            //   (accumulator, currentValue) => accumulator + currentValue,
+            //   0
+            // ),
+            // count: mults.length,
+          };
+        }
+        let screen_wins = [
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0,
+        ];
+        for (let m = 0; m < mults.length; m++) {
+          screen_wins[mult_pos[m]] = mults[m];
+          console.log(screen_wins);
         }
         let x = {
           player: {
@@ -1067,32 +1104,15 @@ function Decorator(url, obj, parent) {
               details: paylineWinsDetails,
             },
             win_amount: data.bet?.total?.win * 100,
-            screen_wins: [
-              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,
-            ],
+            screen_wins: screen_wins,
             parent_type: null,
-            post_matrix_info: {
-              feature_name: null,
-              matrix:
-                steps && Object.keys(steps).length > 0
-                  ? steps[Math.max(...Object.keys(steps))].new_reel
-                  : "",
-              multipliers: extractMultipliersFromReels(
-                data.bet && data.bet.reels ? data.bet.reels : []
-              ),
-              symbol: "m",
-              win: extractMultipliersFromReels(
-                data.bet && data.bet.reels ? data.bet.reels : []
-              ).reduce(
-                (accumulator, currentValue) => accumulator + currentValue,
-                0
-              ),
-            },
+            freespin_state: data.bet?.freespin?.last === true ? 1 : null,
+
+            post_matrix_info: post_matrix_info,
             multipliers: [],
             cluster_wins: null,
             bonus_games_won: "",
-            total_fs_win_amount: 0,
+            total_fs_win_amount: data.bet?.freespin?.win * 100,
             payline_win_amount: data.bet?.total?.win * 100,
             spin_type: data.bet?.freespin ? "freespins" : "normal",
             extra_info: {
@@ -1113,15 +1133,24 @@ function Decorator(url, obj, parent) {
                 : { count: 0 },
             positions: [],
             blastPosition: [],
-            scatter_win: null,
+            scatter_win: data.bet.win
+              ? data.bet.win.map((key) => {
+                  if (key.type === "scatter") {
+                    return key?.win * 100;
+                  } else {
+                    return 0;
+                  }
+                })[0]
+              : 0,
           },
           next_round:
-            data.bet?.freespin && data.bet?.freespin?.counter !== 0
+            data.bet?.freespin && data.bet?.freespin?.last !== true
               ? {
                   type: "freespins",
-                  num_spins: data.bet.freespin.limit,
-                  spins_left:
-                    data.bet.freespin.limit - data.bet.freespin.counter,
+                  num_spins: String(data.bet.freespin.limit),
+                  spins_left: String(
+                    data.bet.freespin.limit - data.bet.freespin.counter
+                  ),
                   multiplier: 1,
                   parent_type: "normal",
                   additional_fs: "",
@@ -1193,8 +1222,8 @@ function Decorator(url, obj, parent) {
           bonus_games_won: [
             {
               type: "freespins",
-              num_spins: 10,
-              spins_left: 10,
+              num_spins: 15,
+              spins_left: 15,
               win_amount: data.bet?.freespin.win,
               parent_type: "normal",
               extra_fs: 0,
@@ -1221,7 +1250,7 @@ function Decorator(url, obj, parent) {
         next_round: {
           type: "freespins",
           num_spins: data.bet?.freespin.limit,
-          spins_left: data.bet?.freespin.limit - data.bet?.freespin.counter,
+          spins_left: data.bet?.freespin.limit,
           win_amount: data.bet?.freespin.win,
           parent_type: "normal",
           extra_fs: 0,
