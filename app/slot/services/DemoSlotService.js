@@ -1017,7 +1017,7 @@ function Decorator(url, obj, parent) {
               const win = step.flat_win[winIdx] * 100;
               const sym = step.old_reel_symbol?.[winIdx] ?? "";
 
-              return `${stepIdx}:${win}:1:${count}:${sym}::`;
+              return `${stepIdx}:${win}::${count}:${sym}::`;
             })
           )
           .join(";");
@@ -1036,7 +1036,7 @@ function Decorator(url, obj, parent) {
         let post_matrix_info = {};
         let payline_gen_win_amount = 0;
 
-        if (mults.length === 0) {
+        if (mults.length === 0 || !data.bet.freespin) {
           post_matrix_info = {
             feature_name: null,
             matrix:
