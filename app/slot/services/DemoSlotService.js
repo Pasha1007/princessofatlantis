@@ -691,9 +691,6 @@ const numToLetter = {
   9: "a" || "z",
   10: "s",
   11: "m",
-  12: "m",
-  13: "m",
-  14: "m",
 };
 
 function Decorator(url, obj, parent) {
@@ -901,8 +898,7 @@ function Decorator(url, obj, parent) {
   };
   const setGameRequest = {
     set: "game",
-    game: "goo1",
-    multipliers: 5,
+    game: "swb1",
   };
   const betRequest = {
     bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
@@ -911,7 +907,7 @@ function Decorator(url, obj, parent) {
   const fsRequest = {
     bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
     set: "bet",
-    buy_bonus: "f15",
+    buy_bonus: "f10",
   };
 
   if (obj.indexOf("request_type=1") >= 0) {
@@ -936,7 +932,7 @@ function Decorator(url, obj, parent) {
           balance2: null,
           cash: String(data.wallet.balance),
           cash2: 10,
-          currency: "de",
+          currency: data.wallet.currency,
           bonus_amount: "99990.00",
         },
         game: {
@@ -1043,13 +1039,14 @@ function Decorator(url, obj, parent) {
               steps && Object.keys(steps).length > 0
                 ? steps[Math.max(...Object.keys(steps))].new_reel
                 : "",
-            extra_fs: data.bet.win
-              ? data.bet.win.map((key) => {
-                  if (key.type === "scatter" && key.award) {
-                    return key.award.number;
-                  }
-                })[0]
-              : null,
+            extra_fs:
+              data.bet.freespin && data.bet.win
+                ? data.bet.win.map((key) => {
+                    if (key.type === "scatter" && key.award) {
+                      return key.award.number;
+                    }
+                  })[0]
+                : null,
           };
           payline_gen_win_amount = totalWin * 100;
         } else {
@@ -1059,13 +1056,14 @@ function Decorator(url, obj, parent) {
               steps && Object.keys(steps).length > 0
                 ? steps[Math.max(...Object.keys(steps))].new_reel
                 : "",
-            extra_fs: data.bet.win
-              ? data.bet.win.map((key) => {
-                  if (key.type === "scatter" && key.award) {
-                    return key.award.number;
-                  }
-                })[0]
-              : null,
+            extra_fs:
+              data.bet.freespin && data.bet.win
+                ? data.bet.win.map((key) => {
+                    if (key.type === "scatter" && key.award) {
+                      return key.award.number;
+                    }
+                  })[0]
+                : null,
             multiplier: mults,
             symbol: "m",
             win: mults.reduce(
@@ -1134,7 +1132,22 @@ function Decorator(url, obj, parent) {
             post_matrix_info: post_matrix_info,
             multipliers: [],
             cluster_wins: null,
-            bonus_games_won: "",
+            bonus_games_won: data.bet.win
+              ? data.bet.win.map((key) => {
+                  if (key.type === "scatter") {
+                    return {
+                      type: "freespins",
+                      num_spins: 10,
+                      spins_left: 10,
+                      win_amount: 0,
+                      parent_type: "normal",
+                      extra_fs: 0,
+                    };
+                  } else {
+                    return "";
+                  }
+                })[0]
+              : "",
             total_fs_win_amount: data.bet?.freespin ? parent._fsTotalWin : 0,
             payline_win_amount: payline_gen_win_amount,
             spin_type: data.bet?.freespin ? "freespin" : "normal",
@@ -1245,8 +1258,8 @@ function Decorator(url, obj, parent) {
           bonus_games_won: [
             {
               type: "freespins",
-              num_spins: 15,
-              spins_left: 15,
+              num_spins: 10,
+              spins_left: 10,
               win_amount: data.bet?.freespin.win,
               parent_type: "normal",
               extra_fs: 0,
