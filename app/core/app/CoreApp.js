@@ -464,6 +464,16 @@ _ng.CoreApp.prototype.setCurrency = function () {
         });
       pixiLib.setCurrency("$");
       break;
+    case "fun":
+      this.langFormat = (value) =>
+        currency(value, {
+          symbol: "FUN ",
+          separator: ".",
+          decimal: ",",
+          precision: cPrecision,
+        });
+      pixiLib.setCurrency("FUN ");
+      break;
     case "aud":
       this.langFormat = (value) =>
         currency(value, {

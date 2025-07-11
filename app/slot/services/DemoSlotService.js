@@ -898,7 +898,7 @@ function Decorator(url, obj, parent) {
   };
   const setGameRequest = {
     set: "game",
-    game: "swb1",
+    game: "goo1",
   };
   const betRequest = {
     bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
@@ -907,9 +907,9 @@ function Decorator(url, obj, parent) {
   const fsRequest = {
     bet_sum: coreApp.gameModel.getSelectedCoinValue() / 100,
     set: "bet",
-    buy_bonus: "f10",
+    buy_bonus: "f15",
   };
-
+  // something wrong on server, it seems like now server returns line win amount already multiplied with multis
   if (obj.indexOf("request_type=1") >= 0) {
     ws.send(JSON.stringify(authRequest));
     ws.send(JSON.stringify(setGameRequest));
